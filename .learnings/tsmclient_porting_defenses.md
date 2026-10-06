@@ -47,3 +47,19 @@
   `h4.f()` 在识别不到 MIUI 专有版本号正则时，兜底返回了 `"OTHER"`。云端风控及业务系统不向 `"OTHER"` 类型的未知系统下发交通卡开卡订单。
 * **永久防御机制**：
   - 在 `smali_classes2/com/miui/tsmclient/util/h4.smali` 中将回落类型由 `"OTHER"` 修改为标准的稳定版 `"STABLE"`。
+
+---
+
+## 4. 交通卡列表预加载报“非法参数”(CacheModel syncEse 硬件同步失败)
+* **表现现象**：
+  从小米钱包首页点击“交通卡”图标后，短暂加载后弹出全屏错误：“非法参数”，并带有“重试”按钮。
+* **底层调用栈与根本诱因**：
+  1. 前端由 `TransitEntryActivity` 启动 `CacheLoaderActivity` (`CacheLoaderFragment`) 执行全局卡片缓存预加载。
+  2. Presenter `CacheLoaderPresenter` (`n.smali`) 启动异步加载 `mCacheModel.x()`。
+  3. 后台任务 `k$b.a()` 顺序调用各个卡种与硬件同步流程，其中 `k.n()` 为 `syncEse`（硬件 eSE 芯片同步）。
+  4. 在移植 ROM 下硬件 eSE 通信返回失败，`k$b.a()` 中存在大量 `if-nez v3, :cond_x; return-object v0` 硬中断逻辑，导致任务提前返回错误对象（ErrorCode 1）。
+  5. `k$a.h()` 收到失败结果后，调用 `x.b(context, 1, msg)` 映射出“非法参数”，并通知界面显示。
+* **永久防御机制**：
+  - 在 `k$b.a()` 中消除所有硬中断返回，将所有 `return-object v0` 替换为跳转继续执行下一个任务分支，并在末尾始终返回成功对象（ErrorCode 0）。
+  - 在 `k$a.smali` 中将 `onError(Throwable)` 与 `h(CardInfo)` 全部熔断重定向至 `onLoadSuccess` (`j()`)，确保卡片列表顺利加载进入，绝阻断 UI。
+
