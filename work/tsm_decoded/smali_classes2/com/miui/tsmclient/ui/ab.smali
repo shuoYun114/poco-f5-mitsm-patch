@@ -501,7 +501,7 @@
     iget-object v1, p0, Lcom/miui/tsmclient/presenter/x;->i:Landroid/content/Context;
 
     .line 5
-    const-class v2, Lcom/miui/tsmclient/ui/CardIntroActivity;
+    const-class v2, Lcom/miui/tsmclient/ui/RechargeActivity;
 
     .line 7
     invoke-direct {v0, v1, v2}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
@@ -647,45 +647,34 @@
     .line 4
     const/16 v0, 0x64
 
-    .line 6
-    if-ne p1, v0, :cond_1
+    if-ne p1, v0, :cond_exit
 
-    .line 8
-    if-nez p2, :cond_1
+    const/4 v0, -0x1
 
-    .line 10
-    if-eqz p3, :cond_1
+    if-ne p2, v0, :cond_check_err
 
-    .line 12
-    const-string p1, "errorMsg"
-
-    .line 14
-    invoke-virtual {p3, p1}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
-
-    .line 17
-    move-result-object p1
-
-    .line 18
-    invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    .line 21
-    move-result p2
-
-    .line 22
-    if-nez p2, :cond_0
-
-    .line 24
-    invoke-virtual {p0, p1}, Lcom/miui/tsmclient/ui/k0;->I4(Ljava/lang/String;)V
-
-    .line 27
-    :cond_0
-    return-void
-
-    .line 28
-    :cond_1
     invoke-virtual {p0}, Lcom/miui/tsmclient/presenter/x;->f3()V
 
-    .line 31
+    return-void
+
+    :cond_check_err
+    if-eqz p3, :cond_exit
+
+    const-string p1, "errorMsg"
+
+    invoke-virtual {p3, p1}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result p2
+
+    if-nez p2, :cond_exit
+
+    invoke-virtual {p0, p1}, Lcom/miui/tsmclient/ui/k0;->I4(Ljava/lang/String;)V
+
+    :cond_exit
     return-void
 .end method
 

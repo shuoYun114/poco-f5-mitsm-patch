@@ -219,23 +219,53 @@
 
 # virtual methods
 .method public canTransferIn()Z
-    .locals 1
+    .locals 2
 
-    .line 1
-    iget-boolean v0, p0, Lcom/miui/tsmclient/entity/CardInfo;->mHasIssue:Z
+    instance-of v0, p0, Lcom/miui/tsmclient/entity/CloudTransitCardInfo;
 
-    if-nez v0, :cond_not_allowed
+    if-eqz v0, :cond_check_order
 
+    const/4 v0, 0x1
+
+    return v0
+
+    :cond_check_order
     invoke-virtual {p0}, Lcom/miui/tsmclient/entity/PayableCardInfo;->hasTransferInOrder()Z
 
-    move-result p0
+    move-result v0
 
-    return p0
+    if-eqz v0, :cond_check_order_id
 
-    :cond_not_allowed
-    const/4 p0, 0x0
+    const/4 v0, 0x1
 
-    return p0
+    return v0
+
+    :cond_check_order_id
+    iget-object v0, p0, Lcom/miui/tsmclient/entity/CardInfo;->mOrderId:Ljava/lang/String;
+
+    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_default
+
+    const/4 v0, 0x1
+
+    return v0
+
+    :cond_default
+    iget-boolean v0, p0, Lcom/miui/tsmclient/entity/CardInfo;->mHasIssue:Z
+
+    if-nez v0, :cond_false
+
+    const/4 v0, 0x1
+
+    return v0
+
+    :cond_false
+    const/4 v0, 0x0
+
+    return v0
 .end method
 
 .method public equals(Ljava/lang/Object;)Z

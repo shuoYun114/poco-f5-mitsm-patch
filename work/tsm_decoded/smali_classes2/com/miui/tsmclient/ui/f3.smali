@@ -1080,23 +1080,6 @@
     .line 143
     if-eqz v1, :cond_6
 
-    invoke-virtual {p0}, Landroidx/fragment/app/Fragment;->getArguments()Landroid/os/Bundle;
-
-    move-result-object v0
-
-    if-eqz v0, :cond_launch_recharge
-
-    const-string v1, "cloud_card_info"
-
-    invoke-virtual {v0, v1}, Landroid/os/BaseBundle;->containsKey(Ljava/lang/String;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_launch_recharge
-
-    return-void
-
-    :cond_launch_recharge
     new-instance p1, Landroid/content/Intent;
 
     .line 147

@@ -242,18 +242,11 @@
 
 # virtual methods
 .method public canTransferIn()Z
-    .locals 0
+    .locals 1
 
-    .line 1
-    invoke-virtual {p0}, Lcom/miui/tsmclient/entity/PayableCardInfo;->hasTransferInOrder()Z
+    const/4 v0, 0x1
 
-    .line 2
-    .line 3
-    .line 4
-    move-result p0
-
-    .line 5
-    return p0
+    return v0
 .end method
 
 .method public equals(Ljava/lang/Object;)Z
