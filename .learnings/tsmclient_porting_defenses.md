@@ -63,3 +63,32 @@
   - 在 `k$b.a()` 中消除所有硬中断返回，将所有 `return-object v0` 替换为跳转继续执行下一个任务分支，并在末尾始终返回成功对象（ErrorCode 0）。
   - 在 `k$a.smali` 中将 `onError(Throwable)` 与 `h(CardInfo)` 全部熔断重定向至 `onLoadSuccess` (`j()`)，确保卡片列表顺利加载进入，绝阻断 UI。
 
+
+
+---
+
+## 5. 移入卡片弹出“当前系统版本过低，请升级至最新版本系统”版本拦截
+* **表现现象**：
+  在“移入卡片”界面，界面成功显示已退卡到云端的老卡，但点击卡片右侧的蓝色【移入】按钮时，弹出 Toast：“当前系统版本过低，请升级至最新版本系统”，操作直接中断。
+* **底层调用栈与根本诱因**：
+  1. 移入入口 `TransferInIntroFragment.smali` (`ab.smali`) 的 `e5(CardInfo)` 方法在用户点击移入时被调用。
+  2. 内部检查 `CardInfo.isServiceAvailable()` 与 `CardInfo.isShiftIn()`，若皆为 false 则跳转至 `:cond_0` 错误处理分支。
+  3. 分支内部获取 `CardInfoExtra.get(extra).getCardToast()`，提取服务器下发的“当前系统版本过低，请升级至最新版本系统”文本并弹窗，紧接着 `return-void` 中断执行。
+* **永久防御机制**：
+  - 重写 `TransferInIntroFragment.e5`：只要 `CardInfo` 非空，无条件跳过版本检查，打包 `cloud_card_info` 并转换 `parseToPayableCardInfo()`，直接调用 `h5()` 启动 `CardIntroActivity`。
+  - `CardInfoExtra.getCardToast()` 强制返回 `null`，抹除所有源头版本 Toast 拦截。
+  - `CardInfo.isServiceAvailable()` 与 `CardInfo.isShiftIn()` 强制返回 `true`。
+
+---
+
+## 6. 覆盖安装报 INSTALL_FAILED_DUPLICATE_PERMISSION 签名不一致
+* **表现现象**：
+  手机端通过系统安装器或 MT 管理器覆盖安装修好的 APK 时，报错：
+  `Failure [INSTALL_FAILED_DUPLICATE_PERMISSION: Package com.miui.tsmclient attempting to redeclare permission com.miui.tsmclient.permission.MIPUSH_RECEIVE already owned by com.miui.tsmclient]`
+* **底层原理与根本诱因**：
+  1. `com.miui.tsmclient` 的 `AndroidManifest.xml` 中声明了 `signature` 级别的自定义权限（如 `com.miui.tsmclient.permission.MIPUSH_RECEIVE`，`protectionLevel="signature"`）。
+  2. Android 权限系统规定：具有 `signature` 级别的权限只能被相同签名的应用重新声明或继承。
+  3. 当新编译的 APK 误用了其它 debug.keystore（例如全局 SDK 路径下的 debug.keystore），导致其证书指纹（SHA-256）与手机上已安装的 APK 证书指纹不一致时，Android PackageManager 会判定为“非法外部应用企图重新声明已有特权权限”，从而报 `INSTALL_FAILED_DUPLICATE_PERMISSION` 并彻底拒绝覆盖安装！
+* **永久防御机制**：
+  - 严格锁定项目专属密钥：本项目必须且只能使用 `d:\system\work\debug.keystore`（签名指纹 SHA-256 为 `64:B5:DD:55:71:79:9A:3D:32:A9:D3:56:0A:3C:80:44:E4:4E:50:31:53:1B:27:13:0F:43:26:13:9B:C9:CF:1C`）。
+  - 打包签名脚本（`sign_apk.bat`）中硬编码绝对路径校验该密钥，并在签名完成后自动与基线 APK 校验指纹一致性，严禁使用非基线 keystore 签名发布。
