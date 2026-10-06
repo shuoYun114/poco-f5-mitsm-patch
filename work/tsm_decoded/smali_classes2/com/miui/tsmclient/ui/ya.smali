@@ -899,7 +899,9 @@
     goto :goto_put_order_id
 
     :cond_check_card_order_id
-    iget-object v1, v0, Lcom/miui/tsmclient/entity/CardInfo;->mOrderId:Ljava/lang/String;
+    invoke-virtual {v0}, Lcom/miui/tsmclient/entity/CardInfo;->getOrderId()Ljava/lang/String;
+
+    move-result-object v1
 
     :goto_put_order_id
     invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z

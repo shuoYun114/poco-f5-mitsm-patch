@@ -301,7 +301,7 @@
 
 .field private mOpSuggest:Ljava/lang/String;
 
-.field private mOrderId:Ljava/lang/String;
+.field public mOrderId:Ljava/lang/String;
 
 .field public mRealCardNo:Ljava/lang/String;
 

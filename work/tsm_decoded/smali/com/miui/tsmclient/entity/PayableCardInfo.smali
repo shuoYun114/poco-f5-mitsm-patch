@@ -241,7 +241,9 @@
     return v0
 
     :cond_check_order_id
-    iget-object v0, p0, Lcom/miui/tsmclient/entity/CardInfo;->mOrderId:Ljava/lang/String;
+    invoke-virtual {p0}, Lcom/miui/tsmclient/entity/CardInfo;->getOrderId()Ljava/lang/String;
+
+    move-result-object v0
 
     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
