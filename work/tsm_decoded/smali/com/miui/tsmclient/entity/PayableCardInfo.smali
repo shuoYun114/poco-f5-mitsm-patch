@@ -1159,221 +1159,36 @@
 .end method
 
 .method public getTransferInOrder()Lcom/miui/tsmclient/pay/OrderInfo;
-    .locals 5
+    .locals 2
+
+    .line 1
+    invoke-virtual {p0}, Lcom/miui/tsmclient/entity/PayableCardInfo;->hasTransferInOrder()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_no_order
 
     iget-object v0, p0, Lcom/miui/tsmclient/entity/PayableCardInfo;->mUnfinishOrderInfos:Ljava/util/List;
 
-    if-eqz v0, :cond_check_extra
+    if-eqz v0, :cond_no_order
 
     invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
 
     move-result v1
 
-    if-nez v1, :cond_check_extra
+    if-nez v1, :cond_no_order
 
     const/4 v1, 0x0
 
     invoke-interface {v0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
 
-    move-result-object v0
+    move-result-object p0
 
-    check-cast v0, Lcom/miui/tsmclient/pay/OrderInfo;
+    check-cast p0, Lcom/miui/tsmclient/pay/OrderInfo;
 
-    if-eqz v0, :cond_check_extra
+    return-object p0
 
-    iget-object v1, v0, Lcom/miui/tsmclient/pay/OrderInfo;->mOrderId:Ljava/lang/String;
-
-    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v1
-
-    if-nez v1, :cond_check_extra
-
-    iget-object v1, v0, Lcom/miui/tsmclient/pay/OrderInfo;->mActionTokens:Ljava/util/List;
-
-    if-nez v1, :cond_ensure_token
-
-    new-instance v1, Ljava/util/ArrayList;
-
-    invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
-
-    iput-object v1, v0, Lcom/miui/tsmclient/pay/OrderInfo;->mActionTokens:Ljava/util/List;
-
-    :cond_ensure_token
-    new-instance v1, Lcom/miui/tsmclient/entity/ActionToken;
-
-    invoke-direct {v1}, Lcom/miui/tsmclient/entity/ActionToken;-><init>()V
-
-    sget-object v2, Lcom/miui/tsmclient/entity/ActionToken$TokenType;->withdraw:Lcom/miui/tsmclient/entity/ActionToken$TokenType;
-
-    iput-object v2, v1, Lcom/miui/tsmclient/entity/ActionToken;->mType:Lcom/miui/tsmclient/entity/ActionToken$TokenType;
-
-    iget-object v2, v0, Lcom/miui/tsmclient/pay/OrderInfo;->mOrderId:Ljava/lang/String;
-
-    iput-object v2, v1, Lcom/miui/tsmclient/entity/ActionToken;->mToken:Ljava/lang/String;
-
-    iget-object v2, v0, Lcom/miui/tsmclient/pay/OrderInfo;->mActionTokens:Ljava/util/List;
-
-    invoke-interface {v2, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    return-object v0
-
-    :cond_check_extra
-    const/4 v0, 0x0
-
-    iget-object v1, p0, Lcom/miui/tsmclient/entity/CardInfo;->mOrderId:Ljava/lang/String;
-
-    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v2
-
-    if-nez v2, :cond_from_extra
-
-    move-object v0, v1
-
-    :cond_from_extra
-    if-nez v0, :cond_check_found
-
-    invoke-virtual {p0}, Lcom/miui/tsmclient/entity/CardInfo;->getExtra()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v2
-
-    if-nez v2, :cond_check_found
-
-    :try_start_0
-    new-instance v2, Lorg/json/JSONObject;
-
-    invoke-direct {v2, v1}, Lorg/json/JSONObject;-><init>(Ljava/lang/String;)V
-
-    const-string v1, "orderId"
-
-    invoke-virtual {v2, v1}, Lorg/json/JSONObject;->optString(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v3
-
-    if-nez v3, :cond_parse_transfer_order
-
-    move-object v0, v1
-
-    goto :goto_parse_end
-
-    :cond_parse_transfer_order
-    const-string v1, "transferOrder"
-
-    invoke-virtual {v2, v1}, Lorg/json/JSONObject;->optString(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v3
-
-    if-nez v3, :cond_parse_order_id_underscore
-
-    new-instance v3, Lorg/json/JSONObject;
-
-    invoke-direct {v3, v1}, Lorg/json/JSONObject;-><init>(Ljava/lang/String;)V
-
-    const-string v1, "orderId"
-
-    invoke-virtual {v3, v1}, Lorg/json/JSONObject;->optString(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v3
-
-    if-nez v3, :cond_parse_order_id_underscore
-
-    move-object v0, v1
-
-    goto :goto_parse_end
-
-    :cond_parse_order_id_underscore
-    const-string v1, "order_id"
-
-    invoke-virtual {v2, v1}, Lorg/json/JSONObject;->optString(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v2
-
-    if-nez v2, :cond_goto_parse_end
-
-    move-object v0, v1
-
-    :cond_goto_parse_end
-    :goto_parse_end
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_parse
-
-    :catch_parse
-    :cond_check_found
-    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
-
-    move-result v1
-
-    if-nez v1, :cond_return_null
-
-    new-instance v1, Lcom/miui/tsmclient/pay/OrderInfo;
-
-    invoke-direct {v1}, Lcom/miui/tsmclient/pay/OrderInfo;-><init>()V
-
-    iput-object v0, v1, Lcom/miui/tsmclient/pay/OrderInfo;->mOrderId:Ljava/lang/String;
-
-    iget-object v2, p0, Lcom/miui/tsmclient/entity/CardInfo;->mCardType:Ljava/lang/String;
-
-    iput-object v2, v1, Lcom/miui/tsmclient/pay/OrderInfo;->mCardType:Ljava/lang/String;
-
-    new-instance v2, Lcom/miui/tsmclient/entity/ActionToken;
-
-    invoke-direct {v2}, Lcom/miui/tsmclient/entity/ActionToken;-><init>()V
-
-    sget-object v3, Lcom/miui/tsmclient/entity/ActionToken$TokenType;->withdraw:Lcom/miui/tsmclient/entity/ActionToken$TokenType;
-
-    iput-object v3, v2, Lcom/miui/tsmclient/entity/ActionToken;->mType:Lcom/miui/tsmclient/entity/ActionToken$TokenType;
-
-    iput-object v0, v2, Lcom/miui/tsmclient/entity/ActionToken;->mToken:Ljava/lang/String;
-
-    new-instance v3, Ljava/util/ArrayList;
-
-    invoke-direct {v3}, Ljava/util/ArrayList;-><init>()V
-
-    invoke-interface {v3, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    iput-object v3, v1, Lcom/miui/tsmclient/pay/OrderInfo;->mActionTokens:Ljava/util/List;
-
-    iget-object v2, p0, Lcom/miui/tsmclient/entity/PayableCardInfo;->mUnfinishOrderInfos:Ljava/util/List;
-
-    if-nez v2, :cond_add_to_list
-
-    new-instance v2, Ljava/util/ArrayList;
-
-    invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
-
-    iput-object v2, p0, Lcom/miui/tsmclient/entity/PayableCardInfo;->mUnfinishOrderInfos:Ljava/util/List;
-
-    :cond_add_to_list
-    iget-object v2, p0, Lcom/miui/tsmclient/entity/PayableCardInfo;->mUnfinishOrderInfos:Ljava/util/List;
-
-    const/4 v3, 0x0
-
-    invoke-interface {v2, v3, v1}, Ljava/util/List;->add(ILjava/lang/Object;)V
-
-    return-object v1
-
-    :cond_return_null
+    :cond_no_order
     const/4 p0, 0x0
 
     return-object p0
@@ -1778,22 +1593,122 @@
 .end method
 
 .method public hasTransferInOrder()Z
-    .locals 1
+    .locals 3
 
-    invoke-virtual {p0}, Lcom/miui/tsmclient/entity/PayableCardInfo;->getTransferInOrder()Lcom/miui/tsmclient/pay/OrderInfo;
+    .line 1
+    iget-object v0, p0, Lcom/miui/tsmclient/entity/PayableCardInfo;->mUnfinishOrderInfos:Ljava/util/List;
 
+    .line 2
+    .line 3
+    const/4 v1, 0x0
+
+    .line 4
+    if-eqz v0, :cond_3
+
+    .line 5
+    .line 6
+    invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
+
+    .line 7
+    .line 8
+    .line 9
+    move-result v0
+
+    .line 10
+    if-eqz v0, :cond_0
+
+    .line 11
+    .line 12
+    goto :goto_0
+
+    .line 13
+    :cond_0
+    iget-object p0, p0, Lcom/miui/tsmclient/entity/PayableCardInfo;->mUnfinishOrderInfos:Ljava/util/List;
+
+    .line 14
+    .line 15
+    invoke-interface {p0, v1}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    .line 16
+    .line 17
+    .line 18
     move-result-object p0
 
-    if-eqz p0, :cond_0
+    .line 19
+    check-cast p0, Lcom/miui/tsmclient/pay/OrderInfo;
 
+    .line 20
+    .line 21
+    if-eqz p0, :cond_3
+
+    .line 22
+    .line 23
+    iget-object p0, p0, Lcom/miui/tsmclient/pay/OrderInfo;->mActionTokens:Ljava/util/List;
+
+    .line 24
+    .line 25
+    if-nez p0, :cond_1
+
+    .line 26
+    .line 27
+    goto :goto_0
+
+    .line 28
+    :cond_1
+    invoke-interface {p0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    .line 29
+    .line 30
+    .line 31
+    move-result-object p0
+
+    .line 32
+    :cond_2
+    invoke-interface {p0}, Ljava/util/Iterator;->hasNext()Z
+
+    .line 33
+    .line 34
+    .line 35
+    move-result v0
+
+    .line 36
+    if-eqz v0, :cond_3
+
+    .line 37
+    .line 38
+    invoke-interface {p0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    .line 39
+    .line 40
+    .line 41
+    move-result-object v0
+
+    .line 42
+    check-cast v0, Lcom/miui/tsmclient/entity/ActionToken;
+
+    .line 43
+    .line 44
+    iget-object v0, v0, Lcom/miui/tsmclient/entity/ActionToken;->mType:Lcom/miui/tsmclient/entity/ActionToken$TokenType;
+
+    .line 45
+    .line 46
+    sget-object v2, Lcom/miui/tsmclient/entity/ActionToken$TokenType;->withdraw:Lcom/miui/tsmclient/entity/ActionToken$TokenType;
+
+    .line 47
+    .line 48
+    if-ne v0, v2, :cond_2
+
+    .line 49
+    .line 50
     const/4 p0, 0x1
 
+    .line 51
     return p0
 
-    :cond_0
-    const/4 p0, 0x0
-
-    return p0
+    .line 52
+    :cond_3
+    :goto_0
+    return v1
 .end method
 
 .method public hasUnfinishedOrder()Z

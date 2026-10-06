@@ -443,86 +443,122 @@
 .end method
 
 .method public parseToPayableCardInfo()Lcom/miui/tsmclient/entity/CardInfo;
-    .locals 3
+    .locals 6
 
     .line 1
     iget-object v0, p0, Lcom/miui/tsmclient/entity/CardInfo;->mCardType:Ljava/lang/String;
 
     .line 2
-    .line 3
     invoke-virtual {p0}, Lcom/miui/tsmclient/entity/PayableCardInfo;->serialize()Lorg/json/JSONObject;
 
-    .line 4
-    .line 5
-    .line 6
     move-result-object v1
 
-    .line 7
+    .line 3
     invoke-static {v0, v1}, Lcom/miui/tsmclient/entity/CardInfoFactory;->makeCardInfo(Ljava/lang/String;Lorg/json/JSONObject;)Lcom/miui/tsmclient/entity/CardInfo;
 
-    .line 8
-    .line 9
-    .line 10
     move-result-object v0
 
-    .line 11
+    .line 4
     instance-of v1, v0, Lcom/miui/tsmclient/entity/PayableCardInfo;
 
-    .line 12
-    .line 13
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_finish
 
-    .line 14
-    .line 15
+    .line 5
     const/4 v1, 0x0
 
-    .line 16
     iput-boolean v1, v0, Lcom/miui/tsmclient/entity/CardInfo;->mHasIssue:Z
 
-    .line 17
-    .line 18
+    .line 6
     const/4 v1, 0x1
 
-    .line 19
     iput-boolean v1, v0, Lcom/miui/tsmclient/entity/CardInfo;->mIsReadSECorrectly:Z
 
-    .line 20
-    .line 21
+    .line 7
     move-object v1, v0
 
-    .line 22
     check-cast v1, Lcom/miui/tsmclient/entity/PayableCardInfo;
 
-    .line 23
-    .line 24
-    iget-object v2, p0, Lcom/miui/tsmclient/entity/PayableCardInfo;->mUnfinishOrderInfos:Ljava/util/List;
-
-    .line 25
-    .line 26
-    iput-object v2, v1, Lcom/miui/tsmclient/entity/PayableCardInfo;->mUnfinishOrderInfos:Ljava/util/List;
-
-    .line 27
-    .line 28
+    .line 8
     iget-object v2, p0, Lcom/miui/tsmclient/entity/CardInfo;->mExtra:Ljava/lang/String;
 
     iput-object v2, v0, Lcom/miui/tsmclient/entity/CardInfo;->mExtra:Ljava/lang/String;
 
+    .line 9
+    iget-object v2, p0, Lcom/miui/tsmclient/entity/PayableCardInfo;->mUnfinishOrderInfos:Ljava/util/List;
+
+    if-eqz v2, :cond_new_list
+
+    new-instance v2, Ljava/util/ArrayList;
+
+    iget-object v3, p0, Lcom/miui/tsmclient/entity/PayableCardInfo;->mUnfinishOrderInfos:Ljava/util/List;
+
+    invoke-direct {v2, v3}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
+
+    iput-object v2, v1, Lcom/miui/tsmclient/entity/PayableCardInfo;->mUnfinishOrderInfos:Ljava/util/List;
+
+    goto :goto_check_transfer_order
+
+    :cond_new_list
+    new-instance v2, Ljava/util/ArrayList;
+
+    invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
+
+    iput-object v2, v1, Lcom/miui/tsmclient/entity/PayableCardInfo;->mUnfinishOrderInfos:Ljava/util/List;
+
+    :goto_check_transfer_order
+    invoke-virtual {v1}, Lcom/miui/tsmclient/entity/PayableCardInfo;->hasTransferInOrder()Z
+
+    move-result v2
+
+    if-nez v2, :cond_finish
+
     invoke-virtual {p0}, Lcom/miui/tsmclient/entity/CloudTransitCardInfo;->getCloudCardOrderId()Ljava/lang/String;
 
-    move-result-object v2
+    move-result-object v3
 
-    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+    invoke-static {v3}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
-    move-result p0
+    move-result v2
 
-    if-nez p0, :cond_skip_order
+    if-nez v2, :cond_finish
 
-    iput-object v2, v0, Lcom/miui/tsmclient/entity/CardInfo;->mOrderId:Ljava/lang/String;
+    iput-object v3, v0, Lcom/miui/tsmclient/entity/CardInfo;->mOrderId:Ljava/lang/String;
 
-    :cond_skip_order
-    invoke-virtual {v1}, Lcom/miui/tsmclient/entity/PayableCardInfo;->getTransferInOrder()Lcom/miui/tsmclient/pay/OrderInfo;
+    new-instance v2, Lcom/miui/tsmclient/pay/OrderInfo;
 
-    :cond_0
+    invoke-direct {v2}, Lcom/miui/tsmclient/pay/OrderInfo;-><init>()V
+
+    iput-object v3, v2, Lcom/miui/tsmclient/pay/OrderInfo;->mOrderId:Ljava/lang/String;
+
+    iget-object v5, p0, Lcom/miui/tsmclient/entity/CardInfo;->mCardType:Ljava/lang/String;
+
+    iput-object v5, v2, Lcom/miui/tsmclient/pay/OrderInfo;->mCardType:Ljava/lang/String;
+
+    new-instance v5, Lcom/miui/tsmclient/entity/ActionToken;
+
+    invoke-direct {v5}, Lcom/miui/tsmclient/entity/ActionToken;-><init>()V
+
+    sget-object v4, Lcom/miui/tsmclient/entity/ActionToken$TokenType;->withdraw:Lcom/miui/tsmclient/entity/ActionToken$TokenType;
+
+    iput-object v4, v5, Lcom/miui/tsmclient/entity/ActionToken;->mType:Lcom/miui/tsmclient/entity/ActionToken$TokenType;
+
+    iput-object v3, v5, Lcom/miui/tsmclient/entity/ActionToken;->mToken:Ljava/lang/String;
+
+    new-instance v4, Ljava/util/ArrayList;
+
+    invoke-direct {v4}, Ljava/util/ArrayList;-><init>()V
+
+    invoke-virtual {v4, v5}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    iput-object v4, v2, Lcom/miui/tsmclient/pay/OrderInfo;->mActionTokens:Ljava/util/List;
+
+    iget-object v3, v1, Lcom/miui/tsmclient/entity/PayableCardInfo;->mUnfinishOrderInfos:Ljava/util/List;
+
+    const/4 v5, 0x0
+
+    invoke-interface {v3, v5, v2}, Ljava/util/List;->add(ILjava/lang/Object;)V
+
+    :cond_finish
     return-object v0
 .end method
 
