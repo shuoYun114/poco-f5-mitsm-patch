@@ -2,4 +2,13 @@
 *.png
 *.xml
 debug.keystore
-
+*.zip
+*.img
+*.idsig
+work/hyper/
+work/extracted_hyper/
+work/hyper_apps/
+work/erofs_tools/
+work/dist_suite/
+work/tsm_decoded/
+work/decoded/
