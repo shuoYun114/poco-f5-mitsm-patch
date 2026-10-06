@@ -120,3 +120,16 @@
 * **永久防御机制**：
   - **恢复核心基类原生纯净性**：基类 `PayableCardInfo` 保持 100% 原生字节码，严禁侵入修改非必要逻辑，杜绝任何对全局实体类的语法污染。
   - **Smali 异常规范铁律**：凡编写 `.catch` 块，紧随其标签的第一行必须为 `move-exception <reg>`；在能用已有封装方法（如自带异常保护的 `getCloudCardOrderId()`）的情况下，严禁冗余编写复杂 try-catch 代码块。
+
+---
+
+## 9. 原厂系统组件声明 micloud-sdk 强依赖导致安装报 INSTALL_FAILED_MISSING_SHARED_LIBRARY
+* **表现现象**：
+  在 ColorOS/AOSP 等非 MIUI 系统上安装原厂提取的系统应用（如 `com.miui.nextpay` 小米支付、`com.miui.tsmclient` 纯原厂版）时，系统安装器报错：
+  `Failure [INSTALL_FAILED_MISSING_SHARED_LIBRARY: Reconciliation failed...: Package com.miui.nextpay requires unavailable shared library micloud-sdk; failing!]`
+* **底层原理与根本诱因**：
+  1. 在 MIUI/HyperOS 原厂系统中，系统 `/system/framework` 预装了 `micloud-sdk.jar`，并通过系统 permissions XML 声明为全局 shared library。
+  2. 原厂组件的 `AndroidManifest.xml` 中声明了 `<uses-library android:name="micloud-sdk" />`，默认缺省 `android:required="true"`。
+  3. 当移植到 ColorOS 17 等非 MIUI 系统时，Android PackageManager 在应用安装阶段校验依赖的共享库，发现本地系统中缺失 `micloud-sdk`，触发硬性拦截并拒绝安装。
+* **永久防御机制**：
+  - **解耦强制共享库依赖**：在所有提取的原厂应用 `AndroidManifest.xml` 中，对 `<uses-library android:name="micloud-sdk"/>` 强制添加 `android:required="false"`，使 PackageManager 跳过系统共享库硬性检查，允许正常安装与常规运行。
