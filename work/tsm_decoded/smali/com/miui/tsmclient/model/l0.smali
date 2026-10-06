@@ -513,138 +513,52 @@
 .method public i()V
     .locals 3
 
-    .line 1
     invoke-super {p0}, Lcom/miui/tsmclient/model/f0;->i()V
 
-    .line 2
-    .line 3
-    .line 4
     iget-object v0, p0, Lcom/miui/tsmclient/model/f0;->b:Lcom/miui/tsmclient/entity/CardInfo;
-
-    .line 5
-    .line 6
     check-cast v0, Lcom/miui/tsmclient/entity/PayableCardInfo;
-
-    invoke-virtual {v0}, Lcom/miui/tsmclient/entity/PayableCardInfo;->getTransferInOrder()Lcom/miui/tsmclient/pay/OrderInfo;
-
-    .line 7
-    .line 8
     invoke-virtual {v0}, Lcom/miui/tsmclient/entity/PayableCardInfo;->hasTransferInOrder()Z
-
-    .line 9
-    .line 10
-    .line 11
     move-result v0
-
-    .line 12
     if-nez v0, :cond_do_transfer
 
     iget-object v0, p0, Lcom/miui/tsmclient/model/f0;->c:Landroid/os/Bundle;
-
-    if-eqz v0, :cond_0
-
+    if-eqz v0, :cond_check_cloud_instance
     const-string v1, "cloud_card_info"
-
     invoke-virtual {v0, v1}, Landroid/os/BaseBundle;->containsKey(Ljava/lang/String;)Z
-
     move-result v0
+    if-eqz v0, :cond_check_cloud_instance
+    goto :cond_do_transfer
 
-    if-eqz v0, :cond_0
+    :cond_check_cloud_instance
+    iget-object v0, p0, Lcom/miui/tsmclient/model/f0;->b:Lcom/miui/tsmclient/entity/CardInfo;
+    instance-of v0, v0, Lcom/miui/tsmclient/entity/CloudTransitCardInfo;
+    if-eqz v0, :cond_send_dummy
+    goto :cond_do_transfer
 
     :cond_do_transfer
-    .line 13
-    .line 14
     new-instance v0, Lcom/miui/tsmclient/model/e1;
-
-    .line 15
-    .line 16
     invoke-direct {v0}, Lcom/miui/tsmclient/model/e1;-><init>()V
-
-    .line 17
-    .line 18
-    .line 19
     iget-object v1, p0, Lcom/miui/tsmclient/model/f0;->a:Landroid/content/Context;
-
-    .line 20
-    .line 21
     const/4 v2, 0x0
-
-    .line 22
     invoke-virtual {v0, v1, v2}, Lcom/miui/tsmclient/model/g;->d(Landroid/content/Context;Ln5/d;)V
-
-    .line 23
-    .line 24
-    .line 25
     iget-object v1, p0, Lcom/miui/tsmclient/model/f0;->b:Lcom/miui/tsmclient/entity/CardInfo;
-
-    .line 26
-    .line 27
     check-cast v1, Lcom/miui/tsmclient/entity/PayableCardInfo;
-
-    .line 28
-    .line 29
     new-instance v2, Lcom/miui/tsmclient/model/l0$a;
-
-    .line 30
-    .line 31
     invoke-direct {v2, p0}, Lcom/miui/tsmclient/model/l0$a;-><init>(Lcom/miui/tsmclient/model/l0;)V
-
-    .line 32
-    .line 33
-    .line 34
     invoke-virtual {v0, v1, v2}, Lcom/miui/tsmclient/model/e1;->o(Lcom/miui/tsmclient/entity/PayableCardInfo;Lo5/i;)V
-
-    .line 35
-    .line 36
-    .line 37
     return-void
 
-    .line 38
-    :cond_0
+    :cond_send_dummy
     new-instance v0, Landroid/os/Bundle;
-
-    .line 39
-    .line 40
     invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
-
-    .line 41
-    .line 42
-    .line 43
     const-string v1, "execution_operation"
-
-    .line 44
-    .line 45
     const-string v2, "intent"
-
-    .line 46
-    .line 47
     invoke-virtual {v0, v1, v2}, Landroid/os/BaseBundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 48
-    .line 49
-    .line 50
     const-string v1, "type"
-
-    .line 51
-    .line 52
     const-string v2, "DUMMY"
-
-    .line 53
-    .line 54
     invoke-virtual {v0, v1, v2}, Landroid/os/BaseBundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 55
-    .line 56
-    .line 57
     iget-object p0, p0, Lcom/miui/tsmclient/model/f0;->f:Lcom/miui/tsmclient/model/f0$c;
-
-    .line 58
-    .line 59
     invoke-interface {p0, v0}, Lcom/miui/tsmclient/model/f0$c;->a(Landroid/os/Bundle;)V
-
-    .line 60
-    .line 61
-    .line 62
     return-void
 .end method
 
