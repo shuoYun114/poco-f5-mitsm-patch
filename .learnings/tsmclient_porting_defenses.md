@@ -104,6 +104,19 @@
   4. 宿主 UI（`CardIntroFragment.f3`）接收到 `type="DUMMY"` 后，直接启动了 `RechargeActivity`（新开卡充值界面）。
   5. 在 `RechargeActivity` 中，由于老卡并非新开卡流程（缺少开卡配置与充值金额），点击支付时向接口传递了空参数，最终抛出“无效参数”错误。
 * **永久防御机制**：
-  - **动态补全订单**（`PayableCardInfo.getTransferInOrder`）：若 `mUnfinishOrderInfos` 为空或无移入 Token，自动从 `mOrderId` 或 `getExtra()`（包含 `transferOrder` 嵌套字段）中解析 `orderId`，动态实例化带有 `TokenType.withdraw` 的 `OrderInfo` 补入列表首位；`hasTransferInOrder()` 强制委托 `getTransferInOrder() != null`。
-  - **透传移入参数**（`CloudTransitCardInfo.parseToPayableCardInfo`）：将 `mExtra` 和 `mOrderId` 深度拷贝至生成的 `PayableCardInfo`，并主动触发一次订单补全。
+  - **隔离注入移入订单**（`CloudTransitCardInfo.parseToPayableCardInfo`）：绝不在通用基类 `PayableCardInfo` 中修改全局判定，而是专门在云端卡转换为 `PayableCardInfo` 时，若缺少移入订单，安全提取 `getCloudCardOrderId()` 构造带 `TokenType.withdraw` 的 `OrderInfo` 补入其 `mUnfinishOrderInfos`。
+  - **透传移入参数**（`CloudTransitCardInfo.parseToPayableCardInfo`）：将 `mExtra` 和 `mOrderId` 深度拷贝至生成的 `PayableCardInfo`。
   - **阻断开卡退化分支**（`PayableCardIssuer.i` / `l0.smali`）：只要 `hasTransferInOrder()` 为 true，或输入 `Bundle` 中包含 `"cloud_card_info"`，强制调用 `TransferCardModel.o`（`e1.o`）进入真实移入发卡链路，彻底斩断发送 `DUMMY` 意图进入 `RechargeActivity` 的错误退化通道。
+
+---
+
+## 8. Smali 异常处理 Catch Handler 缺少 move-exception 导致 VerifyError 闪退
+* **表现现象**：
+  在【选择交通卡】界面加载卡片列表时，界面刚显示“正在加载...”，应用瞬间闪退。
+* **底层调用栈与根本诱因**：
+  1. 在 `PayableCardInfo.smali` 中手写了 `.catch Ljava/lang/Exception; {:try_start .. :try_end} :catch_parse`，但 `:catch_parse` 下第一条有效指令不是 `move-exception`。
+  2. 根据 Dalvik/ART 虚拟机规范，任何 catch handler 的第一条指令**必须**是 `move-exception <reg>`。若缺少该指令，运行时 DEX 验证器（DEX Verifier）在初次加载包含该方法的类时直接抛出 `java.lang.VerifyError`。
+  3. 由于 `PayableCardInfo` 是所有交通卡实体的基类，`CardListFragment` 进入时必须加载该类，导致整个应用崩溃退出。
+* **永久防御机制**：
+  - **恢复核心基类原生纯净性**：基类 `PayableCardInfo` 保持 100% 原生字节码，严禁侵入修改非必要逻辑，杜绝任何对全局实体类的语法污染。
+  - **Smali 异常规范铁律**：凡编写 `.catch` 块，紧随其标签的第一行必须为 `move-exception <reg>`；在能用已有封装方法（如自带异常保护的 `getCloudCardOrderId()`）的情况下，严禁冗余编写复杂 try-catch 代码块。
