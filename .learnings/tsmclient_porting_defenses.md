@@ -92,3 +92,18 @@
 * **永久防御机制**：
   - 严格锁定项目专属密钥：本项目必须且只能使用 `d:\system\work\debug.keystore`（签名指纹 SHA-256 为 `64:B5:DD:55:71:79:9A:3D:32:A9:D3:56:0A:3C:80:44:E4:4E:50:31:53:1B:27:13:0F:43:26:13:9B:C9:CF:1C`）。
   - 打包签名脚本（`sign_apk.bat`）中硬编码绝对路径校验该密钥，并在签名完成后自动与基线 APK 校验指纹一致性，严禁使用非基线 keystore 签名发布。
+---
+
+## 7. 云端卡移入误路由至新开卡充值界面（RechargeActivity）报无效参数
+* **表现现象**：
+  在“移入卡片”界面点击老卡（京津冀互联互通卡）右侧【移入】后，未进入移入写卡流程，反而错误跳转到了【添加交通卡】（新开卡充值支付界面，0.00元），点击确认开卡时弹出“无效参数”。
+* **底层调用栈与根本诱因**：
+  1. 老卡从云端列表拉取时，其 `extra` JSON 字段中虽然带有云端订单号 `"orderId"`，但并未预先解析装配成带有 `TokenType.withdraw` 的未完成订单集合 `mUnfinishOrderInfos`。
+  2. 进入 `CardIntroActivity`（发卡/移入向导）后，`PayableCardIssuer.i()`（发卡入口）调用 `hasTransferInOrder()` 进行判断。由于原逻辑只遍历 `mUnfinishOrderInfos` 中的 `ActionToken.mType == TokenType.withdraw`，未找到对应 Token，判定 `hasTransferInOrder()` 为 false。
+  3. `PayableCardIssuer.i()` 误判没有移入订单，退化进入 `:cond_0` 发卡分支，向 UI 发送了 `execution_operation="intent", type="DUMMY"`。
+  4. 宿主 UI（`CardIntroFragment.f3`）接收到 `type="DUMMY"` 后，直接启动了 `RechargeActivity`（新开卡充值界面）。
+  5. 在 `RechargeActivity` 中，由于老卡并非新开卡流程（缺少开卡配置与充值金额），点击支付时向接口传递了空参数，最终抛出“无效参数”错误。
+* **永久防御机制**：
+  - **动态补全订单**（`PayableCardInfo.getTransferInOrder`）：若 `mUnfinishOrderInfos` 为空或无移入 Token，自动从 `mOrderId` 或 `getExtra()`（包含 `transferOrder` 嵌套字段）中解析 `orderId`，动态实例化带有 `TokenType.withdraw` 的 `OrderInfo` 补入列表首位；`hasTransferInOrder()` 强制委托 `getTransferInOrder() != null`。
+  - **透传移入参数**（`CloudTransitCardInfo.parseToPayableCardInfo`）：将 `mExtra` 和 `mOrderId` 深度拷贝至生成的 `PayableCardInfo`，并主动触发一次订单补全。
+  - **阻断开卡退化分支**（`PayableCardIssuer.i` / `l0.smali`）：只要 `hasTransferInOrder()` 为 true，或输入 `Bundle` 中包含 `"cloud_card_info"`，强制调用 `TransferCardModel.o`（`e1.o`）进入真实移入发卡链路，彻底斩断发送 `DUMMY` 意图进入 `RechargeActivity` 的错误退化通道。
