@@ -116,3 +116,29 @@
    C:\Users\Admin\AppData\Local\Android\Sdk\build-tools\36.0.0\apksigner.bat sign --ks d:\system\work\debug.keystore --ks-pass pass:android --key-pass pass:android --out d:\system\work\tsm_signed.apk d:\system\work\tsm_aligned.apk
    adb install -r -d d:\system\work\tsm_signed.apk
    ```
+
+---
+
+## 6. 最新核心突破：攻克“无法获取账号信息” (ErrorCode 14) 根因与全链路打通
+
+### 6.1 根因锁定
+- **链路**：`CardListFragment (v3)` -> `CardListViewModel (f1)` -> `TSMAuthManager (x6/k)` -> `BaseAuthManager (x6/e)` -> `TSMAccountManager (g5/d)`.
+- **机制**：`g5/d.smali` 的 `h(...)` 调用底层 `AccountManager.getAuthToken(...)` 并执行 `CountDownLatch.await(25, TimeUnit.SECONDS)`。在 ColorOS 下无原生 MIUI Authenticator 回调，25 秒超时返回 null，触发 `ErrorCode 14`，调用 `z0.d5` 强制隐藏卡片列表 `RecyclerView` 并点亮“无法获取账号信息”全屏错误层。
+
+### 6.2 提取到的真实账号凭证资产
+- 路径：`/data/data/com.xiaomi.account/shared_prefs/extra_tokens.xml`
+  - `userId`: `"2900603815"`
+  - `tsm-auth_ph`: `"BDD08A97008C0F5D7C04D82E21CD810A,7pXhP4z4tQIeHSvrndBQDw=="`
+- 结构规范：`h5/a` (ExtendedAuthToken) 以逗号切割：
+  - 前半部 `serviceToken`: `"BDD08A97008C0F5D7C04D82E21CD810A"`
+  - 后半部 `ssecurity`: `"7pXhP4z4tQIeHSvrndBQDw=="`
+- 签名算法：`c9/c.b` 对请求参数排序后拼接 `ssecurity`，计算 SHA1 并 Base64。
+
+### 6.3 下一步醒来后一键接续行动项
+1. **Smali 补丁**：
+   - 在 `g5/d.smali` 的 `h(...)` 中直接注入 `g5/a` 单例（包含 `userId: 2900603815`、`serviceToken` 及 `ssecurity`），并存入 `g5/d.a` 立即返回，彻底跳过 25 秒超时。
+   - 在 `v3.smali` 的 `H5` 观察者中，即使请求发生偶发错误，也不再 `setVisibility(8)` 隐藏 `RecyclerView`，允许降级展示已支持卡片列表。
+2. **打包安装与验证**：
+   - 插入 USB 线后，一键运行编译、签名并安装脚本。
+   - 打开智能卡，点击京津冀互联互通卡完成移入，向本机 eSE 写入交通卡。
+
