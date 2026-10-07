@@ -571,7 +571,7 @@
 .end method
 
 .method protected onCreate(Landroid/os/Bundle;)V
-    .locals 2
+    .locals 3
 
     .line 1
     invoke-super {p0, p1}, Lcom/miui/tsmclient/ui/BaseActivity;->onCreate(Landroid/os/Bundle;)V
@@ -611,6 +611,28 @@
 
     .line 27
     iput-object v0, p0, Lcom/miui/tsmclient/ui/RechargeActivity;->C:Lcom/miui/tsmclient/entity/CardInfo;
+
+    instance-of v1, v0, Lcom/miui/tsmclient/entity/CloudTransitCardInfo;
+
+    if-eqz v1, :cond_after_cloud_convert
+
+    check-cast v0, Lcom/miui/tsmclient/entity/CloudTransitCardInfo;
+
+    invoke-virtual {v0}, Lcom/miui/tsmclient/entity/CloudTransitCardInfo;->parseToPayableCardInfo()Lcom/miui/tsmclient/entity/CardInfo;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/miui/tsmclient/ui/RechargeActivity;->C:Lcom/miui/tsmclient/entity/CardInfo;
+
+    iget-object v1, p0, Lcom/miui/tsmclient/ui/RechargeActivity;->B:Landroid/os/Bundle;
+
+    if-eqz v1, :cond_after_cloud_convert
+
+    const-string v2, "card_info"
+
+    invoke-virtual {v1, v2, v0}, Landroid/os/Bundle;->putParcelable(Ljava/lang/String;Landroid/os/Parcelable;)V
+
+    :cond_after_cloud_convert
 
     .line 29
     invoke-virtual {v0}, Lcom/miui/tsmclient/entity/CardInfo;->canTransferIn()Z

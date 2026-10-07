@@ -265,7 +265,7 @@
 
 .field public mEndDate:Ljava/lang/String;
 
-.field private mExtra:Ljava/lang/String;
+.field public mExtra:Ljava/lang/String;
 
 .field public mGroupName:Ljava/lang/String;
 

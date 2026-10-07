@@ -377,33 +377,40 @@
 .method private c7()V
     .locals 2
 
-    .line 1
     iget-object v0, p0, Lcom/miui/tsmclient/ui/s0;->Y:Landroid/widget/Button;
 
-    .line 3
+    if-nez v0, :cond_c7_btn
+
+    return-void
+
+    :cond_c7_btn
     sget v1, Lcom/miui/tsmclient/R$string;->transfer_now:I
 
-    .line 5
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
 
-    .line 8
-    iget-object v0, p0, Lcom/miui/tsmclient/ui/s0;->Y:Landroid/widget/Button;
-
-    .line 10
     new-instance v1, Lcom/miui/tsmclient/ui/ya$b;
 
-    .line 12
     invoke-direct {v1, p0}, Lcom/miui/tsmclient/ui/ya$b;-><init>(Lcom/miui/tsmclient/ui/ya;)V
 
-    .line 15
     invoke-virtual {v0, v1}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 18
+    const/4 v1, 0x1
+
+    invoke-virtual {v0, v1}, Landroid/view/View;->setEnabled(Z)V
+
     return-void
 .end method
 
 
 # virtual methods
+.method protected l5()V
+    .locals 0
+
+    invoke-virtual {p0}, Lcom/miui/tsmclient/ui/ya;->b7()V
+
+    return-void
+.end method
+
 .method protected A5()V
     .locals 0
 
@@ -449,7 +456,15 @@
     move-result-object v1
 
     .line 22
-    if-eqz v1, :cond_5
+    if-nez v1, :cond_order_exists
+
+    const/high16 v3, 0x42c80000    # 100.0f
+
+    const/4 v4, 0x1
+
+    goto :cond_4
+
+    :cond_order_exists
 
     .line 24
     invoke-virtual {v1}, Lcom/miui/tsmclient/pay/OrderInfo;->isPaid()Z
@@ -705,6 +720,22 @@
 
     .line 191
     invoke-virtual {v1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    iget-object v1, p0, Lcom/miui/tsmclient/ui/s0;->Y:Landroid/widget/Button;
+
+    sget v2, Lcom/miui/tsmclient/R$string;->transfer_now:I
+
+    invoke-virtual {p0, v2}, Landroidx/fragment/app/Fragment;->getString(I)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    const/4 v2, 0x1
+
+    invoke-virtual {v1, v2}, Landroid/view/View;->setEnabled(Z)V
+
+    invoke-direct {p0}, Lcom/miui/tsmclient/ui/ya;->c7()V
 
     .line 194
     :cond_5
@@ -1049,6 +1080,8 @@
 
     .line 32
     invoke-direct {p0}, Lcom/miui/tsmclient/ui/ya;->X6()V
+
+    invoke-direct {p0}, Lcom/miui/tsmclient/ui/ya;->c7()V
 
     .line 35
     return-void

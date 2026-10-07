@@ -508,6 +508,8 @@
     sget-object v5, Lcom/miui/tsmclient/entity/ActionToken$TokenType;->withdraw:Lcom/miui/tsmclient/entity/ActionToken$TokenType;
     iput-object v5, v4, Lcom/miui/tsmclient/entity/ActionToken;->mType:Lcom/miui/tsmclient/entity/ActionToken$TokenType;
     iput-object v3, v4, Lcom/miui/tsmclient/entity/ActionToken;->mToken:Ljava/lang/String;
+    iget v5, p0, Lcom/miui/tsmclient/entity/CardInfo;->mCardBalance:I
+    iput v5, v4, Lcom/miui/tsmclient/entity/ActionToken;->mRechargeAmount:I
 
     new-instance v3, Ljava/util/ArrayList;
     invoke-direct {v3}, Ljava/util/ArrayList;-><init>()V
