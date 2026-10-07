@@ -142,8 +142,16 @@
 ---
 
 ## 7. 选择交通卡列表直通展示与云端卡移入写入测试
-- **已解决**：`E5` 默认调用 `Z3()` 导致全屏 `large_progressbar` 浮层常驻遮蔽。
-- **已解决**：`onViewCreated` (`c2`) 未触发 `x4()` 导致列表网络拉取挂起。
-- **状态**：新 APK 已成功 Streamed Install 到设备，准备测试进入并触发写入 eSE。
+- **已解决问题 1（全屏加载转圈永久遮蔽）**：
+  - 在 `v3.smali` 的 `E5` 中移除 `Z3()`，替换为 `D3()`，防止初次进入时强行覆盖全屏 `large_progressbar`。
+  - 在 `v3.smali` 的 `c2` (`onViewCreated`) 退出前主动调用 `x4()` 立即触发卡片网络/本地请求，并伴随保底 `D3()` 隐藏进度条。
+- **已解决问题 2（Null 消息日志导致的 NPE 闪退）**：
+  - 修复 `v3.H5` 中 `Log.e(tag, msg)` 打印 `null` 错误消息触发的 `NullPointerException: println needs a message` 闪退。
+- **已解决问题 3（RxJava zip 异常击穿）**：
+  - 在 `f1.S()` 中增加 `try-catch` 降级保护，当云端卡接口（`queryShiftInCardProducts`）发生 401 认证异常时，自动返回 `EMPTY_LIST`，确保底层卡片列表（`y0`）正常加载展示。
+- **部署与备份状态**：
+  - 修复已完成编译、签名，并已成功 Streamed Install 到真机（ADB: `1a00c2af`）。
+  - 全部代码已提交并推送至 GitHub 仓库（最新 Commit: `53ed2af`）。
+  - 下次插线或直接在手机上打开小米智能卡，即可验证卡片列表展示及移卡写入。
 
 
