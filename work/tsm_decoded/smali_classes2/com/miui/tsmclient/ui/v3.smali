@@ -316,6 +316,10 @@
 
     iget-object v1, p1, Lcom/miui/tsmclient/model/h;->b:Ljava/lang/String;
 
+    invoke-static {v1}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v1
+
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     invoke-virtual {p1}, Lcom/miui/tsmclient/model/h;->c()Z
