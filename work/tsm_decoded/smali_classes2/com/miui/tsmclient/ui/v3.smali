@@ -259,7 +259,7 @@
     invoke-virtual {v0, v1}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
     .line 35
-    invoke-virtual {p0}, Lcom/miui/tsmclient/ui/o0;->Z3()V
+    invoke-virtual {p0}, Lcom/miui/tsmclient/ui/o0;->D3()V
 
     .line 38
     invoke-direct {p0, p1}, Lcom/miui/tsmclient/ui/v3;->C5(Landroid/view/View;)V
@@ -298,74 +298,51 @@
 .end method
 
 .method private synthetic H5(Lcom/miui/tsmclient/model/h;)V
-    .locals 2
+    .locals 3
 
-    .line 1
+    invoke-virtual {p0}, Lcom/miui/tsmclient/ui/o0;->D3()V
+
+    if-eqz p1, :cond_exit
+
+    const-string v0, "CODEX_H5"
+
+    iget v1, p1, Lcom/miui/tsmclient/model/h;->a:I
+
+    invoke-static {v1}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    iget-object v1, p1, Lcom/miui/tsmclient/model/h;->b:Ljava/lang/String;
+
+    invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
     invoke-virtual {p1}, Lcom/miui/tsmclient/model/h;->c()Z
 
-    .line 4
     move-result v0
 
-    .line 5
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_exit
 
-    .line 7
     invoke-virtual {p1}, Lcom/miui/tsmclient/model/h;->a()Z
 
-    .line 10
     move-result v0
 
-    .line 11
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_exit
 
-    .line 13
     iget-object p0, p0, Lcom/miui/tsmclient/ui/v3;->q0:Lcom/miui/tsmclient/viewmodel/h3;
 
-    .line 15
     iget-object p1, p1, Lcom/miui/tsmclient/model/h;->c:[Ljava/lang/Object;
 
-    .line 17
     const/4 v0, 0x0
 
-    .line 18
     aget-object p1, p1, v0
 
-    .line 20
     check-cast p1, Ljava/util/List;
 
-    .line 22
     invoke-virtual {p0, p1}, Lcom/miui/tsmclient/viewmodel/h3;->A(Ljava/util/List;)V
 
-    .line 25
-    :cond_0
-    return-void
-
-    .line 26
-    :cond_1
-    iget-object v0, p0, Lcom/miui/tsmclient/ui/v3;->m0:Landroidx/recyclerview/widget/RecyclerView;
-
-    .line 28
-    const/16 v1, 0x8
-
-    .line 30
-    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
-
-    .line 33
-    iget-object v0, p0, Lcom/miui/tsmclient/ui/v3;->k0:Lcom/miui/tsmclient/ui/widget/FocusedTextView;
-
-    .line 35
-    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
-
-    .line 38
-    iget v0, p1, Lcom/miui/tsmclient/model/h;->a:I
-
-    .line 40
-    iget-object p1, p1, Lcom/miui/tsmclient/model/h;->b:Ljava/lang/String;
-
-    .line 42
-    invoke-virtual {p0, v0, p1}, Lcom/miui/tsmclient/ui/z0;->d5(ILjava/lang/String;)V
-
-    .line 45
+    :cond_exit
     return-void
 .end method
 
@@ -2022,6 +1999,10 @@
 
     .line 39
     invoke-virtual {p1, p2, v0, v1}, Lcom/miui/tsmclient/util/n2;->g([Ljava/lang/String;[Ljava/lang/String;Lcom/miui/tsmclient/util/n2$a;)V
+
+    invoke-virtual {p0}, Lcom/miui/tsmclient/ui/v3;->x4()V
+
+    invoke-virtual {p0}, Lcom/miui/tsmclient/ui/o0;->D3()V
 
     .line 42
     return-void

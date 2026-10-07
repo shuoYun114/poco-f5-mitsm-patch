@@ -134,11 +134,16 @@
   - 后半部 `ssecurity`: `"7pXhP4z4tQIeHSvrndBQDw=="`
 - 签名算法：`c9/c.b` 对请求参数排序后拼接 `ssecurity`，计算 SHA1 并 Base64。
 
-### 6.3 下一步醒来后一键接续行动项
-1. **Smali 补丁**：
-   - 在 `g5/d.smali` 的 `h(...)` 中直接注入 `g5/a` 单例（包含 `userId: 2900603815`、`serviceToken` 及 `ssecurity`），并存入 `g5/d.a` 立即返回，彻底跳过 25 秒超时。
-   - 在 `v3.smali` 的 `H5` 观察者中，即使请求发生偶发错误，也不再 `setVisibility(8)` 隐藏 `RecyclerView`，允许降级展示已支持卡片列表。
-2. **打包安装与验证**：
-   - 插入 USB 线后，一键运行编译、签名并安装脚本。
-   - 打开智能卡，点击京津冀互联互通卡完成移入，向本机 eSE 写入交通卡。
+### 6.3 实施完成情况与第 7 阶段攻坚
+- 已在 `g5/d.smali` 注入真实凭证单例，彻底清除 ErrorCode 14。
+- 已在 `v3.smali` (`CardListFragment`) 中移除全屏遮罩 `Z3()`，并在 `c2` 直通触发 `x4()` 发起拉取及保底 `D3()` 消除转圈。
+- 已重新打包签名安装到真机（ADB Device `1a00c2af`）。
+
+---
+
+## 7. 选择交通卡列表直通展示与云端卡移入写入测试
+- **已解决**：`E5` 默认调用 `Z3()` 导致全屏 `large_progressbar` 浮层常驻遮蔽。
+- **已解决**：`onViewCreated` (`c2`) 未触发 `x4()` 导致列表网络拉取挂起。
+- **状态**：新 APK 已成功 Streamed Install 到设备，准备测试进入并触发写入 eSE。
+
 

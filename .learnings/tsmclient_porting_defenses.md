@@ -157,3 +157,18 @@
 * **永久防御机制**：
   - **AccountManager 拦截与保底直通**（`g5/d.smali`）：在 `h(...)` 中拦截对系统阻塞式 `AccountManager.getAuthToken` 的无效等待；直接装配包含真实有效 `userId`、`serviceToken` 及 `ssecurity` 的 `AccountInfo` (`g5/a`) 单例，并写入 `g5/d.a` 静态缓存直接返回，彻底消除 25 秒超时卡顿与 ErrorCode 14 异常。
   - **列表页异常降级兜底**（`v3.smali` / `z0.smali`）：即便网络离线或 Token 偶发受限，屏蔽无条件隐藏 `RecyclerView` 的阻断行为，降级读取本地已支持卡片列表（`CardConfigManager.getSupportedTransCardMap`），确保交通卡展示、云端卡查询及一键移卡向导永不阻断。
+
+---
+
+## 11. 卡片列表界面权限异步挂起与全屏加载遮罩常驻阻断展示
+* **表现现象**：
+  进入【选择交通卡】（`CardListActivity`）界面后，屏幕一直居中旋转“正在加载…”，底层卡片列表被完全遮挡无法操作。
+* **底层调用栈与根本诱因**：
+  1. `CardListFragment` (`v3`) 在 `E5` 初始化视图时显式调用了 `Z3()`（`ProgressBarView.h()`），在根布局顶层动态挂载了全屏加载浮层。
+  2. 原设计期望通过 `n2.g` 动态请求定位权限并在回调中触发拉取，同时依赖 `onResume` 异步 NFC 探针检测完成后调用 `x4()` 发起 `getCardsFromNetwork`。
+  3. 在 ColorOS 等移植系统中，非原生权限回调或 NFC 探针挂起，导致 `x4()` 未能在初次进入时立即执行，而负责关闭遮罩的 `D3()`（`ProgressBarView.b()`）亦未被调用，全屏转圈永久遮挡。
+* **永久防御机制**：
+  - **屏蔽侵入式默认全屏遮罩**：在 `E5` 中将 `Z3()` 调用替换为 `D3()`，禁止页面初次构建时强行覆盖不可交互的全屏加载视图。
+  - **视图构建即刻直通加载**：在 `c2` (`onViewCreated`) 退出前主动调用 `x4()` 立即触发卡片网络/本地请求，并伴随保底 `D3()` 隐藏进度条，直接露出底层的 `RecyclerView`。
+  - **异常回调静默降级**：在 `H5` 观察者回调中强制调用 `D3()`，且当请求失败时禁止调用 `RecyclerView.setVisibility(8)`，确保列表界面常驻可交互。
+
