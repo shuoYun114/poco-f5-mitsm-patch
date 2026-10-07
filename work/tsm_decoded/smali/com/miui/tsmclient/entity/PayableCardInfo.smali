@@ -1339,13 +1339,6 @@
     .line 52
     :cond_2
     :goto_0
-    iget v0, p0, Lcom/miui/tsmclient/entity/CardInfo;->mCardBalance:I
-
-    if-lez v0, :cond_zero
-
-    return v0
-
-    :cond_zero
     return v1
 .end method
 
