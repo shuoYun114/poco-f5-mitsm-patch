@@ -327,7 +327,12 @@
     :try_end_se
     .catchall {:try_start_se .. :try_end_se} :catch_se
 
+    goto :goto_se_done
+
 :catch_se
+    move-exception v1
+
+:goto_se_done
     return-object v0
 .end method
 
@@ -352,10 +357,10 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catch_all
 
-    :cond_empty
-    :catch_all
+:catch_all
     move-exception v0
 
+:cond_empty
     sget-object v0, Ljava/util/Collections;->EMPTY_LIST:Ljava/util/List;
 
     return-object v0

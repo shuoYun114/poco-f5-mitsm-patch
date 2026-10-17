@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="36" android:compileSdkVersionCodename="16" android:sharedUserId="" package="com.miui.tsmclient" platformBuildVersionCode="36" platformBuildVersionName="16">
+    <permission android:name="com.miui.tsmclient.permission.CALL_PUBLIC_TSM_FEATURE_SERVICE" android:protectionLevel="signatureOrSystem"/>
+    <permission android:label="Allow read and write content provider" android:name="com.miui.tsmclient.permission.CONTENT_PROVIDER" android:protectionLevel="signatureOrSystem"/>
+    <permission android:label="Allow start internal activities" android:name="com.miui.tsmclient.permission.TSM_GROUP" android:protectionLevel="signatureOrSystem"/>
+    <permission android:name="com.miui.tsmclient.permission.CALL_PUBLIC_TSM_CLEAN_SE_SERVICE" android:protectionLevel="signatureOrSystem"/>
+    <permission android:name="com.miui.tsmclient.permission.CTA_CONFIRM" android:protectionLevel="signatureOrSystem"/>
+    <uses-permission android:name="android.permission.NFC"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.UWB_PRIVILEGED"/>
+    <uses-permission android:name="android.permission.UWB_RANGING"/>
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="miui.cloud.finddevice.AccessFindDevice"/>
+    <uses-permission android:name="miui.cloud.finddevice.ManageFindDevice"/>
+    <uses-permission android:name="com.miui.klo.bugreport.permission.KLO_STARTUP_RECEIVER"/>
+    <uses-permission android:name="android.permission.RESET_FINGERPRINT_LOCKOUT"/>
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+    <uses-permission android:name="android.permission.USE_BIOMETRIC_INTERNAL"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
+    <uses-permission android:name="com.miui.permission.GNSS_MODE"/>
+    <uses-permission android:name="com.xiaomi.market.sdk.UPDATE"/>
+    <uses-permission android:name="com.miui.permission.ACCESS_ESE"/>
+    <uses-permission android:name="com.miui.nfc.permission.HCI_EVENT"/>
+    <uses-permission android:name="android.permission.NFC_TRANSACTION_EVENT"/>
+    <uses-permission android:name="com.xiaomi.permission.CLOUD_MANAGER"/>
+    <uses-permission android:name="com.miui.tsmclient.permission.CALL_PUBLIC_TSM_FEATURE_SERVICE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="com.qualcomm.permission.IZAT"/>
+    <uses-permission android:name="com.miui.tsmclient.permission.CONTENT_PROVIDER"/>
+    <uses-permission android:name="com.miui.tsmclient.permission.TSM_GROUP"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="com.miui.home.launcher.permission.UNINSTALL_SHORTCUT"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
+    <uses-permission android:name="com.miui.securitycenter.permission.SYSTEM_PERMISSION_DECLARE"/>
+    <uses-permission android:name="com.miui.tsmclient.permission.CTA_CONFIRM"/>
+    <uses-permission android:name="com.miui.nextpay.permission.CONTENT_PROVIDER"/>
+    <uses-permission android:name="android.permission.REAL_GET_TASKS"/>
+    <uses-permission android:name="xiaomi.digitalkey.permission.ICCOA2_DKF"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
+    <uses-permission android:name="com.hyperos.permission.AI_PERCEPTION"/>
+    <uses-permission android:name="com.xiaomi.aicr.permission.OPEN_CAPABILITY_INTERFACE"/>
+    <queries>
+        <package android:name="com.unionpay.tsmservice.mi"/>
+        <package android:name="com.tencent.mm"/>
+        <package android:name="com.miui.securitycenter"/>
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent>
+        <intent>
+            <action android:name="*"/>
+            <data android:scheme="tbopen"/>
+        </intent>
+        <package android:name="com.eg.android.AlipayGphone"/>
+        <package android:name="com.eg.android.AlipayGphoneRC"/>
+        <package android:name="hk.alipay.wallet"/>
+        <package android:name="hk.alipay.walletRC"/>
+    </queries>
+    <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true"/>
+    <permission android:name="com.miui.tsmclient.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.miui.tsmclient.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <permission android:name="com.miui.tsmclient.permission.MIPUSH_RECEIVE" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.miui.tsmclient.permission.MIPUSH_RECEIVE"/>
+    <application android:allowBackup="false" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:enableOnBackInvokedCallback="false" android:extractNativeLibs="true" android:icon="@drawable/ic_app" android:label="@string/tsm_name" android:name="com.miui.tsmclient.App" android:networkSecurityConfig="@xml/network_security_config" android:resizeableActivity="false" android:supportsRtl="true">
+        <property android:name="android.app.appfunctions.app_metadata" android:resource="@xml/app_metadata"/>
+        <meta-data android:name="miui.supportFlipFullScreen" android:value="1"/>
+        <meta-data android:name="android.supports_size_changes" android:value="true"/>
+        <meta-data android:name="android.max_aspect" android:value="2.4"/>
+        <meta-data android:name="miui.supportAppContinuity" android:value="true"/>
+        <meta-data android:name="bankcard" android:value="0"/>
+        <meta-data android:name="transcard" android:value="1"/>
+        <meta-data android:name="miui.screenOrientation" android:value="1.unspecified,2.portrait,3.unspecified"/>
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <uses-library android:name="com.android.nfc_extras" android:required="false"/>
+        <uses-library android:name="android.test.base"/>
+        <uses-library android:name="com.xiaomi.nfc" android:required="false"/>
+        <uses-library android:name="com.tms.nfc" android:required="false"/>
+        <uses-library android:name="com.nxp.nfc.nq" android:required="false"/>
+        <uses-library android:name="com.st.android.nfc_extensions_16" android:required="false"/>
+        <meta-data android:name="miui_private_label" android:value="PRIVATE_V150"/>
+        <meta-data android:name="os_private_label" android:value="PRIVATE_OS030"/>
+        <meta-data android:name="intergration_debugging_support_content_provider" android:value="1"/>
+        <meta-data android:name="com.xiaomi.xms.APP_ID" android:value="\ 2882303761517368855"/>
+        <meta-data android:name="com.xiaomi.xms.BUILD_TYPE_DEBUG" android:value="false"/>
+        <property android:name="android.view.PROPERTY_MIUI_SMOOTH_CORNER_ENABLED" android:value="true"/>
+        <meta-data android:name="miui_keyguard_shortcuts" android:resource="@xml/miui_keyguard_shortcuts"/>
+        <property android:name="miui.continuity.policy" android:value="4"/>
+        <property android:name="android.window.PROPERTY_ACTIVITY_EMBEDDING_SPLITS_ENABLED" android:value="true"/>
+        <property android:name="android.view.PROPERTY_MIUI_LARGE_FONT_ENABLED" android:value="true"/>
+        <activity android:configChanges="locale|orientation|screenLayout|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:excludeFromRecents="true" android:exported="true" android:label="@string/tsm_name" android:name="com.miui.tsmclient.ui.MainActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.ENTER_TSMCLIENT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="card" android:scheme="tsmclient"/>
+                <data android:host="card.mi.com" android:scheme="tsmclient"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="keycard" android:scheme="tsmclient"/>
+                <data android:host="keycard.mi.com" android:scheme="tsmclient"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="tsmclient.miui.com" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <data android:mimeType="application/com.miui.tsmclient"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.INTRODUCTION"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.CLEAN_SE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.DOOR_CARD_SELECT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.SWIPING_CARD_SETTINGS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.COMMUNITY_CARD_APPLY_RECORD"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.PAY_TOOL"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.MIPAY_TRADING_RECORD_DETAIL"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.MIPAY_TRADING_RECORDS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.ISSUE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="staging3.tsmapi.pay.xiaomi.com" android:scheme="digitalkeysharing"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="digitalkeypairing.org" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="digitalkeypairing.org" android:scheme="digitalkeypairing"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="digitalkey.xiaomi.com" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="digitalkey.xiaomi.com" android:scheme="digitalkeysharing"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="tsm-gateway-test.vivo.com.cn" android:scheme="digitalkeysharing"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="digitalkey.vivo.com.cn" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="digitalkey.vivo.com.cn" android:scheme="digitalkeysharing"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="wallet-relayserver-cn-test01.wanyol.com" android:scheme="digitalkeysharing"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="ccc-relay.finzjr.com" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="ccc-relay.finzjr.com" android:scheme="digitalkeysharing"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="wallet.apple.com.cn" android:scheme="digitalkeysharing"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="dk-sharing-cn-prod.bmw.com" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="dk-sharing-cn-prod.bmw.com" android:scheme="digitalkeysharing"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="dk-sharing-cn-e2e.bmw.com" android:scheme="digitalkeysharing"/>
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="wallet.apple.com.cn" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="cert-wallet.apple.com.cn" android:scheme="digitalkeysharing"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="iccoa"/>
+                <data android:host="digitalkeypairing.org"/>
+                <data android:host="digitalkey.xiaomi.com"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.ICCOA_CONFIRM"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.CTA_CONFIRM"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="locale|orientation|screenLayout|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:excludeFromRecents="true" android:label="@string/introduction_transcard_title" android:name="com.miui.tsmclient.ui.introduction.CheckServiceActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="locale|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:exported="true" android:launchMode="singleTask" android:name="com.miui.tsmclient.ui.inapp.InAppActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.NoTitle.Dialog.Translucent.FloatingDialog">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.REQUEST_INAPP_TRANSACTION"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.REQUEST_PIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.NOTIFY_PAY_RESULT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="locale|orientation|screenLayout|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:name="com.miui.tsmclient.ui.sign.AutoRechargeSelectorPayActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.NoTitle.Dialog.Translucent.FloatingDialog"/>
+        <activity android:configChanges="locale|orientation|screenLayout|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.CardListActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp">
+            <meta-data android:name="entry_id" android:value="CardListEntry"/>
+        </activity>
+        <activity android:configChanges="locale|orientation|screenLayout|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.ChooseRecommendationCityActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/tsm_name" android:name="com.miui.tsmclient.ui.CardIntroActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp">
+            <meta-data android:name="entry_id" android:value="CardIntroEntry"/>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/car_key_action_bar_name" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyListActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/car_key_action_bar_name" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyOEMListActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyJumpOEMAppActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyOPPwdActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyInputNameActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyPairingResultActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyPairingActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyInvokeFromCarActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Transparent"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/tsm_name" android:name="com.miui.tsmclient.ui.RechargeActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp">
+            <meta-data android:name="entry_id" android:value="RechargeEntry"/>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.account.AccountCardsEntryActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.ArrowRight">
+            <meta-data android:name="entry_id" android:value="AccountCardsEntry"/>
+        </activity>
+        <activity android:configChanges="locale|orientation|screenLayout|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:excludeFromRecents="true" android:label="@string/introduction_transcard_title" android:name="com.miui.tsmclient.ui.introduction.TrafficIntroActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp">
+            <meta-data android:name="entry_id" android:value="TrafficIntroEntry"/>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/trans_card_title" android:name="com.miui.tsmclient.ui.IssuedTransCardListActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp">
+            <meta-data android:name="entry_id" android:value="IssuedCardListEntry,CardDetailEntry"/>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/get_bus_pass" android:name="com.miui.tsmclient.ui.GiftCardActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/trans_card_title" android:name="com.miui.tsmclient.ui.TransitEntryActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/bank_card_title" android:name="com.miui.tsmclient.ui.MiPayEntranceActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp" android:windowSoftInputMode="stateHidden"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.MiPayMoreSettingsActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp" android:windowSoftInputMode="stateHidden"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.records.BankCardTradingRecordsActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:launchMode="singleTop" android:name="com.miui.tsmclient.ui.records.BankCardTradingDetailActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.introduction.BankCardIntroActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp">
+            <meta-data android:name="entry_id" android:value="BankCardIntroEntry"/>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/fast_bind_bank_card" android:name="com.miui.tsmclient.ui.bankcard.FastBindBankCardActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/one_click_card_binding" android:name="com.miui.tsmclient.ui.bankcard.Token2OneClickCardBindingActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp.SearchActionMode" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/tsm_name" android:name="com.miui.tsmclient.ui.bankcard.Token2SelectBankCardTypeActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/token2_bank_card_authorization_application" android:name="com.miui.tsmclient.ui.bankcard.Token2BankCardAuthorizationActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.bankcard.BindBankCardActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp" android:windowSoftInputMode="adjustNothing|stateHidden"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.ValidateSmsActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.bankcard.BindBankCardIntroActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.bankcard.BindBankCardFinishedActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/entrance_card_emulation" android:name="com.miui.tsmclient.ui.MifareCardListActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp">
+            <meta-data android:name="entry_id" android:value="MifareListEntry"/>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/nextpay_door_card_check_title" android:name="com.miui.tsmclient.ui.NewMifareCardActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp">
+            <meta-data android:name="entry_id" android:value="NewMifareCardEntry"/>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/more_settings" android:name="com.miui.tsmclient.ui.MifareCardPreferenceActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp">
+            <meta-data android:name="entry_id" android:value="MifareCardPreferenceActivity"/>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/mifare_calibrate_rf_params_title" android:name="com.miui.tsmclient.ui.CalibrateMifareRfParamsActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/entrance_card_emulation" android:name="com.miui.tsmclient.ui.MifareCardRenameActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/entrance_card_emulation" android:name="com.miui.tsmclient.ui.door.DoorCardSelectActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.door.CloudMifareCardActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/entrance_card_emulation" android:name="com.miui.tsmclient.ui.MifareGuideActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/nextpay_door_card_entrance_add_action_card" android:name="com.miui.tsmclient.ui.door.DoorCardActionIssueActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.NoHomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/added_car_key" android:name="com.miui.tsmclient.ui.door.KeyItemListActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/nextpay_issue_door_card_select_cpu_card_title" android:name="com.miui.tsmclient.ui.door.DoorCardProductListActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/nextpay_supported_mifare_cell_list_title" android:name="com.miui.tsmclient.ui.door.DoorCardCommunityListActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/nextpay_door_card_community_search_title" android:name="com.miui.tsmclient.ui.door.DoorCardCommunitySearchActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp.SearchActionMode"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/nextpay_door_card_verify_sms_title" android:name="com.miui.tsmclient.ui.door.VerifyMifareSmsActivity" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/entrance_card_emulation" android:name="com.miui.tsmclient.ui.IdentityCheckActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/tsm_name" android:name="com.unionpay.uppay.PayActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.unionpay.UPPayWapActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/tsm_name" android:name="com.miui.tsmclient.ui.TransferOutIntroActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/tsm_name" android:name="com.miui.tsmclient.ui.TransferInIntroActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.TSMResultActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/tsm_name" android:name="com.miui.tsmclient.ui.records.CardOrderDetailActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/tsm_name" android:name="com.miui.tsmclient.ui.records.CardPurchaseRecordActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp.Tab"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.account.AccountTransitCardListActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.ArrowRight"/>
+        <activity android:configChanges="locale|orientation|screenLayout|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:name="com.miui.tsmclient.ui.pay.PayToolActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.NoTitle.Dialog.Translucent.FloatingDialog"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/tsm_name" android:name="com.miui.tsmclient.ui.AutoRechargeDeductSignedActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/auto_recharge_deduct_channels_title" android:name="com.miui.tsmclient.ui.DeductChannelsManagementActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/auto_recharge_manager_title" android:name="com.miui.tsmclient.ui.AutoRechargeManagementActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/auto_recharge_manager_title" android:name="com.miui.tsmclient.ui.AutoRechargeManagementDetailActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/tsm_name" android:name="com.miui.tsmclient.ui.AutoRechargeSettingActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/auto_recharge_title" android:name="com.miui.tsmclient.ui.AutoRechargeResultActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/card_detail_more_settings" android:name="com.miui.tsmclient.ui.MoreSettingsPreferenceActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Preference.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/nextpay_more_settings_return_card" android:name="com.miui.tsmclient.ui.ReturnCardActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/nextpay_more_settings_return_card" android:name="com.miui.tsmclient.ui.ReturnCardResultActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/good_card_return_card_refund_info_update" android:name="com.miui.tsmclient.ui.ReturnCardAccountUpdateActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.CouponActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.NoTitle.Dialog"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/nextpay_choose_city_title" android:name="com.miui.tsmclient.ui.ChooseCityActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="locale|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.AppletUpgradeBulletinActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.NoTitle.Dialog.Translucent.FloatingDialog"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/upgrade_title" android:name="com.miui.tsmclient.ui.AppletUpgradeProgressActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.result.TransitResultActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/tsm_name" android:name="com.miui.tsmclient.ui.cache.CacheLoaderActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.NfcRechargeActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:clearTaskOnLaunch="true" android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:exported="true" android:launchMode="singleTask" android:name="com.miui.tsmclient.ui.nfc.NfcReadCardActivity" android:screenOrientation="portrait" android:taskAffinity="com.miui.tsmclient.nfc" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp">
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="android.nfc.action.TECH_DISCOVERED" android:resource="@xml/nfc_tech_filter"/>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/nfc_read_card_record_title" android:name="com.miui.tsmclient.ui.nfc.NfcBankCardRecordActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/nfc_read_card_record_title" android:name="com.miui.tsmclient.ui.nfc.NfcTransCardRecordActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.settings.DoublePressPowerGuideActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.NoTitle.Dialog"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:exported="true" android:launchMode="singleInstance" android:name="com.miui.tsmclient.ui.quick.DoubleClickActivity" android:screenOrientation="portrait" android:showWhenLocked="true" android:theme="@style/TSMClient.Theme.DoubleClickActivity">
+            <meta-data android:name="miui.dynamic_dpi_relaunch" android:value="false"/>
+            <meta-data android:name="miui.supportFlipFullScreen" android:value="0"/>
+            <property android:name="miui.continuity.policy" android:value="5"/>
+            <intent-filter>
+                <action android:name="com.miui.intent.action.DOUBLE_CLICK"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="tsmclient.mi.com" android:path="/swiping" android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="swiping" android:scheme="tsmclient"/>
+                <data android:host="swiping.mi.com" android:scheme="tsmclient"/>
+            </intent-filter>
+            <meta-data android:name="miui.screenOrientation" android:value="1.unspecified,2.portrait,3.portrait"/>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/uni_settings_rf_card_title" android:name="com.miui.tsmclient.ui.settings.SwipingCardSettingsActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Preference.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:name="com.miui.tsmclient.ui.settings.SwipingCardSettingsCustomTimeActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Preference.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/swiping_location_setting_title" android:name="com.miui.tsmclient.ui.settings.SwipingCardLocationMapPickPointActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/swiping_intelligent_setting_title" android:name="com.miui.tsmclient.ui.settings.SwipingCardLocationListActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:exported="true" android:launchMode="singleTop" android:name="com.miui.tsmclient.wxapi.WXPayEntryActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.NoTitle.Dialog.Translucent.FloatingDialog"/>
+        <activity android:exported="true" android:launchMode="singleTop" android:name="com.miui.tsmclient.wxapi.WXEntryActivity" android:taskAffinity="com.miui.tsmclient" android:theme="@style/TSMClient.Theme.DayNight.NoTitle.Dialog.Translucent.FloatingDialog"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/uni_settings_title" android:name="com.miui.tsmclient.ui.settings.UniSettingsActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Preference.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/uni_settings_shortcut_title" android:name="com.miui.tsmclient.ui.settings.ShortcutSettingsActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Preference.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/uni_settings_auto_repair" android:name="com.miui.tsmclient.ui.repair.AutoRepairActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/check_version_title" android:name="com.miui.tsmclient.check.version.CheckVersionActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Preference.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="@string/clean_se_title" android:name="com.miui.tsmclient.ui.clean.CleanSeCardActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.NoTitle.Dialog.CleanSe" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="android.uid.tsmnfc" android:name="com.miui.tsmclient.ui.clean.CleanSeCardFailActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.NoTitle.Dialog.CleanSe" android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:excludeFromRecents="true" android:label="android.uid.tsmnfc" android:name="com.miui.tsmclient.ui.clean.CleanSeReturnCardAccountActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.NoTitle.Dialog.CleanSe"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/nextpay_door_card_check_title" android:name="com.miui.tsmclient.ui.door.ReadMifareCardActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/privacy_group_permission_item" android:name="com.miui.tsmclient.ui.permission.PermissionSettingActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:name="com.miui.tsmclient.ui.dcep.DCEPProblemsGuideActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Translucent.NoTitleBar"/>
+        <activity android:label="@string/return_card_out_app" android:name="com.miui.tsmclient.ui.OutAppReturnCardActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:exported="true" android:name="com.miui.tsmclient.ui.privacy.PrivacyDialogActivity" android:permission="com.miui.tsmclient.permission.TSM_GROUP" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Translucent.NoTitleBar">
+            <property android:name="miui.continuity.policy" android:value="5"/>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.CTA"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/card_holder_entrance" android:name="com.miui.tsmclient.ui.CardHolderEntranceActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/card_holder_entrance" android:name="com.miui.tsmclient.ui.CardHolderAndroidVEntranceActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/uni_settings_privacy" android:name="com.miui.tsmclient.ui.privacy.PrivacySettingActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Preference.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/privacy_cancellation" android:name="com.miui.tsmclient.ui.privacy.PrivacyRevocationActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Translucent"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/service_logout" android:name="com.miui.tsmclient.ui.privacy.ServiceLogoutActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:exported="true" android:name="com.miui.tsmclient.ui.digitalkey.CarKeySharingActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.ICCOA_SHARE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.digitalkey.ShareeDeviceTypeActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Translucent.NoTitleBar"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyAccountSharedWearDataActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/car_key_sharing_page_title" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyNewSharingActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/car_key_sharing_profile_page_title" android:name="com.miui.tsmclient.ui.digitalkey.CarKeySharingProfileActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Preference.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.digitalkey.CarKeySharingSheetActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.CarKeySharingSheet"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/car_key_sharing_page_title" android:name="com.miui.tsmclient.ui.digitalkey.CarKeySharedKeyDetailActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyNewDetailActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:exported="true" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyDetailActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.Translucent.NoTitleBar"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyAddSharingKeyActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyAddSharingKeyResultActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyUASettingActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:exported="true" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyConfirmSharingActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:name="com.miui.tsmclient.ui.digitalkey.CarKeyDevicePinActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/traditional_car_key_rename_action_bar_title" android:name="com.miui.tsmclient.ui.traditionalcarkey.CarKeyRenameActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight"/>
+        <activity android:configChanges="locale|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:name="com.miui.tsmclient.ui.bankcard.BankCardIntroJuvenilesAuthActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.NoTitle.Dialog.Translucent"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/entrance_card_emulation" android:name="com.miui.tsmclient.ui.door.NewBlankCardGuideActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:label="@string/entrance_card_emulation" android:name="com.miui.tsmclient.ui.door.BlankCardWriteGuideActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize|density" android:name="com.miui.tsmclient.ui.iccoa.ICCOAOPActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <activity android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize" android:name="com.miui.tsmclient.ui.digitalkey.ICCOAUserAccountActivity" android:screenOrientation="portrait" android:theme="@style/TSMClient.Theme.DayNight.HomeAsUp"/>
+        <receiver android:exported="true" android:name="com.miui.tsmclient.NfcStateReceiver">
+            <intent-filter>
+                <action android:name="android.nfc.action.ADAPTER_STATE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.miui.tsmclient.CardChangedReceiver" android:permission="com.miui.tsmclient.permission.TSM_GROUP">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.CARD_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.miui.tsmclient.broadcast.BLECarKeyEventBroadcast">
+            <intent-filter>
+                <action android:name="com.xiaomi.mms.nearby.CAR_DATA_STATE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:enabled="true" android:exported="true" android:name="com.miui.tsmclient.GNSSModeChangeReceiver" android:permission="com.miui.permission.GNSS_MODE">
+            <intent-filter>
+                <action android:name="com.android.action.GNSS_MODE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="true" android:foregroundServiceType="dataSync" android:name="com.miui.tsmclient.service.UpdateCardsService" android:permission="com.miui.tsmclient.permission.TSM_GROUP">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.QUERY_CARDS"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.CLEAR_CARDS"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.CACHE_CARD_ART"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:foregroundServiceType="dataSync" android:name="com.miui.tsmclient.service.PushTasksExecuteService" android:permission="com.miui.tsmclient.permission.TSM_GROUP">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.PUSH_TASK"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.UPDATE_CARD_STATUS"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.APDU_FIX"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.intent.action.CLEAR_APP_DATA"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.PUSH_TRANSACTION"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.PUSH_CCC_DIGITAL_KEY_TASK"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.PUSH_CCC_DIGITAL_KEY_EVENT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.PUSH_ICCOA_V2_DIGITAL_KEY_TASK"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.PUSH_ICCOA_V2_DIGITAL_KEY_EVENT"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:foregroundServiceType="dataSync" android:name="com.miui.tsmclient.service.AutoRechargeService" android:permission="com.miui.tsmclient.permission.TSM_GROUP">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.AUTO_RECHARGE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:foregroundServiceType="dataSync" android:name="com.miui.tsmclient.service.BLEScanService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.BLE_SCAN"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:foregroundServiceType="dataSync" android:name="com.miui.tsmclient.service.DaemonService" android:permission="com.miui.tsmclient.permission.TSM_GROUP" android:process=":daemon">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.WAKE_UP_DAEMON"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:foregroundServiceType="dataSync" android:name="com.miui.tsmclient.service.NfcEventMonitorService" android:permission="com.miui.tsmclient.permission.TSM_GROUP">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.WAKE_UP_NFC_EVENT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.nfc.action.RF_ON"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.nfc.action.TRANSACTION"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.nfc.action.SMART_SELECT_CARD"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.miui.tsmclient.service.CheckAppletUpgradeService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.CHECK_APPLET_UPGRADE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="false" android:foregroundServiceType="dataSync" android:name="com.miui.tsmclient.service.NfcStateService">
+            <intent-filter>
+                <action android:name="com.miui.action.NFC_ADAPTER_STATE_CHANGED"/>
+                <action android:name="com.miui.tsmclient.action.TRANSCARD_BALANCE_NOTIFICATION"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.miui.tsmclient.service.MiCardOpenService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.TRANSIT_OPEN_SERVICE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.CARD_OPEN_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.miui.tsmclient.service.MiSeOpenService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.SE_OPEN_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.miui.tsmclient.service.InternalDaemonService"/>
+        <service android:exported="true" android:foregroundServiceType="dataSync" android:name="com.miui.tsmclient.service.PublicTsmFeatureService" android:permission="com.miui.tsmclient.permission.CALL_PUBLIC_TSM_FEATURE_SERVICE">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.SET_DOUBLE_PRESS_POWER"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.miui.tsmclient.service.TsmClientService" android:permission="com.miui.tsmclient.permission.TSM_GROUP">
+            <intent-filter>
+                <action android:name="com.miui.tsmclientsdk.action.TSM_CLIENT_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.miui.tsmclient.service.MiTsmStatusService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclientsdk.action.MI_TSM_STATUS_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.miui.tsmclient.service.MiTsmCleanSeService" android:permission="com.miui.tsmclient.permission.CALL_PUBLIC_TSM_CLEAN_SE_SERVICE">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.CLEAN_SE_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="false" android:foregroundServiceType="dataSync" android:name="com.miui.tsmclient.service.RechargeBackgroundService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.QUERY_RECHARGE_ORDER_ACTION"/>
+                <action android:name="com.miui.tsmclient.START_ORDER_TASK"/>
+                <action android:name="com.miui.tsmclient.QUERY_RECHARGE_ORDER_AFTER_PAID"/>
+                <action android:name="com.miui.tsmclient.CANCEL_ORDER_ACTION"/>
+                <action android:name="com.miui.tsmclient.RECHARGE_ACTION"/>
+            </intent-filter>
+        </service>
+        <provider android:authorities="com.miui.tsmclient.provider.CleanSeProvider" android:exported="true" android:name="com.miui.tsmclient.database.TSMCleanSeProvider">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.LOGOUT_PAGE_PROVIDER"/>
+            </intent-filter>
+        </provider>
+        <provider android:authorities="com.miui.tsmclient.nextpay.provider" android:exported="true" android:name="com.miui.tsmclient.database.NPProvider" android:permission="com.miui.tsmclient.permission.CONTENT_PROVIDER"/>
+        <receiver android:exported="true" android:name="com.miui.tsmclient.push.NPPushMessageReceiver" android:permission="com.xiaomi.xmsf.permission.MIPUSH_RECEIVE">
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE"/>
+                <action android:name="com.xiaomi.mipush.ERROR"/>
+                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.miui.tsmclient.AccountsPostChangedReceiver">
+            <intent-filter>
+                <action android:name="android.accounts.LOGIN_ACCOUNTS_POST_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <provider android:authorities="com.miui.tsmclient.provider.public" android:exported="true" android:name="com.miui.tsmclient.database.TSMPublicProvider"/>
+        <provider android:authorities="com.miui.tsmclient.provider" android:exported="true" android:name="com.miui.tsmclient.database.TSMProvider" android:permission="com.miui.tsmclient.permission.CONTENT_PROVIDER"/>
+        <provider android:authorities="com.miui.tsmclient.provider.feature" android:exported="true" android:name="com.miui.tsmclient.database.TSMFeatureProvider"/>
+        <service android:enabled="true" android:name="com.xiaomi.push.service.XMPushService" android:process=":daemon"/>
+        <service android:enabled="true" android:exported="false" android:name="com.xiaomi.push.service.XMJobService" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":daemon"/>
+        <service android:exported="false" android:foregroundServiceType="shortService" android:name="com.miui.tsmclient.service.FetchConfigService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.SWIPE_CARD_CONFIG"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:foregroundServiceType="dataSync" android:name="com.miui.tsmclient.service.SEInteractionService" android:permission="com.miui.tsmclient.permission.TSM_GROUP">
+            <intent-filter>
+                <action android:name="com.miui.action.INIT_ESE"/>
+                <action android:name="com.miui.action.INSTALL_CARD"/>
+                <action android:name="com.miui.action.DELETE_CARD"/>
+                <action android:name="com.miui.action.SYNC_ESE"/>
+                <action android:name="com.miui.action.SAVE_SPI_PK"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclientsdk.action.SE_INTERACTION_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:foregroundServiceType="dataSync" android:name="com.miui.tsmclient.service.UploadCardsBalanceService"/>
+        <receiver android:exported="false" android:name="com.xiaomi.push.service.receivers.PingReceiver" android:process=":daemon">
+            <intent-filter>
+                <action android:name="com.xiaomi.push.PING_TIMER"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="true" android:name="com.miui.tsmclient.service.MiTsmService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclientsdk.action.MI_TSM_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.miui.tsmclient.service.DKFService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.digitalkey.ccc.api.action.DKF_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.miui.tsmclient.service.ICCOA2DKFService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.digitalkey.iccoa2.api.action.DKF_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.miui.tsmclient.service.ICCOA2DKFRequestService" android:permission="com.miui.tsmclient.permission.TSM_GROUP">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.ICCOA2_DKF_REQUEST_SERVICE"/>
+            </intent-filter>
+        </service>
+        <provider android:authorities="com.miui.tsmclient.deprecated.provider" android:exported="true" android:name="com.miui.tsmclient.database.TSMClientProvider" android:permission="com.miui.tsmclient.permission.CONTENT_PROVIDER"/>
+        <receiver android:exported="false" android:name="com.miui.tsmclient.TravelNotificationReceiver">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.TRAVEL_BROADCAST"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="false" android:name="com.miui.tsmclient.geofence.GeoBroadcastReceiver"/>
+        <receiver android:exported="true" android:name="com.miui.tsmclient.geofence.PolarisBroadcastReceiver"/>
+        <receiver android:exported="true" android:name="com.miui.tsmclient.ProvisionCompletedBroadcast">
+            <intent-filter>
+                <action android:name="android.provision.action.PROVISION_COMPLETE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.miui.tsmclient.CTABroadcastReceiver" android:permission="com.miui.tsmclient.permission.CTA_CONFIRM">
+            <intent-filter>
+                <action android:name="com.mipay.action.CTA"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.miui.tsmclient.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="8dcfb91830372fcd95b33db5b740e1f6"/>
+        <service android:name="com.amap.api.location.APSService"/>
+        <service android:exported="true" android:name="cn.gov.pbc.dcep.semanager.SeSdkService">
+            <intent-filter>
+                <action android:name="cn.gov.pbc.dcep.semanager.sesdkservice"/>
+            </intent-filter>
+        </service>
+        <service android:exported="false" android:foregroundServiceType="dataSync" android:name="com.miui.tsmclient.service.QuickSwipingCardByTimeService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.Quick_Swiping_Card_Start"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.Quick_Swiping_Card_Reset"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.miui.tsmclient.service.DKFRequestService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.DKF_REQUEST_SERVICE"/>
+            </intent-filter>
+        </service>
+        <provider android:authorities="com.miui.tsmclient.provider.PerceptionResultProvider" android:exported="true" android:name="com.miui.tsmclient.ui.settings.WifiPerceptionResultProvider"/>
+        <activity android:configChanges="locale|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:exported="false" android:name="com.alipay.sdk.app.H5PayActivity" android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:configChanges="locale|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:exported="false" android:name="com.alipay.sdk.app.H5AuthActivity" android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:configChanges="locale|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:exported="true" android:launchMode="singleInstance" android:name="com.alipay.sdk.app.PayResultActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity android:configChanges="locale|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:exported="true" android:launchMode="singleTask" android:name="com.alipay.sdk.app.AlipayResultActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity android:configChanges="locale|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:exported="false" android:name="com.alipay.sdk.app.H5OpenAuthActivity" android:screenOrientation="behind" android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <activity android:configChanges="locale|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|density|layoutDirection|fontScale" android:exported="false" android:name="com.alipay.sdk.app.APayEntranceActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service android:exported="true" android:name="com.miui.tsmclient.ese2.service.OpenSeService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.action.ESE2_OPEN_SERVICE"/>
+            </intent-filter>
+        </service>
+        <meta-data android:name="miuixpreference" android:value="3.1"/>
+        <uses-library android:name="androidx.window.extensions" android:required="false"/>
+        <uses-library android:name="androidx.window.sidecar" android:required="false"/>
+        <meta-data android:name="miuix.search.common" android:value="1.0"/>
+        <meta-data android:name="recyclerview_card" android:value="1.0"/>
+        <meta-data android:name="appcompat" android:value="3.1"/>
+        <meta-data android:name="visualcheck" android:value="1.0"/>
+        <meta-data android:name="cardview" android:value="1.0"/>
+        <meta-data android:name="popupwidget" android:value="1.0"/>
+        <meta-data android:name="androidbasewidget" android:value="1.0"/>
+        <meta-data android:name="miuixstretchablewidget" android:value="1.0"/>
+        <meta-data android:name="slidingwidget" android:value="1.0"/>
+        <meta-data android:name="pickerwidget" android:value="1.0"/>
+        <meta-data android:name="miuixbasewidget" android:value="1.0"/>
+        <meta-data android:name="springback" android:value="3.1"/>
+        <meta-data android:name="theme" android:value="1.0"/>
+        <provider android:authorities="com.miui.tsmclient.androidx-startup" android:exported="false" android:name="androidx.startup.InitializationProvider">
+            <meta-data android:name="androidx.work.WorkManagerInitializer" android:value="androidx.startup"/>
+            <meta-data android:name="androidx.profileinstaller.ProfileInstallerInitializer" android:value="androidx.startup"/>
+        </provider>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_job_service_default" android:exported="true" android:name="androidx.work.impl.background.systemjob.SystemJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_foreground_service_default" android:exported="false" android:name="androidx.work.impl.foreground.SystemForegroundService"/>
+        <receiver android:directBootAware="false" android:enabled="true" android:exported="false" android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"/>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_OKAY"/>
+                <action android:name="android.intent.action.BATTERY_LOW"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.DEVICE_STORAGE_LOW"/>
+                <action android:name="android.intent.action.DEVICE_STORAGE_OK"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver">
+            <intent-filter>
+                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="true" android:exported="true" android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver" android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS"/>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="graphics" android:value="2.0"/>
+        <meta-data android:name="flexible" android:value="1.0"/>
+        <meta-data android:name="viewpager2" android:value="2.0"/>
+        <meta-data android:name="recyclerview" android:value="2.0"/>
+        <meta-data android:name="nest" android:value="2.0"/>
+        <meta-data android:name="haptic" android:value="1.0"/>
+        <meta-data android:name="smooth" android:value="1.0"/>
+        <meta-data android:name="core" android:value="2.0"/>
+        <meta-data android:name="recyclerview_animator" android:value="2.0"/>
+        <meta-data android:name="viewpager" android:value="2.0"/>
+        <service android:enabled="@bool/enablePlatformAppFunctionService" android:exported="true" android:name="androidx.appfunctions.service.PlatformAppFunctionService" android:permission="android.permission.BIND_APP_FUNCTION_SERVICE">
+            <property android:name="android.app.appfunctions" android:value="app_functions.xml"/>
+            <property android:name="android.app.appfunctions.schema" android:value="app_functions_schema.xsd"/>
+            <property android:name="android.app.appfunctions.v2" android:value="app_functions_v2.xml"/>
+            <intent-filter>
+                <action android:name="android.app.appfunctions.AppFunctionService"/>
+            </intent-filter>
+        </service>
+        <service android:enabled="@bool/enableExtensionAppFunctionService" android:exported="true" android:name="androidx.appfunctions.service.ExtensionAppFunctionService" android:permission="android.permission.BIND_APP_FUNCTION_SERVICE">
+            <property android:name="android.app.appfunctions" android:value="app_functions.xml"/>
+            <property android:name="android.app.appfunctions.schema" android:value="app_functions_schema.xsd"/>
+            <property android:name="android.app.appfunctions.v2" android:value="app_functions_v2.xml"/>
+            <intent-filter>
+                <action android:name="android.app.appfunctions.AppFunctionService"/>
+            </intent-filter>
+        </service>
+        <uses-library android:name="com.android.extensions.appfunctions" android:required="false"/>
+        <meta-data android:name="spring" android:value="1.0"/>
+        <meta-data android:name="dynamicoverscroller" android:value="2.0"/>
+        <meta-data android:name="folme" android:value="2.0"/>
+        <receiver android:directBootAware="false" android:enabled="true" android:exported="true" android:name="androidx.profileinstaller.ProfileInstallReceiver" android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SKIP_FILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION"/>
+            </intent-filter>
+        </receiver>
+        <service android:directBootAware="true" android:exported="false" android:name="androidx.room.MultiInstanceInvalidationService"/>
+        <meta-data android:name="animation" android:value="1.0"/>
+        <service android:exported="false" android:name="com.miui.tsmclient.digitalkey.iccoa2.inner.InnerICCOADKFService">
+            <intent-filter>
+                <action android:name="com.miui.tsmclient.digitalkey.iccoa2.api.action.DKF_SERVICE"/>
+            </intent-filter>
+        </service>
+        <meta-data android:name="MIPUSH_SDK_VERSION_CODE" android:value="70073"/>
+        <meta-data android:name="MIPUSH_SDK_VERSION_NAME" android:value="7_7_3-C"/>
+        <service android:enabled="true" android:exported="true" android:name="com.xiaomi.mipush.sdk.PushMessageHandler" android:permission="com.xiaomi.xmsf.permission.MIPUSH_RECEIVE"/>
+        <service android:enabled="true" android:name="com.xiaomi.mipush.sdk.MessageHandleService"/>
+        <activity android:enabled="true" android:excludeFromRecents="true" android:exported="true" android:launchMode="singleInstance" android:name="com.xiaomi.mipush.sdk.NotificationClickedActivity" android:permission="com.xiaomi.xmsf.permission.MIPUSH_RECEIVE" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <meta-data android:name="supportStyle" android:value="scene|voip"/>
+        </activity>
+        <meta-data android:name="devicebaseinfo" android:value="1.0"/>
+    </application>
+</manifest>
