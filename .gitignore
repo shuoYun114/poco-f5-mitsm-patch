@@ -5,6 +5,7 @@ debug.keystore
 *.zip
 *.img
 *.idsig
+*.jar
 work/hyper/
 work/extracted_hyper/
 work/hyper_apps/
@@ -12,3 +13,11 @@ work/erofs_tools/
 work/dist_suite/
 work/tsm_decoded/
 work/decoded/
+work/account_orig_decoded/
+work/account_orig_manifest/
+work/rtmicloud_raw/
+work/tsm_orig_manifest/
+work/tsmclient_unpacked/
+work/uptsm_manifest/
+work/xiaomi_account_unpacked/
+work/xmsf_manifest/
