@@ -1,0 +1,39 @@
+.class public abstract Lga/r;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+
+# static fields
+.field private static final a:Ls9/q;
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 2
+
+    sget-object v0, Lga/r$a;->j:Lga/r$a;
+
+    const-string v1, "null cannot be cast to non-null type kotlin.Function3<kotlinx.coroutines.flow.FlowCollector<kotlin.Any?>, kotlin.Any?, kotlin.coroutines.Continuation<kotlin.Unit>, kotlin.Any?>"
+
+    invoke-static {v0, v1}, Lt9/m;->c(Ljava/lang/Object;Ljava/lang/String;)V
+
+    const/4 v1, 0x3
+
+    invoke-static {v0, v1}, Lt9/c0;->c(Ljava/lang/Object;I)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Ls9/q;
+
+    sput-object v0, Lga/r;->a:Ls9/q;
+
+    return-void
+.end method
+
+.method public static final synthetic a()Ls9/q;
+    .locals 1
+
+    sget-object v0, Lga/r;->a:Ls9/q;
+
+    return-object v0
+.end method

@@ -1,0 +1,18 @@
+.class public abstract Lcom/xiaomi/account/ui/viewholder/a;
+.super Landroidx/recyclerview/widget/RecyclerView$c0;
+.source "SourceFile"
+
+
+# direct methods
+.method public constructor <init>(Landroid/view/View;)V
+    .locals 0
+
+    invoke-direct {p0, p1}, Landroidx/recyclerview/widget/RecyclerView$c0;-><init>(Landroid/view/View;)V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public abstract b(Lm6/a;I)V
+.end method

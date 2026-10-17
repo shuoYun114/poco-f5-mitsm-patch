@@ -1,0 +1,151 @@
+--------- beginning of main
+10-17 17:07:44.111  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 17:07:44.111  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 17:07:44.118  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 17:07:44.118  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 17:07:44.118  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 17:07:44.146  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.147  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.302242
+10-17 17:07:44.147  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1062.536133,R:525.017822,G:415.014099,B:175.005936, lux: 44.302242
+10-17 17:07:44.147  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.147  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.241909
+10-17 17:07:44.147  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1060.036011,R:525.017822,G:417.514160,B:175.005936, lux: 44.241909
+10-17 17:07:44.147  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.148  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.928955
+10-17 17:07:44.148  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1067.536255,R:527.517883,G:415.014099,B:170.005768, lux: 44.928955
+10-17 17:07:44.148  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.148  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.125336
+10-17 17:07:44.148  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1060.036011,R:527.517883,G:417.514160,B:175.005936, lux: 44.125336
+10-17 17:07:44.148  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.148  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.619629
+10-17 17:07:44.148  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1065.036133,R:530.018005,G:422.514343,B:175.005936, lux: 44.619629
+10-17 17:07:44.180 23220 23253 I smclient:daemon: HeapTask is not gc_task
+10-17 17:07:44.236  3489  4040 I system_server: Background young concurrent mark compact GC freed 18MB AllocSpace bytes, 118(2360KB) LOS objects, 14% free,126MB(115MB_637KB_10MB)/148MB, paused 1.591ms,4.683ms total 158.185ms binder:3489_F:4575:8284KB_audioserver_lifecycle:4836:3264KB_binder:3489_1F:5255:2889KB
+10-17 17:07:44.247  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.247  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.302139
+10-17 17:07:44.247  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1060.036011,R:522.517761,G:412.514008,B:172.505859, lux: 44.302139
+10-17 17:07:44.248  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.248  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.674076
+10-17 17:07:44.248  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1070.036377,R:530.018005,G:420.014252,B:177.506027, lux: 44.674076
+10-17 17:07:44.248  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.248  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.119251
+10-17 17:07:44.248  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1057.535889,R:522.517761,G:412.514008,B:172.505859, lux: 44.119251
+10-17 17:07:44.249  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.249  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.002785
+10-17 17:07:44.249  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1060.036011,R:527.517883,G:415.014099,B:175.005936, lux: 44.002785
+10-17 17:07:44.348  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.348  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.424686
+10-17 17:07:44.348  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1060.036011,R:522.517761,G:415.014099,B:172.505859, lux: 44.424686
+10-17 17:07:44.349  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.349  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.424793
+10-17 17:07:44.349  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1062.536133,R:525.017822,G:417.514160,B:175.005936, lux: 44.424793
+10-17 17:07:44.349  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.349  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.862843
+10-17 17:07:44.349  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1070.036377,R:530.018005,G:420.014252,B:175.005936, lux: 44.862843
+10-17 17:07:44.437  5465  6094 D Bluetooth: [storage_module.cc:175] operator(): flash content to file: /data/misc/bluedroid/bt_config.conf
+10-17 17:07:44.447  5465  6094 D Bluetooth: [storage_module.cc:177] operator(): flash done with result: true
+10-17 17:07:44.448  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.448  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.490898
+10-17 17:07:44.448  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1060.036011,R:522.517761,G:412.514008,B:170.005768, lux: 44.490898
+10-17 17:07:44.448  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.449  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.374428
+10-17 17:07:44.449  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1062.536133,R:527.517883,G:415.014099,B:172.505859, lux: 44.374428
+10-17 17:07:44.449  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.449  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.673981
+10-17 17:07:44.449  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1067.536255,R:527.517883,G:417.514160,B:175.005936, lux: 44.673981
+10-17 17:07:44.449  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.449  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.185669
+10-17 17:07:44.449  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1062.536133,R:527.517883,G:415.014099,B:175.005936, lux: 44.185669
+10-17 17:07:44.450  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.450  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.368637
+10-17 17:07:44.450  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1067.536255,R:530.018005,G:417.514160,B:177.506027, lux: 44.368637
+10-17 17:07:44.466 24434 25156 W adbd    : timed out while waiting for FUNCTIONFS_BIND, trying again
+10-17 17:07:44.467 24434 25156 I adbd    : UsbFfs: connection terminated: monitor thread finished
+10-17 17:07:44.483 24434 24462 I adbd    : opening control endpoint /dev/usb-ffs/adb/ep0
+10-17 17:07:44.549  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.550  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.734215
+10-17 17:07:44.550  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1067.536255,R:525.017822,G:412.514008,B:172.505859, lux: 44.734215
+10-17 17:07:44.550  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.550  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.623714
+10-17 17:07:44.550  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1070.036377,R:532.518066,G:417.514160,B:175.005936, lux: 44.623714
+10-17 17:07:44.551  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.551  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.368351
+10-17 17:07:44.551  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1060.036011,R:522.517761,G:410.013916,B:170.005768, lux: 44.368351
+10-17 17:07:44.552  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.552  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.368542
+10-17 17:07:44.552  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1065.036133,R:527.517883,G:415.014099,B:175.005936, lux: 44.368542
+10-17 17:07:44.557  1838  6134 D SurfaceFlinger: UniRenderSurface idle
+10-17 17:07:44.558  1838  1838 E SurfaceFlinger: repaint everything
+10-17 17:07:44.561 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno Permission denied, trying pgid as pid to check
+10-17 17:07:44.565  1838  1838 I Dolphin : [Dolphin] perf-hal not ready (rc=-1), retry in 1s
+10-17 17:07:44.568 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno No such file or directory, trying pgid as pid to check
+10-17 17:07:44.570  1628  2174 I vendor.qti.hardware.display.composer-service: FrameNotifyProcess Sensor: notify citsensorservice to trigger cwb
+10-17 17:07:44.570  3119  3119 I libcitsensorservice@2.0-impl: msg_transfer
+10-17 17:07:44.571  3119  4798 I libsensor-parseRGB: request dump start
+10-17 17:07:44.571  3119  4798 D vendor.xiaomi.sensor.citsensorservice@2.0-service: handle id:13 wxh:1280x2400 uwxuh:1080x2400 size: 9216000 fd:18 fd_meta:19 flags:0x4000228 usage:0x33  format:0x3 layer_count: 1 reserved_size = 0
+10-17 17:07:44.572  1628  2127 D SDM     : HWCSession::SetCWBOutputBuffer: CWB config passed by cwb_client : tappoint 1  CWB_ROI : (697.000000 3.000000 793.000000 99.000000)
+10-17 17:07:44.572  1628  4805 D SDM     : HWCSession::ProcessRequests: Successfully configured CWB buffer.
+10-17 17:07:44.574 10770 10778 E ANDR-PERF-RESOURCEQS: Failed to apply optimization [2, 0]
+10-17 17:07:44.574 10770 10778 E ANDR-PERF-RESOURCEQS: Failed to apply optimization [11, 8]
+10-17 17:07:44.582  1838  1838 D SurfaceFlinger: updateCompositionState: URS clear sticky outForce UniRenderSurface-Display 1
+10-17 17:07:44.585  1628  4805 D SDM     : HWCSession::ProcessRequests: Pushing release fence in fenece wait queue.
+10-17 17:07:44.585  1628  4805 D SDM     : HWCSession::ProcessRequests: Creating AsyncFenceWaits async thread.
+10-17 17:07:44.585  1628  4805 D SDM     : HWCSession::ProcessRequests: Remove current CWB request from the pending request queue.
+10-17 17:07:44.585  1628  4805 D SDM     : HWCSession::ProcessRequests: No pending cwb requests found in the queue.
+10-17 17:07:44.588 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno Permission denied, trying pgid as pid to check
+10-17 17:07:44.588 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno No such file or directory, trying pgid as pid to check
+10-17 17:07:44.591  1628  1751 D SDM     : HWDeviceDRM::SetupConcurrentWriteback: Tear down the Concurrent Writeback topology
+10-17 17:07:44.600  1628  4806 D SDM     : HWCSession::NotifyCWBStatus: Notify the client about buffer status 0.
+10-17 17:07:44.600  1628  4806 D SDM     : HWCSession::PerformFenceWaits: Remove current release fence from the pending fence wait queue.
+10-17 17:07:44.601  1628  4806 D SDM     : HWCSession::PerformFenceWaits: CWB fence queue is empty. No pending release fence to wait on.
+10-17 17:07:44.602  3119  4799 D libsensor-parseRGB: the value of RGB [6316060.442459 13838341.223384 6084780.606668]
+10-17 17:07:44.647  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:44.647  3119  4804 I libsensor-displayalgo: the value of  REAL LUX43.996601
+10-17 17:07:44.647  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1055.035767,R:520.017639,G:407.513824,B:170.005768, lux: 43.996601
+10-17 17:07:44.746  5501  9403 D JsBridgeTimer: com.nearme.parking.assistant setIntervalCallback id:8
+10-17 17:07:45.008  2774  2831 D OplusGpuMinidump: gpu minidump control openfile error No such file or directory, sleep for a while!
+10-17 17:07:45.493 24434 25157 W adbd    : timed out while waiting for FUNCTIONFS_BIND, trying again
+10-17 17:07:45.493 24434 25157 I adbd    : UsbFfs: connection terminated: monitor thread finished
+10-17 17:07:45.510 24434 24462 I adbd    : opening control endpoint /dev/usb-ffs/adb/ep0
+10-17 17:07:45.650  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:45.651  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.862843
+10-17 17:07:45.651  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1070.036377,R:530.018005,G:420.014252,B:175.005936, lux: 44.862843
+10-17 17:07:45.651  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:45.652  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.667896
+10-17 17:07:45.652  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1065.036133,R:522.517761,G:412.514008,B:172.505859, lux: 44.667896
+10-17 17:07:45.749  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:45.749  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.179775
+10-17 17:07:45.749  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1065.036133,R:527.517883,G:415.014099,B:177.506027, lux: 44.179775
+10-17 17:07:45.750  5501  9403 D JsBridgeTimer: com.nearme.parking.assistant setIntervalCallback id:8
+10-17 17:07:45.750  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:45.750  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.623619
+10-17 17:07:45.750  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1067.536255,R:530.018005,G:415.014099,B:172.505859, lux: 44.623619
+10-17 17:07:45.751  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:45.751  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.424793
+10-17 17:07:45.751  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1062.536133,R:525.017822,G:417.514160,B:175.005936, lux: 44.424793
+10-17 17:07:45.752  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:45.752  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.507145
+10-17 17:07:45.752  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1070.036377,R:535.018188,G:417.514160,B:175.005936, lux: 44.507145
+10-17 17:07:45.819  3489  4352 I resRelease: policy type is 1
+10-17 17:07:45.830 24434 24434 I adbd    : adbd service requested 'shell,v2,raw:su -c logcat -d -t 150 > /sdcard/transit_log.txt && grep -E 'TransitEntryActivity|FATAL|Exception' /sdcard/transit_log.txt | tail -n 25'
+10-17 17:07:45.847  8437  9356 I MediaProvider: Insert path: /st***ge/em****ed/*/tra*****log.t*t, caller: com.android.shell
+10-17 17:07:45.847  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:45.847  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.440639
+10-17 17:07:45.847  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1062.536133,R:527.517883,G:412.514008,B:170.005768, lux: 44.440639
+10-17 17:07:45.847  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:45.847  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.251968
+10-17 17:07:45.847  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1065.036133,R:530.018005,G:415.014099,B:175.005936, lux: 44.251968
+10-17 17:07:45.848  3119  4804 I libsensor-displayalgo: the value of channelCali C:298.768110,R:146.258047,G:110.693167,B:58.128683,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:07:45.848  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.368454
+10-17 17:07:45.848  3119  4804 D libsensor-displayalgo: brightness:653.000000,R:6316060.442459,G:13838341.223384,B:6084780.606668,EVENT C:1062.536133,R:525.017822,G:412.514008,B:172.505859, lux: 44.368454
+10-17 17:07:45.852  8437  9356 D MediaProvider: insertInternal start, caller = com.android.shell
+10-17 17:07:45.857  8437  9356 W MediaProvider: isAppCloneUserPair for user 0: false
+10-17 17:07:45.859  8437  9356 D MediaProvider: insertAllowingUpsert finish, rowId = 3691
+10-17 17:07:45.859  8437  9356 I MediaProvider: Insert path: /st***ge/em****ed/*/tra*****log.t*t, caller: com.android.shell
+10-17 17:07:45.859  8437  9356 D MediaProvider: insertInternal end
+10-17 17:07:45.860  7762 11346 D OplusFileObserveService: onEvent() file = /storage/emulated/0/transit_log.txt, event = 256
+10-17 17:07:45.862 10433 10697 I ContextAware_DaemonObserver: onChangeImpl, wait together.
+10-17 17:07:45.862 10433 11576 D HLog-UpMgr: [metis]CheckWhetherUploadBody Mgr:com.oplus.sdp.of.c@9b49ee7
+10-17 17:07:45.862 10433 11576 D HLog-MultiConfigManage: [metis]checkAllPushTask
+10-17 17:07:45.862 10433 11576 D HLog-MultiConfigManage: [metis]checkAllPushTask existPushInfo : 
+10-17 17:07:45.863 10433 11576 D HLog-UpMgr: [metis]CheckWhetherUploadBody mCheckUploadTime：3 Mgr:com.oplus.sdp.of.c@9b49ee7

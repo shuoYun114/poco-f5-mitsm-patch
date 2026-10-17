@@ -1,0 +1,14 @@
+.class public interface abstract Lmiuix/bottomsheet/f$m;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lmiuix/bottomsheet/f;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x609
+    name = "m"
+.end annotation

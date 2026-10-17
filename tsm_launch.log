@@ -1,0 +1,1260 @@
+--------- beginning of main
+10-17 16:44:28.101 30770 30770 I MitsuhaBootstrap: minimal zygote gate installed
+10-17 16:44:28.105 30770 30770 E libEGL  : No entry found in platform lookup table for eglSurfaceAttribMTK
+10-17 16:44:28.123 30770 30770 D OplusUtils: OplusUtils [85]: 
+--------- beginning of system
+10-17 16:44:28.125  3489  4556 I ActivityManager: Force stopping com.miui.tsmclient appid=1027 user=0: from pid 30774
+10-17 16:44:28.129  3489  4556 W ProcessStats: Tracking association SourceState{9bbbb0a com.oplus.linker/10227 BTop #4933} whose proc state 2 is better than process ProcessState{926a450 com.heytap.accessory/10195 pkg=com.heytap.accessory} proc state 4 (56 skipped)
+10-17 16:44:28.130 30770 30770 E app_process: createInstance(64bit) : createExtendedFactory
+10-17 16:44:28.130 30770 30770 E app_process: createInstance(64bit) : createExtendedFactory
+10-17 16:44:28.130 30770 30770 E app_process: Opened libinputextensionsimpl.so
+10-17 16:44:28.130 30770 30770 E app_process: Opened libinputextensionsimpl.so
+10-17 16:44:28.132 30770 30770 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+10-17 16:44:28.132  3489  4556 W ActivityManager: Invalid packageName: com.miui.tsmclient
+10-17 16:44:28.137 30770 30770 I app_process: MMAP_TRYLOCK is supported in uffd errno:2 addr:0x7345b6e000 size:4096
+10-17 16:44:28.140 30770 30770 I AndroidRuntime: Using default boot image
+10-17 16:44:28.140 30770 30770 I AndroidRuntime: Leaving lock profiling enabled
+10-17 16:44:28.143 30770 30770 I app_process: Using generational CollectorTypeCMC GC.
+10-17 16:44:28.144 30770 30770 I app_process: isSwordfishLaunchAppEnabled_ 1 isSwordfishInstallAppEnabled_ 1
+10-17 16:44:28.153  3489  3489 D NotificationService--OplusNotificationManagerServiceExtImpl: notifyDelayRemovedLocked,reason:10020 isGroup:false
+10-17 16:44:28.156  3489  4556 E QuickStartUtils_OplusStartingSurfaceControllerBase: resolveStartingSurfaceLaunchType clear intent:Intent { flg=0x10000000 xflg=0x4 cmp=com.miui.tsmclient/.ui.MainActivity }, task=null, mLaunchType= 0, mStartFromRecents= false, mStartFromSlide= false, reason= notifyStartActivity, callingPackage= com.android.shell, callingUid:-1
+10-17 16:44:28.158  3489  4556 D StartingSurfacePreviewPolicy: checkSupportSurfacePreview app not support, package: com.miui.tsmclient
+10-17 16:44:28.158  3489  4300 D LocationManagerService: package com.miui.tsmclient reset
+10-17 16:44:28.158  3489  4300 W GnssListenerMultiplexer: onPackageReset com.miui.tsmclient
+10-17 16:44:28.159  3489  4902 I [UAH_CLIENT]: UahEventAcquire, cmdid:2, pkg:none, identity:com.android.server.wm
+10-17 16:44:28.159  3489  4556 W ActivityTaskManager: callingPackage for (uid=0, pid=30778) has no WPC
+10-17 16:44:28.161  3489  4556 D WindowManager: NFW_setClientVisible:ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity clientVisible:true
+10-17 16:44:28.162  4977  4977 D DistributedDeviceService: android.intent.action.PACKAGE_RESTARTED
+10-17 16:44:28.162  3489  4556 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@f73d612b does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-17 16:44:28.162  3489  4902 E [UAH_CLIENT]: Urcc HAL Service not found
+10-17 16:44:28.163  3489  4902 E [UAH_CLIENT]: uah_get_urcc_hal_and_link_to_death error:-1
+10-17 16:44:28.164  3489  4556 D FlexibleTaskController: isSupportFlexibleWindow target = com.miui.tsmclient/.ui.MainActivity callPkg = FlexibleTaskController support = true ,caller = 3489
+10-17 16:44:28.164  3489  4556 I AppSnapshotController: init, sysSupport = true, mActivitySupport = false, activityRecord = ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t-1}
+10-17 16:44:28.165  3489  4324 E QosSceneRecognizer[ActivityStartScene]: notifyActivityStart get launchedFromUid failed through AppManager! launchedFromPackage: com.android.shell, pkg: com.miui.tsmclient
+10-17 16:44:28.165  5481  5481 D CarrierSvcBindHelper: onHandleForceStop: [com.miui.tsmclient]
+10-17 16:44:28.166  3489  4556 D FlexibleWindowManagerService: isIgnoreAppearedAcrossTask:false
+10-17 16:44:28.167  3489  4556 D FlexibleWindowManagerService: isIgnoreAppearedAcrossTask:false
+10-17 16:44:28.167  3489  4556 D FlexibleTaskController: findSourceTaskForFreeForm: sourceRecord = null ,realCallingPid:30778 ,launchFromZoomMode:false ,prevTopTask:Task{11e3782 #2 type=undefined I=com.android.launcher/.Launcher}
+10-17 16:44:28.167  3489  4556 D FlexibleTaskController: findSourceTaskForFreeForm: the caller is not a flexible freeform window application and does not have a zoom windowMode startup parameter
+10-17 16:44:28.167  3489  4556 D FlexibleTaskController: adjustOptionsForFlexibleTask not allow options follow process task's options, reason:8 ,reusedOptions:null
+10-17 16:44:28.168  3489  4556 D FlexibleWindowManagerService: shouldClearProcessFrameRateWhenReuseWithoutLimitParam displayId 0
+10-17 16:44:28.168  3489  4556 E FlexibleWindowManagerService: setProcessFrameRate error wpc null 
+10-17 16:44:28.168  3489  4556 D FlexibleTaskController: isSupportFlexibleWindow target = com.miui.tsmclient/.ui.MainActivity callPkg = FlexibleTaskController support = true ,caller = 3489
+10-17 16:44:28.168  3489  4556 D Panorama STATE_NO_FLEXIBLE_WINDOW 0: ++startActivityInnerHook intent:Intent { flg=0x10800000 xflg=0x4 cmp=com.miui.tsmclient/.ui.MainActivity mCallingUid=0 } source:null startActivity:ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t-1} targetTask:null
+10-17 16:44:28.171  5481  5481 D CarrierSvcBindHelper: No carrier app for: 0
+10-17 16:44:28.171  1628  2138 I SDM     : HWEventsDRM::SetEventState: Setup vsync event for CRTC 147, Connector 57
+10-17 16:44:28.172  5481  5481 D CarrierSvcBindHelper: No carrier app for: 1
+10-17 16:44:28.174 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno Permission denied, trying pgid as pid to check
+10-17 16:44:28.176  3489  4556 D OplusMirageWindowManagerService: updateCarMirageConfigToTask task:Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable} options:null
+10-17 16:44:28.177  5026  5026 D CommandQueueLogger: appTransitionPending displayId=0 forced=false
+10-17 16:44:28.179 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno No such file or directory, trying pgid as pid to check
+10-17 16:44:28.183  3489  4556 I PlaybackActivityMonitorExtImpl: onTaskMovedToFront currentFrontApp = com.miui.tsmclient
+10-17 16:44:28.184  3489  4556 D ActivityTaskManager: validateStartingWindowTheme:  Pkg=com.miui.tsmclient, Translucent=true, Floating=false, ShowWallpaper=false, Disable=false, LaunchSource=1, Prev=null, LaunchedFromPackage=com.android.shell
+10-17 16:44:28.184  3489  4556 D OplusAlwaysAliveManager: don't save launch theme for real activity doesn't want a starting window: ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18}
+10-17 16:44:28.184  3489  4556 D ActivityTaskManager: addStartingWindow for ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18}, mainWin=null, state=INITIALIZING, isKeyguardLocked=false, isKeyguardGoingAway=false
+10-17 16:44:28.185  3489  4556 D ActivityTaskManager: getStartingWindowType: , newTask=true, taskSwitch=true, processRunning=false, allowTaskSnapshot=true, activityCreated=false, activityAllDrawn=false, snapshot exist: false
+10-17 16:44:28.185  3489  4556 D ActivityRecordExtImpl: handleStartingWindowForCompactWindow origin type:2, adjustType : 2
+10-17 16:44:28.185  3489  4556 D ActivityTaskManager: skip addStartingWindow due to resolvedTheme: 0, theme: 2131886619
+10-17 16:44:28.185  3489  4367 D OplusAppSwitchListener: App Activity Change
+10-17 16:44:28.187  3489  4556 D ActivityTrigger: ActivityTrigger activityPauseTrigger 
+10-17 16:44:28.187  3489  4367 D OplusAppSwitchListener: Detect com.android.launcher switch to background
+10-17 16:44:28.187  5026  5445 D ZoomController: onTaskMovedToFront, task id:18
+10-17 16:44:28.188  5026  5445 I ZoomUiController: FloatHandle-isFloatHandleShow mPackageName = null
+10-17 16:44:28.188  3489  4367 D OplusFeatureReduceBrightness: onAppExit , info = com.android.launcher
+10-17 16:44:28.191  3489  4902 I [UAH_CLIENT]: UahEventAcquire, cmdid:1, pkg:com.miui.tsmclient, identity:com.android.server.wm
+10-17 16:44:28.193  5026  5445 V RecentTasksController: Notify recent tasks changed
+10-17 16:44:28.194  3489  4902 E [UAH_CLIENT]: Urcc HAL Service not found
+10-17 16:44:28.194  3489  4902 E [UAH_CLIENT]: uah_get_urcc_hal_and_link_to_death error:-1
+10-17 16:44:28.194  3489  4556 V ActivityTaskManager: TaskLaunchParamsModifier: phase=3 task=Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable} activity=ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t-1} display-from-task=0 display-id=0 task-display-area-windowing-mode=1 suggested-display-area=DefaultTaskDisplayArea@251040738 inherit-from-task=fullscreen non-freeform-task-display-area display-area=DefaultTaskDisplayArea@251040738 activity-requested-portrait freeform-size-mismatch=Rect(282, 683 - 798, 1763)
+10-17 16:44:28.194  3489  4556 I ActivityTaskManager: START u0 {flg=0x10000000 xflg=0x4 cmp=com.miui.tsmclient/.ui.MainActivity mCallingUid=0} with LAUNCH_MULTIPLE from uid 0 (com.android.shell) (BAL_ALLOW_ALLOWLISTED_UID (Important callingUid; BAL_ALLOW_ALLOWLISTED_UID)) result code=0
+10-17 16:44:28.195  5026  5445 V WindowManagerShell: Transition requested (#40): android.os.BinderProxy@46a6b2a TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=18 effectiveUid=1027 displayId=0 isRunning=true baseIntent=Intent { flg=0x10800000 cmp=com.miui.tsmclient/.ui.MainActivity mCallingUid=0 } baseActivity=ComponentInfo{com.miui.tsmclient/com.miui.tsmclient.ui.MainActivity} topActivity=ComponentInfo{com.miui.tsmclient/com.miui.tsmclient.ui.MainActivity} origActivity=null realActivity=ComponentInfo{com.miui.tsmclient/com.miui.tsmclient.ui.MainActivity} realActivityIsAppLockEnabled=false
+10-17 16:44:28.195  5026  5445 V WindowManagerShell:  numActivities=1 lastActiveTime=640994 supportsSplitScreenMultiWindow=false supportsMultiWindow=false supportsPocketStudioMultiWindow=true isInFlexibleEmbedded = false uid = 1027 pid = 0 supportsMultiWindowWithoutConstraints=false resizeMode=0 isResizeable=false minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.os.BinderProxy@a729d1b} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 94 - 0, 0)
+10-17 16:44:28.195  5026  5445 V WindowManagerShell:  topActivityInfo=ActivityInfo{c8d4eb8 com.miui.tsmclient.ui.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isInteractive=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=true isActivityStackTransparent=true lastNonFullscreenBounds=Rect(282, 683 - 798, 1763) leafTaskBoundsFromOptions= false capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=503 topActivityRequestOpenInBrowserEducationTimestamp=0
+10-17 16:44:28.195  5026  5445 V WindowManagerShell:  appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityInOplusCompatMode=false isLeafTask= true eligibleForLetterboxEducation= false isLetterboxEducationEnabled= false isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1080, 2400) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null topNonResizableActivityAspectRatio=-1.0} topActivityMainWindowFrame=null isAppBubble=false topActivityLetterboxInsets=Rect(0, 0 - 0, 0)
+10-17 16:44:28.195  5026  5445 V WindowManagerShell:  mOplusExtraBundle = Bundle[mParcelledData.dataSize=1700]}, pipChange = null, remoteTransitionInfo = null, displayChanges = null, requestedLocation = null, userChange = null, windowingLayerChange = null, fullscreenRequestChange = null, flags = 0, debugId = 40 }
+10-17 16:44:28.195  3489  5226 I OsenseKillAction: KillAction: [atomic clean] start name=nirvana, requestId=-1, startAvail=7795, startFreeMB=395, purposeAvailMB=-1, purposeFreeMB=781, anonRssTarget=386, minBgCount=30, maxAppCare=79, swapTarget=0, scene=NirvanaLowFree, type=cached, qb=false, cchOnly=true, urgency=false, hoggingCpuPids={}, invalid-cnt=0
+10-17 16:44:28.195  5026  5445 W DisconnectHandler: No disconnect change found in the transition, not handling request.
+10-17 16:44:28.195  5026  5445 D ShellSplitScreen: logExit: no-op, mLoggerSessionId is null
+10-17 16:44:28.196  3489  4740 I VibratorManagerServiceExtImpl: onInputMethodListUpdated received, info.size = 4
+10-17 16:44:28.196  3489  4740 I VibratorManagerServiceExtImpl: userid = 0, packageName = com.oplus.keyboard
+10-17 16:44:28.196  3489  4740 I VibratorManagerServiceExtImpl: userid = 0, packageName = com.sohu.inputmethod.sogouoem
+10-17 16:44:28.196  3489  4740 I VibratorManagerServiceExtImpl: userid = 0, packageName = com.baidu.input_oppo
+10-17 16:44:28.197  3489  4740 I VibratorManagerServiceExtImpl: userid = 0, packageName = com.oplus.securitykeyboard
+10-17 16:44:28.197  3489  4303 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@f73d612b does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-17 16:44:28.198  5501  5501 W OPLUS_LOG_LOAD: ==LOGS PROG INFO, prog(com.android.launcher) ==
+10-17 16:44:28.198  5501  5501 I SplitScreenManager: Attached Launcher#2f48b05 ON_PAUSE
+10-17 16:44:28.199  3489  5226 I OsenseKillAction: KillAction: group process done, total=2ms, firstLoop=1ms, updateProcessInfo=1ms, idleList=0ms, curBg=5
+10-17 16:44:28.200  3489  5226 I OsenseKillAction: scanCchEmptyProc: +++++++ start double check +++++++
+10-17 16:44:28.200  3489  5226 I OsenseKillAction: scanCchEmptyProc: cch check done: killablePss=0kb, killableAnonRss=0mb, time=0ms, candidate cnt: 0
+10-17 16:44:28.200  3489  5226 I OsenseKillAction: scanNonUiProc: skip scan non ui process for nirvana
+10-17 16:44:28.200  3489  5226 I OsenseKillAction: scanOomAdj: skip scan oom adj for nirvana
+10-17 16:44:28.200  3489  5226 I OsenseKillAction: scanAllProc: skip scan all proc for nirvana
+10-17 16:44:28.200  3489  5226 I OsenseKillAction: KillAction: done execute kill, pi2app=0ms, monitor=0ms, kill=0ms, total=0ms, kill cnt=0, local cnt=0
+10-17 16:44:28.200  9199  9328 I AstScreen.WatchOverlayProxy: onPause , isCurrentAssistantScreen():com.coloros.common.utils.j@447cd4b.isCurrentAssistantScreen()
+10-17 16:44:28.200  3489  5226 I OsenseKillAction: KillAction: [atomic clean] end requestId=-1, endAvail=7793mb, reclaimed: [pss=0mb, anonRss=0mb, swap=0mb, mem=0mb, Rss=0mb], timing: [total=5ms, update=1ms, readMem=0ms, group=2ms, cch=0ms, nonUi=0ms, oomadj=0ms, allProc=0ms, monitor=1ms, kill=0ms], sysinfo: [bgcount=5]
+10-17 16:44:28.200  3489  5226 I OsenseKillAction: KillAction: 386mb more anonRss to reclaim, 0mb more swapMb to reclaim, <skip> mem guard, cur avail=7793mb, bundle: Bundle[{appcareThreshold=79, bgActivityAppCount=5, minBgCount=30, type=cached, scene=NirvanaLowFree, purposeFreeMB=781}]
+10-17 16:44:28.200  5501  5501 I GCP.GroupCardWrapper[1792226078735]:  setDrawPicForDrag, isDrawPicForDrag: true[gcSdk:v1.3.210-42a1e54,gcPlugin:v17.20.24-bd2dd1bb] [OplusLauncher|com.android.launcher|2.0.49-17dd512]
+10-17 16:44:28.200  8880  8995 I AstScreen.LauncherOverlayBinder.Ht: onPause
+10-17 16:44:28.201  8880  8880 I AstScreen.RxLauncherStateMonitor: setValue launcherState PAUSE value PAUSE
+10-17 16:44:28.201  8880  8880 I AstScreen.AssistantScreen.EventProcessor.state: onPause enter: false resume:false lastEvent: exit_end
+10-17 16:44:28.201  8880  8880 I AstScreen.AssistantScreen.EventProcessor.state: onPause hide window after exit
+10-17 16:44:28.201  8880  8880 I AstScreen.AssistantScreen.EventProcessor: onPause hide window
+10-17 16:44:28.201  8880  8880 I AstScreen.AssistantScreen.Window: requestHideWithFlush visible:8 alpha:1.0 scrollX:1080 x:-1080  isNeedDestroySurface==false
+10-17 16:44:28.201  8880  8880 I AstScreen.AssistantScreen.EnterBooster: onWindowPause do
+10-17 16:44:28.202  8880 11458 E FileStrategy: java.io.IOException: Read-only file system
+10-17 16:44:28.204 10770 10783 W ANDR-PERF-LM: MetaMeter: handlePrimaryAsync() 118: AdaptLaunch MetaMeter. No MeterMgr Available to handle this Primary Async. !!!!
+10-17 16:44:28.204 10770 10783 W ANDR-PERF-LM: MetaMeter: handlePrimaryAsync() 118: AdaptLaunch MetaMeter. No MeterMgr Available to handle this Primary Async. !!!!
+10-17 16:44:28.204 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno Permission denied, trying pgid as pid to check
+10-17 16:44:28.204  3489  4556 D RefreshRate: boostRefreshId choose max:currentRefreshRate:120.00001 targetRefreshRate:60.0 mCurrentPickRate:120.00001
+10-17 16:44:28.204 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno No such file or directory, trying pgid as pid to check
+10-17 16:44:28.205  3489  4556 D RefreshRate: Trigger app switch boost, ar=ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18},currDisplayRate=120.00001,boostId=3
+10-17 16:44:28.205  3489  4556 D RefreshRate: setDisplayConfigSpecs complete: targetMode={id=2, parentModeId=-1, sfModeId=1, flags=, width=1080, height=2400, fps=120.00001, vsync=120.00001, alternativeRefreshRates=[60.000004, 90.0], supportedHdrTypes=[2, 3, 4]},srcMode={id=2, parentModeId=-1, sfModeId=1, flags=, width=1080, height=2400, fps=120.00001, vsync=120.00001, alternativeRefreshRates=[60.000004, 90.0], supportedHdrTypes=[2, 3, 4]},sfModId=1,rate=120.00001
+10-17 16:44:28.205  3489  4958 D RefreshRate: do setDisplayConfigSpecs  
+10-17 16:44:28.205  3489  4556 D RefreshRate: startAppSwitchBoost targetMode={id=2, parentModeId=-1, sfModeId=1, flags=, width=1080, height=2400, fps=120.00001, vsync=120.00001, alternativeRefreshRates=[60.000004, 90.0], supportedHdrTypes=[2, 3, 4]} record=ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18}: votes=PRIORITY_START_ANIMATION_BOOST -> Vote{mRefreshRate=120.0, mMinRefreshRate=120.0, mRequestSource=null};PRIORITY_WINDOW_REQUEST -> Vote{mRefreshRate=120.0, mMinRefreshRate=120.0, mRequestSource=null};
+10-17 16:44:28.205  3489  4902 D JobSchedulerServiceExtImpl: updateOsenseRestrictMode for 1 true false
+10-17 16:44:28.205  3489  4556 D ActivityTaskManager: setAppVisibility(Token{4a4360e ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18}}, visible=true):  visible=false mVisibleRequested=false
+10-17 16:44:28.205  3489  4556 D ActivityTaskManager: setVisibility(Token{4a4360e ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18}}, visible=true) defer commitVisibility for transition collecting
+10-17 16:44:28.205  1838  2042 D SurfaceFlinger: VRR [SurfaceFlinger] setDesiredDisplayModeSpecs, from process 3489, 1, 0, for display 0xb40000706ded72b0, primaryRanges = [ 120.000008, 120.000008, 120.000008, 120.000008 ], appRequestRanges = [ 120.000008, 120.000008, 120.000008 120.000008 ] forceChanged = 0
+10-17 16:44:28.206  3489  4902 I [UAH_CLIENT]: UahEventAcquire, cmdid:1, pkg:com.miui.tsmclient, identity:com.android.server.wm
+10-17 16:44:28.207  3489  5089 I Osense-BaseDecisionMaker: notifySceneToAthenaPolicy: SCENE_APP_SWITCH, bundle: Bundle[{prevPkgName=com.android.launcher, hasActivities=false, curUid=1027, isGame=false, curPkgName=com.miui.tsmclient, prevUid=10114, procStarted=false}]
+10-17 16:44:28.207  3489  5089 I Osense-BaseDecisionMaker: scene: SCENE_APP_SWITCH, excutingPolicy: freezer
+10-17 16:44:28.207  3489  5089 D Osense-BaseDecisionMaker: invoke freezer policy,type: fast
+10-17 16:44:28.207  3489  4303 D BatteryStatsImplExtImpl: pausedBatteryLevel:52 activityFocusedTimeInMin:0
+10-17 16:44:28.209  3489  5504 I OPM-Process: resume pkg: com.miui.tsmclient, uid:1027, prev pkg: com.android.launcher, prev uid: 10114
+10-17 16:44:28.213  3489  4958 D DisplayModeDirector: setAppRequest displayId : 0  modeId: 2  requestedRefreshRate: 120.00001  requestedMinRefreshRateRange: 120.00001  requestedMaxRefreshRateRange: 120.00001
+10-17 16:44:28.214  1414  1414 D Zygote  : Forked child process 30783
+10-17 16:44:28.214  3489  4902 E [UAH_CLIENT]: Urcc HAL Service not found
+10-17 16:44:28.214  3489  4902 E [UAH_CLIENT]: uah_get_urcc_hal_and_link_to_death error:-1
+10-17 16:44:28.215  3489  4902 I [UAH_CLIENT]: UahEventAcquire, cmdid:1, pkg:com.miui.tsmclient, identity:com.android.server.wm
+10-17 16:44:28.218  3489  4902 E [UAH_CLIENT]: Urcc HAL Service not found
+10-17 16:44:28.218  3489  4902 E [UAH_CLIENT]: uah_get_urcc_hal_and_link_to_death error:-1
+10-17 16:44:28.219  3489  4556 D DisplayModeDirector: setAppRequest displayId : 0  modeId: 2  requestedRefreshRate: 0.0  requestedMinRefreshRateRange: 0.0  requestedMaxRefreshRateRange: 120.00001
+10-17 16:44:28.219  3489  4898 D osense-blo: [0, false] [0, false] [0, false] 
+10-17 16:44:28.220 10770 10783 E ANDR-PERF-LM: MetaMeter: handleAsync() 166: AdaptLaunch Invalid Async
+10-17 16:44:28.220  3489  6590 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.sendBroadcast:1338 com.qualcomm.qti.Performance$SendGameLaunchBroadcast.run:295 com.oplus.dispatch.DispatchObject.runDispatchObject:253 com.oplus.dispatch.OThread.dispatchConcurrentDrain:425 com.oplus.dispatch.OThread.dispatchQueueDrain:384 
+10-17 16:44:28.220  3489  4331 I ActivityManager: Start proc 30783:com.miui.tsmclient/1027 for next-top-activity {com.miui.tsmclient/com.miui.tsmclient.ui.MainActivity}
+10-17 16:44:28.221  3489  4890 W SurfaceFlingerPuller: Failed to pull atom 150134 from surfaceflinger. Success is 0, binder status is EX_NONE
+10-17 16:44:28.222  1413  1435 E statsd  : Stats puller failed for tag: 150134 at 641005664540
+10-17 16:44:28.222  1413  1435 W statsd  : StatsPullerManager: Unknown tagId 10096
+10-17 16:44:28.222  1413  1435 E statsd  : Stats puller failed for tag: 10096 at 641005664540
+10-17 16:44:28.222  1413  1435 W statsd  : StatsPullerManager: Unknown tagId 10096
+10-17 16:44:28.222  1413  1435 E statsd  : Stats puller failed for tag: 10096 at 641005664540
+10-17 16:44:28.222  1413  1435 W statsd  : StatsPullerManager: Unknown tagId 10096
+10-17 16:44:28.222  1413  1435 E statsd  : Stats puller failed for tag: 10096 at 641005664540
+10-17 16:44:28.223  5501  5879 D HWUI    : SkiaOpenGLPipeline::setSurface: this=0xb40000705c4928c0, surface=NULL
+10-17 16:44:28.223  3489  4740 I VibratorManagerServiceExtImpl: onInputMethodListUpdated received, info.size = 4
+10-17 16:44:28.223  3489  4740 I VibratorManagerServiceExtImpl: userid = 0, packageName = com.oplus.keyboard
+10-17 16:44:28.223  3489  4740 I VibratorManagerServiceExtImpl: userid = 0, packageName = com.sohu.inputmethod.sogouoem
+10-17 16:44:28.223  3489  4740 I VibratorManagerServiceExtImpl: userid = 0, packageName = com.baidu.input_oppo
+10-17 16:44:28.223  3489  4740 I VibratorManagerServiceExtImpl: userid = 0, packageName = com.oplus.securitykeyboard
+10-17 16:44:28.223  5501  5879 D HWUI    : UniResMgr:registerBitmap resourceid=627 bmp=0xb400006f9d265340
+10-17 16:44:28.232 30783 30783 I libprocessgroup: Created cgroup /sys/fs/cgroup/system/uid_1027/pid_30783
+10-17 16:44:28.232  5501 27747 D HWUI    : UniResMgr:registerBitmap resourceid=628 bmp=0xb4000070e668d680
+10-17 16:44:28.234  5501 27747 D HWUI    : UniResMgr:registerBitmap resourceid=629 bmp=0xb400006f9d265200
+10-17 16:44:28.240 30783 30783 I Zygote  : Process 30783 created for com.miui.tsmclient
+10-17 16:44:28.241 30783 30783 I .miui.tsmclient: isSwordfishLaunchAppEnabled_ 1 isSwordfishInstallAppEnabled_ 1
+10-17 16:44:28.241 30783 30783 I .miui.tsmclient: Using generational CollectorTypeCMC GC.
+10-17 16:44:28.245 30783 30783 D MitsuhaBootstrap: gate retired process=com.miui.tsmclient configured=0
+10-17 16:44:28.245 30770 30770 I app_process: isSwordfishLaunchAppEnabled_ 1 isSwordfishInstallAppEnabled_ 1
+10-17 16:44:28.245 30770 30770 D nativeloader: InitDefaultPublicLibraries for_preload=1: libandroid.so:libaaudio.so:libamidi.so:libbinder_ndk.so:libc.so:libcamera2ndk.so:libdl.so:libEGL.so:libGLESv1_CM.so:libGLESv2.so:libGLESv3.so:libicu.so:libicui18n.so:libicuuc.so:libjnigraphics.so:liblog.so:libmediandk.so:libm.so:libnativehelper.so:libnativewindow.so:libOpenMAXAL.so:libOpenSLES.so:libRS.so:libstdc++.so:libsync.so:libvulkan.so:libwebviewchromium_plat_support.so:libz.so
+10-17 16:44:28.246 30783 30783 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-17 16:44:28.247  3489  4556 W PackageInfo: Large parcel: size=51776 pkg=com.miui.tsmclient uid=1027 actv=32996(130) recv=4208(16) serv=5172(37) prov=1808(8) perm=1312(7) reqPerm=2528(55) prevAllowSquashing=false
+10-17 16:44:28.249 25365 25418 W ziparchive: Unable to open '/system/app/MITSMClient/MITSMClient.apk': No such file or directory
+10-17 16:44:28.250 25365 25418 E kloadclassifier: Failed to open APK '/system/app/MITSMClient/MITSMClient.apk': I/O error
+10-17 16:44:28.250 25365 25418 W ResourcesManager: failed to preload asset path '/system/app/MITSMClient/MITSMClient.apk'
+10-17 16:44:28.250 25365 25418 W ResourcesManager: java.io.IOException: Failed to load asset path /system/app/MITSMClient/MITSMClient.apk
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.content.res.ApkAssets.nativeLoad(Native Method)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.content.res.ApkAssets.<init>(ApkAssets.java:320)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.content.res.ApkAssets.loadFromPath(ApkAssets.java:169)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.app.ResourcesManager.loadApkAssetsRaw(ResourcesManager.java:698)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.app.ResourcesManager.loadApkAssets(ResourcesManager.java:675)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.app.ResourcesManager$ApkAssetsSupplier.load(ResourcesManager.java:299)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.app.ResourcesManager.createApkAssetsSupplierNotLocked(ResourcesManager.java:1301)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.app.ResourcesManager.getResources(ResourcesManager.java:1433)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.app.ActivityThread.getTopLevelResources(ActivityThread.java:3553)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.app.ApplicationPackageManager.getResourcesForApplication(ApplicationPackageManager.java:2318)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.app.ApplicationPackageManager.getResourcesForApplication(ApplicationPackageManager.java:2301)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.app.ApplicationPackageManager.getText(ApplicationPackageManager.java:2660)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.content.pm.PackageItemInfo.loadUnsafeLabel(PackageItemInfo.java:249)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.content.pm.PackageItemInfo.loadLabel(PackageItemInfo.java:238)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at com.qualcomm.qti.workloadclassifier.ApkDataExtractor.queryApkInfo(ApkDataExtractor.java:614)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at com.qualcomm.qti.workloadclassifier.ApkDataExtractor.ScanApp(ApkDataExtractor.java:1010)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at com.qualcomm.qti.workloadclassifier.WLCService$1.handleMessage(WLCService.java:186)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.os.Handler.dispatchMessageImpl(Handler.java:148)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.os.Handler.dispatchMessage(Handler.java:131)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.os.Looper.loopOnce(Looper.java:375)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.os.Looper.loop(Looper.java:499)
+10-17 16:44:28.250 25365 25418 W ResourcesManager: 	at android.os.HandlerThread.run(HandlerThread.java:139)
+10-17 16:44:28.250 25365 25418 W ziparchive: Unable to open '/system/app/MITSMClient/MITSMClient.apk': No such file or directory
+10-17 16:44:28.250 30783 30783 I OplusGcSupressionHelper: GC suppression supported (custom ART apex / domestic)
+10-17 16:44:28.250 25365 25418 E kloadclassifier: Failed to open APK '/system/app/MITSMClient/MITSMClient.apk': I/O error
+10-17 16:44:28.251 30783 30783 I OneTrace: Mark active for pid=30783? true
+10-17 16:44:28.251 25365 25418 E ResourcesManager: failed to add asset path '/system/app/MITSMClient/MITSMClient.apk'
+10-17 16:44:28.251 25365 25418 E ResourcesManager: java.io.IOException: Failed to load asset path /system/app/MITSMClient/MITSMClient.apk
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.content.res.ApkAssets.nativeLoad(Native Method)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.content.res.ApkAssets.<init>(ApkAssets.java:320)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.content.res.ApkAssets.loadFromPath(ApkAssets.java:169)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.app.ResourcesManager.loadApkAssetsRaw(ResourcesManager.java:698)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.app.ResourcesManager.loadApkAssets(ResourcesManager.java:675)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.app.ResourcesManager$ApkAssetsSupplier.load(ResourcesManager.java:299)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.app.ResourcesManager.createAssetManager(ResourcesManager.java:787)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.app.ResourcesManager.createResourcesImpl(ResourcesManager.java:868)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.app.ResourcesManager.findOrCreateResourcesImplForKeyLocked(ResourcesManager.java:963)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.app.ResourcesManager.createResources(ResourcesManager.java:1331)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.app.ResourcesManager.getResources(ResourcesManager.java:1446)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.app.ActivityThread.getTopLevelResources(ActivityThread.java:3553)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.app.ApplicationPackageManager.getResourcesForApplication(ApplicationPackageManager.java:2318)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.app.ApplicationPackageManager.getResourcesForApplication(ApplicationPackageManager.java:2301)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.app.ApplicationPackageManager.getText(ApplicationPackageManager.java:2660)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.content.pm.PackageItemInfo.loadUnsafeLabel(PackageItemInfo.java:249)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.content.pm.PackageItemInfo.loadLabel(PackageItemInfo.java:238)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at com.qualcomm.qti.workloadclassifier.ApkDataExtractor.queryApkInfo(ApkDataExtractor.java:614)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at com.qualcomm.qti.workloadclassifier.ApkDataExtractor.ScanApp(ApkDataExtractor.java:1010)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at com.qualcomm.qti.workloadclassifier.WLCService$1.handleMessage(WLCService.java:186)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.os.Handler.dispatchMessageImpl(Handler.java:148)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.os.Handler.dispatchMessage(Handler.java:131)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.os.Looper.loopOnce(Looper.java:375)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.os.Looper.loop(Looper.java:499)
+10-17 16:44:28.251 25365 25418 E ResourcesManager: 	at android.os.HandlerThread.run(HandlerThread.java:139)
+10-17 16:44:28.251 30783 30783 D cutils-dev: otrace_set_tracing_enabled? true tag:0
+10-17 16:44:28.251 25365 25418 W PackageManager: Failure retrieving resources for com.miui.tsmclient
+10-17 16:44:28.251 30783 30783 D cutils-dev: properties changed in otrace_seq_number_changed!
+10-17 16:44:28.255 30770 30770 D nativeloader: Load libicu_jni.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+10-17 16:44:28.255 30770 30770 D app_process: u_setTimeZoneFilesDirectory("/apex/com.android.tzdata/etc/tz/versioned/10/icu") succeeded. 
+10-17 16:44:28.255 30770 30770 D app_process: I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt78l.dat
+10-17 16:44:28.256 30770 30770 D nativeloader: Load libjavacore.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+10-17 16:44:28.257  3489  4556 I ActivityTaskManager: Process com.miui.tsmclient restarted
+10-17 16:44:28.257 30770 30770 D nativeloader: Load libopenjdk.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+10-17 16:44:28.257  3489  4556 D SplitScreenAppReader: SPLIT_TOUCH support check:com.miui.tsmclient = false
+10-17 16:44:28.258  3489  4556 D RGBNormalizeServer: OplusRGBNormalize feature enabled ? true
+10-17 16:44:28.258  3489  4556 D ResourcesManagerCache: For package com.miui.tsmclient we got cacheList [null] appInfoExt is null ? false hasFeature ? false
+10-17 16:44:28.258 30770 30770 I app_process: Priority-to-niceness mapping: 19, 16, 13, 10, 0, -2, -4, -5, -6, -8
+10-17 16:44:28.260  3489  4040 I system_server: _Desupression native alloc gc_urgency: 79103 native bytes: 178701060
+10-17 16:44:28.261  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 16:44:28.261  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 16:44:28.261  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 16:44:28.261 30770 30770 E app_process: No implementation found for boolean android.util.Log.isLoggable(java.lang.String, int) (tried Java_android_util_Log_isLoggable and Java_android_util_Log_isLoggable__Ljava_lang_String_2I) - is the library loaded, e.g. System.loadLibrary?
+10-17 16:44:28.261 30770 30770 W app_process: Landroid/app/DexLoadReporterExtImpl; failed initialization: java.lang.UnsatisfiedLinkError: No implementation found for boolean android.util.Log.isLoggable(java.lang.String, int) (tried Java_android_util_Log_isLoggable and Java_android_util_Log_isLoggable__Ljava_lang_String_2I) - is the library loaded, e.g. System.loadLibrary?
+10-17 16:44:28.261 30770 30770 W app_process:   at boolean android.util.Log.isLoggable(java.lang.String, int) (Log.java:-2)
+10-17 16:44:28.261 30770 30770 W app_process:   at void android.app.DexLoadReporterExtImpl.<clinit>() (DexLoadReporterExtImpl.java:39)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Object system.ext.registry.BaseCommonCoreRegistryFoundation$$ExternalSyntheticLambda14.createExtWith(java.lang.Object) (D8$$SyntheticClass:0)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Object system.ext.loader.core.ExtLoader.create(java.lang.Class, java.lang.Object, boolean, boolean) (ExtLoader.java:63)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Object system.ext.loader.core.ExtLoader.create(java.lang.Class, java.lang.Object) (ExtLoader.java:53)
+10-17 16:44:28.261 30770 30770 W app_process:   at void android.app.DexLoadReporter.<init>() (DexLoadReporter.java:102)
+10-17 16:44:28.261 30770 30770 W app_process:   at void android.app.DexLoadReporter.<clinit>() (DexLoadReporter.java:53)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Class java.lang.Class.classForName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:-2)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Class java.lang.Class.forName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:591)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Class java.lang.Class.forName(java.lang.String) (Class.java:496)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.DexFile.ensureMayDisableDexVerifyReflection() (DexFile.java:488)
+10-17 16:44:28.261 30770 30770 W app_process:   at boolean dalvik.system.DexFile.mayDisableDexVerifyReflect(java.lang.String) (DexFile.java:460)
+10-17 16:44:28.261 30770 30770 W app_process:   at int dalvik.system.DexFile.trySetFlags(java.lang.String, int) (DexFile.java:452)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Object dalvik.system.DexFile.openDexFile(java.lang.String, java.lang.String, int, java.lang.ClassLoader, dalvik.system.DexPathList$Element[]) (DexFile.java:436)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.DexFile.<init>(java.lang.String, java.lang.ClassLoader, dalvik.system.DexPathList$Element[]) (DexFile.java:157)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.DexFile.<init>(java.io.File, java.lang.ClassLoader, dalvik.system.DexPathList$Element[]) (DexFile.java:130)
+10-17 16:44:28.261 30770 30770 W app_process:   at dalvik.system.DexFile dalvik.system.DexPathList.loadDexFile(java.io.File, java.io.File, java.lang.ClassLoader, dalvik.system.DexPathList$Element[]) (DexPathList.java:454)
+10-17 16:44:28.261 30770 30770 W app_process:   at dalvik.system.DexPathList$Element[] dalvik.system.DexPathList.makeDexElements(java.util.List, java.io.File, java.util.List, java.lang.ClassLoader, boolean) (DexPathList.java:413)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.DexPathList.<init>(java.lang.ClassLoader, java.lang.String, java.lang.String, java.io.File, boolean) (DexPathList.java:166)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.BaseDexClassLoader.<init>(java.lang.String, java.lang.String, java.lang.ClassLoader, java.lang.ClassLoader[], java.lang.ClassLoader[], boolean) (BaseDexClassLoader.java:160)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.BaseDexClassLoader.<init>(java.lang.String, java.io.File, java.lang.String, java.lang.ClassLoader) (BaseDexClassLoader.java:105)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.PathClassLoader.<init>(java.lang.String, java.lang.String, java.lang.ClassLoader) (PathClassLoader.java:71)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.ClassLoader java.lang.ClassLoader.createSystemClassLoader() (ClassLoader.java:269)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.ClassLoader java.lang.ClassLoader.-$$Nest$smcreateSystemClassLoader() (ClassLoader.java:-1)
+10-17 16:44:28.261 30770 30770 W app_process:   at void java.lang.ClassLoader$SystemClassLoader.<clinit>() (ClassLoader.java:219)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.ClassLoader java.lang.ClassLoader.getSystemClassLoader() (ClassLoader.java:1914)
+10-17 16:44:28.261 30770 30770 W app_process: Landroid/app/DexLoadReporter; failed initialization: java.lang.UnsatisfiedLinkError: No implementation found for boolean android.util.Log.isLoggable(java.lang.String, int) (tried Java_android_util_Log_isLoggable and Java_android_util_Log_isLoggable__Ljava_lang_String_2I) - is the library loaded, e.g. System.loadLibrary?
+10-17 16:44:28.261 30770 30770 W app_process:   at boolean android.util.Log.isLoggable(java.lang.String, int) (Log.java:-2)
+10-17 16:44:28.261 30770 30770 W app_process:   at void android.app.DexLoadReporterExtImpl.<clinit>() (DexLoadReporterExtImpl.java:39)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Object system.ext.registry.BaseCommonCoreRegistryFoundation$$ExternalSyntheticLambda14.createExtWith(java.lang.Object) (D8$$SyntheticClass:0)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Object system.ext.loader.core.ExtLoader.create(java.lang.Class, java.lang.Object, boolean, boolean) (ExtLoader.java:63)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Object system.ext.loader.core.ExtLoader.create(java.lang.Class, java.lang.Object) (ExtLoader.java:53)
+10-17 16:44:28.261 30770 30770 W app_process:   at void android.app.DexLoadReporter.<init>() (DexLoadReporter.java:102)
+10-17 16:44:28.261 30770 30770 W app_process:   at void android.app.DexLoadReporter.<clinit>() (DexLoadReporter.java:53)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Class java.lang.Class.classForName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:-2)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Class java.lang.Class.forName(java.lang.String, boolean, java.lang.ClassLoader) (Class.java:591)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Class java.lang.Class.forName(java.lang.String) (Class.java:496)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.DexFile.ensureMayDisableDexVerifyReflection() (DexFile.java:488)
+10-17 16:44:28.261 30770 30770 W app_process:   at boolean dalvik.system.DexFile.mayDisableDexVerifyReflect(java.lang.String) (DexFile.java:460)
+10-17 16:44:28.261 30770 30770 W app_process:   at int dalvik.system.DexFile.trySetFlags(java.lang.String, int) (DexFile.java:452)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.Object dalvik.system.DexFile.openDexFile(java.lang.String, java.lang.String, int, java.lang.ClassLoader, dalvik.system.DexPathList$Element[]) (DexFile.java:436)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.DexFile.<init>(java.lang.String, java.lang.ClassLoader, dalvik.system.DexPathList$Element[]) (DexFile.java:157)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.DexFile.<init>(java.io.File, java.lang.ClassLoader, dalvik.system.DexPathList$Element[]) (DexFile.java:130)
+10-17 16:44:28.261 30770 30770 W app_process:   at dalvik.system.DexFile dalvik.system.DexPathList.loadDexFile(java.io.File, java.io.File, java.lang.ClassLoader, dalvik.system.DexPathList$Element[]) (DexPathList.java:454)
+10-17 16:44:28.261 30770 30770 W app_process:   at dalvik.system.DexPathList$Element[] dalvik.system.DexPathList.makeDexElements(java.util.List, java.io.File, java.util.List, java.lang.ClassLoader, boolean) (DexPathList.java:413)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.DexPathList.<init>(java.lang.ClassLoader, java.lang.String, java.lang.String, java.io.File, boolean) (DexPathList.java:166)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.BaseDexClassLoader.<init>(java.lang.String, java.lang.String, java.lang.ClassLoader, java.lang.ClassLoader[], java.lang.ClassLoader[], boolean) (BaseDexClassLoader.java:160)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.BaseDexClassLoader.<init>(java.lang.String, java.io.File, java.lang.String, java.lang.ClassLoader) (BaseDexClassLoader.java:105)
+10-17 16:44:28.261 30770 30770 W app_process:   at void dalvik.system.PathClassLoader.<init>(java.lang.String, java.lang.String, java.lang.ClassLoader) (PathClassLoader.java:71)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.ClassLoader java.lang.ClassLoader.createSystemClassLoader() (ClassLoader.java:269)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.ClassLoader java.lang.ClassLoader.-$$Nest$smcreateSystemClassLoader() (ClassLoader.java:-1)
+10-17 16:44:28.261 30770 30770 W app_process:   at void java.lang.ClassLoader$SystemClassLoader.<clinit>() (ClassLoader.java:219)
+10-17 16:44:28.261 30770 30770 W app_process:   at java.lang.ClassLoader java.lang.ClassLoader.getSystemClassLoader() (ClassLoader.java:1914)
+10-17 16:44:28.264 30770 30770 I MitsuhaBootstrap: installed RegisterNatives JNI table gate
+10-17 16:44:28.264 30770 30770 I MitsuhaBootstrap: JavaVM created register_natives_gate=1
+10-17 16:44:28.264 30770 30770 I MitsuhaBootstrap: retired installer hook name=JNI_CreateJavaVM
+10-17 16:44:28.264 30770 30770 I MitsuhaBootstrap: reclaimed restored code page addr=0x730dd79000 len=4096
+10-17 16:44:28.264 30770 30770 I MitsuhaBootstrap: released retired installer memory
+10-17 16:44:28.264  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 16:44:28.264  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 16:44:28.264  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 16:44:28.266 30770 30770 I MitsuhaBootstrap: captured BinderProxy.transactNative=0x730de6709c
+10-17 16:44:28.270  3489  4556 E OplusDynamicFrameRateRUS: getVRRService fail, return null
+10-17 16:44:28.270  3489  4556 I [UAH_CLIENT]: UahGetFeatureStatus enter
+10-17 16:44:28.271  3489  4556 E [UAH_CLIENT]: Urcc HAL Service not found
+10-17 16:44:28.271  3489  4556 E [UAH_CLIENT]: uah_get_urcc_hal_and_link_to_death error:-1
+10-17 16:44:28.273 25365 25418 W System.err: java.nio.file.NoSuchFileException: /system/app/MITSMClient/MITSMClient.apk
+10-17 16:44:28.273 25365 25418 W System.err: 	at sun.nio.fs.UnixFileAttributeViews$Basic.readAttributes(UnixFileAttributeViews.java:55)
+10-17 16:44:28.273 25365 25418 W System.err: 	at sun.nio.fs.UnixFileSystemProvider.readAttributes(UnixFileSystemProvider.java:150)
+10-17 16:44:28.273  3489  4556 I OplusHansManager : HansAppRecordManager: addHansProcessRecord: OplusHansManager is not ready, return
+10-17 16:44:28.273 25365 25418 W System.err: 	at sun.nio.fs.LinuxFileSystemProvider.readAttributes(LinuxFileSystemProvider.java:117)
+10-17 16:44:28.273 25365 25418 W System.err: 	at java.nio.file.Files.readAttributes(Files.java:1764)
+10-17 16:44:28.273 25365 25418 W System.err: 	at java.util.zip.ZipFile$Source.get(ZipFile.java:1585)
+10-17 16:44:28.273 25365 25418 W System.err: 	at java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:797)
+10-17 16:44:28.273 25365 25418 W System.err: 	at java.util.zip.ZipFile.<init>(ZipFile.java:299)
+10-17 16:44:28.273 25365 25418 W System.err: 	at java.util.zip.ZipFile.<init>(ZipFile.java:255)
+10-17 16:44:28.273 25365 25418 W System.err: 	at java.util.zip.ZipFile.<init>(ZipFile.java:203)
+10-17 16:44:28.273 25365 25418 W System.err: 	at java.util.zip.ZipFile.<init>(ZipFile.java:172)
+10-17 16:44:28.273 25365 25418 W System.err: 	at com.qualcomm.qti.workloadclassifier.ApkDataExtractor.processApkFiles(ApkDataExtractor.java:353)
+10-17 16:44:28.273 25365 25418 W System.err: 	at com.qualcomm.qti.workloadclassifier.ApkDataExtractor.queryApkInfo(ApkDataExtractor.java:915)
+10-17 16:44:28.273 25365 25418 W System.err: 	at com.qualcomm.qti.workloadclassifier.ApkDataExtractor.ScanApp(ApkDataExtractor.java:1010)
+10-17 16:44:28.273 25365 25418 W System.err: 	at com.qualcomm.qti.workloadclassifier.WLCService$1.handleMessage(WLCService.java:186)
+10-17 16:44:28.273 25365 25418 W System.err: 	at android.os.Handler.dispatchMessageImpl(Handler.java:148)
+10-17 16:44:28.273 25365 25418 W System.err: 	at android.os.Handler.dispatchMessage(Handler.java:131)
+10-17 16:44:28.273 25365 25418 W System.err: 	at android.os.Looper.loopOnce(Looper.java:375)
+10-17 16:44:28.273 25365 25418 W System.err: 	at android.os.Looper.loop(Looper.java:499)
+10-17 16:44:28.273 25365 25418 W System.err: 	at android.os.HandlerThread.run(HandlerThread.java:139)
+10-17 16:44:28.273 25365 25418 E WLC-DataExtractor: Failed to decide the app type for com.miui.tsmclient
+10-17 16:44:28.279  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 16:44:28.279  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 16:44:28.279  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 16:44:28.280 30770 30770 I MitsuhaBootstrap: rewrote nativeForkAndSpecialize native gate signature=(II[II[[IILjava/lang/String;Ljava/lang/String;[I[IZLjava/lang/String;Ljava/lang/String;ZZ[Ljava/lang/String;[Ljava/lang/String;ZZZ)I
+10-17 16:44:28.280 30770 30770 I MitsuhaBootstrap: rewrote nativeForkSystemServer native gate signature=(II[II[[IJJ)I
+10-17 16:44:28.281 30770 30770 I MitsuhaBootstrap: rewrote nativeSpecializeAppProcess native gate signature=(II[II[[IILjava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;Z[Ljava/lang/String;[Ljava/lang/String;ZZZ)V
+10-17 16:44:28.281 30770 30770 I MitsuhaBootstrap: registered zygote native gate count=25
+10-17 16:44:28.281 30770 30770 I MitsuhaBootstrap: restored RegisterNatives JNI table gate
+10-17 16:44:28.281  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 16:44:28.281  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 16:44:28.281  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 16:44:28.281  3489  4556 D FlexibleTaskController: isFullToFlexibleAnimating: false
+10-17 16:44:28.281  3489  4556 D WindowManager: rotation(ROTATION_0) no changed  displayId = 0, lastOrientation = 1
+10-17 16:44:28.281  3489  4556 D ActivityTaskManager: setAppVisibility(Token{4a4360e ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18}}, visible=true):  visible=false mVisibleRequested=true
+10-17 16:44:28.281  3489  4556 D ActivityTaskManager: setVisibility(Token{4a4360e ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18}}, visible=true) defer commitVisibility for transition collecting
+10-17 16:44:28.281  3489  4556 D OplusDexOptimizeManager: Do not in AppLaunchOptList, and is systemApp, don't need start-app or repair-dex com.miui.tsmclient
+10-17 16:44:28.281  3489  4556 D CorePackageUpdate: Couldn't find a persistent state for task= 18
+10-17 16:44:28.283 25365 25418 W SQLiteLog: (28) double-quoted string literal: "com.miui.tsmclient"
+10-17 16:44:28.283  3489  4556 I GameManagerServiceExt-GameManagerServiceExt: on FG change: |com.miui.tsmclient
+10-17 16:44:28.283  3489  4367 D OplusAppSwitchListener: App Activity Change
+10-17 16:44:28.283  3489  4367 D OplusAppSwitchListener: Detect com.miui.tsmclient switch to foreground
+10-17 16:44:28.283  3489  4324 I UserAwareMgr: handleTopAppChanged: com.miui.tsmclient, pid: 30783, uid: 1027
+10-17 16:44:28.283  3489  4556 D ActivityTaskManager: onWindowFocusChanged Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable} would transfer to compact
+10-17 16:44:28.283  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 16:44:28.283  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 16:44:28.283  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 16:44:28.287  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 16:44:28.287  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 16:44:28.287  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 16:44:28.287 30770 30770 D nativeloader: Load libonetrace_jni.so using system ns (caller=/system/framework/oplus-framework.jar): ok
+10-17 16:44:28.287  3489  4367 D OplusFeatureGlobalLimitBrightness: switch to display extreme mode 
+10-17 16:44:28.287 30770 30770 D OplusTrace: register_android_os_OplusTrace
+10-17 16:44:28.289  3489  4363 D OplusBiometricsDisplayHelper: isFold: false, isUnblockByFp: null
+10-17 16:44:28.290  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 16:44:28.290  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 16:44:28.290  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 16:44:28.294 24434 30762 W adbd    : timed out while waiting for FUNCTIONFS_BIND, trying again
+10-17 16:44:28.294 24434 30762 I adbd    : UsbFfs: connection terminated: monitor thread finished
+10-17 16:44:28.296  3489  4556 D ActivityTaskManager: NFW_setLastResumedActivityUncheckLocked:true r:ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18} currentFocus:Window{14652cc u0 com.android.launcher/com.android.launcher.Launcher}
+10-17 16:44:28.297  3489  4556 D WindowManager: NFW_findFocusedWindowIfNeeded:null mCurrentFocus:Window{14652cc u0 com.android.launcher/com.android.launcher.Launcher}
+10-17 16:44:28.298  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 16:44:28.298  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 16:44:28.298  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 16:44:28.299  3489  4556 V WindowManager: Changing focus from Window{14652cc u0 com.android.launcher/com.android.launcher.Launcher} to null,diplayid=0
+10-17 16:44:28.302  3489  4556 D FlexibleTaskController: onTaskFocusChanged prevTask:Task{11e3782 #2 type=undefined I=com.android.launcher/.Launcher} ,currentTask:Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable}, reason: realStartActivityLocked - onActivityStateChanged lastResumedActivity:ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18}
+10-17 16:44:28.303  3489  4556 D OplusFlexibleDCSManager: onNextPkgChanged pkg = com.miui.tsmclient
+10-17 16:44:28.303 30770 30770 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-17 16:44:28.303  3489  4556 D FlexibleTaskController: updateTaskMaxNumWhenFocusChangedInPanoramic currentTask = Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable}, prevTask= Task{11e3782 #2 type=undefined I=com.android.launcher/.Launcher}, reason = realStartActivityLocked - onActivityStateChanged, maxNum = 4, maxFlexibleTaskNum: 2, assignMaxNum: -1
+10-17 16:44:28.303  3489  4556 W FlexibleTaskController: updateTaskMaxNumWhenFocusChangedInPanoramic current fullScreen Task isTranslucent for Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable}
+10-17 16:44:28.304 30770 30770 D AndroidRuntime: Calling main entry com.android.commands.content.Content
+10-17 16:44:28.304  3489  4556 D FlexibleTaskController: updateTaskMaxNumWhenFocusChangedInPanoramic flexibleTasks = [], currentPsTaskList = null, fullScreenList= [], allVisibleWindowSize[0] = 0
+10-17 16:44:28.306  3489  4556 I OplusAppSwitchManagerService: appswitch hasProcess ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18}
+10-17 16:44:28.306  3489  4902 I [UAH_CLIENT]: UahEventAcquire, cmdid:0, pkg:com.miui.tsmclient, identity:com.android.server.wm
+10-17 16:44:28.308 30770 30770 D nativeloader: Load libstats_jni.so using APEX ns com_android_os_statsd for caller /apex/com.android.os.statsd/javalib/framework-statsd.jar: ok
+10-17 16:44:28.308  3489  4556 I OplusJoystickManager: handleApplicationSwitch deprecated!
+10-17 16:44:28.308 30770 30770 W PlatformAconfigPackage: android.os.flagging.AconfigStorageReadException: ERROR_CANNOT_READ_STORAGE_FILE: Fail to mmap storage
+10-17 16:44:28.309  3489  4556 I OplusAppSwitchManagerService: appswitch hasProcess ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18}
+10-17 16:44:28.309 30770 30770 I AconfigPackage: com.android.os.statsd.flags is mapped to com.android.os.statsd
+10-17 16:44:28.309 30770 30770 I AconfigPackage: com.android.org.conscrypt.flags is mapped to com.android.conscrypt
+10-17 16:44:28.309 30770 30770 I AconfigPackage: com.android.org.conscrypt.net.flags is mapped to com.android.conscrypt
+10-17 16:44:28.309  5647  7790 W OPLUS_LOG_LOAD: ==LOGS PROG INFO, prog(com.oplus.subsys) ==
+10-17 16:44:28.309  5647  7790 D AMC     : [TriggerForeground] handle fg app changed:com.android.launcher
+10-17 16:44:28.309 30770 30770 I AconfigPackage: com.android.permission.flags is mapped to com.android.permission
+10-17 16:44:28.309 30770 30770 I AconfigPackage: com.android.permissioncontroller.flags is mapped to com.android.permission
+10-17 16:44:28.309 30770 30770 I AconfigPackage: com.android.icu is mapped to com.android.i18n
+10-17 16:44:28.310  5647  7926 D ScoreInfoMgr: onAppExit:com.android.launcher, 10114
+10-17 16:44:28.310 30770 30770 I AconfigPackage: android.media.swcodec.flags is mapped to com.android.media.swcodec
+10-17 16:44:28.310 30770 30770 I AconfigPackage: com.android.adservices.ondevicepersonalization.flags is mapped to com.android.ondevicepersonalization
+10-17 16:44:28.310 30770 30770 I AconfigPackage: android.os.profiling is mapped to com.android.profiling
+10-17 16:44:28.310 30770 30770 I AconfigPackage: android.os.profiling.anomaly.flags is mapped to com.android.profiling
+10-17 16:44:28.310 30770 30770 I AconfigPackage: com.android.adbd.flags is mapped to com.android.adbd
+10-17 16:44:28.310 30770 30770 I AconfigPackage: com.android.uprobestats.flags is mapped to com.android.uprobestats
+10-17 16:44:28.310 30770 30770 I AconfigPackage: android.uprobestats.mainline.flags is mapped to com.android.uprobestats
+10-17 16:44:28.310 30770 30770 I AconfigPackage: android.provider.flags is mapped to com.android.configinfrastructure
+10-17 16:44:28.310 30770 30770 I AconfigPackage: com.android.server.deviceconfig is mapped to com.android.configinfrastructure
+10-17 16:44:28.310 30770 30770 I AconfigPackage: com.android.crashrecovery.flags is mapped to com.android.crashrecovery
+10-17 16:44:28.311 30770 30770 I AconfigPackage: com.android.rkpd.flags is mapped to com.android.rkpd
+10-17 16:44:28.311 30770 30770 I AconfigPackage: com.android.webapp.flags is mapped to com.android.webapp
+10-17 16:44:28.311 30770 30770 I AconfigPackage: com.android.healthfitness.flags is mapped to com.android.healthfitness
+10-17 16:44:28.311 30770 30770 I AconfigPackage: com.android.system.virtualmachine.flags is mapped to com.android.virt
+10-17 16:44:28.311 30770 30770 I AconfigPackage: com.android.adservices.flags is mapped to com.android.adservices
+10-17 16:44:28.311 30770 30770 I AconfigPackage: com.android.sdksandbox.flags is mapped to com.android.adservices
+10-17 16:44:28.311 30770 30770 I AconfigPackage: android.app.sdksandbox.flags is mapped to com.android.adservices
+10-17 16:44:28.311 30770 30770 I AconfigPackage: com.android.art.flags is mapped to com.android.art
+10-17 16:44:28.311 30770 30770 I AconfigPackage: com.android.art.rw.flags is mapped to com.android.art
+10-17 16:44:28.311 30770 30770 I AconfigPackage: com.android.libcore is mapped to com.android.art
+10-17 16:44:28.311  1413  1435 E statsd  : Stats puller failed for tag: 150134 at 641113839644
+10-17 16:44:28.311 30770 30770 I AconfigPackage: com.android.devicelock.flags is mapped to com.android.devicelock
+10-17 16:44:28.312  3489  4556 D ActivityRecordExtImpl:  setIsWaitingForAppResume for ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18} isWaiting true
+10-17 16:44:28.312 30770 30770 I AconfigPackage: android.graphics.pdf.flags is mapped to com.android.mediaprovider
+10-17 16:44:28.312 30770 30770 I AconfigPackage: com.android.providers.media.flags is mapped to com.android.mediaprovider
+10-17 16:44:28.312 30770 30770 I AconfigPackage: android.graphics.pdf.flags.readonly is mapped to com.android.mediaprovider
+10-17 16:44:28.312 30770 30770 I AconfigPackage: com.android.uwb.flags is mapped to com.android.uwb
+10-17 16:44:28.312 30770 30770 I AconfigPackage: com.android.ranging.flags is mapped to com.android.uwb
+10-17 16:44:28.312 30770 30770 I AconfigPackage: com.android.compos.flags is mapped to com.android.compos
+10-17 16:44:28.312 30770 30770 I AconfigPackage: android.telecom.flags is mapped to com.android.telephonycore
+10-17 16:44:28.312 30770 30770 I AconfigPackage: com.android.telephony.flags is mapped to com.android.telephonycore
+10-17 16:44:28.312  3489  4902 E [UAH_CLIENT]: Urcc HAL Service not found
+10-17 16:44:28.312  3489  4902 E [UAH_CLIENT]: uah_get_urcc_hal_and_link_to_death error:-1
+10-17 16:44:28.312 30770 30770 I AconfigPackage: com.android.npumanager is mapped to com.android.npumanager
+10-17 16:44:28.312 30770 30770 I AconfigPackage: com.android.ipsec.flags is mapped to com.android.ipsec
+10-17 16:44:28.312 30770 30770 I AconfigPackage: com.android.tethering.mainline.beta is mapped to com.android.tethering
+10-17 16:44:28.312 30770 30770 I AconfigPackage: android.net.http is mapped to com.android.tethering
+10-17 16:44:28.312 30770 30770 I AconfigPackage: com.android.tethering.readonly.flags is mapped to com.android.tethering
+10-17 16:44:28.312 30770 30770 I AconfigPackage: android.net.vcn is mapped to com.android.tethering
+10-17 16:44:28.312 30770 30770 I AconfigPackage: com.android.net.flags is mapped to com.android.tethering
+10-17 16:44:28.312 30770 30770 I AconfigPackage: com.android.tethering.flags is mapped to com.android.tethering
+10-17 16:44:28.313 30770 30770 I AconfigPackage: com.android.tethering.beta.test is mapped to com.android.tethering
+10-17 16:44:28.313 30770 30770 I AconfigPackage: com.android.nearby.flags is mapped to com.android.tethering
+10-17 16:44:28.313 30770 30770 I AconfigPackage: com.android.net.thread.flags is mapped to com.android.tethering
+10-17 16:44:28.313 30770 30770 I AconfigPackage: com.android.net.ct.flags is mapped to com.android.tethering
+10-17 16:44:28.313 30770 30770 I AconfigPackage: com.android.appsearch.flags is mapped to com.android.appsearch
+10-17 16:44:28.313 30770 30770 I AconfigPackage: com.android.media.extractor.flags is mapped to com.android.media
+10-17 16:44:28.313 30770 30770 I AconfigPackage: com.android.media.metrics.flags is mapped to com.android.media
+10-17 16:44:28.313 30770 30770 I AconfigPackage: com.android.media.mainline.flags is mapped to com.android.media
+10-17 16:44:28.314 30770 30770 I AconfigPackage: com.android.wifi.flags is mapped to com.android.wifi
+10-17 16:44:28.314 30770 30770 E FeatureFlagsImplExport: android.os.flagging.AconfigStorageReadException: ERROR_PACKAGE_NOT_FOUND: package android.xr cannot be found on the device
+10-17 16:44:28.314 10433 25953 D SceneSDK.1.0.4-SNAPSHOT.10433.DeepThinkerAppSwitchAbility: onAppSwitchEvent: AppSwitchEvent(timeStamp=1792226668312, eventType=2, targetName=com.android.launcher, firstStart=false, multiApp=false, windowMode=0, resumingPackageName=com.miui.tsmclient, resumingActivityName=com.miui.tsmclient.ui.MainActivity, isResumingMultiApp=false, isResumingFirstStart=true)
+10-17 16:44:28.314  3489  4579 W SurfaceFlingerPuller: Failed to pull atom 150119 from surfaceflinger. Success is 0, binder status is EX_NONE
+10-17 16:44:28.315  3489  7571 D OplusEapManager: mTargetExitName :com.android.launcher
+10-17 16:44:28.315 10433 25953 I ContextAware_AppRecommendAdapter: fenceCallbackForAlg receive app recommend from AppSwitchEvent(eventId=2, switchInfo=AppSwitchInfo(targetName=com.android.launcher, firstStart=false, multiApp=false, windowMode=0, resumingPackageName=com.miui.tsmclient, resumingActivityName=com.miui.tsmclient.ui.MainActivity, isResumingFirstStart=true, isResumingMultiApp=false))
+10-17 16:44:28.315  1413  1435 E statsd  : Gauge Stats puller failed for tag: 150119 at 641113839644
+10-17 16:44:28.315 10433 11576 D HLog-UpMgr: [metis]CheckWhetherUploadBody Mgr:com.oplus.sdp.of.c@9b49ee7
+10-17 16:44:28.315 10433 11576 D HLog-MultiConfigManage: [metis]checkAllPushTask
+10-17 16:44:28.315 10433 11576 D HLog-MultiConfigManage: [metis]checkAllPushTask existPushInfo : 
+10-17 16:44:28.315 10433 11576 D HLog-UpMgr: [metis]CheckWhetherUploadBody mCheckUploadTime：3 Mgr:com.oplus.sdp.of.c@9b49ee7
+10-17 16:44:28.315  3489  7571 D OplusAppSwitchRuleInfo: generateAppEnterInfo - launch_source_type =  , launch_source_traceid = 
+10-17 16:44:28.315  3489  4304 I TaskOrganizerController: onTaskInfoChanged taskid 1 config { mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0}
+10-17 16:44:28.316  5023  5740 I DRS_LOG_DRS_SC_Collect_Trigger[54]: AppSwitch onAppExit target=com.android.launcher, resume=com.miui.tsmclient, hasResuming=true, resumeMulti=false
+10-17 16:44:28.316  5023  5740 I DRS_LOG_DRS_SC_Collect_Trigger[54]: launch-session switch pre=com.android.launcher, next=com.miui.tsmclient, fg=, screenOff=false, shouldRecord=false, write=false, duration=55, startElapsed=585754, nowElapsed=641118, startWall=1792226612951, skip=pre_not_current_fg
+10-17 16:44:28.316  5023  5740 I DRS_LOG_DRS_SC_Collect_Trigger[54]: launch-session after fg=com.miui.tsmclient, trackNext=true, elapsedReset=641118
+10-17 16:44:28.317 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno Permission denied, trying pgid as pid to check
+10-17 16:44:28.317 10433 10483 D SceneSDK.1.0.4-SNAPSHOT.10433.DeepThinkerAppSwitchAbility: onAppSwitchEvent: AppSwitchEvent(timeStamp=1792226668312, eventType=2, targetName=com.android.launcher, firstStart=false, multiApp=false, windowMode=0, resumingPackageName=com.miui.tsmclient, resumingActivityName=com.miui.tsmclient.ui.MainActivity, isResumingMultiApp=false, isResumingFirstStart=true)
+10-17 16:44:28.317 10433 10483 I metis_v2_AppSwitchDataCollector: AppExitEvent =  com.android.launcher, NextAppName = com.miui.tsmclient
+10-17 16:44:28.317 10433 10483 I ContextAware_Intelligent_DynamicDataManager: receive sensor data: [APP_SWITCH] [2026-10-17 16:44:28,应用切换,点击, com.miui.tsmclient,com.android.launcher]
+10-17 16:44:28.317 10433 10483 I ContextAware_Intelligent_DataStateProcessor: [DataProcessor][Realtime][Trigger] source=event type=APP_SWITCH
+10-17 16:44:28.317  5314  8512 W Battery : AppSwitchDetectorV2: OnAppSwitchObserver: com.miui.tsmclient.ui.MainActivity lastReg=1792226075045
+10-17 16:44:28.317  5314  8512 W Battery : AppSwitchManager: onAppSwitch: [b6.q$e@bffecfe]
+10-17 16:44:28.318 10433 17256 I ContextAware_Intelligent_DataStateProcessor: [DataProcessor][Realtime][SnapshotFinish] trigger=event:APP_SWITCH snapshotTime=1792226668317 battery=false screenLock=false isWeekend=true hourOfDay=16 costMs=0
+10-17 16:44:28.318 10433 17256 I ContextAware_Intelligent_DataStateProcessor: [DataProcessor][Realtime][DispatchStart] observers=1 snapshotTime=1792226668317 trigger=event:APP_SWITCH
+10-17 16:44:28.318 10433 17256 I ContextAware_Intelligent_SchedulerManager: 【习惯·融合】开始调度 fusion | snapshotTime=2026-10-17T16:44:28.317 trigger=事件触发(APP_SWITCH) hour=16 weekend=true replayKind=NONE
+10-17 16:44:28.318  3489  4304 D OplusFlexibleDragToSplitAnimController: visibleFlexibleTaskInfos delete:1
+10-17 16:44:28.318  3489  4303 D OplusBatteryManager: getPsyBatteryRm: 3224
+10-17 16:44:28.318  3489  4303 D BatteryStatsImplExtImpl: resumedUid:1027 resumedBatteryLevel:52  resumedPackage:com.miui.tsmclient  resumedBatteryRealtimeCapacity:3224
+10-17 16:44:28.318  3489  4304 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+10-17 16:44:28.318  3489  4304 I FlexibleWindowManagerService: onFlexibleWindowTaskInfoChanged, return for cur task not embedded
+10-17 16:44:28.318 10433 17256 I ContextAware_Intelligent_PositionDetector: [2026-10-17T16:44:28.317]Invalid snapshot source: 事件触发(APP_SWITCH)
+10-17 16:44:28.318 10433 17256 I ContextAware_Intelligent_PositionDetector: Location decision result: AT_HOME with confidence 1.0 in 1792226668318
+10-17 16:44:28.319 10433 17256 W ContextAware_Intelligent_TravelDetector: No walking state to check persistence
+10-17 16:44:28.319  3489  7571 D OplusLatencyOptimizerManager: enter pkg: com.miui.tsmclient isPrevBlackAppTop: false mIsBlackAppTop: false
+10-17 16:44:28.319  3489  7571 I OplusHansManager : appSwitch from com.android.launcher to com.miui.tsmclient, pre resume pkg:null
+10-17 16:44:28.319  3489  7571 I OPM     : home scene change to false
+10-17 16:44:28.319  3489  7571 D OplusEapManager: mTargetEnterName :com.miui.tsmclient
+10-17 16:44:28.319  5314  5859 W Battery : AppSceneCenter: PerfPolicy not enable!
+10-17 16:44:28.320  5314  8512 I Athena  : AthenaDynamicReceiver: pre_app:com.android.launcher, next_app:com.miui.tsmclient(1027|30783)
+10-17 16:44:28.320 10433 17256 I ContextAware_Intelligent_SchedulerManager: 【习惯·融合】Detector链输出（供融合）| LOCATION=AT_HOME(valid=true,conf=1.00); TRAVEL=UNKNOWN(valid=true,conf=1.00)
+10-17 16:44:28.320 10433 17256 I ContextAware_Intelligent_SchedulerManager: 【习惯·融合】融合决策完成 | overallConf=1.00 slices={LOCATION=AT_HOME, TRAVEL=UNKNOWN} conflictCount=0
+10-17 16:44:28.320 10433 17256 I ContextAware_Intelligent_SchedulerManager: 【习惯·融合】分发感知态（状态融合/快照入口）| ts=2026-10-17T16:44:28.317 slices={LOCATION=AT_HOME, TRAVEL=UNKNOWN} conf=1.00
+10-17 16:44:28.320 10433 17256 I ContextAware_Intelligent_StateFusionInputDispatcher: [submit] skip reason=duplicate fingerprint Input:source=PERCEPTION instanceId=location_perception_now sliceType=LOCATION sliceState=AT_HOME operation=UPSERT segment=NOW shouldFire=true shouldFireImmediate=true hasState=true
+10-17 16:44:28.320 10433 17256 I ContextAware_Intelligent_PerceptionSnapshot: write: states={LOCATION=AT_HOME, TRAVEL=UNKNOWN}
+10-17 16:44:28.320 10433 17256 I ContextAware_Intelligent_SchedulerManager: [2026-10-17T16:44:28.317]Fused result: [LOCATION=AT_HOME, TRAVEL=UNKNOWN], confidence: 1.00
+10-17 16:44:28.320 10433 11654 W metis_v2_OifaceBindUtils: bindTask
+10-17 16:44:28.320  5314  6169 E Athena  : EmMem: handleAppChanged failed! error=Attempt to invoke virtual method 'void n.j0.V(android.os.Bundle)' on a null object reference
+10-17 16:44:28.320  4977 13856 V DCSEX-AppSwitchManager: OnAppSwitchObserver: onAppExit, resuming = com.miui.tsmclient, target = com.android.launcher, is ResumingFirstStart =  true, is ResumingMultiApp =  false, extensionInfo =  Bundle[mParcelledData.dataSize=708]
+10-17 16:44:28.321  4977 23073 D DCSEX-AppLaunchEventRecorder: onAppSwitch from = com.android.launcher to = com.miui.tsmclient
+10-17 16:44:28.321  4977 13856 V DCSEX-AppSwitchManager: OnAppSwitchObserver: onAppEnter, launchedFrom =  com.android.shell, target =  com.miui.tsmclient, is firstStart =  true, is multiApp =  false, extensionInfo =  Bundle[mParcelledData.dataSize=1092], launch_source_type =  , launch_source_traceid =  
+10-17 16:44:28.321  5314  5845 W Battery : ThermalControlUtils: mForegroundPkg=com.miui.tsmclient mLastWindowMode=1
+10-17 16:44:28.321  3489  7571 D OplusAppSwitchRuleInfo: generateActivityEnterInfo - launch_source_type =  , launch_source_traceid = 
+10-17 16:44:28.322  5026  5026 I PluginSeedling--Notification: NofificationInfoConvert-->releaseTaskSet
+10-17 16:44:28.323 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno No such file or directory, trying pgid as pid to check
+10-17 16:44:28.324  3489  4304 D SurfaceComposerClient: Transaction::apply InputWindowCommands.focusRequests timestamp=623584038978, windowName=<null>
+10-17 16:44:28.325  7426  7426 W ostats_pullerd: get handlefactory aidl service failed
+10-17 16:44:28.325  7426  7426 E ostats_pullerd: PullAtomCallback getContentByHandleKey read nodeKey: remaining_battery_power, Proxy Aidl not exist.
+10-17 16:44:28.326  7426  7426 W ostats_pullerd: get handlefactory aidl service failed
+10-17 16:44:28.327  5026  5445 D ShellTaskOrganizerExt: visibleFlexibleTaskInfos delete:1
+10-17 16:44:28.327  5026  5445 D ShellTaskOrganizerExt: isOnCanvas size:0
+10-17 16:44:28.327  5026  5445 D ShellTaskOrganizerExt: isOnThreeFlexibleCanvas size:0
+10-17 16:44:28.328  3489  4579 D FlexibleTaskController: check task which not have enough child, isInSingleWhiteList:false isCloneTask:false
+10-17 16:44:28.331 10433 25953 D SceneSDK.1.0.4-SNAPSHOT.10433.DeepThinkerAppSwitchAbility: onAppSwitchEvent: AppSwitchEvent(timeStamp=1792226668322, eventType=1, targetName=com.miui.tsmclient, firstStart=true, multiApp=false, windowMode=1, resumingPackageName=, resumingActivityName=, isResumingMultiApp=false, isResumingFirstStart=false)
+10-17 16:44:28.331 10433 25953 I ContextAware_AppRecommendAdapter: fenceCallbackForAlg receive app recommend from AppSwitchEvent(eventId=1, switchInfo=AppSwitchInfo(targetName=com.miui.tsmclient, firstStart=true, multiApp=false, windowMode=1, resumingPackageName=, resumingActivityName=, isResumingFirstStart=false, isResumingMultiApp=false))
+10-17 16:44:28.332 10433 11654 W metis_v2_OifaceBindUtils: connectOifaceService: mRemote == null
+10-17 16:44:28.333  5023  5740 I DRS_LOG_DRS_SC_Collect_Trigger[54]: AppSwitch onAppEnter target=com.miui.tsmclient, from=com.android.shell (delay 2000ms)
+10-17 16:44:28.334  1838  4599 D SurfaceFlinger: updateWinowInfo=1, setFocusedWindow timestamp=623584038978, windowName=<null>
+10-17 16:44:28.334  3489  4515 I InputDispatcher: NFW_setFocusedWindow, <null> on display 0, same as the previous:0
+10-17 16:44:28.334  3489  4515 I InputDispatcher: updateFocusedWindow,  on display 0, reason: Waiting for window because NO_WINDOW, result:   FocusedWindows: <none>
+10-17 16:44:28.336 30783 30783 D CompactWindowAppManager: initCompactApplicationInfo CompactMode: , NormalMode: 
+10-17 16:44:28.336  5501  5501 D VRI[Launcher]: onFocusEvent false
+10-17 16:44:28.336  3489  4340 E OplusThermalStats: Error getting package info: com.miui.tsmclient
+10-17 16:44:28.339 30783 30783 D OplusScrollToTopManager: setIsInWhiteList false
+10-17 16:44:28.340 30783 30783 D OplusViewDebugManager: OplusViewDebugManager Constructor android.view.debug.OplusViewDebugManager@1e2ddc5 [mHasViewDebugProperty true] [mHasMsgDebugProperty false] [DEBUG false] [EXTRAINFOENABLE false] [LIGHT_OS false]
+10-17 16:44:28.341 30783 30783 E DynamicFramerate [AnimationConfigManager]: initAnimationConfig: LP_SUPPORT and LP_SUPPORT are both not enabled, init failed
+10-17 16:44:28.341  1628  2174 I vendor.qti.hardware.display.composer-service: FrameNotifyProcess Sensor: notify citsensorservice to trigger cwb
+10-17 16:44:28.341 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno Permission denied, trying pgid as pid to check
+10-17 16:44:28.342 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno No such file or directory, trying pgid as pid to check
+10-17 16:44:28.342  3119  4926 I libcitsensorservice@2.0-impl: msg_transfer
+10-17 16:44:28.342  3119  4798 I libsensor-parseRGB: request dump start
+10-17 16:44:28.342  3119  4798 D vendor.xiaomi.sensor.citsensorservice@2.0-service: handle id:13 wxh:1280x2400 uwxuh:1080x2400 size: 9216000 fd:18 fd_meta:19 flags:0x4000228 usage:0x33  format:0x3 layer_count: 1 reserved_size = 0
+10-17 16:44:28.343  1628  2138 D SDM     : HWCSession::SetCWBOutputBuffer: CWB config passed by cwb_client : tappoint 1  CWB_ROI : (697.000000 3.000000 793.000000 99.000000)
+10-17 16:44:28.343  1628  4805 D SDM     : HWCSession::ProcessRequests: Successfully configured CWB buffer.
+10-17 16:44:28.344  3489  4303 D FlexibleTaskController: check task which not have enough child, isInSingleWhiteList:false isCloneTask:false
+10-17 16:44:28.346  5026  5445 V RecentTasksController: Notify recent tasks changed
+10-17 16:44:28.347 30783 30783 W libc    : Access denied finding property "ro.odm.prev.product.name"
+10-17 16:44:28.348 30783 30783 W System  : ClassLoader referenced unknown path: /system/framework/micloud-sdk.jar
+10-17 16:44:28.348  1628  4805 D SDM     : HWCSession::ProcessRequests: Pushing release fence in fenece wait queue.
+10-17 16:44:28.348 30783 30783 D nativeloader: Configuring clns-shared-9 for other apk /system/framework/micloud-sdk.jar. target_sdk_version=36, uses_libraries=ALL, library_path=/system/app/MITSMClient/lib/arm64:/system/app/MITSMClient/MITSMClient.apk!/lib/arm64-v8a:/system/lib64:/system_ext/lib64, permitted_path=/data:/mnt/expand:/data/user/0/com.miui.tsmclient:/system/app/MITSMClient:/system/lib64:/system_ext/lib64
+10-17 16:44:28.348 30783 30783 D nativeloader: Extending system_exposed_libraries: libbinauralrenderer_wrapper.qti.so:libhoaeffects.qti.so:libsuperNight.oplus.so:libAPSClient-cmd-jni-extension.oplus.so:libsatellite_audio_jni.oplus.so:libortc_so.oplus.so:libsoundtouch.oplus.so:libsoundtouch_jni.oplus.so:libOplusStringJNI-extension.oplus.so:libsatellite_ostx_jni.oplus.so:libapssuspend-jni.oplus.so:libupdateprof.qti.so:libthermalclient.qti.so:libqesdk_ndk_platform.qti.so:liblistenjni.qti.so:libcamera_algoup_jni.xiaomi.so
+10-17 16:44:28.348  1628  4805 D SDM     : HWCSession::ProcessRequests: Creating AsyncFenceWaits async thread.
+10-17 16:44:28.349  1628  4805 D SDM     : HWCSession::ProcessRequests: Remove current CWB request from the pending request queue.
+10-17 16:44:28.349  1628  4805 D SDM     : HWCSession::ProcessRequests: No pending cwb requests found in the queue.
+10-17 16:44:28.349 30783 30783 W linker  : Warning: unable to resolve "/system/app/MITSMClient/MITSMClient.apk": No such file or directory (ignoring)
+10-17 16:44:28.349 30783 30783 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/org.apache.http.legacy.jar
+10-17 16:44:28.350  3489  4986 D FlexibleTaskPerformanceManager: SpecialWindow does not need setAppFpsLow:[5026, 10139]
+10-17 16:44:28.350  5501  6266 I SystemUiProxy: SystemUiProxy#getRecentTasks isInGoRecentsAnim: false
+10-17 16:44:28.351 30783 30783 D nativeloader: Configuring clns-shared-10 for other apk /system/framework/com.android.nfc_extras.jar. target_sdk_version=36, uses_libraries=ALL, library_path=/system/app/MITSMClient/lib/arm64:/system/app/MITSMClient/MITSMClient.apk!/lib/arm64-v8a:/system/lib64:/system_ext/lib64, permitted_path=/data:/mnt/expand:/data/user/0/com.miui.tsmclient:/system/app/MITSMClient:/system/lib64:/system_ext/lib64
+10-17 16:44:28.351 30783 30783 D nativeloader: Extending system_exposed_libraries: libbinauralrenderer_wrapper.qti.so:libhoaeffects.qti.so:libsuperNight.oplus.so:libAPSClient-cmd-jni-extension.oplus.so:libsatellite_audio_jni.oplus.so:libortc_so.oplus.so:libsoundtouch.oplus.so:libsoundtouch_jni.oplus.so:libOplusStringJNI-extension.oplus.so:libsatellite_ostx_jni.oplus.so:libapssuspend-jni.oplus.so:libupdateprof.qti.so:libthermalclient.qti.so:libqesdk_ndk_platform.qti.so:liblistenjni.qti.so:libcamera_algoup_jni.xiaomi.so
+10-17 16:44:28.351 30783 30783 W linker  : Warning: unable to resolve "/system/app/MITSMClient/MITSMClient.apk": No such file or directory (ignoring)
+10-17 16:44:28.351 30783 30783 W System  : ClassLoader referenced unknown path: /system/framework/com.xiaomi.nfc.jar
+10-17 16:44:28.352 30783 30783 D nativeloader: Configuring clns-shared-11 for other apk /system/framework/com.xiaomi.nfc.jar. target_sdk_version=36, uses_libraries=ALL, library_path=/system/app/MITSMClient/lib/arm64:/system/app/MITSMClient/MITSMClient.apk!/lib/arm64-v8a:/system/lib64:/system_ext/lib64, permitted_path=/data:/mnt/expand:/data/user/0/com.miui.tsmclient:/system/app/MITSMClient:/system/lib64:/system_ext/lib64
+10-17 16:44:28.352 30783 30783 D nativeloader: Extending system_exposed_libraries: libbinauralrenderer_wrapper.qti.so:libhoaeffects.qti.so:libsuperNight.oplus.so:libAPSClient-cmd-jni-extension.oplus.so:libsatellite_audio_jni.oplus.so:libortc_so.oplus.so:libsoundtouch.oplus.so:libsoundtouch_jni.oplus.so:libOplusStringJNI-extension.oplus.so:libsatellite_ostx_jni.oplus.so:libapssuspend-jni.oplus.so:libupdateprof.qti.so:libthermalclient.qti.so:libqesdk_ndk_platform.qti.so:liblistenjni.qti.so:libcamera_algoup_jni.xiaomi.so
+10-17 16:44:28.352  3489  4515 D OplusDexOptimizeManager: No need second dexopt for dexPath: /system/framework/com.android.nfc_extras.jar Because: com.miui.tsmclient is not in app launch opt list
+10-17 16:44:28.352  3489  4515 D PackageManager: notifyDexLoad for com.miui.tsmclient, needBgDexopt=false
+10-17 16:44:28.352 30783 30783 W linker  : Warning: unable to resolve "/system/app/MITSMClient/MITSMClient.apk": No such file or directory (ignoring)
+10-17 16:44:28.352 30783 30783 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-17 16:44:28.352 30783 30783 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-17 16:44:28.353 30783 30783 D nativeloader: Configuring clns-shared-12 for other apk /system_ext/framework/com.android.extensions.appfunctions.jar. target_sdk_version=36, uses_libraries=ALL, library_path=/system/app/MITSMClient/lib/arm64:/system/app/MITSMClient/MITSMClient.apk!/lib/arm64-v8a:/system/lib64:/system_ext/lib64, permitted_path=/data:/mnt/expand:/data/user/0/com.miui.tsmclient:/system/app/MITSMClient:/system/lib64:/system_ext/lib64
+10-17 16:44:28.353 30783 30783 D nativeloader: Extending system_exposed_libraries: libbinauralrenderer_wrapper.qti.so:libhoaeffects.qti.so:libsuperNight.oplus.so:libAPSClient-cmd-jni-extension.oplus.so:libsatellite_audio_jni.oplus.so:libortc_so.oplus.so:libsoundtouch.oplus.so:libsoundtouch_jni.oplus.so:libOplusStringJNI-extension.oplus.so:libsatellite_ostx_jni.oplus.so:libapssuspend-jni.oplus.so:libupdateprof.qti.so:libthermalclient.qti.so:libqesdk_ndk_platform.qti.so:liblistenjni.qti.so:libcamera_algoup_jni.xiaomi.so
+10-17 16:44:28.353 30783 30783 W linker  : Warning: unable to resolve "/system/app/MITSMClient/MITSMClient.apk": No such file or directory (ignoring)
+10-17 16:44:28.353  3489  4045 D OplusDexOptimizeManager: No need second dexopt for dexPath: /system_ext/framework/com.android.extensions.appfunctions.jar Because: com.miui.tsmclient is not in app launch opt list
+10-17 16:44:28.353  3489  4045 D PackageManager: notifyDexLoad for com.miui.tsmclient, needBgDexopt=false
+10-17 16:44:28.353  3489  4986 E FlexibleTaskPerformanceManager: task don't have captionView
+10-17 16:44:28.353 30783 30783 W System  : ClassLoader referenced unknown path: /system/app/MITSMClient/MITSMClient.apk
+10-17 16:44:28.353  3489  4579 D RecentTasksExtImpl: isExcludeFromRecents scenario:0 task:Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable} embedded:false res:true
+10-17 16:44:28.353 30783 30783 D nativeloader: Configuring clns-shared-13 for other apk /system/app/MITSMClient/MITSMClient.apk. target_sdk_version=36, uses_libraries=, library_path=/system/app/MITSMClient/lib/arm64:/system/app/MITSMClient/MITSMClient.apk!/lib/arm64-v8a:/system/lib64:/system_ext/lib64, permitted_path=/data:/mnt/expand:/data/user/0/com.miui.tsmclient:/system/app/MITSMClient:/system/lib64:/system_ext/lib64
+10-17 16:44:28.354 30783 30783 W linker  : Warning: unable to resolve "/system/app/MITSMClient/MITSMClient.apk": No such file or directory (ignoring)
+10-17 16:44:28.354  3489  4579 D ActivityTaskManager: Skipping, invisible task: Task{11e3782 #2 type=undefined I=com.android.launcher/.Launcher}
+10-17 16:44:28.355 30783 30783 E LoadedApk: Unable to instantiate appComponentFactory
+10-17 16:44:28.355 30783 30783 E LoadedApk: java.lang.ClassNotFoundException: Didn't find class "androidx.core.app.CoreComponentFactory" on path: DexPathList[[],nativeLibraryDirectories=[/system/app/MITSMClient/lib/arm64, /system/app/MITSMClient/MITSMClient.apk!/lib/arm64-v8a, /system/lib64, /system_ext/lib64, /system/lib64, /system_ext/lib64]]
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at java.lang.ClassLoader.loadClass(ClassLoader.java:644)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at java.lang.ClassLoader.loadClass(ClassLoader.java:580)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.app.LoadedApk.createAppFactory(LoadedApk.java:325)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.app.LoadedApk.createOrUpdateClassLoaderLocked(LoadedApk.java:1274)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.app.LoadedApk.getClassLoader(LoadedApk.java:1373)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.app.LoadedApk.getResourcesInner(LoadedApk.java:1658)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.app.LoadedApk.getResources(LoadedApk.java:1634)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.app.ContextImpl.createAppContext(ContextImpl.java:3773)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.app.ContextImpl.createAppContext(ContextImpl.java:3763)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:9000)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(ActivityThread.java:0)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:3054)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.os.Handler.dispatchMessageImpl(Handler.java:148)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.os.Handler.dispatchMessage(Handler.java:131)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.os.Looper.loopOnce(Looper.java:375)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.os.Looper.loop(Looper.java:499)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at android.app.ActivityThread.main(ActivityThread.java:10510)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at java.lang.reflect.Method.invoke(Native Method)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:595)
+10-17 16:44:28.355 30783 30783 E LoadedApk: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1081)
+10-17 16:44:28.355 30783 30783 W .miui.tsmclient: Unable to open '/system/app/MITSMClient/MITSMClient.apk' : No such file or directory
+10-17 16:44:28.355  1628  1751 D SDM     : HWDeviceDRM::SetupConcurrentWriteback: Tear down the Concurrent Writeback topology
+10-17 16:44:28.355 30783 30783 W ziparchive: Unable to open '/system/app/MITSMClient/MITSMClient.apk': No such file or directory
+10-17 16:44:28.355 30783 30783 E .miui.tsmclient: Failed to open APK '/system/app/MITSMClient/MITSMClient.apk': I/O error
+10-17 16:44:28.355  3489  4986 I FlexibleTaskPerformanceManager: updateFgAndFpsIfNeed currTaskCoverPropor= 0.0 currState=0 currProcessFg1Changed=false currProcessFps=-1 taskInfo=TaskInfo{userId=0 taskId=18 effectiveUid=1027 displayId=0 isRunning=true baseIntent=Intent { flg=0x10800000 cmp=com.miui.tsmclient/.ui.MainActivity mCallingUid=0 } baseActivity=ComponentInfo{com.miui.tsmclient/com.miui.tsmclient.ui.MainActivity} topActivity=ComponentInfo{com.miui.tsmclient/com.miui.tsmclient.ui.MainActivity} origActivity=null realActivity=ComponentInfo{com.miui.tsmclient/com.miui.tsmclient.ui.MainActivity} realActivityIsAppLockEnabled=false
+10-17 16:44:28.355  3489  4986 I FlexibleTaskPerformanceManager:  numActivities=1 lastActiveTime=641085 supportsSplitScreenMultiWindow=false supportsMultiWindow=false supportsPocketStudioMultiWindow=true isInFlexibleEmbedded = false uid = 1027 pid = 30783 supportsMultiWindowWithoutConstraints=false resizeMode=0 isResizeable=false minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{3265d1d Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 94 - 0, 0)
+10-17 16:44:28.355  3489  4986 I FlexibleTaskPerformanceManager:  topActivityInfo=ActivityInfo{7563f55 com.miui.tsmclient.ui.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isInteractive=true isVisible=false isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=true isActivityStackTransparent=true lastNonFullscreenBounds=Rect(282, 683 - 798, 1763) leafTaskBoundsFromOptions= false capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=503 topActivityRequestOpenInBrowserEducationTimestamp=0
+10-17 16:44:28.355  3489  4986 I FlexibleTaskPerformanceManager:  appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityInOplusCompatMode=false isLeafTask= true eligibleForLetterboxEducation= false isLetterboxEducationEnabled= false isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1080, 2400) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null topNonResizableActivityAspectRatio=-1.0} topActivityMainWindowFrame=null isAppBubble=false topActivityLetterboxInsets=Rect(0, 0 - 0, 0)
+10-17 16:44:28.355  3489  4986 I FlexibleTaskPerformanceManager:  mOplusExtraBundle = Bundle[{androidx.flexible.taskFrame=Rect(0, 0 - 0, 0), androidx.activity.task.attach.blur=0, androidx.flexible.task_snapshot_mode=0, androidx.activity.LaunchInsensible=0, androidx.activity.LaunchCornerRadius=0, key_flexible_task_state=0, topActivitySupportAppInnerSplit=false, key_flexible_task_animating_type=-1, key_flexible_task_root_activity_processname=com.miui.tsmclient, androidx.activity.LaunchScenario=0, is_oplus_clone_task=false, top_focused_display_id=0, topRunningActivityHash=255293487, flexible.floatwindow.is_multi_instance=false, androidx.activity.LaunchScale=1.0, androidx.activity.LaunchShadowRadius=0, is_transient_hide_for_task_info=false, androidx.activity.key_flexible_task_pending_exit_to=0, key_flexible_task_root_activity_pid=30783, key_flexible_task_root_activity_uid=1027}]}
+10-17 16:44:28.356 30783 30783 W ResourcesManager: failed to preload asset path '/system/app/MITSMClient/MITSMClient.apk'
+10-17 16:44:28.356 30783 30783 W ResourcesManager: java.io.IOException: Failed to load asset path /system/app/MITSMClient/MITSMClient.apk
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.content.res.ApkAssets.nativeLoad(Native Method)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.content.res.ApkAssets.<init>(ApkAssets.java:320)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.content.res.ApkAssets.loadFromPath(ApkAssets.java:169)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.app.ResourcesManager.loadApkAssetsRaw(ResourcesManager.java:698)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.app.ResourcesManager.loadApkAssets(ResourcesManager.java:675)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.app.ResourcesManager$ApkAssetsSupplier.load(ResourcesManager.java:299)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.app.ResourcesManager.createApkAssetsSupplierNotLocked(ResourcesManager.java:1301)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.app.ResourcesManager.getResources(ResourcesManager.java:1433)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.app.LoadedApk.getResourcesInner(LoadedApk.java:1655)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.app.LoadedApk.getResources(LoadedApk.java:1634)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.app.ContextImpl.createAppContext(ContextImpl.java:3773)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.app.ContextImpl.createAppContext(ContextImpl.java:3763)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:9000)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(ActivityThread.java:0)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:3054)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.os.Handler.dispatchMessageImpl(Handler.java:148)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.os.Handler.dispatchMessage(Handler.java:131)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.os.Looper.loopOnce(Looper.java:375)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.os.Looper.loop(Looper.java:499)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at android.app.ActivityThread.main(ActivityThread.java:10510)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at java.lang.reflect.Method.invoke(Native Method)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:595)
+10-17 16:44:28.356 30783 30783 W ResourcesManager: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1081)
+10-17 16:44:28.356 30783 30783 W ziparchive: Unable to open '/system/app/MITSMClient/MITSMClient.apk': No such file or directory
+10-17 16:44:28.356 30783 30783 E .miui.tsmclient: Failed to open APK '/system/app/MITSMClient/MITSMClient.apk': I/O error
+10-17 16:44:28.356  3489  4579 D ActivityTaskManager: after skip size:7,pre-Filtered:[com.coloros.alarmclock 10, com.coloros.gallery3d 9, com.miui.tsmclient 18, com.android.settings 11, com.sulisong.uperf 15, com.android.settings 8, com.android.camera 16]
+10-17 16:44:28.356 30783 30783 E ResourcesManager: failed to add asset path '/system/app/MITSMClient/MITSMClient.apk'
+10-17 16:44:28.356 30783 30783 E ResourcesManager: java.io.IOException: Failed to load asset path /system/app/MITSMClient/MITSMClient.apk
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.content.res.ApkAssets.nativeLoad(Native Method)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.content.res.ApkAssets.<init>(ApkAssets.java:320)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.content.res.ApkAssets.loadFromPath(ApkAssets.java:169)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ResourcesManager.loadApkAssetsRaw(ResourcesManager.java:698)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ResourcesManager.loadApkAssets(ResourcesManager.java:675)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ResourcesManager$ApkAssetsSupplier.load(ResourcesManager.java:299)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ResourcesManager.createAssetManager(ResourcesManager.java:787)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ResourcesManager.createResourcesImpl(ResourcesManager.java:868)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ResourcesManager.findOrCreateResourcesImplForKeyLocked(ResourcesManager.java:963)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ResourcesManager.createResources(ResourcesManager.java:1331)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ResourcesManager.getResources(ResourcesManager.java:1446)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.LoadedApk.getResourcesInner(LoadedApk.java:1655)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.LoadedApk.getResources(LoadedApk.java:1634)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ContextImpl.createAppContext(ContextImpl.java:3773)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ContextImpl.createAppContext(ContextImpl.java:3763)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:9000)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(ActivityThread.java:0)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:3054)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.os.Handler.dispatchMessageImpl(Handler.java:148)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.os.Handler.dispatchMessage(Handler.java:131)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.os.Looper.loopOnce(Looper.java:375)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.os.Looper.loop(Looper.java:499)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at android.app.ActivityThread.main(ActivityThread.java:10510)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at java.lang.reflect.Method.invoke(Native Method)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:595)
+10-17 16:44:28.356 30783 30783 E ResourcesManager: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1081)
+10-17 16:44:28.357 30783 30783 W ConfigurationController: updateLocaleList app resources is null: com.miui.tsmclient
+10-17 16:44:28.357  3489  4986 I FlexibleTaskPerformanceManager: setAppFpsLow new fps= 0.0 pkg=com.miui.tsmclient pid=30783
+10-17 16:44:28.357  3489  4986 D FlexibleTaskPerformanceManager: e = Attempt to invoke interface method 'boolean com.oplus.vrr.IOPlusRefreshRate.setFrameRateTargetControlWithToken(float, java.lang.String, boolean, java.lang.String, android.os.IBinder)' on a null object reference
+10-17 16:44:28.357  5026  5445 V RecentTasksController: generateList(getRecentTasks)
+10-17 16:44:28.358  5026  5445 V RecentTasksController: initializeDesksMap - desktop windowing not available
+10-17 16:44:28.358  5026  5445 V RecentTasksController: Added fullscreen task: 18
+10-17 16:44:28.358  5026  5445 V RecentTasksController: Added fullscreen task: 16
+10-17 16:44:28.358  5026  5445 V RecentTasksController: Added fullscreen task: 15
+10-17 16:44:28.358  5026  5445 V RecentTasksController: Added fullscreen task: 11
+10-17 16:44:28.358  5026  5445 V RecentTasksController: Added fullscreen task: 10
+10-17 16:44:28.358  5026  5445 V RecentTasksController: Added fullscreen task: 9
+10-17 16:44:28.358  5026  5445 V RecentTasksController: Added fullscreen task: 8
+10-17 16:44:28.358  5026  5445 V RecentTasksController: generateList - complete
+10-17 16:44:28.361  5647  6531 D SkActivityMonitor: disable activity listen: 
+10-17 16:44:28.362 10433 10483 D SceneSDK.1.0.4-SNAPSHOT.10433.DeepThinkerAppSwitchAbility: onAppSwitchEvent: AppSwitchEvent(timeStamp=1792226668322, eventType=1, targetName=com.miui.tsmclient, firstStart=true, multiApp=false, windowMode=1, resumingPackageName=, resumingActivityName=, isResumingMultiApp=false, isResumingFirstStart=false)
+10-17 16:44:28.362 10433 10483 I metis_v2_AppSwitchDataCollector: AppEnterEvent =  com.miui.tsmclient, windowMode = 1,firstStart = true
+10-17 16:44:28.362 10433 10483 W metis_v2_AppSwitchDataCollector: fenceKey = com.oplus.metis:TOP_APPLICATION, getExits = [], getEnters = [] packageName = com.miui.tsmclient
+10-17 16:44:28.364  3489  4515 E NotificationService: Suppressing toast from package io.github.vvb2060.magisk by user request.
+10-17 16:44:28.364  3489  4515 D NotificationService: Check can't enqueue Toast. pkg=io.github.vvb2060.magisk text=Shell 已被授予超级用户权限
+10-17 16:44:28.364  3489  4515 D NotificationService: 警告：检测到不支持的命令行 callback= token=android.os.BinderProxy@13dc78d
+10-17 16:44:28.364 30783 30783 V GraphicsEnvironment: Currently set values for:
+10-17 16:44:28.364 30770 30770 D AndroidRuntime: Shutting down VM
+10-17 16:44:28.364 30783 30783 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-17 16:44:28.364 30783 30783 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-17 16:44:28.364 30783 30783 V GraphicsEnvironment: com.miui.tsmclient is not listed in per-application setting
+10-17 16:44:28.364 24434 24462 I adbd    : opening control endpoint /dev/usb-ffs/adb/ep0
+10-17 16:44:28.365 30770 30810 W libbinder.IPCThreadState: call to talkWithDriver in joinThreadPool returned error: -9 (Bad file descriptor), FD: -1
+10-17 16:44:28.365 30770 30809 W libbinder.IPCThreadState: call to talkWithDriver in joinThreadPool returned error: -9 (Bad file descriptor), FD: -1
+10-17 16:44:28.365 30783 30783 D AndroidRuntime: Shutting down VM
+10-17 16:44:28.366  1628  4806 D SDM     : HWCSession::NotifyCWBStatus: Notify the client about buffer status 0.
+--------- beginning of crash
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: FATAL EXCEPTION: main
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: Process: com.miui.tsmclient, PID: 30783
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.String[] android.content.res.Resources.getStringArray(int)' on a null object reference
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at android.os.GraphicsEnvironment.queryAngleChoice(GraphicsEnvironment.java:483)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at android.os.GraphicsEnvironment.setupAngle(GraphicsEnvironment.java:700)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at android.os.GraphicsEnvironment.setup(GraphicsEnvironment.java:152)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at android.app.ActivityThread.setupGraphicsSupport(ActivityThread.java:8745)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:9041)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(ActivityThread.java:0)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:3054)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at android.os.Handler.dispatchMessageImpl(Handler.java:148)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:131)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:375)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:499)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:10510)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:595)
+10-17 16:44:28.366 30783 30783 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1081)
+10-17 16:44:28.367  3119  4799 D libsensor-parseRGB: the value of RGB [2024103.782739 5808330.126894 2758070.442247]
+10-17 16:44:28.367 10433 10483 W metis_v2_AppSwitchDataCollector: pid = 30783, cachePid=-1
+10-17 16:44:28.366  1628  4806 D SDM     : HWCSession::PerformFenceWaits: Remove current release fence from the pending fence wait queue.
+10-17 16:44:28.367  1628  4806 D SDM     : HWCSession::PerformFenceWaits: CWB fence queue is empty. No pending release fence to wait on.
+10-17 16:44:28.367 25027 25034 I .vvb2060.magisk: HeapTask is not gc_task
+10-17 16:44:28.369  3489  4515 W OplusEapManager: splitNames length = 0, splitRevisionCodes length = 0
+10-17 16:44:28.369  3489  4515 W OplusEapManager:  doSplitName = no_apk_feature
+10-17 16:44:28.369  3489  4904 D OplusAppStartupMonitor: notifyUnstableAppInfo: Bundle[{unstableTime=1792226668368, reason=crash, userId=0, exceptionMsg=Attempt to invoke virtual method 'java.lang.String[] android.content.res.Resources.getStringArray(int)' on a null object reference, exceptionClass=java.lang.NullPointerException, app_channel_type=unstable, packageName=com.miui.tsmclient, unstable_restrict_switch=true}]
+10-17 16:44:28.370  3489  4515 D ITheiaManagerExt: [sendEvent] TheiaEvent:[id:0x00000005 name:appCrash type:java enable:false reportFreq:1800000 logType:4099 delay:30000 condition:0 recoveryId:0 extraInfo:] versionId:202604140000 INCREMENTAL:B.3bd95df-15a2df3-15dafac
+10-17 16:44:28.370  3489  4515 W ITheiaManagerExt: [sendEvent] the event state is disable: 5
+10-17 16:44:28.370  3489  4515 W OplusEapManager handleErrorInfo sendEvent: : com.miui.tsmclient happenedcrash
+10-17 16:44:28.371  3489  4323 D OplusEapManager: Switching to ocenter with bundle
+10-17 16:44:28.373  1413  1435 I statsd  : An anomaly (1003101456) (101456)0x10000->20120[I] (101456)0x20000->CriticalLog[S] (101456)0x30000->eap_anr_crash[S] (101456)0x40000->crash[S] (101456)0x50000->com.miui.tsmclient[S] (101456)0x60000->com.miui.tsmclient[S] (101456)0x70000->no_apk_feature[S] (101456)0x80000->java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.String[] android.content.res.Resources.getStringArray(int)' on a null object reference
+10-17 16:44:28.373  1413  1435 I statsd  : 	at android.os.GraphicsEnvironment.queryAngleChoice(GraphicsEnvironment.java:483)
+10-17 16:44:28.373  1413  1435 I statsd  : 	at android.os.GraphicsEnvironment.setupAngle(GraphicsEnvironment.java:700)
+10-17 16:44:28.373  1413  1435 I statsd  : 	at android.os.GraphicsEnvironment.setup(GraphicsEnvironment.java:152)
+10-17 16:44:28.373  1413  1435 I statsd  : 	at android.app.ActivityThread.setupGraphicsSupport(ActivityThread.java:8745)
+10-17 16:44:28.373  1413  1435 I statsd  : 	at android.app.ActivityThread.handleBindApplication(ActivityThread.java:9041)
+10-17 16:44:28.373  1413  1435 I statsd  : 	at android.app.ActivityThread.-$$Nest$mhandleBindApplication(ActivityThread.java:0)
+10-17 16:44:28.373  1413  1435 I statsd  : 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:3054)
+10-17 16:44:28.373  1413  1435 I statsd  : 	at android.os.Handler.dispatchMessageImpl(H
+10-17 16:44:28.373  3489  4515 I BroadcastQueue: BOOT_COMPLETED_BROADCAST_COMPLETION_LATENCY_REPORTED action:android.intent.action.BOOT_COMPLETED dispatchLatency:3 completeLatency:42 dispatchRealLatency:3 completeRealLatency:42 receiversSize:1 userId:0 userType:android.os.usertype.full.SYSTEM
+10-17 16:44:28.373  3489  4515 D OplusDexAotCrashController: aotCrashCount=3 CrashCount=5 crashTimeWindow=3600000
+10-17 16:44:28.373  3489 30813 I DropBoxManagerService: add tag=system_app_crash isTagEnabled=true flags=0x2
+10-17 16:44:28.373  3489  4515 D OplusDexAotCrashController: prepare to delete com.miui.tsmclient aot files...aot crash time: 3, total crash time:3
+10-17 16:44:28.374  3489  4515 W ActivityTaskManager:   Force finishing activity com.miui.tsmclient/.ui.MainActivity
+10-17 16:44:28.374  3489  4515 W TransitionChain: Combining finishTopCrash into #40(OPEN|R|0x0) from startAct
+10-17 16:44:28.374  3489  4515 D ActivityTaskManager: setAppVisibility(Token{4a4360e ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18 f}}}, visible=false):  visible=false mVisibleRequested=true
+10-17 16:44:28.375  3489  4515 D ActivityTaskManager: setVisibility(Token{4a4360e ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18 f}}}, visible=false) defer commitVisibility for transition collecting
+10-17 16:44:28.377  3489  4515 D ActivityTrigger: ActivityTrigger activityPauseTrigger 
+10-17 16:44:28.377  3489  4579 W Settings: Setting notification_bubbles has moved from android.provider.Settings.Global to android.provider.Settings.Secure, returning read-only value.
+10-17 16:44:28.378  3489  4579 W Settings: Setting apply_ramping_ringer has moved from android.provider.Settings.Global to android.provider.Settings.System, returning read-only value.
+10-17 16:44:28.378  3489  4367 D OplusAppSwitchListener: App Activity Change
+10-17 16:44:28.378  3489  4367 D OplusAppSwitchListener: Detect com.miui.tsmclient switch to background
+10-17 16:44:28.378  3489  4367 D OplusFeatureReduceBrightness: onAppExit , info = com.miui.tsmclient
+10-17 16:44:28.379  3489  4515 D TaskFragmentExtImpl: shouldSetReadyFalse and resumedActivity is already visible: ActivityRecord{78315551 u0 com.android.launcher/.Launcher t2}
+10-17 16:44:28.379  3489  4515 D TaskFragmentExtImpl: resumeTopActivity Launcher ,resume while pausing ActivityRecord{78315551 u0 com.android.launcher/.Launcher t2}
+10-17 16:44:28.379  3489  4515 D RefreshRate: don't do app switch boost,arDisplayId:0 mDisplayId:0 currentSettingMode:0 hasAppSwitchBoostPriority:true is supportRefreshRateSwitch:true
+10-17 16:44:28.380 10770 10783 W ANDR-PERF-LM: MetaMeter: handlePrimaryAsync() 118: AdaptLaunch MetaMeter. No MeterMgr Available to handle this Primary Async. !!!!
+10-17 16:44:28.380  3489  4902 D JobSchedulerServiceExtImpl: updateOsenseRestrictMode for 1 false false
+10-17 16:44:28.380  3489  4515 I GameManagerServiceExt-GameManagerServiceExt: on FG change: |com.android.launcher
+10-17 16:44:28.380  3489  4367 D OplusAppSwitchListener: App Activity Change
+10-17 16:44:28.380  3489  4367 D OplusAppSwitchListener: Detect com.android.launcher switch to foreground
+10-17 16:44:28.380  3489  4367 W OplusFeatureGlobalLimitBrightness: switch to display normal mode 
+10-17 16:44:28.380  3489  4324 I UserAwareMgr: handleTopAppChanged: com.android.launcher, pid: 5501, uid: 10114
+10-17 16:44:28.380  3489  4515 D ActivityTaskManager: onWindowFocusChanged Task{11e3782 #2 type=undefined I=com.android.launcher/.Launcher} would transfer to compact
+10-17 16:44:28.381  3489  4515 D ActivityTaskManager: NFW_setLastResumedActivityUncheckLocked:true r:ActivityRecord{78315551 u0 com.android.launcher/.Launcher t2} currentFocus:null
+10-17 16:44:28.381  3489  4579 W SettingsStatsUtil: Can not parse value to float: +network
+10-17 16:44:28.381  3489  4515 D QuickBackInputPolicy: hasMultiChildrenInTask: false
+10-17 16:44:28.381  3489  4515 D WindowManager: NFW_findFocusedWindowIfNeeded:Window{14652cc u0 com.android.launcher/com.android.launcher.Launcher} mCurrentFocus:null
+10-17 16:44:28.381  3489  5031 D osense-camera: back to home
+10-17 16:44:28.381 10770 10783 W ANDR-PERF-LM: MetaMeter: handlePrimaryAsync() 118: AdaptLaunch MetaMeter. No MeterMgr Available to handle this Primary Async. !!!!
+10-17 16:44:28.381  3489  4515 V WindowManager: Changing focus from null to Window{14652cc u0 com.android.launcher/com.android.launcher.Launcher},diplayid=0
+10-17 16:44:28.381  3489  5089 I Osense-BaseDecisionMaker: notifySceneToAthenaPolicy: SCENE_LAUNCHER, bundle: Bundle[{prevPkgName=com.miui.tsmclient, hasActivities=true, curUid=10114, isGame=false, curPkgName=com.android.launcher, prevUid=1027, procStarted=true}]
+10-17 16:44:28.382  3489  4363 D OplusBiometricsDisplayHelper: isFold: false, isUnblockByFp: null
+10-17 16:44:28.382  3489  4515 D Theia.NoFocusWindow: FocusWindowErrorScene cancelCheckFreezeScreen
+10-17 16:44:28.382  3489  4515 W TheiaWindowMonitor: [check] focusedWindow is null or enable is false
+10-17 16:44:28.382  3489  4515 D FlexibleTaskController: onTaskFocusChanged prevTask:Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable} ,currentTask:Task{11e3782 #2 type=undefined I=com.android.launcher/.Launcher}, reason: resumeTopActivity - onActivityStateChanged lastResumedActivity:ActivityRecord{78315551 u0 com.android.launcher/.Launcher t2}
+10-17 16:44:28.382  3489  4515 D OplusFlexibleDCSManager: onNextPkgChanged pkg = com.android.launcher
+10-17 16:44:28.382  3489  4515 D FlexibleTaskController: updateTaskMaxNumWhenFocusChangedInPanoramic currentTask = Task{11e3782 #2 type=undefined I=com.android.launcher/.Launcher}, prevTask= Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable}, reason = resumeTopActivity - onActivityStateChanged, maxNum = 4, maxFlexibleTaskNum: 2, assignMaxNum: -1
+10-17 16:44:28.382  3489  4515 D FlexibleTaskController: updateTaskMaxNumWhenFocusChangedInPanoramic flexibleTasks = [], currentPsTaskList = null, fullScreenList= [], allVisibleWindowSize[0] = 0
+10-17 16:44:28.383  3489  5504 I OPM-Process: resume pkg: com.android.launcher, uid:10114, prev pkg: com.miui.tsmclient, prev uid: 1027
+10-17 16:44:28.384  3489  4902 I [UAH_CLIENT]: UahEventAcquire, cmdid:0, pkg:com.android.launcher, identity:com.android.server.wm
+10-17 16:44:28.385 28532 28537 I artd    : [libfstab] mgs test solvit start
+10-17 16:44:28.385 28532 28537 I artd    : [libfstab] stream not support 
+10-17 16:44:28.386  3489 30813 D DropBoxManagerService: file :: /data/system/dropbox/system_app_crash@1792226668375.txt
+10-17 16:44:28.386  3489  4902 E [UAH_CLIENT]: Urcc HAL Service not found
+10-17 16:44:28.386  3489  4902 E [UAH_CLIENT]: uah_get_urcc_hal_and_link_to_death error:-1
+10-17 16:44:28.388  3489  5230 D OsenseCommonUtils: /dev/memcg/memory.force_shrink_file not exist
+10-17 16:44:28.388  3489  4515 D FlexibleTaskController: isFullToFlexibleAnimating: false
+10-17 16:44:28.388  3489  4515 D WindowManager: rotation(ROTATION_0) no changed  displayId = 0, lastOrientation = 5
+10-17 16:44:28.390  3489  4579 W SettingsStatsUtil: Can not parse value to float: +network
+10-17 16:44:28.391  3489  4515 I TaskOrganizerController: onTaskInfoChanged taskid 1 config { mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0}
+10-17 16:44:28.392  5501  5501 D ActivityThread: ComponentInfo{com.android.launcher/com.android.launcher.Launcher} checkFinished=false 4
+10-17 16:44:28.392  5501  5501 D ResourcesManagerExtImpl: applyConfigurationToAppResourcesLocked app.getDisplayId() return callback.displayId:0
+10-17 16:44:28.392  5501  5501 I SplitScreenManager: Attached Launcher#2f48b05 ON_RESUME
+10-17 16:44:28.392  5501  5501 E SideSlipGesturesGuideHelper[u0]: canShowSwipeUpGuide launcher is null
+10-17 16:44:28.393  5501  5501 D LauncherClient: getThreadPriority -10
+10-17 16:44:28.393  3489  4515 D OplusFlexibleDragToSplitAnimController: visibleFlexibleTaskInfos delete:1
+10-17 16:44:28.393  9199  9328 I AstScreen.WatchOverlayProxy: onResume, isCurrentAssistantScreen():com.coloros.common.utils.j@447cd4b.isCurrentAssistantScreen() 
+10-17 16:44:28.393  3489  4515 E FlexibleWindowManagerService: notifyTaskObserverToAttachController not need to notify!
+10-17 16:44:28.394  3489  4515 I FlexibleWindowManagerService: onFlexibleWindowTaskInfoChanged, return for cur task not embedded
+10-17 16:44:28.394  5501  5501 I GCP.GroupCardWrapper[1792226078735]:  setDrawPicForDrag, isDrawPicForDrag: false[gcSdk:v1.3.210-42a1e54,gcPlugin:v17.20.24-bd2dd1bb] [OplusLauncher|com.android.launcher|2.0.49-17dd512]
+10-17 16:44:28.394  8880  8995 I AstScreen.LauncherOverlayBinder.Ht: onResume
+10-17 16:44:28.394  5501  5501 D OplusScrollManager: hookActivity: ActivityInfo{d161a02 com.android.launcher.Launcher} mRTOptEnable false mStartScrollerSpringEnable false
+10-17 16:44:28.395  8880  8880 I AstScreen.RxLauncherStateMonitor: setValue launcherState RESUME value RESUME
+10-17 16:44:28.395  8880  8880 I AstScreen.WindowLimitCreate: checkPendingCreate scene:1, run false
+10-17 16:44:28.395  8880  8880 I AstScreen.AssistantScreen.EventProcessor.state: onResume enter: false resume:false lastEvent: exit_end
+10-17 16:44:28.395  8880  8880 I AstScreen.LauncherResumeNotifier: onResume not in scatter window, dispatch directly, listeners=2
+10-17 16:44:28.395  3489  4301 D HandleApplicationCrash: doUpload: stability
+10-17 16:44:28.396  8880  8880 I AstScreen.AssistantScreen.EnterBooster: onWindowResume do
+10-17 16:44:28.396  8880 23874 I AstScreen.RecommendBgRequestRuleHelper: shouldDoBackgroundRequest currentTime=1792226668396,lastReqTime 1792226101879,interval=133151976,randomRatio=-0.22944456
+10-17 16:44:28.397  5026  5445 D ShellTaskOrganizerExt: visibleFlexibleTaskInfos delete:1
+10-17 16:44:28.397  5026  5445 D ShellTaskOrganizerExt: isOnCanvas size:0
+10-17 16:44:28.397  5026  5445 D ShellTaskOrganizerExt: isOnThreeFlexibleCanvas size:0
+10-17 16:44:28.398 10433 10483 I metis_v2_AppSwitchDataCollector:  set isNotifiedTVCast
+10-17 16:44:28.398  8880 11528 I AstScreen.RecommendBgRequestRuleHelper: shouldDoBackgroundRequest currentTime=1792226668398,lastReqTime 1792145859844,interval=133151976,randomRatio=-0.22944456
+10-17 16:44:28.399  3489  4045 I ActivityRecordExtImpl: deprecated updateActivitySpecificConfig, ar=ActivityRecord{78315551 u0 com.android.launcher/.Launcher t2}, config={1.0 ??mcc??mnc [zh_CN,ru_RU,es_MX] ldltr sw360dp w360dp h800dp 480dpi nrml long compactNeeded hdr widecg port finger -keyb/v/h -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=home mAlwaysOnTop=undefined mRotation=ROTATION_0} s.4 fontWeightAdjustment=0mThemeChanged= 0, mThemeChangedFlags= 0, mFlipFont= 0, mScenario= 0, mAccessibleChanged= -1, mUxIconConfig= 1e177015e00120, mMaterialColor= 0, mUserId= 0, mFontUserId= 0, mFontVariationSettings= 1226, mFoldingAngle = -1.0, mIconPackName= , mDarkModeBackgroundMaxL= 0.0, mDarkModeDialogBgMaxL= 27.0, mDarkModeForegroundMinL= 100.0, mOplusConfigType= 1, mOplusChangedConfigs= 0, OpSans= -1, mBurmeseFontFlag= 2, mFlag= 0, mExtraFlag= 0, mFlexibleActivitySuitable= -1, mPuttDisplayFlag= -1}
+10-17 16:44:28.400  2744  2744 I installd: installd: oplusCommonInterface
+10-17 16:44:28.400  2744  2744 E InstalldExtImpl: remove /system/app/MITSMClient/MITSMClient.dm failed
+10-17 16:44:28.401  5501  5501 D ViewRootImplExtImpl: wrapConfigInfoIntoFlags rotation=0, smallestScreenWidthDp=360, isAutolayoutSwdpModified=false, residentWS=true, scenario=0, bounds=Rect(0, 0 - 1080, 2400), isFirstDraw=false, relayoutAsync=true, flags=0, newFlags=1258302724, title=com.android.launcher/com.android.launcher.Launcher
+10-17 16:44:28.401  3489  4304 D SurfaceComposerClient: Transaction::apply InputWindowCommands.focusRequests timestamp=623660869915, windowName=14652cc com.android.launcher/com.android.launcher.Launcher
+10-17 16:44:28.401  5501  5501 D VRI[Launcher]: relayoutWindow result, sizeChanged:false, surfaceControlChanged:false, transformHintChanged:false, mSurfaceSize:Point(1080, 2400), mLastSurfaceSize:Point(1080, 2400), mWidth:1080, mHeight:2400, requestedWidth:1080, requestedHeight:2400, transformHint:0, installOrientation:0, displayRotation:0, isSurfaceValid:true, attr.flag:-2121203456, tmpFrames:ClientWindowFrames{frame=[0,0][1080,2400] display=[0,0][1080,2400] parentFrame=[0,0][1080,2400]}, relayoutResult:0, relayoutAsync:true, mSyncSeqId:0
+10-17 16:44:28.401  5501  5501 W VRI[Launcher]: updateBlastSurfaceIfNeeded, surfaceSize:Point(1080, 2400), lastSurfaceSize:Point(1080, 2400), format:-2, blastBufferQueue:android.graphics.BLASTBufferQueue@152777c
+10-17 16:44:28.402  5501  5501 I SurfaceControl:  setExtendedRangeBrightness sc=Surface(name=VRI-com.android.launcher/com.android.launcher.Launcher#225)/@0x2f792b7,currentBufferRatio=1.0,desiredRatio=1.0
+10-17 16:44:28.402  7426  7426 W ostats_pullerd: get handlefactory aidl service failed
+10-17 16:44:28.402  7426  7426 E ostats_pullerd: PullAtomCallback getContentByHandleKey read nodeKey: power_supply_ac_online, Proxy Aidl not exist.
+10-17 16:44:28.402  7426  7426 W ostats_pullerd: get handlefactory aidl service failed
+10-17 16:44:28.402  3489  4301 I ActivityManager: hookHandleApplicationCrashBeforeInner do not showErrorDialog shouldThottle= true
+10-17 16:44:28.402  7426  7426 E ostats_pullerd: PullAtomCallback getContentByHandleKey read nodeKey: power_supply_usb_online, Proxy Aidl not exist.
+10-17 16:44:28.402  7426  7426 W ostats_pullerd: get handlefactory aidl service failed
+10-17 16:44:28.402  7426  7426 E ostats_pullerd: PullAtomCallback getContentByHandleKey read nodeKey: power_supply_pc_port_online, Proxy Aidl not exist.
+10-17 16:44:28.403  2744  2744 I installd: installd: oplusCommonInterface
+10-17 16:44:28.403  7426  7426 W ostats_pullerd: get handlefactory aidl service failed
+10-17 16:44:28.403  7426  7426 E ostats_pullerd: PullAtomCallback getContentByHandleKey read nodeKey: panel0_brightness_level_qcom, Proxy Aidl not exist.
+10-17 16:44:28.403  2744  2744 E InstalldExtImpl: remove /data/user/0/com.miui.tsmclient/cache/oat_primary/arm64/MITSMClient.art failed
+10-17 16:44:28.403  2744  2744 I installd: installd: oplusCommonInterface
+10-17 16:44:28.403  2744  2744 E InstalldExtImpl: remove /data/user_de/0/cache/oat_primary/arm64/MITSMClient.art failed
+10-17 16:44:28.403  7426  7426 W ostats_pullerd: get handlefactory aidl service failed
+10-17 16:44:28.403  7426  7426 E ostats_pullerd: PullAtomCallback getContentByHandleKey read nodeKey: panel1_brightness_level_qcom, Proxy Aidl not exist.
+10-17 16:44:28.404  3489  4040 I system_server: Background young concurrent mark compact GC freed 20MB AllocSpace bytes, 8(176KB) LOS objects, 10% free,127MB(115MB_797KB_11MB)/143MB, paused 3.314ms,4.488ms total 143.558ms binder:3489_11:4577:6520KB_main:3489:2752KB_binder:3489_6:4556:2137KB
+10-17 16:44:28.404 30783 30783 I Process : Quit itself,  Pid:30783  StackTrace:com.android.internal.os.RuntimeInit$KillApplicationHandler.uncaughtException:197 java.lang.ThreadGroup.uncaughtException:1129 java.lang.ThreadGroup.uncaughtException:1120 com.android.internal.os.RuntimeInitExtImpl.uncaughtExceptionExt:75 com.android.internal.os.RuntimeInit$LoggingHandler.uncaughtException:134 java.lang.Thread.dispatchUncaughtException:3381 <bottom of call stack> <bottom of call stack> <bottom of call stack> <bottom of call stack> 
+10-17 16:44:28.404 30783 30783 I Process : Sending signal. PID: 30783 SIG: 9
+10-17 16:44:28.407  5026  5445 V RecentTasksController: Notify recent tasks changed
+10-17 16:44:28.407  1838  4599 D SurfaceFlinger: updateWinowInfo=1, setFocusedWindow timestamp=623660869915, windowName=14652cc com.android.launcher/com.android.launcher.Launcher
+10-17 16:44:28.407  3489  4890 I InputDispatcher: NFW_setFocusedWindow, 14652cc com.android.launcher/com.android.launcher.Launcher on display 0, same as the previous:0
+10-17 16:44:28.407  3489  4890 I InputDispatcher: updateFocusedWindow, 14652cc com.android.launcher/com.android.launcher.Launcher on display 0, reason: setFocusedWindow, result:   FocusedWindows:
+10-17 16:44:28.407  3489  4890 I InputDispatcher:     displayId=0, name='14652cc com.android.launcher/com.android.launcher.Launcher'
+10-17 16:44:28.409  5501  5501 D VRI[Launcher]: onFocusEvent true
+10-17 16:44:28.409  1413  1435 E statsd  : Stats puller failed for tag: 150134 at 641209474228
+10-17 16:44:28.409  1413  1435 W statsd  : StatsPullerManager: Unknown tagId 10096
+10-17 16:44:28.409  1413  1435 E statsd  : Stats puller failed for tag: 10096 at 641209474228
+10-17 16:44:28.409  1413  1435 W statsd  : StatsPullerManager: Unknown tagId 10096
+10-17 16:44:28.409  1413  1435 E statsd  : Stats puller failed for tag: 10096 at 641209474228
+10-17 16:44:28.409  1413  1435 W statsd  : StatsPullerManager: Unknown tagId 10096
+10-17 16:44:28.409  1413  1435 E statsd  : Stats puller failed for tag: 10096 at 641209474228
+10-17 16:44:28.409  5647  5678 D SkActivityMonitor: disable activity listen: 
+10-17 16:44:28.409  1413  1435 E statsd  : Gauge Stats puller failed for tag: 150119 at 641209474228
+10-17 16:44:28.412 10433 10483 E metis_v2_FactManager: There is no subModel: com.oplus.linker
+10-17 16:44:28.412  3489  4045 D RecentTasksExtImpl: isExcludeFromRecents scenario:0 task:Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable} embedded:false res:true
+10-17 16:44:28.412 10433 10483 I metis_v2_AppSwitchDataCollector: Skip call fire
+10-17 16:44:28.412  3489  4303 D OplusBatteryManager: getPsyBatteryRm: 3224
+10-17 16:44:28.412  3489  4303 D BatteryStatsImplExtImpl: resumedUid:10114 resumedBatteryLevel:52  resumedPackage:com.android.launcher  resumedBatteryRealtimeCapacity:3224
+10-17 16:44:28.416  3489  4986 D FlexibleTaskPerformanceManager: SpecialWindow does not need setAppFpsLow:[5026, 10139]
+10-17 16:44:28.416  3489  4577 D FlexibleTaskController: task or topRunningActivity is null
+10-17 16:44:28.417  3489  4577 D FlexibleTaskController: check task which not have enough child, isInSingleWhiteList:false isCloneTask:false
+10-17 16:44:28.417  3489  4740 D WindowManager: hasInputMethodClientFocus test: ActivityRecord{78315551 u0 com.android.launcher/.Launcher t2}Display: 0
+10-17 16:44:28.417  3489  4740 D InputMethodManagerService: startInputOrWindowGainedFocusInternal imeClientFocus: 0
+10-17 16:44:28.417 10433 10483 I metis_v2_AppSwitchDataCollector: write userId=0 pkg=com.miui.tsmclient enterOrExit=0 multiApp=false
+10-17 16:44:28.418  5501  5501 D InsetsController: hide(ime())
+10-17 16:44:28.421  3489  4750 W Binder  : Outgoing transactions from this process must be FLAG_ONEWAY
+10-17 16:44:28.421  3489  4750 W Binder  : java.lang.Throwable
+10-17 16:44:28.421  3489  4750 W Binder  : 	at android.os.BinderProxy.transact(BinderProxy.java:660)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at neXms.GkqCRVEzICPU.KcAHBUebFrPReMO.HookBridge.invokeExactOriginalMethod(Native Method)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at l.proceed(r8-map-id-efedc8ef6b9cd7d537819847e799f758499ba1eef7352b6bb5ce6846c9bf2c4f:82)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at o0.invoke(r8-map-id-efedc8ef6b9cd7d537819847e799f758499ba1eef7352b6bb5ce6846c9bf2c4f:202)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at ql.OooOoO0(r8-map-id-382fd86f4674bc2699fe6c4721e1e2b0b655aba41b255d9c8e2958785f4add2c:34)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at pl1.invokeOriginalMethodWith(r8-map-id-382fd86f4674bc2699fe6c4721e1e2b0b655aba41b255d9c8e2958785f4add2c:10)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at pl1.invokeOriginalMethod(r8-map-id-382fd86f4674bc2699fe6c4721e1e2b0b655aba41b255d9c8e2958785f4add2c:10)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at pl1.invokeOriginalMethod(r8-map-id-382fd86f4674bc2699fe6c4721e1e2b0b655aba41b255d9c8e2958785f4add2c:5)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at ea.call(r8-map-id-382fd86f4674bc2699fe6c4721e1e2b0b655aba41b255d9c8e2958785f4add2c:539)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at el.intercept(r8-map-id-382fd86f4674bc2699fe6c4721e1e2b0b655aba41b255d9c8e2958785f4add2c:18)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at l.proceed(r8-map-id-efedc8ef6b9cd7d537819847e799f758499ba1eef7352b6bb5ce6846c9bf2c4f:35)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at q0.callback(r8-map-id-efedc8ef6b9cd7d537819847e799f758499ba1eef7352b6bb5ce6846c9bf2c4f:24)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at android.net.FlouckBiernnd.transact(FlouckBiernnd.java)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at android.content.ContentProviderProxy.call(ContentProviderNative.java:764)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at android.content.ContentProviderClient.lambda$call$16(ContentProviderClient.java:591)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at android.content.ContentProviderClient.$r8$lambda$33Q7SUkYb_Sf_zVybrtewVEK9BU(ContentProviderClient.java:0)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at android.content.ContentProviderClient$$ExternalSyntheticLambda14.apply(D8$$SyntheticClass:0)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at android.content.ContentProviderClient.execute(ContentProviderClient.java:743)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at android.content.ContentProviderClient.call(ContentProviderClient.java:591)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at android.content.ContentProviderClient.call(ContentProviderClient.java:582)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at com.oplus.util.OplusStatisticsImpl.callUnstable(OplusStatisticsImpl.java:573)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at com.oplus.util.OplusStatisticsImpl.-$$Nest$smcallUnstable(OplusStatisticsImpl.java:0)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at com.oplus.util.OplusStatisticsImpl$FrameworkEventRuleCache.doSync(OplusStatisticsImpl.java:937)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at com.oplus.util.OplusStatisticsImpl$FrameworkEventRuleCache.-$$Nest$mdoSync(OplusStatisticsImpl.java:0)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at com.oplus.util.OplusStatisticsImpl$FrameworkEventRuleCache$3.run(OplusStatisticsImpl.java:914)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at java.util.concurrent.FutureTask.run(FutureTask.java:354)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:323)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1100)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+10-17 16:44:28.421  3489  4750 W Binder  : 	at java.lang.Thread.run(Thread.java:1572)
+10-17 16:44:28.421  3489  4740 W InputChannel-JNI: Channel already disposed.
+10-17 16:44:28.425  5023  5740 I DRS_LOG_EventRulesProviderDelegate[54]: buildResponse appId=115200, debugMode=false, prefilterEnabled=true, notModified=false, versionsMatch=false, digestMatched=false, hasClientDigest=false, currentEventVersion=645785319, currentSampleVersion=591865899, totalDbRules=20, duidValid=false, forceFull=true
+10-17 16:44:28.425  3489  4340 E OplusThermalStats: Error getting package info: com.android.launcher
+10-17 16:44:28.427  3489  4750 D FrameworkEventRuleCache: syncRules ok appId=115200, prefilter=true, debug=false, notModified=false, eventVer=645785319, sampleVer=591865899, rulesSize=9
+10-17 16:44:28.428  1414  1414 I Zygote  : Process 30783 exited due to signal 9 (Killed)
+10-17 16:44:28.428  3489  4303 D FlexibleTaskController: task or topRunningActivity is null
+10-17 16:44:28.428  3489  4303 D FlexibleTaskController: check task which not have enough child, isInSingleWhiteList:false isCloneTask:false
+10-17 16:44:28.429  3489  4045 I ActivityManager: Death received, pid = 30783, processName = com.miui.tsmclient for thread android.os.BinderProxy@21175f5
+10-17 16:44:28.434  3489  5212 I ActivityManager: Process com.miui.tsmclient (pid 30783) has died: fg  TOP 
+10-17 16:44:28.435  3489  4332 I libprocessgroup: Removed cgroup /sys/fs/cgroup/system/uid_1027/pid_30783
+10-17 16:44:28.436  3489  5212 I OplusHansManager : HansAppRecordManager: removeHansProcessRecord: OplusHansManager is not ready, return
+10-17 16:44:28.436  3489  4324 I UserAwareMgr: process killed: {pkgName='com.miui.tsmclient', serviceName='', procName=com.miui.tsmclient, pid=30783, uid=1027, appId=0, owner='null', flags='fg1', renderTid=0, hwuiTids=null, glTids=null, threadInfos=null, mVideoActivityList=[], mStates=0}
+10-17 16:44:28.436  3489  4324 I UserAwareMgr: handleProcessKilled, pkgName: com.miui.tsmclient, pid: 30783
+10-17 16:44:28.437  3489  5212 D TheiaXMLParser: Activity name found in the abnormal activity finish list : false
+10-17 16:44:28.437  3489  5212 W TransitionChain: Combining appDied into #40(OPEN|R|0x0) from startAct
+10-17 16:44:28.437  3489  5212 D ActivityTaskManager: removeAppToken: ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t18 f}} delayed=true parent=Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable} animating=true Callers=com.android.server.wm.DisplayContent.removeAppToken:2153 com.android.server.wm.ActivityRecord.removeFromHistory:5072 com.android.server.wm.ActivityRecord.handleAppDied:5477 com.android.server.wm.WindowProcessController.handleAppDied:1911 
+10-17 16:44:28.438  3489  5212 D OplusMirageWindowManagerService: onTaskRemoved displayid:0 taskId:18 callers:com.android.server.wm.MirageWindowManagerExtImpl.onTaskRemoved:47 com.android.server.wm.TaskDisplayArea.removeChildTask:352 com.android.server.wm.TaskDisplayArea.removeChild:341 com.android.server.wm.WindowContainer.removeImmediately:1105 com.android.server.wm.TaskFragment.removeImmediately:3636 
+10-17 16:44:28.438  3489  5212 D ActivityTaskManager: notifyTaskRemoved, task: Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable} trace:com.android.server.wm.RecentTasks.notifyTaskRemoved:616 com.android.server.wm.RecentTasks.remove:1601 com.android.server.wm.Task.cleanUpResourcesForDestroy:922 com.android.server.wm.Task.onParentChanged:1395 com.android.server.wm.WindowContainer.setParent:737 
+10-17 16:44:28.438  3489  5212 D PanoramaFoldWorkBranchController: remove task:Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable} from recent,so clear it
+10-17 16:44:28.438  3489  5212 D CorePackageUpdate: onRecentTaskRemoved Removing task: 18
+10-17 16:44:28.438  3489  5212 D CorePackageUpdate: Couldn't find a persistent state for task= 18
+10-17 16:44:28.439  3489  5212 D OplusAlwaysAliveManager: removing: 18, ComponentInfo{com.miui.tsmclient/com.miui.tsmclient.ui.MainActivity}
+10-17 16:44:28.439  3489  5212 D Panorama STATE_NO_FLEXIBLE_WINDOW 0: ++ onFlexWindowStateChanged, map.size() = 0
+10-17 16:44:28.440 10433 10586 I metis_v2_AppDiedObserver: shortcutAppDiedCallback, fenceKey = app_died_shortcut
+10-17 16:44:28.440  3489  5212 D Panorama STATE_NO_FLEXIBLE_WINDOW 0: ++ onFlexWindowStateChanged, map.size() = 0
+10-17 16:44:28.443  5501  6874 I v       : onTaskRemoved(), cur=18
+10-17 16:44:28.443  5026  5445 V RecentTasksController: Notify recent tasks changed
+10-17 16:44:28.443  5026  5445 D ZoomController: onTaskRemoved
+10-17 16:44:28.443  5501  5856 I v       : onTaskRemoved(), cur=18
+10-17 16:44:28.443  3489  4304 E QuickStartUtils_OplusStartingSurfaceControllerBase:  can't attach StartingSurface transition:40
+10-17 16:44:28.443  5501  6266 I SystemUiProxy: SystemUiProxy#getRecentTasks isInGoRecentsAnim: false
+10-17 16:44:28.446  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:28.446  3119  4804 I libsensor-displayalgo: the value of  REAL LUX76.873032
+10-17 16:44:28.446  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1442.548950,R:657.522339,G:605.020569,B:240.008148, lux: 76.873032
+10-17 16:44:28.447  5026  5026 D CommandQueueLogger: appTransitionStarting displayId=0 startTime=623709 duration=120 forced=false
+10-17 16:44:28.447  3489  4300 V WindowManager: Sent Transition (#40) createdAt=10-17 16:44:28.165 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=18 effectiveUid=1027 displayId=0 isRunning=true baseIntent=Intent { flg=0x10800000 cmp=com.miui.tsmclient/.ui.MainActivity mCallingUid=0 } baseActivity=ComponentInfo{com.miui.tsmclient/com.miui.tsmclient.ui.MainActivity} topActivity=ComponentInfo{com.miui.tsmclient/com.miui.tsmclient.ui.MainActivity} origActivity=null realActivity=ComponentInfo{com.miui.tsmclient/com.miui.tsmclient.ui.MainActivity} realActivityIsAppLockEnabled=false
+10-17 16:44:28.447  3489  4300 V WindowManager:  numActivities=1 lastActiveTime=640994 supportsSplitScreenMultiWindow=false supportsMultiWindow=false supportsPocketStudioMultiWindow=true isInFlexibleEmbedded = false uid = 1027 pid = 0 supportsMultiWindowWithoutConstraints=false resizeMode=0 isResizeable=false minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{3265d1d Task{9ddcf04 #18 type=standard A=1027:com.miui.tsmclient nonResizable}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 94 - 0, 0)
+10-17 16:44:28.447  3489  4300 V WindowManager:  topActivityInfo=ActivityInfo{7563f55 com.miui.tsmclient.ui.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isInteractive=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=true isActivityStackTransparent=true lastNonFullscreenBounds=Rect(282, 683 - 798, 1763) leafTaskBoundsFromOptions= false capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=503 topActivityRequestOpenInBrowserEducationTimestamp=0
+10-17 16:44:28.447  3489  4300 V WindowManager:  appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityInOplusCompatMode=false isLeafTask= true eligibleForLetterboxEducation= false isLetterboxEducationEnabled= false isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1080, 2400) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null topNonResizableActivityAspectRatio=-1.0} topActivityMainWindowFrame=null isAppBubble=false topActivityLetterboxInsets=Rect(0, 0 - 0, 0)
+10-17 16:44:28.447  3489  4300 V WindowManager:  mOplusExtraBundle = Bundle[{androidx.flexible.taskFrame=Rect(0, 0 - 0, 0), androidx.activity.task.attach.blur=0, androidx.flexible.task_snapshot_mode=0, androidx.activity.LaunchInsensible=0, androidx.activity.LaunchCornerRadius=0, key_flexible_task_state=0, topActivitySupportAppInnerSplit=false, key_flexible_task_animating_type=-1, key_flexible_task_root_activity_processname=com.miui.tsmclient, androidx.activity.LaunchScenario=0, is_oplus_clone_task=false, top_focused_display_id=0, topRunningActivityHash=255293487, flexible.floatwindow.is_multi_instance=false, androidx.activity.LaunchScale=1.0, androidx.activity.LaunchShadowRadius=0, is_transient_hide_for_task_info=false, androidx.activity.key_flexible_task_pending_exit_to=0, key_flexible_task_root_activity_pid=0, key_flexible_task_root_activity_uid=1027}]}, pipChange = null, remoteTransitionInfo = null, displayChanges = null, requestedLocation = null, userChange = null, windowingLayerChange = null, fullscreenRequestChange = null, flags = 0, debugId = 40 }
+10-17 16:44:28.447  3489  4300 V WindowManager:     startWCT=WindowContainerTransaction { changes= {} hops= [] flags= 0 errorCallbackToken=null taskFragmentOrganizer=null }
+10-17 16:44:28.447  3489  4300 V WindowManager:     info={id=40 t=OPEN f=0x0 trk=0 r=[] c=[] 
+10-17 16:44:28.447  3489  4300 V WindowManager: extendInfo=[
+10-17 16:44:28.447  3489  4300 V WindowManager:  OplusTransitionExtendedInfo{mTmpFinishT=null, mInOplusCompatMode=false, mIsProcessRunning=false, mHasMismatchBoundsTarget=false, mRecentsController=null, mRemoteTransition=null, mIsTranslucentActivityToHome=false, mAvoidInterceptKeyEventToHome=false, mIsFromHome=false, mParentLeash=null, mBackAnimClosingLeash=null, mReparentToRecentsSurface=null, mIsOplusAnimRes=false, mKeepBgForContinuous=false, mIsBalAllow=false, mHasCloseWallpaperRemoved=false, mTaskNotInRecent=false, mIsPredictiveBackAnim=false, mIsMergedWithPredictive=false, mIsLaunchFromSpruce=false, mIsLaunchFromDrive=false, mGlobalSearchPageSwitch=false, mNeedNoAlphaGlobalSearchScene=false, mAssistScreenShowing=false, mSwipeUpBrowserScreenShowing=false, mUserIdTransition=-1
+10-17 16:44:28.447  3489  4300 V WindowManager: , mInRemoteScene=false, mInPreReady=false, mPreStart=false, mToken=null, mAbortByRemoteFromHome=false, mShellApplyToken=null, mRequestTransitionTaskId=18, mAbortTransitionOnShell=0, mStartFromShortcut=false, mRemovedTaskId=-1, mTransitionInterruptType=0, mMergeSecondTaskId=-1, mIsStartAheadSpruce=false, mIsPreemptedByRecents=false, mTaskIdStartFromRecents=0, mTransitionId=40, mPreReadyActivityRotation=-1, mCanUseSpringSlideAnim=false, mTransitionLaunchFrom=0, mFoldChangeType=-1, mAnimStartingPosition=[0, 0, 0, 0], mIsOpeningStkDialogActivity=false, mSecondaryHomeToFrontWhenUnFolding=false, mIsNeedApplyStartTForEmbedded=false
+10-17 16:44:28.447  3489  4300 V WindowManager: , mNeedCanvasExitAnim=false, mMergeSecondTaskAnimation=false, mIsLaunchUnityStart=false, mIsLaunchFromAssistantByDefault=false, mSkipRemoteTransitionfalse, mPromoteTaskWhenKeyguard-1, mIsStartFromKeyguard=false, mMatchRemoteFilter=false, mAvoidDelegateToRemote=false flags=0x0, mFlexibleTaskIdList=[], mExpectEndRectState=-1, mFlexibleWindowForRecentTasks=false, mRecentTaskIdList=[], mWCT=null, mIsOpenMergeToInValidPredictive=false, mRootLayerZOrderArray={}, mFlexibleSeamlessRotationAnim=0, mEndFixedRotationForInfo=-1, mIsClickHomeKey=false, mForceUseBackgroundColor=false, mIsGlobalSearchPageSwitchToHomeCollect=false}]}
+10-17 16:44:28.447  5026 23356 V WindowManagerShell: onTransitionReady(transaction=14985140901695)
+10-17 16:44:28.448 12547 13096 V GlobalEventListener: Receive subscription broadcast with subscriptionId=1004101456	configId=-803995617	ruleId=1003101456	cookies=[crashbox to ocenter by bundle]
+10-17 16:44:28.449 12547 13096 V GlobalEventListener: requestReports is false
+10-17 16:44:28.449 12547 13096 D SubscriptionManager: Event has no matched subscriber, subId=1004101456
+10-17 16:44:28.449 12547 13096 I OCenterLog: EventSubscriber: subscriptionId 1004101456 atom id 101456 onEvent
+10-17 16:44:28.450 12547 13096 I OCenterLog: EventSubscriber: atomId: 101456
+10-17 16:44:28.451 12547 24562 I OCenterLog: EventSubscriber: remove MSG_STOP_SERVICE
+10-17 16:44:28.451 12547 18823 I OCenterLog: EventSubscriber: dispatch start
+10-17 16:44:28.452  3489  4045 D ActivityTaskManager: Skipping, invisible task: Task{11e3782 #2 type=undefined I=com.android.launcher/.Launcher}
+10-17 16:44:28.454  3489  4045 D ActivityTaskManager: after skip size:6,pre-Filtered:[com.coloros.alarmclock 10, com.coloros.gallery3d 9, com.android.settings 11, com.sulisong.uperf 15, com.android.settings 8, com.android.camera 16]
+10-17 16:44:28.456  5026  5445 V RecentTasksController: generateList(getRecentTasks)
+10-17 16:44:28.456  5026  5445 V RecentTasksController: initializeDesksMap - desktop windowing not available
+10-17 16:44:28.457  5026  5445 V RecentTasksController: Added fullscreen task: 16
+10-17 16:44:28.457  5026  5445 V RecentTasksController: Added fullscreen task: 15
+10-17 16:44:28.457  5026  5445 V RecentTasksController: Added fullscreen task: 11
+10-17 16:44:28.457  5026  5445 V RecentTasksController: Added fullscreen task: 10
+10-17 16:44:28.457  5026  5445 V RecentTasksController: Added fullscreen task: 9
+10-17 16:44:28.457  5026  5445 V RecentTasksController: Added fullscreen task: 8
+10-17 16:44:28.457  5026  5445 V RecentTasksController: generateList - complete
+10-17 16:44:28.457  5026  5445 D ZoomController: onTaskRemoved
+10-17 16:44:28.459  5026  5445 V WindowManagerShell: onTransitionReady (#40) android.os.BinderProxy@46a6b2a: {id=40 t=OPEN f=0x0 trk=0 r=[] c=[] 
+10-17 16:44:28.459  5026  5445 V WindowManagerShell: extendInfo=[
+10-17 16:44:28.459  5026  5445 V WindowManagerShell:  OplusTransitionExtendedInfo{mTmpFinishT=null, mInOplusCompatMode=false, mIsProcessRunning=false, mHasMismatchBoundsTarget=false, mRecentsController=null, mRemoteTransition=null, mIsTranslucentActivityToHome=false, mAvoidInterceptKeyEventToHome=false, mIsFromHome=false, mParentLeash=null, mBackAnimClosingLeash=null, mReparentToRecentsSurface=null, mIsOplusAnimRes=false, mKeepBgForContinuous=false, mIsBalAllow=false, mHasCloseWallpaperRemoved=false, mTaskNotInRecent=false, mIsPredictiveBackAnim=false, mIsMergedWithPredictive=false, mIsLaunchFromSpruce=false, mIsLaunchFromDrive=false, mGlobalSearchPageSwitch=false, mNeedNoAlphaGlobalSearchScene=false, mAssistScreenShowing=false, mSwipeUpBrowserScreenShowing=false, mUserIdTransition=-1
+10-17 16:44:28.459  5026  5445 V WindowManagerShell: , mInRemoteScene=false, mInPreReady=false, mPreStart=false, mToken=null, mAbortByRemoteFromHome=false, mShellApplyToken=null, mRequestTransitionTaskId=18, mAbortTransitionOnShell=0, mStartFromShortcut=false, mRemovedTaskId=-1, mTransitionInterruptType=0, mMergeSecondTaskId=-1, mIsStartAheadSpruce=false, mIsPreemptedByRecents=false, mTaskIdStartFromRecents=0, mTransitionId=40, mPreReadyActivityRotation=-1, mCanUseSpringSlideAnim=false, mTransitionLaunchFrom=0, mFoldChangeType=-1, mAnimStartingPosition=[0, 0, 0, 0], mIsOpeningStkDialogActivity=false, mSecondaryHomeToFrontWhenUnFolding=false, mIsNeedApplyStartTForEmbedded=false
+10-17 16:44:28.459  5026  5445 V WindowManagerShell: , mNeedCanvasExitAnim=false, mMergeSecondTaskAnimation=false, mIsLaunchUnityStart=false, mIsLaunchFromAssistantByDefault=false, mSkipRemoteTransitionfalse, mPromoteTaskWhenKeyguard-1, mIsStartFromKeyguard=false, mMatchRemoteFilter=false, mAvoidDelegateToRemote=false flags=0x0, mFlexibleTaskIdList=[], mExpectEndRectState=-1, mFlexibleWindowForRecentTasks=false, mRecentTaskIdList=[], mWCT=null, mIsOpenMergeToInValidPredictive=false, mRootLayerZOrderArray={}, mFlexibleSeamlessRotationAnim=0, mEndFixedRotationForInfo=-1, mIsClickHomeKey=false, mForceUseBackgroundColor=false, mIsGlobalSearchPageSwitchToHomeCollect=false}]}
+10-17 16:44:28.460  5026  5445 D OplusShellTransition: dispatchReady, active:(#40) android.os.BinderProxy@46a6b2a@0, isSync=false, track:com.android.wm.shell.transition.Transitions$Track@8f25415
+10-17 16:44:28.460  5026  5445 D OplusFlexibleTaskRotationController: onTransitionReady info={id=40 t=OPEN f=0x0 trk=0 r=[] c=[] 
+10-17 16:44:28.460  5026  5445 D OplusFlexibleTaskRotationController: extendInfo=[
+10-17 16:44:28.460  5026  5445 D OplusFlexibleTaskRotationController:  OplusTransitionExtendedInfo{mTmpFinishT=null, mInOplusCompatMode=false, mIsProcessRunning=false, mHasMismatchBoundsTarget=false, mRecentsController=null, mRemoteTransition=null, mIsTranslucentActivityToHome=false, mAvoidInterceptKeyEventToHome=false, mIsFromHome=false, mParentLeash=null, mBackAnimClosingLeash=null, mReparentToRecentsSurface=null, mIsOplusAnimRes=false, mKeepBgForContinuous=false, mIsBalAllow=false, mHasCloseWallpaperRemoved=false, mTaskNotInRecent=false, mIsPredictiveBackAnim=false, mIsMergedWithPredictive=false, mIsLaunchFromSpruce=false, mIsLaunchFromDrive=false, mGlobalSearchPageSwitch=false, mNeedNoAlphaGlobalSearchScene=false, mAssistScreenShowing=false, mSwipeUpBrowserScreenShowing=false, mUserIdTransition=-1
+10-17 16:44:28.460  5026  5445 D OplusFlexibleTaskRotationController: , mInRemoteScene=false, mInPreReady=false, mPreStart=false, mToken=null, mAbortByRemoteFromHome=false, mShellApplyToken=null, mRequestTransitionTaskId=18, mAbortTransitionOnShell=0, mStartFromShortcut=false, mRemovedTaskId=-1, mTransitionInterruptType=0, mMergeSecondTaskId=-1, mIsStartAheadSpruce=false, mIsPreemptedByRecents=false, mTaskIdStartFromRecents=0, mTransitionId=40, mPreReadyActivityRotation=-1, mCanUseSpringSlideAnim=false, mTransitionLaunchFrom=0, mFoldChangeType=-1, mAnimStartingPosition=[0, 0, 0, 0], mIsOpeningStkDialogActivity=false, mSecondaryHomeToFrontWhenUnFolding=false, mIsNeedApplyStartTForEmbedded=false
+10-17 16:44:28.460  5026  5445 D OplusFlexibleTaskRotationController: , mNeedCanvasExitAnim=false, mMergeSecondTaskAnimation=false, mIsLaunchUnityStart=false, mIsLaunchFromAssistantByDefault=false, mSkipRemoteTransitionfalse, mPromoteTaskWhenKeyguard-1, mIsStartFromKeyguard=false, mMatchRemoteFilter=false, mAvoidDelegateToRemote=false flags=0x0, mFlexibleTaskIdList=[], mExpectEndRectState=-1, mFlexibleWindowForRecentTasks=false, mRecentTaskIdList=[], mWCT=null, mIsOpenMergeToInValidPredictive=false, mRootLayerZOrderArray={}, mFlexibleSeamlessRotationAnim=0, mEndFixedRotationForInfo=-1, mIsClickHomeKey=false, mForceUseBackgroundColor=false, mIsGlobalSearchPageSwitchToHomeCollect=false}]}
+10-17 16:44:28.460  5026  5445 V WindowManagerShell: No transition roots in (#40) android.os.BinderProxy@46a6b2a@0 so abort
+10-17 16:44:28.460  5026  5445 D OplusShellTransition: RemoteTransitionHandlerabortPrereadyTransition:  pendingRemote: null; isInPreready: false
+10-17 16:44:28.461  5026  5445 D OplusFlexibleTaskRotationController: releaseUnUsedByFlexibleRotationAnims leash=null
+10-17 16:44:28.461  3489  4324 W UserAwareMgr: event can not be released, id: 2020, count: 2, releasePid: 5501
+10-17 16:44:28.461  5501  6266 I SystemUiProxy: SystemUiProxy#getRecentTasks isInGoRecentsAnim: false
+10-17 16:44:28.462  5026  5445 V WindowManagerShell: Transition animation finished (aborted=true), notifying core (#40) android.os.BinderProxy@46a6b2a@0
+10-17 16:44:28.462  5026  5445 D SplitScreen-->AppLockManager: setStartFromSafeControl mStartFromSafeControl=false
+10-17 16:44:28.463  3489  4045 I BLASTSyncEngine: onCommitted syncId: 40, timeout: false ran: false
+10-17 16:44:28.463  5026  5445 D ShellTaskOrganizerExt: adjust change for exiting mini task: -1
+10-17 16:44:28.467  5026  5445 D OplusFlexibleTaskRotationController: releaseUnUsedByFlexibleRotationAnims leash=null
+10-17 16:44:28.467  3489  4045 D FlexibleTaskController: finishTransition wct=null ,transition=40
+10-17 16:44:28.470  3489  4045 D FlexibleTaskTransitionController:  finishTransition pendingRecentToFlexibleTask:null,isRotationTransition:false ,pendingRecentToFlexible:null ,transition:40
+10-17 16:44:28.470  3489  4045 D Panorama STATE_NO_FLEXIBLE_WINDOW 0: ++ onFlexWindowStateChanged, map.size() = 0
+10-17 16:44:28.470  3489  4045 D Panorama STATE_NO_FLEXIBLE_WINDOW 0: ++finishTransition
+10-17 16:44:28.471 12547 24562 I OCenterLog: EventSubscriber: TAG: class com.oplus.crashbox.CrashBoxAppState
+10-17 16:44:28.471 12547 24562 I CrashBoxAppState: start to invoke onAppExceptionBundle.
+10-17 16:44:28.472 12547 24562 I DataCollector: CrashBox accepted the exception Bundledata!
+10-17 16:44:28.472 12547 24562 I AnrCrashCollector: Begin collect Bundle!
+10-17 16:44:28.472 12547 24562 I AnrCrashCollector: eventType:1002
+10-17 16:44:28.473  3489  4324 W UserAwareMgr: event can not be released, id: 5005, count: 2, releasePid: 3489
+10-17 16:44:28.473  3489  4045 D TransitionControllerExtImpl: NFW_send RECOMPUTE_FOCUS in finishTransition
+10-17 16:44:28.474  3489  4303 D QuickBackInputPolicy: hasMultiChildrenInTask: false
+10-17 16:44:28.474  3489  4303 D WindowManager: NFW_findFocusedWindowIfNeeded:Window{14652cc u0 com.android.launcher/com.android.launcher.Launcher} mCurrentFocus:Window{14652cc u0 com.android.launcher/com.android.launcher.Launcher}
+10-17 16:44:28.475  5026  5445 D ShellTaskOrganizer: onTransitionFinish, isRecent:false
+10-17 16:44:28.475 12547 24562 W ziparchive: Unable to open '/system/app/MITSMClient/MITSMClient.apk': No such file or directory
+10-17 16:44:28.476 12547 24562 E com.oplus.midas: Failed to open APK '/system/app/MITSMClient/MITSMClient.apk': I/O error
+10-17 16:44:28.476  5026  5445 V WindowManagerShell: Track 0 became idle
+10-17 16:44:28.477 12547 24562 W ResourcesManager: failed to preload asset path '/system/app/MITSMClient/MITSMClient.apk'
+10-17 16:44:28.477 12547 24562 W ResourcesManager: java.io.IOException: Failed to load asset path /system/app/MITSMClient/MITSMClient.apk
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.content.res.ApkAssets.nativeLoad(Native Method)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.content.res.ApkAssets.<init>(ApkAssets.java:320)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.content.res.ApkAssets.loadFromPath(ApkAssets.java:169)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.app.ResourcesManager.loadApkAssetsRaw(ResourcesManager.java:698)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.app.ResourcesManager.loadApkAssets(ResourcesManager.java:675)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.app.ResourcesManager$ApkAssetsSupplier.load(ResourcesManager.java:299)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.app.ResourcesManager.createApkAssetsSupplierNotLocked(ResourcesManager.java:1301)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.app.ResourcesManager.getResources(ResourcesManager.java:1433)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.app.ActivityThread.getTopLevelResources(ActivityThread.java:3553)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.app.ApplicationPackageManager.getResourcesForApplication(ApplicationPackageManager.java:2318)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.app.ApplicationPackageManager.getResourcesForApplication(ApplicationPackageManager.java:2301)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.app.ApplicationPackageManager.getText(ApplicationPackageManager.java:2660)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.content.pm.PackageItemInfo.loadUnsafeLabel(PackageItemInfo.java:249)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.content.pm.PackageItemInfo.loadLabel(PackageItemInfo.java:238)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at E0.g.a(SourceFile:49)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.crashbox.entity.ExceptionInfoEntity.appInfoCollector(SourceFile:75)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.crashbox.entity.ExceptionInfoEntity.getExceptionNull(SourceFile:90)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.crashbox.entity.ExceptionInfoEntity.exceptionInfoCollector(SourceFile:32)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.crashbox.collector.collectors.AnrCrashCollector.collect(SourceFile:25)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.crashbox.collector.collectors.c.d(SourceFile:18)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.crashbox.CrashBoxAppState.onAppExceptionBundle(SourceFile:9)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.ocenter.module.EventSubscriber.c(SourceFile:35)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at I1.b.run(SourceFile:2)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.os.Handler.handleCallback(Handler.java:1101)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.os.Handler.dispatchMessageImpl(Handler.java:141)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at android.os.Handler.dispatchMessage(Handler.java:131)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.dispatch.DispatchObject.handleMessageWork(DispatchObject.java:349)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.dispatch.DispatchObject.lambda$new$0(DispatchObject.java:194)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.dispatch.DispatchObject$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.dispatch.DispatchObject.runDispatchObject(DispatchObject.java:253)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.dispatch.OThread.dispatchSerialDrain(OThread.java:515)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.dispatch.OThread.dispatchQueueDrain(OThread.java:387)
+10-17 16:44:28.477 12547 24562 W ResourcesManager: 	at com.oplus.dispatch.OThread.run(OThread.java:261)
+10-17 16:44:28.477  5026  5445 V WindowManagerShell: All active transition animations finished
+10-17 16:44:28.477 12547 24562 W ziparchive: Unable to open '/system/app/MITSMClient/MITSMClient.apk': No such file or directory
+10-17 16:44:28.477 12547 24562 E com.oplus.midas: Failed to open APK '/system/app/MITSMClient/MITSMClient.apk': I/O error
+10-17 16:44:28.478  3489  4045 D ActivityTaskManager: Skipping, invisible task: Task{11e3782 #2 type=undefined I=com.android.launcher/.Launcher}
+10-17 16:44:28.478 12547 24562 E ResourcesManager: failed to add asset path '/system/app/MITSMClient/MITSMClient.apk'
+10-17 16:44:28.478 12547 24562 E ResourcesManager: java.io.IOException: Failed to load asset path /system/app/MITSMClient/MITSMClient.apk
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.content.res.ApkAssets.nativeLoad(Native Method)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.content.res.ApkAssets.<init>(ApkAssets.java:320)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.content.res.ApkAssets.loadFromPath(ApkAssets.java:169)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.app.ResourcesManager.loadApkAssetsRaw(ResourcesManager.java:698)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.app.ResourcesManager.loadApkAssets(ResourcesManager.java:675)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.app.ResourcesManager$ApkAssetsSupplier.load(ResourcesManager.java:299)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.app.ResourcesManager.createAssetManager(ResourcesManager.java:787)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.app.ResourcesManager.createResourcesImpl(ResourcesManager.java:868)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.app.ResourcesManager.findOrCreateResourcesImplForKeyLocked(ResourcesManager.java:963)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.app.ResourcesManager.createResources(ResourcesManager.java:1331)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.app.ResourcesManager.getResources(ResourcesManager.java:1446)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.app.ActivityThread.getTopLevelResources(ActivityThread.java:3553)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.app.ApplicationPackageManager.getResourcesForApplication(ApplicationPackageManager.java:2318)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.app.ApplicationPackageManager.getResourcesForApplication(ApplicationPackageManager.java:2301)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.app.ApplicationPackageManager.getText(ApplicationPackageManager.java:2660)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.content.pm.PackageItemInfo.loadUnsafeLabel(PackageItemInfo.java:249)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.content.pm.PackageItemInfo.loadLabel(PackageItemInfo.java:238)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at E0.g.a(SourceFile:49)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.crashbox.entity.ExceptionInfoEntity.appInfoCollector(SourceFile:75)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.crashbox.entity.ExceptionInfoEntity.getExceptionNull(SourceFile:90)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.crashbox.entity.ExceptionInfoEntity.exceptionInfoCollector(SourceFile:32)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.crashbox.collector.collectors.AnrCrashCollector.collect(SourceFile:25)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.crashbox.collector.collectors.c.d(SourceFile:18)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.crashbox.CrashBoxAppState.onAppExceptionBundle(SourceFile:9)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.ocenter.module.EventSubscriber.c(SourceFile:35)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at I1.b.run(SourceFile:2)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.os.Handler.handleCallback(Handler.java:1101)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.os.Handler.dispatchMessageImpl(Handler.java:141)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at android.os.Handler.dispatchMessage(Handler.java:131)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.dispatch.DispatchObject.handleMessageWork(DispatchObject.java:349)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.dispatch.DispatchObject.lambda$new$0(DispatchObject.java:194)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.dispatch.DispatchObject$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.dispatch.DispatchObject.runDispatchObject(DispatchObject.java:253)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.dispatch.OThread.dispatchSerialDrain(OThread.java:515)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.dispatch.OThread.dispatchQueueDrain(OThread.java:387)
+10-17 16:44:28.478 12547 24562 E ResourcesManager: 	at com.oplus.dispatch.OThread.run(OThread.java:261)
+10-17 16:44:28.478 12547 24562 W PackageManager: Failure retrieving resources for com.miui.tsmclient
+10-17 16:44:28.480 12547 24562 W CrashBox_TestModeManager: PackageName not found:com.oplus.autotest.qetest
+10-17 16:44:28.481  3489  4045 D ActivityTaskManager: after skip size:6,pre-Filtered:[com.coloros.alarmclock 10, com.coloros.gallery3d 9, com.android.settings 11, com.sulisong.uperf 15, com.android.settings 8, com.android.camera 16]
+10-17 16:44:28.484 12547 24562 W CrashBox_AnrCrashCollector: logFilePackage: Anr/Crash current test mode=.0
+10-17 16:44:28.484  5026  5445 V RecentTasksController: generateList(getRecentTasks)
+10-17 16:44:28.484 12547 24562 W CrashBox_AnrCrashCollector: get 0f808920-8af6-48d6-bb4a-7b503d796df0, isOverAppControlLimit, delete the FileUploadEntity from the database. Id = 55cef19da2ca8c92e390299cfb44b8b1
+10-17 16:44:28.484  5026  5445 V RecentTasksController: initializeDesksMap - desktop windowing not available
+10-17 16:44:28.484 12547 24562 W CrashBox_ExceptionInfoManager: open db report no limit ....
+10-17 16:44:28.485  5026  5445 V RecentTasksController: Added fullscreen task: 16
+10-17 16:44:28.485  5026  5445 V RecentTasksController: Added fullscreen task: 15
+10-17 16:44:28.485  5026  5445 V RecentTasksController: Added fullscreen task: 11
+10-17 16:44:28.485  5026  5445 V RecentTasksController: Added fullscreen task: 10
+10-17 16:44:28.485  5026  5445 V RecentTasksController: Added fullscreen task: 9
+10-17 16:44:28.485  5026  5445 V RecentTasksController: Added fullscreen task: 8
+10-17 16:44:28.485  5026  5445 V RecentTasksController: generateList - complete
+10-17 16:44:28.485 12547 24562 W CrashBox_ExceptionInfoStats: IO stats file does not exist or cannot be read: /proc/oplus_storage/io_metrics/io_dist_stats_5s
+10-17 16:44:28.485 12547 24562 W CrashBox_ExceptionInfoStats: onStatsExceptionInfo to dcs
+10-17 16:44:28.490  5023  5740 I DRS_LOG_DrsSdkTrackProvider[54]: [#862] insert ok, path=track, bodyLen=2700, callingPid=12547, callingPkg=com.oplus.obrain, reqId=c6c7764d-4411-4072-aa4a-529a9842e97d, costMs=2
+10-17 16:44:28.490  5023 27553 I DRS_LOG_IngestPipeline[97]: [c6c7764d-4411-4072-aa4a-529a9842e97d] micro_batch_queued lane=nr size=1 pending=1 timer=3s
+10-17 16:44:28.505  3489  3489 D RefreshRate: app switch boost timeout,transition isPlaying:false isInInterruptScene:false
+10-17 16:44:28.521  1838  1838 I Dolphin : [Dolphin] perf-hal not ready (rc=-1), retry in 1s
+10-17 16:44:28.530  3489  4324 W QosScheduler: executeSceneQosStrategy failed! qos feature no enable
+10-17 16:44:28.635  9091  9091 D OplusScrollToTopManager: InputMethod,is not FullScreenRoot : window is sub type
+10-17 16:44:28.703  6642 30817 I DropBoxUtil: (REDACTED) Reading dropbox entry with tag %s and timestamp %d
+10-17 16:44:28.708  6642 30817 I DropBoxUtil: (REDACTED) Reading dropbox entry with tag %s and timestamp %d
+10-17 16:44:28.733  2774  2831 D OplusGpuMinidump: gpu minidump control openfile error No such file or directory, sleep for a while!
+10-17 16:44:28.879  3489  4303 W ActivityTaskManager: Activity top resumed state loss timeout for ActivityRecord{255293487 u0 com.miui.tsmclient/.ui.MainActivity t-1 f}}
+10-17 16:44:28.880  3489  4303 I OplusJoystickManager: handleApplicationSwitch deprecated!
+10-17 16:44:28.881  3489  4303 I OplusAppSwitchManagerService: com.android.launcher notifyGcSupression , firstStart = false
+10-17 16:44:28.886  5501  5501 D ResourcesManagerExtImpl: applyConfigurationToAppResourcesLocked app.getDisplayId() return callback.displayId:0
+10-17 16:44:28.886  4977 10966 V DCSEX-AppSwitchManager: OnAppSwitchObserver: onAppExit, resuming = com.android.launcher, target = com.miui.tsmclient, is ResumingFirstStart =  false, is ResumingMultiApp =  false, extensionInfo =  Bundle[mParcelledData.dataSize=348]
+10-17 16:44:28.886 10433 10483 D SceneSDK.1.0.4-SNAPSHOT.10433.DeepThinkerAppSwitchAbility: onAppSwitchEvent: AppSwitchEvent(timeStamp=1792226668883, eventType=2, targetName=com.miui.tsmclient, firstStart=false, multiApp=false, windowMode=0, resumingPackageName=com.android.launcher, resumingActivityName=com.android.launcher.Launcher, isResumingMultiApp=false, isResumingFirstStart=false)
+10-17 16:44:28.886 10433 22316 D SceneSDK.1.0.4-SNAPSHOT.10433.DeepThinkerAppSwitchAbility: onAppSwitchEvent: AppSwitchEvent(timeStamp=1792226668883, eventType=2, targetName=com.miui.tsmclient, firstStart=false, multiApp=false, windowMode=0, resumingPackageName=com.android.launcher, resumingActivityName=com.android.launcher.Launcher, isResumingMultiApp=false, isResumingFirstStart=false)
+10-17 16:44:28.886  5023  5740 I DRS_LOG_DRS_SC_Collect_Trigger[54]: AppSwitch onAppExit target=com.miui.tsmclient, resume=com.android.launcher, hasResuming=true, resumeMulti=false
+10-17 16:44:28.886  5023  5740 I DRS_LOG_DRS_SC_Collect_Trigger[54]: launch-session switch pre=com.miui.tsmclient, next=com.android.launcher, fg=com.miui.tsmclient, screenOff=false, shouldRecord=true, write=false, duration=0, startElapsed=641118, nowElapsed=641689, startWall=1792226668316, skip=duration_lt_1s
+10-17 16:44:28.886  5023  5740 I DRS_LOG_DRS_SC_Collect_Trigger[54]: launch-session after fg=, trackNext=false, elapsedReset=641689
+10-17 16:44:28.886 10433 22316 I ContextAware_AppRecommendAdapter: fenceCallbackForAlg receive app recommend from AppSwitchEvent(eventId=2, switchInfo=AppSwitchInfo(targetName=com.miui.tsmclient, firstStart=false, multiApp=false, windowMode=0, resumingPackageName=com.android.launcher, resumingActivityName=com.android.launcher.Launcher, isResumingFirstStart=false, isResumingMultiApp=false))
+10-17 16:44:28.887  4977 23073 D DCSEX-AppLaunchEventRecorder: onAppSwitch from = com.miui.tsmclient to = com.android.launcher
+10-17 16:44:28.887  3489  4851 D OplusEapManager: mTargetExitName :com.miui.tsmclient
+10-17 16:44:28.887  5314  8512 W Battery : AppSwitchDetectorV2: OnAppSwitchObserver: com.android.launcher.Launcher lastReg=1792226075045
+10-17 16:44:28.887  5314  8512 W Battery : AppSwitchManager: onAppSwitch: [b6.q$e@bffecfe]
+10-17 16:44:28.887 10433 10483 I metis_v2_AppSwitchDataCollector: AppExitEvent =  com.miui.tsmclient, NextAppName = com.android.launcher
+10-17 16:44:28.888  5314  5845 W Battery : ThermalControlUtils: mForegroundPkg=com.android.launcher mLastWindowMode=1
+10-17 16:44:28.888  5314  5846 W Battery : AppSceneCenter: PerfPolicy not enable!
+10-17 16:44:28.888  3489  4851 D OplusAppSwitchRuleInfo: generateAppEnterInfo - launch_source_type =  , launch_source_traceid = 
+10-17 16:44:28.888  5026  5026 I PluginSeedling--Notification: NofificationInfoConvert-->releaseTaskSet
+10-17 16:44:28.889 10433 10483 I ContextAware_Intelligent_DynamicDataManager: receive sensor data: [APP_SWITCH] [2026-10-17 16:44:28,应用切换,退出 com.miui.tsmclient]
+10-17 16:44:28.890  5647  7790 D AMC     : [TriggerForeground] handle fg app changed:com.android.launcher
+10-17 16:44:28.890  4977 10966 V DCSEX-AppSwitchManager: OnAppSwitchObserver: onAppEnter, launchedFrom =  null, target =  com.android.launcher, is firstStart =  false, is multiApp =  false, extensionInfo =  Bundle[mParcelledData.dataSize=808], launch_source_type =  , launch_source_traceid =  
+10-17 16:44:28.890  3489  4851 D OplusLatencyOptimizerManager: enter pkg: com.android.launcher isPrevBlackAppTop: false mIsBlackAppTop: false
+10-17 16:44:28.890  5647  7926 D ScoreInfoMgr: onAppEnter:com.android.launcher, 10114
+10-17 16:44:28.891  3489  4851 I OplusHansManager : appSwitch from com.miui.tsmclient to com.android.launcher, pre resume pkg:null
+10-17 16:44:28.891  3489  4851 I OPM     : home scene change to true
+10-17 16:44:28.891 10433 22316 D SceneSDK.1.0.4-SNAPSHOT.10433.DeepThinkerAppSwitchAbility: onAppSwitchEvent: AppSwitchEvent(timeStamp=1792226668890, eventType=1, targetName=com.android.launcher, firstStart=false, multiApp=false, windowMode=1, resumingPackageName=, resumingActivityName=, isResumingMultiApp=false, isResumingFirstStart=false)
+10-17 16:44:28.891  3489  4851 D OplusEapManager: mTargetEnterName :com.android.launcher
+10-17 16:44:28.892  5314  8512 I Athena  : AthenaDynamicReceiver: pre_app:com.miui.tsmclient, next_app:com.android.launcher(10114|5501)
+10-17 16:44:28.893  3489  4851 D OplusAppSwitchRuleInfo: generateActivityEnterInfo - launch_source_type =  , launch_source_traceid = 
+10-17 16:44:28.893 10433 22316 I ContextAware_AppRecommendAdapter: fenceCallbackForAlg receive app recommend from AppSwitchEvent(eventId=1, switchInfo=AppSwitchInfo(targetName=com.android.launcher, firstStart=false, multiApp=false, windowMode=1, resumingPackageName=, resumingActivityName=, isResumingFirstStart=false, isResumingMultiApp=false))
+10-17 16:44:28.894  5314  6169 E Athena  : EmMem: handleAppChanged failed! error=Attempt to invoke virtual method 'void n.j0.V(android.os.Bundle)' on a null object reference
+10-17 16:44:28.895  5023  5740 I DRS_LOG_DRS_SC_Collect_Trigger[54]: AppSwitch onAppEnter target=com.android.launcher, from=null (delay 2000ms)
+10-17 16:44:28.899 10433 10483 I metis_v2_AppSwitchDataCollector: write userId=0 pkg=com.miui.tsmclient enterOrExit=2 multiApp=false
+10-17 16:44:28.901 10433 10483 D SceneSDK.1.0.4-SNAPSHOT.10433.DeepThinkerAppSwitchAbility: onAppSwitchEvent: AppSwitchEvent(timeStamp=1792226668890, eventType=1, targetName=com.android.launcher, firstStart=false, multiApp=false, windowMode=1, resumingPackageName=, resumingActivityName=, isResumingMultiApp=false, isResumingFirstStart=false)
+10-17 16:44:28.901 10433 10483 I metis_v2_AppSwitchDataCollector: AppEnterEvent =  com.android.launcher, windowMode = 1,firstStart = false
+10-17 16:44:28.901 10433 10483 W metis_v2_AppSwitchDataCollector: fenceKey = com.oplus.metis:TOP_APPLICATION, getExits = [], getEnters = [] packageName = com.android.launcher
+10-17 16:44:28.905 10433 10483 W metis_v2_AppSwitchDataCollector: pid = 5501, cachePid=5501
+10-17 16:44:28.907 10433 10483 I metis_v2_AppSwitchDataCollector:  set isNotifiedTVCast
+10-17 16:44:28.909 10433 10483 E metis_v2_FactManager: There is no subModel: com.oplus.linker
+10-17 16:44:28.909 10433 10483 I metis_v2_AppSwitchDataCollector: Skip call fire
+10-17 16:44:28.910  3489  4556 D FlexibleTaskController: check task which not have enough child, isInSingleWhiteList:false isCloneTask:false
+10-17 16:44:28.912 10433 10483 I metis_v2_AppSwitchDataCollector: write userId=0 pkg=com.android.launcher enterOrExit=1 multiApp=false
+10-17 16:44:28.937  3489  4931 I Osense-HmbirdSceneRecogManager: SCENE_MESSAGE_LAUNCHER: hmbirdSceneId=0
+10-17 16:44:28.937  3489  4931 D HmbirdWinInfoManager: hmbirdFullWinInfos.size() != 1
+10-17 16:44:29.057  3489  4816 D WifiStaIfaceHidlImpl: getCachedScanData is not implemented by HIDL
+10-17 16:44:29.057  3489  4816 I Nl80211Proxy: Sending Nl80211 message: GenericNetlinkMsg{ nlHeader{StructNlMsgHdr{ nlmsg_len{40}, nlmsg_type{30()}, nlmsg_flags{1(NLM_F_REQUEST)}, nlmsg_seq{203}, nlmsg_pid{0} }}, genNlHeader{StructGenNlMsgHdr{ command{17}, version{1}, reserved{0} }}, attributes{[StructNlAttr{ nla_len{8}, nla_type{3}, nla_value{1F000000}, }, StructNlAttr{ nla_len{10}, nla_type{6}, nla_value{58EA1F971437}, }]} }
+10-17 16:44:29.059  3489  4816 I Nl80211Proxy: Multi flag is not set
+10-17 16:44:29.064  3489  4909 D RouterFriend: cca busy:228
+10-17 16:44:29.064  3489  4909 D RouterFriend: cca busy
+10-17 16:44:29.073  3489  4909 D ScorerUtils: isLowTraffic: txTputKBps=5, rxTputKBps=2
+10-17 16:44:29.155  1628  2138 I SDM     : HWEventsDRM::SetEventState: Setup vsync event for CRTC 147, Connector 57
+10-17 16:44:29.157 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno Permission denied, trying pgid as pid to check
+10-17 16:44:29.162 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno No such file or directory, trying pgid as pid to check
+10-17 16:44:29.181 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno Permission denied, trying pgid as pid to check
+10-17 16:44:29.181 10770 10778 E ANDR-PERF-OPTSHANDLER: checkAlreadySetCpuset: fopen failed, errno No such file or directory, trying pgid as pid to check
+10-17 16:44:29.265 10770 10788 E ANDR-PERF-LM: VmRssMeter:: start() 358: Could not find pid, can not collect vmrss data
+10-17 16:44:29.265 10770 10787 E ANDR-PERF-LM: VmRssMeter:: start() 358: Could not find pid, can not collect vmrss data
+10-17 16:44:29.265 10770 10788 E ANDR-PERF-LM: AdaptiveLaunch: writeToDataBase() 64: Meter aborted or could not get meter data for this run
+10-17 16:44:29.369 24434 30812 W adbd    : timed out while waiting for FUNCTIONFS_BIND, trying again
+10-17 16:44:29.369 24434 30812 I adbd    : UsbFfs: connection terminated: monitor thread finished
+10-17 16:44:29.386 24434 24462 I adbd    : opening control endpoint /dev/usb-ffs/adb/ep0
+10-17 16:44:29.410  5501  5696 D OplusScrollToTopManager: com.android.launcher/com.android.launcher.Launcher,This com.android.internal.policy.DecorView{2fe1840 V.E...... R....... 0,0-1080,2400 aid=1073741825 alpha=1.0 viewInfo = }[Launcher] change focus to true
+10-17 16:44:29.450  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.450  3119  4804 I libsensor-displayalgo: the value of  REAL LUX76.983528
+10-17 16:44:29.450  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1440.048950,R:650.022095,G:600.020386,B:237.508057, lux: 76.983528
+10-17 16:44:29.548  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.548  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.172493
+10-17 16:44:29.548  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1445.049072,R:655.022217,G:605.020569,B:240.008148, lux: 77.172493
+10-17 16:44:29.549  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.549  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.244675
+10-17 16:44:29.549  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1445.049072,R:657.522339,G:605.020569,B:237.508057, lux: 77.244675
+10-17 16:44:29.549  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.549  3119  4804 I libsensor-displayalgo: the value of  REAL LUX76.251999
+10-17 16:44:29.549  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1430.048584,R:650.022095,G:600.020386,B:237.508057, lux: 76.251999
+10-17 16:44:29.549  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.549  3119  4804 I libsensor-displayalgo: the value of  REAL LUX76.873032
+10-17 16:44:29.549  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1442.548950,R:657.522339,G:605.020569,B:240.008148, lux: 76.873032
+10-17 16:44:29.550  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.550  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.184258
+10-17 16:44:29.550  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1440.048950,R:655.022217,G:605.020569,B:235.007980, lux: 77.184258
+10-17 16:44:29.648  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.648  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.166512
+10-17 16:44:29.648  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1445.049072,R:652.522156,G:602.520447,B:240.008148, lux: 77.166512
+10-17 16:44:29.649  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.649  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.178474
+10-17 16:44:29.649  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1445.049072,R:657.522339,G:607.520630,B:240.008148, lux: 77.178474
+10-17 16:44:29.650  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.650  3119  4804 I libsensor-displayalgo: the value of  REAL LUX76.989601
+10-17 16:44:29.650  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1442.548950,R:655.022217,G:605.020569,B:240.008148, lux: 76.989601
+10-17 16:44:29.650  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.650  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.172386
+10-17 16:44:29.650  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1442.548950,R:652.522156,G:602.520447,B:237.508057, lux: 77.172386
+10-17 16:44:29.733  2774  2831 D OplusGpuMinidump: gpu minidump control openfile error No such file or directory, sleep for a while!
+10-17 16:44:29.748  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.748  3119  4804 I libsensor-displayalgo: the value of  REAL LUX76.929291
+10-17 16:44:29.748  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1440.048950,R:655.022217,G:607.520630,B:240.008148, lux: 76.929291
+10-17 16:44:29.749  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.749  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.112068
+10-17 16:44:29.749  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1440.048950,R:652.522156,G:605.020569,B:237.508057, lux: 77.112068
+10-17 16:44:29.750  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.750  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.061905
+10-17 16:44:29.750  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1445.049072,R:660.022400,G:607.520630,B:240.008148, lux: 77.061905
+10-17 16:44:29.751 19641 24615 D OifaceManager: unable to getService oplusoiface
+10-17 16:44:29.753 19641 24615 W GpuInfoProvider: the info of gpu is invalid.
+10-17 16:44:29.760  3489  5090 I Osense-BaseDecisionMaker: notifySceneToAthenaPolicy: SCENE_IDLE_RECOVER, bundle: Bundle[{scene=SCENE_IDLE_RECOVER}]
+10-17 16:44:29.761  3489  5090 I Osense-BaseDecisionMaker: scene: SCENE_IDLE_RECOVER, excutingPolicy: respreload
+10-17 16:44:29.762  3489  5090 D Osense-BaseDecisionMaker: invoke process preload policy
+10-17 16:44:29.762  3489  5090 I Osense-BaseDecisionMaker: scene: SCENE_IDLE_RECOVER, excutingPolicy: clear
+10-17 16:44:29.762  3489  5090 D Osense-BaseDecisionMaker: invoke clear policy,type: unforbid
+10-17 16:44:29.762  3489  5090 I OsenseKillAction: KillAction: skip reason: non-low-mem-req, req_id=60, enable=true, scene=SCENE_IDLE_RECOVER, type=unforbid, cchOnly=false, appcare=0, bloM=false, bloP=false
+10-17 16:44:29.787  3489  5230 W OPLUS_LOG_LOAD: ==LOGS PROG INFO, prog(system_server) ==
+10-17 16:44:29.787  3489  5230 D OsenseCommonUtils: /dev/memcg/memory.force_shrink_file not exist
+10-17 16:44:29.823 19641 22356 W libc    : Access denied finding property "vendor.oplus.media.vpp.osie_sr.on"
+10-17 16:44:29.851  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.851  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.039772
+10-17 16:44:29.851  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1437.548828,R:647.521973,G:602.520447,B:237.508057, lux: 77.039772
+10-17 16:44:29.852  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.852  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.061905
+10-17 16:44:29.852  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1445.049072,R:660.022400,G:607.520630,B:240.008148, lux: 77.061905
+10-17 16:44:29.852  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.852  3119  4804 I libsensor-displayalgo: the value of  REAL LUX76.623634
+10-17 16:44:29.852  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1432.548584,R:650.022095,G:600.020386,B:235.007980, lux: 76.623634
+10-17 16:44:29.853  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.853  3119  4804 I libsensor-displayalgo: the value of  REAL LUX76.929291
+10-17 16:44:29.853  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1440.048950,R:655.022217,G:607.520630,B:240.008148, lux: 76.929291
+10-17 16:44:29.854  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.854  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.355164
+10-17 16:44:29.854  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1442.548950,R:650.022095,G:600.020386,B:235.007980, lux: 77.355164
+10-17 16:44:29.952  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.952  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.106178
+10-17 16:44:29.953  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1442.548950,R:652.522156,G:605.020569,B:240.008148, lux: 77.106178
+10-17 16:44:29.953  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.954  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.477936
+10-17 16:44:29.954  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1447.549194,R:655.022217,G:607.520630,B:240.008148, lux: 77.477936
+10-17 16:44:29.954  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.954  3119  4804 I libsensor-displayalgo: the value of  REAL LUX76.866859
+10-17 16:44:29.954  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1437.548828,R:650.022095,G:597.520264,B:235.007980, lux: 76.866859
+10-17 16:44:29.955  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:29.955  3119  4804 I libsensor-displayalgo: the value of  REAL LUX76.866859
+10-17 16:44:29.955  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1437.548828,R:650.022095,G:597.520264,B:235.007980, lux: 76.866859
+10-17 16:44:30.050  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:30.050  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.289070
+10-17 16:44:30.050  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1445.049072,R:652.522156,G:605.020569,B:240.008148, lux: 77.289070
+10-17 16:44:30.051  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:30.051  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.289162
+10-17 16:44:30.051  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1447.549194,R:655.022217,G:607.520630,B:242.508240, lux: 77.289162
+10-17 16:44:30.051  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:30.052  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.238693
+10-17 16:44:30.052  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1445.049072,R:655.022217,G:602.520447,B:237.508057, lux: 77.238693
+10-17 16:44:30.052  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:30.052  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.178474
+10-17 16:44:30.052  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1445.049072,R:657.522339,G:607.520630,B:240.008148, lux: 77.178474
+10-17 16:44:30.155  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:30.155  3119  4804 I libsensor-displayalgo: the value of  REAL LUX76.879013
+10-17 16:44:30.155  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1442.548950,R:660.022400,G:607.520630,B:240.008148, lux: 76.879013
+10-17 16:44:30.223  7762 11346 D OplusFileObserveService: onEvent() file = /storage/emulated/0/tsm_launch.log, event = 256
+10-17 16:44:30.246  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:30.247  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.111969
+10-17 16:44:30.247  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1437.548828,R:650.022095,G:602.520447,B:235.007980, lux: 77.111969
+10-17 16:44:30.247  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:30.247  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.305115
+10-17 16:44:30.247  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1450.049194,R:660.022400,G:605.020569,B:240.008148, lux: 77.305115
+10-17 16:44:30.247  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:30.247  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.111969
+10-17 16:44:30.247  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1437.548828,R:650.022095,G:602.520447,B:235.007980, lux: 77.111969
+10-17 16:44:30.248  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:30.248  3119  4804 I libsensor-displayalgo: the value of  REAL LUX77.172592
+10-17 16:44:30.248  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1447.549194,R:657.522339,G:607.520630,B:242.508240, lux: 77.172592
+10-17 16:44:30.248  3119  4804 I libsensor-displayalgo: the value of channelCali C:164.323707,R:69.313520,G:56.225503,B:26.713880,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 16:44:30.248  3119  4804 I libsensor-displayalgo: the value of  REAL LUX76.678284
+10-17 16:44:30.248  3119  4804 D libsensor-displayalgo: brightness:758.000000,R:2024103.782739,G:5808330.126894,B:2758070.442247,EVENT C:1442.548950,R:655.022217,G:602.520447,B:242.508240, lux: 76.678284

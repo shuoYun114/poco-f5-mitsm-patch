@@ -1,0 +1,152 @@
+--------- beginning of main
+10-17 17:12:35.377 29206 29219 I DMP-PowerUtils: isLowPower, battery:48, low power threshold:20
+10-17 17:12:35.379 29206 29219 I DMP-AbstractWorkManager: createOneTimeWorkRequest for gallery, method: updateFiles, workName: updateWork done, workRequestId:d0d8e7ba-9f2b-4f2b-9dba-b9ac09c7b11a, expedited:false
+10-17 17:12:35.379 29206 29219 I DMP-AbstractWorkManager: createOneTimeWorkRequest for gallery, method: updateFiles, workName: completeKeywordIndexWork done, workRequestId:b9f253db-f0ed-4721-9b00-1bb00bb558d7, expedited:false
+10-17 17:12:35.379 29206 29219 I DMP-AbstractWorkManager: createOneTimeWorkRequest for gallery, method: updateFiles, workName: vectorizeWork done, workRequestId:586b7044-5152-4cfc-8abc-dfb74072fc48, expedited:false
+10-17 17:12:35.380 29206 29219 W libbinder.Binder: Binder transaction to android.content.IContentProvider, function: UNKNOWN_FUNCTION_NAME, code: 21, took 1043ms. Data bytes: 540 Reply bytes: 44 Flags: 18
+10-17 17:12:35.385  1002  1002 E KeymasterUtils: rsp_header->status: -28
+10-17 17:12:35.385  1002  1002 E KeyMasterHalDevice: abort_operation
+10-17 17:12:35.385  1002  1002 E KeyMasterHalDevice: ret: -28
+10-17 17:12:35.385 29206 29275 I PSN-DatabasePwdHelper: getEncryptedStatus: key:daily_event_migrated_to_encrypted value: 1
+10-17 17:12:35.385 29206 29275 I PSN-DatabasePwdHelper: getDatabasePwd ignoreDebugMode: true
+10-17 17:12:35.385 29206 29275 I PSN-DatabasePwdHelper: getDatabasePwd from cache
+10-17 17:12:35.387 29206 29261 I DMP-WorkConfig: init, resource: com.oplus.aimemory#billsDonate_Bills, path: com.oplus.aimemory#billsdonate_bills/, fileName: WorkConfig.json
+10-17 17:12:35.394 29206 29261 I DMP-ChunkConfig: init, resource: com.oplus.aimemory#billsDonate_Bills, path: com.oplus.aimemory#billsdonate_bills/0/, fileName: ChunkConfig.json
+10-17 17:12:35.394 29206 29261 I DMP-ConfigManager: setExternalConfig success
+10-17 17:12:35.394 29206 29261 I DMP-DatabaseHelper: getDatabaseHelper by :10013
+10-17 17:12:35.394 29206 29278 E .oplus.dmp:main: hiddenapi: Accessing hidden method Lcom/android/org/conscrypt/Conscrypt;->isConscrypt(Ljavax/net/ssl/SSLSocket;)Z (runtime_flags=0, domain=core-platform, api=blocked) from Lcom/oplus/account/netrequest/mgr/AcRetrofitManager; (domain=app, TargetSdkVersion=36) using reflection: denied
+10-17 17:12:35.395 29206 29261 I DMP-DatabaseHelper: getDbVersion, resource:com.oplus.aimemory#billsDonate_Bills, version:1, internalVer:0, rusInternalVer:0
+10-17 17:12:35.395 29206 29261 I DMP-DatabaseHelper: DatabaseHelper resID:10013, version:184549377
+10-17 17:12:35.395 29206 29278 E .oplus.dmp:main: hiddenapi: Accessing hidden method Lcom/android/org/conscrypt/OpenSSLSocketImpl;->getHostname()Ljava/lang/String; (runtime_flags=0, domain=core-platform, api=max-target-r) from Lcom/oplus/account/netrequest/mgr/AcRetrofitManager; (domain=app, TargetSdkVersion=36) using reflection: denied
+10-17 17:12:35.395 29206 29278 E .oplus.dmp:main: hiddenapi: Accessing hidden method Lcom/android/org/conscrypt/AbstractConscryptSocket;->getHostname()Ljava/lang/String; (runtime_flags=0, domain=core-platform, api=max-target-r) from Lcom/oplus/account/netrequest/mgr/AcRetrofitManager; (domain=app, TargetSdkVersion=36) using reflection: denied
+10-17 17:12:35.402 29206 29261 I DMP-ConfigManager: setExternalConfig resource:com.oplus.aimemory#collectionDonate_Collection, id:10000
+10-17 17:12:35.404 29206 29261 I DMP-ExternalConfigManager: createIndexCoreConfig resource:com.oplus.aimemory#collectionDonate_Collection, summary:IndexCoreConfig{mAllocField=45, mFieldMapArray=[{collectionUpdateTimeMillis=10, scores=20, description=12, collectionSummary=7, collectionName=5, identification=13, checksum=1, collectionDescriptionTrans=3, ttlMillis=24, creationTimestampMillis=11, collect...(len=25471)
+10-17 17:12:35.417 29206 29261 I DMP-WorkConfig: init, resource: com.oplus.aimemory#collectionDonate_Collection, path: com.oplus.aimemory#collectiondonate_collection/, fileName: WorkConfig.json
+10-17 17:12:35.420 29206 29261 I DMP-ChunkConfig: init, resource: com.oplus.aimemory#collectionDonate_Collection, path: com.oplus.aimemory#collectiondonate_collection/0/, fileName: ChunkConfig.json
+10-17 17:12:35.420 29206 29261 I DMP-ConfigManager: setExternalConfig success
+10-17 17:12:35.420 29206 29261 I DMP-DatabaseHelper: getDatabaseHelper by :10000
+10-17 17:12:35.421 29206 29261 I DMP-DatabaseHelper: getDbVersion, resource:com.oplus.aimemory#collectionDonate_Collection, version:1, internalVer:0, rusInternalVer:0
+10-17 17:12:35.421 29206 29261 I DMP-DatabaseHelper: DatabaseHelper resID:10000, version:184549377
+10-17 17:12:35.422 29206 29229 D WM-SystemJobScheduler: Scheduling work ID d0d8e7ba-9f2b-4f2b-9dba-b9ac09c7b11aJob ID 4342
+10-17 17:12:35.434 29206 29276 I MMKV    : <MMKV_IO.cpp:523::writeActualSize> [persona_calendar_snapshot] increase sequence to 63, crc 2523826264, actualSize 416
+10-17 17:12:35.434 29206 29276 I MMKV    : <MMKV.cpp:1189::sync> MMKV::sync, SyncFlag = 1
+10-17 17:12:35.436 29206 29276 I PSN-DmpPlanChain-CalendarDataFeed: taskDiff: added=0 modified=0 removed=0 ignoredFinishedAdditions=0 ignoredExpired=0
+--------- beginning of system
+10-17 17:12:35.437  3489  4573 W PackageManager: package com.oplus.dmp uid 10246 pid 29206 call SetEnabledSetting(com.oplus.dmp component = androidx.work.impl.background.systemalarm.RescheduleReceiver, 1, 0)
+10-17 17:12:35.441 29206 29229 D WM-PackageManagerHelper: androidx.work.impl.background.systemalarm.RescheduleReceiver enabled
+10-17 17:12:35.447 29206 29268 I CloudConfig: ruc 1572 exit
+10-17 17:12:35.447 29206 29268 I CloudConfig: tn: sdk-1572-ruc, dr: 207ms
+10-17 17:12:35.448 29206 29288 I CloudConfig: tn: 1572-conso
+10-17 17:12:35.448 29206 29288 E NearX.CloudConfig(mdp_1572).EntityDBProvider: ensureDatabase, configName: 
+10-17 17:12:35.448 29206 29261 I DMP-ConfigManager: setExternalConfig resource:com.oplus.deepthinker#donate_lifelogging, id:10012
+10-17 17:12:35.448 29206 29288 E NearX.CloudConfig(mdp_1572).EntityDBProvider: queryConfig error ,message : Database open failed (db is null)
+10-17 17:12:35.448 29206 29288 E NearX.CloudConfig(mdp_1572).EntityDBProvider: Database repair limit reached for , skipping deletion.
+10-17 17:12:35.449 29206 29261 I DMP-ExternalConfigManager: createIndexCoreConfig resource:com.oplus.deepthinker#donate_lifelogging, summary:IndexCoreConfig{mAllocField=29, mFieldMapArray=[{date=3, locationInfo=14, startLoc=19, importance=11, poiList=17, weekday=25, description=4, documentTtlMillis=6, content=1, identification=10, checksum=0, startTime=20, creationTimestampMillis=2, id=9, state...(len=15268)
+10-17 17:12:35.453 29206 29288 I CloudConfig: tn: 1572-conso, dr: 6ms
+10-17 17:12:35.453 29206 29262 I DMP-ConsolidateRuntime: loadConsolidateCloudConfig done: null
+10-17 17:12:35.454 29206 29261 I DMP-WorkConfig: init, resource: com.oplus.deepthinker#donate_lifelogging, path: com.oplus.deepthinker#donate_lifelogging/, fileName: WorkConfig.json
+10-17 17:12:35.456 29206 29261 I DMP-ChunkConfig: init, resource: com.oplus.deepthinker#donate_lifelogging, path: com.oplus.deepthinker#donate_lifelogging/0/, fileName: ChunkConfig.json
+10-17 17:12:35.456 29206 29261 I DMP-ConfigManager: setExternalConfig success
+10-17 17:12:35.456 29206 29261 I DMP-DatabaseHelper: getDatabaseHelper by :10012
+10-17 17:12:35.456 29206 29261 I DMP-DatabaseHelper: getDbVersion, resource:com.oplus.deepthinker#donate_lifelogging, version:1, internalVer:0, rusInternalVer:0
+10-17 17:12:35.456 29206 29261 I DMP-DatabaseHelper: DatabaseHelper resID:10012, version:184549377
+10-17 17:12:35.471 29206 29261 I DMP-ConfigManager: setExternalConfig resource:com.oplus.deepthinker#donate_daily_event, id:10004
+10-17 17:12:35.474 29206 29261 I DMP-ExternalConfigManager: createIndexCoreConfig resource:com.oplus.deepthinker#donate_daily_event, summary:IndexCoreConfig{mAllocField=23, mFieldMapArray=[{eventId=8, sourceList=18, startTimeMillis=19, documentScore=4, isValid=12, description=3, source=17, documentTtlMillis=5, todo=20, accountId=0, endTimeMillis=6, identification=11, checksum=1, eventDescriptio...(len=12244)
+10-17 17:12:35.479 29206 29261 I DMP-WorkConfig: init, resource: com.oplus.deepthinker#donate_daily_event, path: com.oplus.deepthinker#donate_daily_event/, fileName: WorkConfig.json
+10-17 17:12:35.482 29206 29261 I DMP-ChunkConfig: init, resource: com.oplus.deepthinker#donate_daily_event, path: com.oplus.deepthinker#donate_daily_event/0/, fileName: ChunkConfig.json
+10-17 17:12:35.482 29206 29261 I DMP-ConfigManager: setExternalConfig success
+10-17 17:12:35.482 29206 29261 I DMP-DatabaseHelper: getDatabaseHelper by :10004
+10-17 17:12:35.482 29206 29261 I DMP-DatabaseHelper: getDbVersion, resource:com.oplus.deepthinker#donate_daily_event, version:1, internalVer:0, rusInternalVer:0
+10-17 17:12:35.482 29206 29261 I DMP-DatabaseHelper: DatabaseHelper resID:10004, version:184549377
+10-17 17:12:35.494 29206 29261 I DMP-ConfigManager: setExternalConfig resource:com.oplus.deepthinker#donate_todo_record, id:10001
+10-17 17:12:35.496 29206 29261 I DMP-ExternalConfigManager: createIndexCoreConfig resource:com.oplus.deepthinker#donate_todo_record, summary:IndexCoreConfig{mAllocField=24, mFieldMapArray=[{hiddenAt=9, eventId=7, confidence=2, documentScore=5, isValid=13, description=4, todoDeadlineTime=19, source=17, documentTtlMillis=6, eventStartTimeMillis=8, accountId=0, invalidAt=12, identification=11, che...(len=12792)
+10-17 17:12:35.500 29206 29261 I DMP-WorkConfig: init, resource: com.oplus.deepthinker#donate_todo_record, path: com.oplus.deepthinker#donate_todo_record/, fileName: WorkConfig.json
+10-17 17:12:35.504 29206 29261 I DMP-ChunkConfig: init, resource: com.oplus.deepthinker#donate_todo_record, path: com.oplus.deepthinker#donate_todo_record/0/, fileName: ChunkConfig.json
+10-17 17:12:35.504 29206 29261 I DMP-ConfigManager: setExternalConfig success
+10-17 17:12:35.504 29206 29261 I DMP-DatabaseHelper: getDatabaseHelper by :10001
+10-17 17:12:35.504 29206 29261 I DMP-DatabaseHelper: getDbVersion, resource:com.oplus.deepthinker#donate_todo_record, version:1, internalVer:0, rusInternalVer:0
+10-17 17:12:35.504 29206 29261 I DMP-DatabaseHelper: DatabaseHelper resID:10001, version:184549377
+10-17 17:12:35.511 29206 29261 I DMP-ConfigManager: setExternalConfig resource:com.oplus.deepthinker#donate_persona_info, id:10002
+10-17 17:12:35.512 29206 29261 I DMP-ExternalConfigManager: createIndexCoreConfig resource:com.oplus.deepthinker#donate_persona_info, summary:IndexCoreConfig{mAllocField=10, mFieldMapArray=[{ssoid=8, identification=4, createTime=1, checksum=0, namespace=6, description=2, information=5, updateTime=9, id=3, retentionPolicy=7}, {}, {}, {}], mFieldConfigArray={0=StoreFieldConfig{mFieldName=checksum,...(len=5392)
+10-17 17:12:35.515 29206 29261 I DMP-WorkConfig: init, resource: com.oplus.deepthinker#donate_persona_info, path: com.oplus.deepthinker#donate_persona_info/, fileName: WorkConfig.json
+10-17 17:12:35.517 29206 29261 I DMP-JsonFileReader: readAssetsFile skipped, file not exist in assets, relativePath: com.oplus.deepthinker#donate_persona_info/0/, fileName: ChunkConfig.json
+10-17 17:12:35.517 29206 29261 I DMP-ChunkConfig: init, resource: com.oplus.deepthinker#donate_persona_info, path: com.oplus.deepthinker#donate_persona_info/0/, fileName: ChunkConfig.json
+10-17 17:12:35.517 29206 29261 I DMP-ConfigManager: setExternalConfig success
+10-17 17:12:35.517 29206 29261 I DMP-DatabaseHelper: getDatabaseHelper by :10002
+10-17 17:12:35.517 29206 29261 I DMP-DatabaseHelper: getDbVersion, resource:com.oplus.deepthinker#donate_persona_info, version:1, internalVer:0, rusInternalVer:0
+10-17 17:12:35.517 29206 29261 I DMP-DatabaseHelper: DatabaseHelper resID:10002, version:184549377
+10-17 17:12:35.702  3489  6590 E OplusArpPeer_euclid_psw: ARP read failure: android.system.ErrnoException: read failed: EAGAIN (Try again)
+10-17 17:12:35.702  3489  6590 E OplusArpPeer_euclid_psw:  OplusArpPeer close
+10-17 17:12:35.703  3489  6590 D OplusNetKit: interface name from LP: [wlan0]
+10-17 17:12:35.703  3489  6590 D OplusNetKit: in getLpByInterface name from LP: [wlan0]
+10-17 17:12:35.703  3489  6590 D OplusNetKit: in getLpByInterface name from LP: [wlan0]
+10-17 17:12:35.714  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 17:12:35.714  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 17:12:35.714  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 17:12:35.718  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 17:12:35.718  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 17:12:35.718  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 17:12:35.736  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 17:12:35.736  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 17:12:35.736  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 17:12:35.738  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 17:12:35.738  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 17:12:35.738  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 17:12:35.740  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 17:12:35.740  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 17:12:35.740  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 17:12:35.742  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 17:12:35.742  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 17:12:35.742  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 17:12:35.743  3489  6590 D OplusArpKit: sendGatewayMacAddress ifaceName=wlan0 gatewayMac=58:**:**:**:14:34 gatewayIp=192.168.48.***
+10-17 17:12:35.744  3489 14993 D OplusNetKit: in getLpByInterface name from LP: [wlan0]
+10-17 17:12:35.747  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 17:12:35.747  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 17:12:35.747  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 17:12:35.751  5465  6094 D Bluetooth: [storage_module.cc:175] operator(): flash content to file: /data/misc/bluedroid/bt_config.conf
+10-17 17:12:35.755  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 17:12:35.755  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 17:12:35.755  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 17:12:35.759  5465  6094 D Bluetooth: [storage_module.cc:177] operator(): flash done with result: true
+10-17 17:12:35.874  3489  4040 I system_server: Background young concurrent mark compact GC freed 17MB AllocSpace bytes, 61(1252KB) LOS objects, 11% free,131MB(120MB_655KB_10MB)/148MB, paused 1.658ms,5.503ms total 159.583ms binder:3489_B:4570:8299KB_audioserver_lifecycle:4836:2912KB_binder:3489_1B:4894:1518KB
+10-17 17:12:36.049  3489  5230 D OsenseCommonUtils: /dev/memcg/memory.force_shrink_file not exist
+10-17 17:12:36.149  3119  4804 I libsensor-displayalgo: the value of channelCali C:193.238689,R:95.315155,G:70.727604,B:36.989399,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:12:36.149  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.490273
+10-17 17:12:36.149  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:4957765.524195,G:11944403.769164,B:5253545.804701,EVENT C:970.032959,R:490.016632,G:372.512634,B:152.505173, lux: 44.490273
+10-17 17:12:36.149  3119  4804 I libsensor-displayalgo: the value of channelCali C:193.238689,R:95.315155,G:70.727604,B:36.989399,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:12:36.149  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.178856
+10-17 17:12:36.149  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:4957765.524195,G:11944403.769164,B:5253545.804701,EVENT C:967.532837,R:487.516541,G:367.512482,B:152.505173, lux: 44.178856
+10-17 17:12:36.149  3119  4804 I libsensor-displayalgo: the value of channelCali C:193.238689,R:95.315155,G:70.727604,B:36.989399,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:12:36.150  3119  4804 I libsensor-displayalgo: the value of  REAL LUX43.746986
+10-17 17:12:36.150  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:4957765.524195,G:11944403.769164,B:5253545.804701,EVENT C:965.032776,R:490.016632,G:372.512634,B:157.505341, lux: 43.746986
+10-17 17:12:36.150  3119  4804 I libsensor-displayalgo: the value of channelCali C:193.238689,R:95.315155,G:70.727604,B:36.989399,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:12:36.150  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.430042
+10-17 17:12:36.150  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:4957765.524195,G:11944403.769164,B:5253545.804701,EVENT C:970.032959,R:492.516724,G:377.512817,B:155.005264, lux: 44.430042
+10-17 17:12:36.150  3119  4804 I libsensor-displayalgo: the value of channelCali C:193.238689,R:95.315155,G:70.727604,B:36.989399,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:12:36.150  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.240982
+10-17 17:12:36.150  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:4957765.524195,G:11944403.769164,B:5253545.804701,EVENT C:962.532654,R:485.016479,G:370.012573,B:150.005096, lux: 44.240982
+10-17 17:12:36.173 29206 29213 I .oplus.dmp:main: HeapTask is not gc_task
+10-17 17:12:36.236 24434 24434 I adbd    : adbd service requested 'shell,v2,raw:su -c logcat -d -t 150 > /sdcard/login_diag.txt && grep -E 'ActivityTaskManager|com.xiaomi.account' /sdcard/login_diag.txt | tail -n 25'
+10-17 17:12:36.246  3119  4804 I libsensor-displayalgo: the value of channelCali C:193.238689,R:95.315155,G:70.727604,B:36.989399,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:12:36.246  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.673252
+10-17 17:12:36.246  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:4957765.524195,G:11944403.769164,B:5253545.804701,EVENT C:975.033081,R:492.516724,G:375.012726,B:155.005264, lux: 44.673252
+10-17 17:12:36.247  3119  4804 I libsensor-displayalgo: the value of channelCali C:193.238689,R:95.315155,G:70.727604,B:36.989399,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:12:36.247  3119  4804 I libsensor-displayalgo: the value of  REAL LUX44.918358
+10-17 17:12:36.247  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:4957765.524195,G:11944403.769164,B:5253545.804701,EVENT C:975.033081,R:492.516724,G:380.012909,B:155.005264, lux: 44.918358
+10-17 17:12:36.249  2774  2831 D OplusGpuMinidump: gpu minidump control openfile error No such file or directory, sleep for a while!
+10-17 17:12:36.249  8437 11795 I MediaProvider: Insert path: /st***ge/em****ed/*/log*****ag.t*t, caller: com.android.shell
+10-17 17:12:36.254  8437 11795 D MediaProvider: insertInternal start, caller = com.android.shell
+10-17 17:12:36.256  8437 11795 W MediaProvider: isAppCloneUserPair for user 0: false
+10-17 17:12:36.259  8437 11795 D MediaProvider: insertAllowingUpsert finish, rowId = 3696
+10-17 17:12:36.259  8437 11795 I MediaProvider: Insert path: /st***ge/em****ed/*/log*****ag.t*t, caller: com.android.shell
+10-17 17:12:36.260  8437 11795 D MediaProvider: insertInternal end
+10-17 17:12:36.260  7762 11346 D OplusFileObserveService: onEvent() file = /storage/emulated/0/login_diag.txt, event = 256
+10-17 17:12:36.262 10433 10697 I ContextAware_DaemonObserver: onChangeImpl, wait together.
+10-17 17:12:36.284 29206 29261 I DMP-ConfigManager: setExternalConfig resource:com.oplus.deepthinker#donate_notification, id:10005
+10-17 17:12:36.286 29206 29261 I DMP-ExternalConfigManager: createIndexCoreConfig resource:com.oplus.deepthinker#donate_notification, summary:IndexCoreConfig{mAllocField=45, mFieldMapArray=[{keywords=15, scores=24, tagValue=27, description=7, poi=21, source=25, title=28, documentTtlMillis=9, groupKey=13, identification=14, checksum=4, eventTime=11, ttlMillis=29, categories=2, creationTimestampMi...(len=21746)
+10-17 17:12:36.291 29206 29261 I DMP-WorkConfig: init, resource: com.oplus.deepthinker#donate_notification, path: com.oplus.deepthinker#donate_notification/, fileName: WorkConfig.json
+10-17 17:12:36.294 29206 29261 I DMP-ChunkConfig: init, resource: com.oplus.deepthinker#donate_notification, path: com.oplus.deepthinker#donate_notification/0/, fileName: ChunkConfig.json
+10-17 17:12:36.294 29206 29261 I DMP-ConfigManager: setExternalConfig success
+10-17 17:12:36.294 29206 29261 I DMP-DatabaseHelper: getDatabaseHelper by :10005
+10-17 17:12:36.295 29206 29261 I DMP-DatabaseHelper: getDbVersion, resource:com.oplus.deepthinker#donate_notification, version:1, internalVer:0, rusInternalVer:0
+10-17 17:12:36.295 29206 29261 I DMP-DatabaseHelper: DatabaseHelper resID:10005, version:184549377

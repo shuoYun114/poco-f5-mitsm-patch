@@ -1,0 +1,81 @@
+.class final Landroidx/compose/ui/platform/i3$b;
+.super Lt9/n;
+.source "SourceFile"
+
+# interfaces
+.implements Ls9/p;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Landroidx/compose/ui/platform/i3;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x18
+    name = null
+.end annotation
+
+
+# static fields
+.field public static final b:Landroidx/compose/ui/platform/i3$b;
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 1
+
+    new-instance v0, Landroidx/compose/ui/platform/i3$b;
+
+    invoke-direct {v0}, Landroidx/compose/ui/platform/i3$b;-><init>()V
+
+    sput-object v0, Landroidx/compose/ui/platform/i3$b;->b:Landroidx/compose/ui/platform/i3$b;
+
+    return-void
+.end method
+
+.method constructor <init>()V
+    .locals 1
+
+    const/4 v0, 0x2
+
+    invoke-direct {p0, v0}, Lt9/n;-><init>(I)V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public bridge synthetic U(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+    .locals 0
+
+    check-cast p1, Landroid/view/View;
+
+    check-cast p2, Landroid/graphics/Matrix;
+
+    invoke-virtual {p0, p1, p2}, Landroidx/compose/ui/platform/i3$b;->a(Landroid/view/View;Landroid/graphics/Matrix;)V
+
+    sget-object p1, Lh9/v;->a:Lh9/v;
+
+    return-object p1
+.end method
+
+.method public final a(Landroid/view/View;Landroid/graphics/Matrix;)V
+    .locals 1
+
+    const-string v0, "view"
+
+    invoke-static {p1, v0}, Lt9/m;->e(Ljava/lang/Object;Ljava/lang/String;)V
+
+    const-string v0, "matrix"
+
+    invoke-static {p2, v0}, Lt9/m;->e(Ljava/lang/Object;Ljava/lang/String;)V
+
+    invoke-virtual {p1}, Landroid/view/View;->getMatrix()Landroid/graphics/Matrix;
+
+    move-result-object p1
+
+    invoke-virtual {p2, p1}, Landroid/graphics/Matrix;->set(Landroid/graphics/Matrix;)V
+
+    return-void
+.end method

@@ -1,0 +1,64 @@
+.class Lmiuix/popupwidget/widget/ListPopupWindow$b;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+# interfaces
+.implements Landroid/widget/AdapterView$OnItemSelectedListener;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Lmiuix/popupwidget/widget/ListPopupWindow;->e()I
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x0
+    name = null
+.end annotation
+
+
+# instance fields
+.field final synthetic a:Lmiuix/popupwidget/widget/ListPopupWindow;
+
+
+# direct methods
+.method constructor <init>(Lmiuix/popupwidget/widget/ListPopupWindow;)V
+    .locals 0
+
+    iput-object p1, p0, Lmiuix/popupwidget/widget/ListPopupWindow$b;->a:Lmiuix/popupwidget/widget/ListPopupWindow;
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public onItemSelected(Landroid/widget/AdapterView;Landroid/view/View;IJ)V
+    .locals 0
+
+    const/4 p1, -0x1
+
+    if-eq p3, p1, :cond_0
+
+    iget-object p1, p0, Lmiuix/popupwidget/widget/ListPopupWindow$b;->a:Lmiuix/popupwidget/widget/ListPopupWindow;
+
+    invoke-static {p1}, Lmiuix/popupwidget/widget/ListPopupWindow;->b(Lmiuix/popupwidget/widget/ListPopupWindow;)Lmiuix/popupwidget/widget/ListPopupWindow$c;
+
+    move-result-object p1
+
+    if-eqz p1, :cond_0
+
+    const/4 p2, 0x0
+
+    invoke-static {p1, p2}, Lmiuix/popupwidget/widget/ListPopupWindow$c;->a(Lmiuix/popupwidget/widget/ListPopupWindow$c;Z)Z
+
+    :cond_0
+    return-void
+.end method
+
+.method public onNothingSelected(Landroid/widget/AdapterView;)V
+    .locals 0
+
+    return-void
+.end method

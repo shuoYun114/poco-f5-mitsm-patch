@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="35" android:compileSdkVersionCodename="15" package="com.xiaomi.account" platformBuildVersionCode="35" platformBuildVersionName="15">
+    <uses-permission android:name="android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS"/>
+    <uses-permission android:name="com.xiaomi.permission.BIND_CONTINUITY_SERVICE"/>
+    <uses-permission android:name="com.xiaomi.permission.BIND_CONTINUITY_SERVICE_INTERNAL"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS_PRIVILEGED"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.LOCAL_MAC_ADDRESS"/>
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS"/>
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL"/>
+    <uses-permission android:name="android.permission.MANAGE_USERS"/>
+    <uses-permission android:name="android.permission.MANAGE_NETWORK_POLICY"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACTIVITY_TASKS"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    <uses-permission android:name="android.permission.ACCESS_KEYGUARD_SECURE_STORAGE"/>
+    <uses-permission android:name="com.xiaomi.permission.CLOUD_MANAGER"/>
+    <uses-permission android:name="com.xiaomi.permission.ACCESS_WIFI"/>
+    <uses-permission android:name="com.xiaomi.xmsf.permission.PAYMENT"/>
+    <uses-permission android:name="miui.permission.ACCESS_RECORDS"/>
+    <uses-permission android:name="com.xiaomi.account.permission.MIPUSH_RECEIVE"/>
+    <uses-permission android:name="com.xiaomi.vip.permission.SERVICE"/>
+    <uses-permission android:name="com.xiaomi.permission.MICLOUD"/>
+    <uses-permission android:name="com.xiaomi.account.permission.SEND_ACCOUNT_POST_CHANGE_BROADCAST"/>
+    <uses-permission android:name="miui.cloud.finddevice.AccessFindDevice"/>
+    <uses-permission android:name="miui.cloud.finddevice.ManageFindDevice"/>
+    <uses-permission android:name="com.mi.health.permission.DEFAULT_READ_DATA"/>
+    <uses-permission android:name="com.mi.health.permission.DEFAULT_WRITE_DATA"/>
+    <uses-permission android:name="com.xiaomi.permission.USE_KEYBOX"/>
+    <uses-permission android:name="com.xiaomi.account.permission.RECEIVE_FIND_DEVICE_STATUS"/>
+    <uses-permission android:name="miui.permission.EXTRA_NETWORK"/>
+    <uses-permission android:name="miui.permission.powerkeeper.HIDDEN_MODE_PROVIDER"/>
+    <uses-permission android:name="com.xiaomi.permission.ACCESS_SECURITY_DEVICE_CREDENTIAL"/>
+    <uses-permission android:name="com.xiaomi.simactivate.service.ACTIVATE_SIM"/>
+    <uses-permission android:name="com.miui.securitycenter.permission.PERM_USE_INFO"/>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="miui.permission.USE_INTERNAL_GENERAL_API"/>
+    <uses-permission android:name="com.xiaomi.market.sdk.UPDATE"/>
+    <uses-permission android:name="com.miui.securitycenter.permission.SYSTEM_PERMISSION_DECLARE"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="com.xiaomi.fido.permission.PRIVILEGE_OPERATION"/>
+    <queries>
+        <package android:name="de.robv.android.xposed.installer"/>
+        <package android:name="com.saurik.substrate"/>
+        <package android:name="com.xiaomi.account"/>
+        <package android:name="com.xiaomi.controlscreen.account"/>
+        <package android:name="com.miui.greenguard"/>
+        <package android:name="com.mipay.wallet"/>
+        <package android:name="com.tencent.mm"/>
+        <package android:name="com.xiaomi.vipaccount"/>
+        <package android:name="com.miui.cloudservice"/>
+        <package android:name="com.xiaomi.jr"/>
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SEND"/>
+        </intent>
+        <intent>
+            <action android:name="com.android.camera.action.CROP"/>
+        </intent>
+        <package android:name="com.xiaomi.mi_connect_service"/>
+    </queries>
+    <permission android:name="com.xiaomi.account.permission.REMOVE_ACCOUNT_AUTHENTICATOR" android:protectionLevel="signature"/>
+    <permission android:name="com.xiaomi.permission.AUTH_SERVICE" android:protectionLevel="normal"/>
+    <permission android:name="com.xiaomi.account.permission.MIPUSH_RECEIVE" android:protectionLevel="signature"/>
+    <permission android:name="com.xiaomi.account.permission.SEND_ACCOUNT_POST_CHANGE_BROADCAST" android:protectionLevel="signatureOrSystem"/>
+    <permission android:name="com.xiaomi.account.permission.GUARD_LOGIN" android:protectionLevel="signatureOrSystem"/>
+    <permission android:name="com.xiaomi.account.permission.MI_MOVER" android:protectionLevel="signatureOrSystem"/>
+    <permission android:name="com.xiaomi.account.permission.RECEIVE_FIND_DEVICE_STATUS" android:protectionLevel="signatureOrSystem"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <permission android:name="com.xiaomi.account.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.xiaomi.account.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"/>
+    <uses-permission android:name="com.miui.bugreport.permission.DUMP_CACHED_LOG"/>
+    <application android:allowBackup="true" android:allowClearUserData="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:backupAgent="com.xiaomi.account.backup.XiaomiAccountBackupAgent" android:extractNativeLibs="false" android:icon="@drawable/icon" android:label="@string/app_name" android:name="com.xiaomi.account.XiaomiAccountApp" android:networkSecurityConfig="@xml/network_security_config" android:resizeableActivity="false" android:supportsRtl="true" android:theme="@android:style/Theme.Holo.Light">
+        <service android:exported="true" android:name="com.xiaomi.account.provider.AccountToolService" android:permission="com.aios.osbot.permission.BIND_APP_TOOL">
+            <intent-filter>
+                <action android:name="com.aios.osbot.action.APP_TOOL_PROVIDER"/>
+            </intent-filter>
+            <meta-data android:name="app_tools_summary" android:value="账号状态查询, 小米ID查询, 头像设置, 昵称设置, 性别设置, 国家/地区查看, 登录设备, 登录与安全, 家人管理, 邀请家人, 关于小米账号, 帮助中心"/>
+        </service>
+        <property android:name="android.view.PROPERTY_MIUI_LARGE_FONT_ENABLED" android:value="true"/>
+        <property android:name="android.view.PROPERTY_MIUI_SMOOTH_CORNER_ENABLED" android:value="true"/>
+        <property android:name="android.window.PROPERTY_ACTIVITY_EMBEDDING_SPLITS_ENABLED" android:value="true"/>
+        <meta-data android:name="com.hyperos.AI_ACTION_DESCRIPTION" android:resource="@raw/aiaction_ddf_data"/>
+        <meta-data android:name="fido2.trusted.facets" android:resource="@string/facets_path"/>
+        <meta-data android:name="com.miui.bugreport.LOG_DIR" android:resource="@xml/log_paths"/>
+        <meta-data android:name="miui.supportAppContinuity" android:value="true"/>
+        <meta-data android:name="miui.screenInnerOrientation" android:value="unspecified"/>
+        <meta-data android:name="WEIXIN_APP_ID" android:value="wxbf03a31f4135dd16"/>
+        <meta-data android:name="cta_provision" android:value="true"/>
+        <meta-data android:name="cta_name" android:value="app_name"/>
+        <meta-data android:name="cta_use_network" android:value="true"/>
+        <meta-data android:name="cta_purpose" android:value="passport_cta_provision_content"/>
+        <meta-data android:name="cta_user_agreement" android:value="cta_user_agreement"/>
+        <meta-data android:name="cta_privacy_policy" android:value="cta_privacy_policy"/>
+        <meta-data android:name="cta_required_permissions" android:value="@string/passport_cta_provision_required_permissions"/>
+        <meta-data android:name="cta_required_permissions_desc" android:value="passport_cta_provision_required_all_permissions_desc"/>
+        <meta-data android:name="com.xiaomi.xms.APP_ID" android:value="@string/island_app_id"/>
+        <meta-data android:name="com.xiaomi.xms.BUILD_TYPE_DEBUG" android:value="false"/>
+        <activity android:configChanges="keyboardHidden|mcc|mnc|smallestScreenSize" android:exported="true" android:label="@string/passport_account_label" android:launchMode="singleTop" android:name="com.xiaomi.account.ui.AccountSettingsActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.settings.XIAOMI_ACCOUNT_SYNC_SETTINGS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="miui.intent.category.SYSAPP_TOOL"/>
+                <category android:name="android.intent.category.MONKEY"/>
+            </intent-filter>
+            <meta-data android:name="functionindex" android:resource="@xml/functionindex"/>
+            <meta-data android:name="switchanimationtype" android:value="true"/>
+        </activity>
+        <activity android:configChanges="keyboardHidden|mcc|mnc|smallestScreenSize" android:label="@string/passport_account_label" android:name="com.xiaomi.account.frame.interaction.view.AccountHomePageActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating">
+            <meta-data android:name="functionindex" android:resource="@xml/functionindex"/>
+            <meta-data android:name="switchanimationtype" android:value="true"/>
+        </activity>
+        <activity android:configChanges="keyboardHidden|mcc|mnc|orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:label="@string/about_mi_account" android:name="com.xiaomi.account.settings.AgreementAndPrivacyActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating"/>
+        <activity android:configChanges="keyboardHidden|mcc|mnc|smallestScreenSize" android:exported="false" android:label="@string/system_ad" android:name="com.xiaomi.account.settings.SystemAdActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating" android:windowSoftInputMode="adjustPan"/>
+        <activity android:configChanges="keyboardHidden|orientation|smallestScreenSize" android:excludeFromRecents="true" android:exported="true" android:name="com.xiaomi.account.ui.AuthorizeNativeActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Light.Dialog" android:windowSoftInputMode="adjustPan"/>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.xiaomi.account.ui.AuthAddAccountEntryActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating"/>
+        <activity android:configChanges="keyboardHidden|orientation|smallestScreenSize" android:excludeFromRecents="true" android:exported="false" android:label="@string/app_name" android:name="com.xiaomi.account.ui.KRPermissionActivity" android:screenOrientation="behind" android:windowSoftInputMode="adjustPan"/>
+        <activity android:configChanges="keyboardHidden|orientation|smallestScreenSize" android:excludeFromRecents="true" android:exported="false" android:label="@string/app_name" android:name="com.xiaomi.account.ui.KRLicenseActivity" android:screenOrientation="behind" android:windowSoftInputMode="adjustPan"/>
+        <activity android:configChanges="keyboardHidden|mcc|mnc|orientation|smallestScreenSize" android:exported="true" android:name="com.xiaomi.account.ui.AccountWebActivity" android:screenOrientation="behind" android:theme="@style/Theme.Dialog.Translucent" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="com.xiaomi.account.action.XIAOMI_ACCOUNT_WEB"/>
+                <data android:host="*.account.xiaomi.com" android:scheme="https"/>
+                <data android:host="staging.account.preview.n.xiaomi.net" android:scheme="http"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|orientation|smallestScreenSize" android:exported="true" android:label="@string/change_password" android:name="com.xiaomi.account.ui.ChangePasswordActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating"/>
+        <activity android:allowTaskReparenting="false" android:configChanges="keyboardHidden|mcc|mnc|smallestScreenSize" android:exported="true" android:label="@string/passport_login_title" android:launchMode="singleTask" android:name="com.xiaomi.account.ui.LoginActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating" android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.XIAOMI_ACCOUNT_WELCOME"/>
+                <action android:name="com.xiaomi.account.action.XIAOMI_ACCOUNT_LOGIN"/>
+                <action android:name="com.xiaomi.account.action.XIAOMI_ACCOUNT_REG"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="switchanimationtype" android:value="true"/>
+            <meta-data android:name="miui.screenInnerOrientation" android:value="behind"/>
+        </activity>
+        <activity android:configChanges="keyboardHidden|mcc|mnc|orientation|smallestScreenSize" android:exported="true" android:label="@string/passport_area_code_title" android:name="com.xiaomi.account.ui.AreaCodePickerActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.XIAOMI_ACCOUNT_AREA_CODE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="miui.screenInnerOrientation" android:value="behind"/>
+        </activity>
+        <activity android:configChanges="keyboardHidden|orientation|smallestScreenSize" android:excludeFromRecents="true" android:exported="true" android:launchMode="singleTop" android:name="com.xiaomi.account.ui.QuickLoginActivity" android:screenOrientation="behind" android:theme="@style/ThemeAlertActivity" android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.XIAOMI_ACCOUNT_QUICK_LOGIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <property android:name="miui.continuity.policy" android:value="5"/>
+        </activity>
+        <activity android:configChanges="keyboardHidden|mcc|mnc|orientation|smallestScreenSize" android:exported="true" android:name="com.xiaomi.account.ui.AccountUnactivatedActivity" android:screenOrientation="behind" android:taskAffinity="com.xiaomi.account.ui.AccountUnactivatedActivity" android:theme="@style/Theme.Dialog.FixedSize">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.XIAOMI_ACCOUNT_UNACTIVATED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:exported="true" android:name="com.xiaomi.passport.ui.LicenseActivity" android:noHistory="true" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.VIEW_LICENSE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <data android:host="license.account.xiaomi.com" android:scheme="xmaccount"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|orientation|smallestScreenSize" android:exported="true" android:label="@string/passport_set_password_title" android:name="com.xiaomi.account.ui.SetPasswordActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating"/>
+        <activity android:configChanges="keyboardHidden|orientation|smallestScreenSize" android:exported="true" android:launchMode="singleTop" android:name="com.xiaomi.account.ui.PassTokenExpiredDialog" android:screenOrientation="behind" android:theme="@style/Theme.Dialog.NoTitle.Translucent"/>
+        <activity android:configChanges="keyboardHidden|orientation|smallestScreenSize" android:exported="true" android:label="@string/account_security" android:name="com.xiaomi.account.ui.AccountSecurityActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.MI_ACCOUNT_SETTINGS"/>
+                <action android:name="com.xiaomi.account.action.ACCOUNT_SECURITY_INFO"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:exported="true" android:name="com.xiaomi.account.ui.SystemAccountAuthDialogActivity" android:screenOrientation="behind" android:theme="@style/ThemeAlertActivity">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.SYSTEM_ACCOUNT_LOGIN_AUTH"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:exported="true" android:name="com.xiaomi.account.remoteui.RemoteDialogActivity" android:permission="com.xiaomi.permission.CLOUD_MANAGER" android:screenOrientation="behind" android:theme="@style/ThemeAlertActivity">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.REMOTE_DIALOG_ACTIVITY"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.xiaomi.account.ui.LogoutDeleteCardDialogActivity" android:screenOrientation="behind" android:theme="@style/ThemeAlertActivity">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.LOGOUT_DELETE_CARD_DIALOG"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.xiaomi.account.ui.RemoveAccountDialogActivity" android:screenOrientation="behind" android:theme="@style/ThemeAlertActivity"/>
+        <activity android:configChanges="keyboardHidden|orientation|smallestScreenSize" android:excludeFromRecents="false" android:exported="true" android:label="@string/account_user_phone" android:launchMode="singleTask" android:name="com.xiaomi.account.ui.UserPhoneInfoActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.VIEW_BIND_PHONE_INFO"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|orientation|smallestScreenSize" android:excludeFromRecents="false" android:exported="false" android:label="@string/account_bind_secure_phone_title" android:name="com.xiaomi.account.ui.BindPhoneActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating"/>
+        <activity android:configChanges="keyboardHidden|orientation|smallestScreenSize" android:excludeFromRecents="false" android:exported="false" android:label="@string/account_bind_secure_email_title" android:name="com.xiaomi.account.ui.BindSafeEmailActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize" android:exported="true" android:label="@string/self_account_info" android:name="com.xiaomi.account.ui.UserDetailInfoActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.USER_AVATAR_UPDATE"/>
+                <action android:name="com.xiaomi.account.action.USER_INFO_DETAIL"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|smallestScreenSize" android:excludeFromRecents="false" android:exported="false" android:name="com.xiaomi.account.ui.DeviceDetailInfoActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating"/>
+        <activity android:configChanges="keyboardHidden|smallestScreenSize" android:exported="true" android:launchMode="singleTop" android:name="com.xiaomi.account.ui.PassportJsbWebViewActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.PASSPORT_JSB_WEBVIEW"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <data android:host="webview" android:scheme="xiaomiaccount"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+            <meta-data android:name="miui.screenInnerOrientation" android:value="behind"/>
+        </activity>
+        <activity android:configChanges="keyboardHidden|smallestScreenSize" android:excludeFromRecents="false" android:exported="true" android:label="@string/account_bind_devices" android:launchMode="singleTop" android:name="com.xiaomi.account.ui.DeviceSettingListActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.MY_DEVICE"/>
+                <action android:name="com.xiaomi.account.action.DEVICE_LIST"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|smallestScreenSize" android:exported="true" android:label="@string/account_bind_settings" android:name="com.xiaomi.account.ui.SnsListActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.BIND_SNS_ACCOUNTS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|smallestScreenSize" android:excludeFromRecents="true" android:exported="true" android:launchMode="singleTop" android:name="com.xiaomi.account.ui.SnsAccountActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating">
+            <intent-filter>
+                <action android:name="com.xiaomi.action.SNS_NOTIFICATION_REDIRECTION"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|smallestScreenSize" android:exported="false" android:name="com.xiaomi.account.ui.SnsAddAccountActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating"/>
+        <activity android:configChanges="keyboardHidden|smallestScreenSize" android:exported="false" android:name="com.xiaomi.account.ui.ShowPushCodeDialogActivity" android:screenOrientation="behind" android:theme="@style/Theme.Dialog.NoTitle.Translucent"/>
+        <activity android:excludeFromRecents="true" android:exported="false" android:launchMode="singleInstance" android:name="com.xiaomi.account.ui.PushAuthActivity" android:screenOrientation="behind" android:theme="@style/AlertDialog.Theme.Light"/>
+        <activity android:configChanges="keyboardHidden|smallestScreenSize" android:excludeFromRecents="true" android:exported="true" android:name="com.xiaomi.account.ui.SettingsSearchResultProxyActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.DayNight">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.SETTINGS_SEARCH_RESULT_PROXY"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|smallestScreenSize" android:excludeFromRecents="true" android:exported="true" android:name="com.xiaomi.account.ui.AccountWebViewActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.DayNight">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.ACCOUNT_WEBVIEW_FAMILY"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|smallestScreenSize" android:excludeFromRecents="true" android:exported="true" android:name="com.xiaomi.account.ui.InviteMemberActivity" android:screenOrientation="behind" android:theme="@style/BottomSheetActivity">
+            <meta-data android:name="miui.dynamic_dpi_relaunch" android:value="true"/>
+            <intent-filter>
+                <action android:name="com.xiaomi.account.INVITE_MEMBER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data android:name="com.facebook.sdk.CallbackOffset" android:value="1103"/>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize" android:label="@string/app_name" android:name="com.facebook.FacebookActivity"/>
+        <activity android:exported="true" android:name="com.facebook.CustomTabActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="@string/fb_login_protocol_scheme"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:excludeFromRecents="false" android:exported="false" android:name="com.xiaomi.account.ui.AiActionProxyActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.DayNight">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.AI_ACTION_PROXY"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|smallestScreenSize" android:exported="false" android:label="@string/passport_login_title" android:name="com.xiaomi.account.ui.SmsUplinkConfirmActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating"/>
+        <provider android:authorities="com.xiaomi.account.provider.AIActionProvider" android:exported="true" android:name="com.xiaomi.account.provider.AIActionProvider">
+            <meta-data android:name="com.hyperos.AI_ACTION_PROPERTY" android:resource="@xml/aiaction_data_activity"/>
+            <intent-filter>
+                <action android:name="hyperos.action.AIACTION_PROVIDER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </provider>
+        <activity android:exported="false" android:launchMode="singleTop" android:name="com.xiaomi.account.upgrade.AccountApkUpdateDialogActivity" android:screenOrientation="behind" android:theme="@style/ThemeAlertActivity"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:excludeFromRecents="true" android:exported="false" android:name="com.xiaomi.passport.ui.internal.ConfirmCredentialActivity" android:theme="@style/PassportTheme.NoActionBar" android:windowSoftInputMode="adjustPan"/>
+        <receiver android:exported="true" android:name="com.xiaomi.account.receiver.FindDeviceStatusUpdateReceiver" android:permission="com.xiaomi.account.permission.RECEIVE_FIND_DEVICE_STATUS">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.UPDATE_FIND_DEVICE_STATUS"/>
+            </intent-filter>
+        </receiver>
+        <service android:enabled="true" android:exported="true" android:name="com.xiaomi.account.nearfield.AccountContinuityService" android:permission="com.xiaomi.permission.BIND_CONTINUITY_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="com.xiaomi.continuity.action.STATIC_CONFIG_ACTION"/>
+            </intent-filter>
+            <meta-data android:name="static_advertising_list" android:resource="@xml/advertising_list"/>
+            <meta-data android:name="static_networking_service_list" android:resource="@xml/networking_service_list"/>
+        </service>
+        <service android:exported="true" android:name="com.xiaomi.account.authquicklogin.XiaomiAccountAuthService">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.SERVICE_QUICK_LOGIN_AUTH"/>
+            </intent-filter>
+        </service>
+        <activity android:configChanges="keyboardHidden|mcc|mnc|orientation|screenLayout|screenSize|smallestScreenSize" android:exported="true" android:name="com.xiaomi.account.authquicklogin.ui.XiaomiAccountOAuthQuickLoginActivity" android:screenOrientation="behind" android:theme="@style/miui.Theme.Floating" android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.ACTIVITY_XIAOMI_ACCOUNT_OAUTH_QUICK_LOGIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboardHidden|mcc|mnc|orientation|screenLayout|screenSize|smallestScreenSize" android:exported="false" android:name="com.xiaomi.account.userverification.ui.UserVerificationActivity" android:screenOrientation="behind" android:theme="@style/ThemeAlertActivity" android:windowSoftInputMode="adjustPan"/>
+        <receiver android:exported="true" android:name="com.xiaomi.account.push.AccountPushMessageReceiver" android:permission="com.xiaomi.xmsf.permission.MIPUSH_RECEIVE">
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.ERROR"/>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="miuixpreference" android:value="3.1"/>
+        <meta-data android:name="os_private_label" android:value="PRIVATE_OS030"/>
+        <meta-data android:name="appcompat" android:value="3.1"/>
+        <meta-data android:name="bottomsheet" android:value="3.0"/>
+        <meta-data android:name="miuixbasewidget" android:value="1.0"/>
+        <meta-data android:name="flexible" android:value="1.0"/>
+        <uses-library android:name="micloud-sdk"/>
+        <service android:exported="false" android:name="com.xiaomi.passport.accountmanager.OwnAppXiaomiAccountAuthenticatorService">
+            <intent-filter>
+                <action android:name="com.xiaomi.accounts.AccountAuthenticator"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.xiaomi.account.service.AppAccountExchangeService" android:permission="com.xiaomi.permission.CLOUD_MANAGER">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.BIND_ACCOUNT_EXCHANGE_SERVICE_V2"/>
+            </intent-filter>
+        </service>
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <activity android:exported="false" android:name="com.xiaomi.passport.ui.internal.PickCountryCodeActivity" android:theme="@style/PassportTheme.NoActionBar"/>
+        <activity android:exported="false" android:label="" android:name="com.xiaomi.passport.ui.page.UserAvatarUpdateActivity" android:screenOrientation="portrait" android:theme="@style/PassportTheme.Transparent"/>
+        <provider android:authorities="com.xiaomi.account.passport.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="com.xiaomi.passport.ui.settings.provider.PassportFileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/passport_provider_file_paths"/>
+        </provider>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.xiaomi.passport.ui.page.AccountLoginActivity" android:screenOrientation="behind" android:theme="@style/PassportTheme.NoActionBar" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:exported="false" android:label="@string/passport_account_user_details" android:name="com.xiaomi.passport.ui.page.UserInfoActivity" android:theme="@style/PassportTheme.NoActionBar"/>
+        <activity android:exported="false" android:launchMode="singleTop" android:name="com.xiaomi.passport.ui.internal.PassportJsbWebViewActivity" android:theme="@style/PassportTheme.NoActionBar"/>
+        <meta-data android:name="popupwidget" android:value="1.0"/>
+        <meta-data android:name="androidbasewidget" android:value="1.0"/>
+        <meta-data android:name="miuixstretchablewidget" android:value="1.0"/>
+        <meta-data android:name="slidingwidget" android:value="1.0"/>
+        <meta-data android:name="pickerwidget" android:value="1.0"/>
+        <meta-data android:name="viewpager" android:value="2.0"/>
+        <meta-data android:name="viewpager2" android:value="2.0"/>
+        <uses-library android:name="androidx.window.extensions" android:required="false"/>
+        <uses-library android:name="androidx.window.sidecar" android:required="false"/>
+        <provider android:authorities="com.xiaomi.account.provider.DeviceManagerProvider" android:exported="true" android:name="com.xiaomi.account.provider.DeviceManagerProvider"/>
+        <provider android:authorities="com.xiaomi.account.provider.AccountDataProvider" android:exported="true" android:name="com.xiaomi.account.provider.AccountDataProvider"/>
+        <provider android:authorities="com.xiaomi.account.mover.MiMoverProvider" android:exported="true" android:name="com.xiaomi.account.mover.MiMoverProvider" android:permission="com.xiaomi.account.permission.MI_MOVER"/>
+        <service android:exported="false" android:name="com.xiaomi.account.mover.MiMoverDelayJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="false" android:name="com.xiaomi.account.privacy.FetchPrivacyPolicyJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="false" android:name="com.xiaomi.account.config.notification.FetchAccountPushConfigJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="false" android:name="com.xiaomi.account.config.notification.LoginPushJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:exported="true" android:name="com.xiaomi.account.service.AccountPhoneNumberManagerService">
+            <intent-filter>
+                <action android:name="com.xiaomi.phonenum.ACCOUNT_PHONE_NUMBER_MANAGER_BIND_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.xiaomi.account.guestaccount.GuestAccountService">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.BIND_GUEST_ACCOUNT_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.xiaomi.account.authenticator.XmAuthenticationService">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator"/>
+            </intent-filter>
+            <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/mi_authenticator"/>
+        </service>
+        <service android:exported="true" android:name="com.xiaomi.account.PassportServiceTokenService">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.SERVICE_TOKEN_OP"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.xiaomi.account.service.PassportCommonService">
+            <meta-data android:name="feature_get_device_info_version" android:value="1"/>
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.COMMON_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.xiaomi.passport.MiPassportUIControllerService" android:permission="com.xiaomi.permission.CLOUD_MANAGER">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.UI_CONTROLLER_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.xiaomi.account.XiaomiAccountService" android:permission="com.xiaomi.permission.CLOUD_MANAGER">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.BIND_XIAOMI_ACCOUNT_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.xiaomi.udevid.UDevIdService">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.BIND_XIAOMI_UDEVID_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.xiaomi.account.XiaomiAuthService" android:permission="com.xiaomi.permission.AUTH_SERVICE">
+            <intent-filter>
+                <action android:name="miui.intent.action.XIAOMI_ACCOUNT_AUTHORIZE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="false" android:name="com.xiaomi.account.XiaomiAccountTaskService">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.QUERY_USER_INFO"/>
+                <action android:name="com.xiaomi.account.action.UPLOAD_DEVICE_INFO"/>
+                <action android:name="com.xiaomi.account.action.QUERY_USER_PASSWORD_STATE"/>
+                <action android:name="com.xiaomi.account.action.QUERY_USER_SECURITY_INFO"/>
+                <action android:name="com.xiaomi.account.action.QUERY_USER_TWO_FACTOR_INFO"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.xiaomi.account.tzservice.SecurityDeviceSignService" android:process=":tzSecuritySign">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.SECURITY_DEVICE_SIGN"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.xiaomi.account.service.SystemAccountExchangeService">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.BIND_ACCOUNT_EXCHANGE_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.xiaomi.account.finddevice.FindDeviceRemoveAccountService" android:permission="com.xiaomi.account.permission.REMOVE_ACCOUNT_AUTHENTICATOR">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.BIND_FIND_DEVICE_REMOVE_ACCOUNT_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="false" android:name="com.xiaomi.account.finddevice.LoginSuccessTaskService"/>
+        <receiver android:exported="true" android:name="com.xiaomi.account.config.notification.NotificationConfigChangedReceiver">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.account_config_info_changed"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="false" android:name="com.xiaomi.account.config.notification.LoginPushNotificationDeleteReceiver"/>
+        <provider android:authorities="com.xiaomi.account.provider.XiaomiAccountSettingsSearchProvider" android:exported="true" android:grantUriPermissions="true" android:multiprocess="false" android:name="com.xiaomi.account.provider.XiaomiAccountSettingsSearchProvider">
+            <intent-filter>
+                <action android:name="miui.intent.action.SETTINGS_SEARCH_PROVIDER"/>
+            </intent-filter>
+        </provider>
+        <provider android:authorities="com.xiaomi.account.provider.XiaomiAccountLogoutPageProvider" android:exported="false" android:multiprocess="false" android:name="com.xiaomi.account.provider.XiaomiAccountLogoutPageProvider">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.LOGOUT_PAGE_PROVIDER"/>
+            </intent-filter>
+        </provider>
+        <provider android:authorities="com.xiaomi.account.provider.XiaomiAccountLoginPageProvider" android:exported="false" android:multiprocess="false" android:name="com.xiaomi.account.provider.XiaomiAccountLoginPageProvider">
+            <intent-filter>
+                <action android:name="com.xiaomi.account.action.LOGIN_PAGE_PROVIDER"/>
+            </intent-filter>
+        </provider>
+        <provider android:authorities="com.xiaomi.account.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+        </provider>
+        <meta-data android:name="recyclerview_card" android:value="1.0"/>
+        <meta-data android:name="springback" android:value="3.1"/>
+        <meta-data android:name="cardview" android:value="1.0"/>
+        <meta-data android:name="theme" android:value="1.0"/>
+        <meta-data android:name="recyclerview" android:value="2.0"/>
+        <meta-data android:name="graphics" android:value="2.0"/>
+        <meta-data android:name="nest" android:value="2.0"/>
+        <meta-data android:name="haptic" android:value="1.0"/>
+        <meta-data android:name="smooth" android:value="1.0"/>
+        <meta-data android:name="core" android:value="2.0"/>
+        <meta-data android:name="recyclerview_animator" android:value="2.0"/>
+        <provider android:authorities="com.xiaomi.account.androidx-startup" android:exported="false" android:name="androidx.startup.InitializationProvider">
+            <meta-data android:name="androidx.emoji2.text.EmojiCompatInitializer" android:value="androidx.startup"/>
+            <meta-data android:name="androidx.lifecycle.ProcessLifecycleInitializer" android:value="androidx.startup"/>
+            <meta-data android:name="androidx.profileinstaller.ProfileInstallerInitializer" android:value="androidx.startup"/>
+        </provider>
+        <meta-data android:name="spring" android:value="1.0"/>
+        <meta-data android:name="com.xiaomi.continuity.sdk.VERSION_CODE" android:value="5000136"/>
+        <meta-data android:name="com.xiaomi.continuity.sdk.VERSION_NAME" android:value="5.0.136.10.0625201"/>
+        <provider android:authorities="com.xiaomi.account.continuity-startup" android:exported="false" android:name="com.xiaomi.continuity.InitializationProvider"/>
+        <meta-data android:name="com.xiaomi.xms.authconnect.SDK_VERSION" android:value="1.0.9"/>
+        <meta-data android:name="MIPUSH_SDK_VERSION_CODE" android:value="50010"/>
+        <meta-data android:name="MIPUSH_SDK_VERSION_NAME" android:value="5_1_0-C"/>
+        <service android:enabled="true" android:name="com.xiaomi.push.service.XMPushService" android:process=":pushservice"/>
+        <service android:enabled="true" android:exported="false" android:name="com.xiaomi.push.service.XMJobService" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":pushservice"/>
+        <service android:enabled="true" android:exported="true" android:name="com.xiaomi.mipush.sdk.PushMessageHandler" android:permission="com.xiaomi.xmsf.permission.MIPUSH_RECEIVE"/>
+        <service android:enabled="true" android:name="com.xiaomi.mipush.sdk.MessageHandleService"/>
+        <receiver android:exported="false" android:name="com.xiaomi.push.service.receivers.PingReceiver" android:process=":pushservice">
+            <intent-filter>
+                <action android:name="com.xiaomi.push.PING_TIMER"/>
+            </intent-filter>
+        </receiver>
+        <activity android:enabled="true" android:excludeFromRecents="true" android:exported="true" android:launchMode="singleInstance" android:name="com.xiaomi.mipush.sdk.NotificationClickedActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <meta-data android:name="supportStyle" android:value="scene|voip"/>
+        </activity>
+        <activity android:excludeFromRecents="true" android:exported="true" android:name="com.xiaomi.account.sns.weixin.WXEntryActivity" android:screenOrientation="behind" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity-alias android:exported="true" android:name="com.xiaomi.account.wxapi.WXEntryActivity" android:targetActivity="com.xiaomi.account.sns.weixin.WXEntryActivity"/>
+        <meta-data android:name="com.miui.bugreport.DEFAULT_LOG_DIR" android:resource="@xml/default_log_paths"/>
+        <provider android:authorities="com.xiaomi.account.provider.bugreport" android:exported="true" android:name="com.miui.bugreport.logprovider.DumpLogProvider" android:permission="com.miui.bugreport.permission.DUMP_CACHED_LOG">
+            <intent-filter>
+                <action android:name="com.miui.bugreport.intent.ACTION_DUMP_CACHED_LOG"/>
+            </intent-filter>
+        </provider>
+        <meta-data android:name="dynamicoverscroller" android:value="2.0"/>
+        <meta-data android:name="folme" android:value="2.0"/>
+        <meta-data android:name="animation" android:value="1.0"/>
+        <receiver android:directBootAware="false" android:enabled="true" android:exported="true" android:name="androidx.profileinstaller.ProfileInstallReceiver" android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SKIP_FILE"/>
+            </intent-filter>
+        </receiver>
+        <activity android:exported="false" android:launchMode="singleTop" android:name="com.xiaomi.xms.base.TemporaryInvisibleActivity" android:theme="@style/TranslucentTheme"/>
+        <meta-data android:name="com.xiaomi.xms.base.SDK_VERSION" android:value="1.0.10"/>
+        <meta-data android:name="devicebaseinfo" android:value="1.0"/>
+        <activity android:excludeFromRecents="true" android:exported="false" android:launchMode="singleTop" android:name="com.xiaomi.account.sns.master.SNSAuthProxyActivity" android:screenOrientation="behind" android:theme="@style/Translucent"/>
+    </application>
+</manifest>

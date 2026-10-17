@@ -1,0 +1,23 @@
+.class public abstract Lr/k;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+
+# static fields
+.field private static final a:Z = true
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 0
+
+    return-void
+.end method
+
+.method public static final a()Z
+    .locals 1
+
+    sget-boolean v0, Lr/k;->a:Z
+
+    return v0
+.end method

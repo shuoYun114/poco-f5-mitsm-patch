@@ -1,0 +1,119 @@
+{
+  "type": "urn:aiot-spec-v3:com.mi.phones:device:phones:0:1.0",
+  "description": "xiaomi-account ddf",
+  "protocol-version": "3.0",
+  "class": "MiPhone",
+  "dynamic": 0,
+  "ddfid": 10616834,
+  "modules": [
+    {
+      "iid": 1,
+      "type": "urn:aiot-spec-v3:com.mi.phones:module:[com.xiaomi.account]:0:1.0",
+      "description": "xiaomi-account module",
+      "name": "com.xiaomi.account",
+      "services": [
+        {
+          "iid": 1,
+          "type": "urn:aiot-spec-v3:com.mi.phones:service:[com.xiaomi.account/jumppage]:0:1.0",
+          "description": "start xiaomi-account activity",
+          "name": "jumppage",
+          "actions": [
+            {
+              "iid": 1,
+              "type": "urn:aiot-spec-v3:com.mi.phones:action:[com.xiaomi.account/jumppage/homepage]:0:1.0",
+              "description": "跳转到账号首页",
+              "in": [],
+              "out": [
+                {
+                  "name": "status",
+                  "description": "执行结果",
+                  "format": "int32",
+                  "value-list": [
+                    {
+                      "value": 0,
+                      "description": "跳转页面成功"
+                    },
+                    {
+                      "value": -1,
+                      "description": "跳转页面失败"
+                    },
+                    {
+                      "value": -103,
+                      "description": "CTA未授权，执行失败"
+                    },
+                    {
+                      "value": -10,
+                      "description": "在当前页面，无需跳转"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "iid": 2,
+              "type": "urn:aiot-spec-v3:com.mi.phones:action:[com.xiaomi.account/jumppage/resetpasswordpage]:0:1.0",
+              "description": "跳转到重置密码页",
+              "in": [],
+              "out": [
+                {
+                  "name": "status",
+                  "description": "执行结果",
+                  "format": "int32",
+                  "value-list": [
+                    {
+                      "value": 0,
+                      "description": "跳转页面成功"
+                    },
+                    {
+                      "value": -1,
+                      "description": "跳转页面失败"
+                    },
+                    {
+                      "value": -103,
+                      "description": "CTA未授权，执行失败"
+                    },
+                    {
+                      "value": -10,
+                      "description": "在当前页面，无需跳转"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "iid": 3,
+              "type": "urn:aiot-spec-v3:com.mi.phones:action:[com.xiaomi.account/jumppage/deleteaccountpage]:0:1.0",
+              "description": "跳转到注销账号页",
+              "in": [],
+              "out": [
+                {
+                  "name": "status",
+                  "description": "执行结果",
+                  "format": "int32",
+                  "value-list": [
+                    {
+                      "value": 0,
+                      "description": "跳转页面成功"
+                    },
+                    {
+                      "value": -1,
+                      "description": "跳转页面失败"
+                    },
+                    {
+                      "value": -103,
+                      "description": "CTA未授权，执行失败"
+                    },
+                    {
+                      "value": -10,
+                      "description": "在当前页面，无需跳转"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

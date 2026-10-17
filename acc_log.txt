@@ -1,0 +1,101 @@
+--------- beginning of main
+10-17 17:10:18.948  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.084766
+10-17 17:10:18.948  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:942.531982,R:492.516724,G:355.012054,B:147.505005, lux: 41.084766
+10-17 17:10:18.948  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:18.948  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.273434
+10-17 17:10:18.948  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:940.031921,R:490.016632,G:352.511963,B:142.504837, lux: 41.273434
+10-17 17:10:19.048  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.049  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.084766
+10-17 17:10:19.049  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:942.531982,R:492.516724,G:355.012054,B:147.505005, lux: 41.084766
+10-17 17:10:19.049 10770 10778 E ANDR-PERF-RESOURCEQS: Failed to apply optimization [2, 0]
+10-17 17:10:19.049  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.049  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.755863
+10-17 17:10:19.049  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:947.532166,R:490.016632,G:355.012054,B:145.004929, lux: 41.755863
+10-17 17:10:19.050  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.050  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.578960
+10-17 17:10:19.050  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:945.032104,R:492.516724,G:357.512146,B:145.004929, lux: 41.578960
+10-17 17:10:19.119  2774  2831 D OplusGpuMinidump: gpu minidump control openfile error No such file or directory, sleep for a while!
+10-17 17:10:19.142  5465  6094 D Bluetooth: [storage_module.cc:175] operator(): flash content to file: /data/misc/bluedroid/bt_config.conf
+10-17 17:10:19.147  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.147  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.578960
+10-17 17:10:19.148  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:945.032104,R:492.516724,G:357.512146,B:145.004929, lux: 41.578960
+10-17 17:10:19.148  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.148  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.329678
+10-17 17:10:19.148  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:937.531860,R:487.516541,G:355.012054,B:142.504837, lux: 41.329678
+10-17 17:10:19.149  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.149  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.579056
+10-17 17:10:19.149  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:947.532166,R:495.016815,G:360.012238,B:147.505005, lux: 41.579056
+10-17 17:10:19.150  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.150  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.140812
+10-17 17:10:19.150  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:935.031738,R:485.016479,G:352.511963,B:142.504837, lux: 41.140812
+10-17 17:10:19.150  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.150  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.645267
+10-17 17:10:19.150  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:947.532166,R:495.016815,G:357.512146,B:145.004929, lux: 41.645267
+10-17 17:10:19.153  5465  6094 D Bluetooth: [storage_module.cc:177] operator(): flash done with result: true
+10-17 17:10:19.207 10770 10778 E ANDR-PERF-RESOURCEQS: Failed to apply optimization [2, 0]
+10-17 17:10:19.247  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.247  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.578960
+10-17 17:10:19.247  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:945.032104,R:492.516724,G:357.512146,B:145.004929, lux: 41.578960
+10-17 17:10:19.247  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.248  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.834038
+10-17 17:10:19.248  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:947.532166,R:495.016815,G:357.512146,B:142.504837, lux: 41.834038
+10-17 17:10:19.248  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.249  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.273529
+10-17 17:10:19.249  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:942.531982,R:492.516724,G:355.012054,B:145.004929, lux: 41.273529
+10-17 17:10:19.349  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.350  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.506573
+10-17 17:10:19.350  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:940.031921,R:485.016479,G:352.511963,B:142.504837, lux: 41.506573
+10-17 17:10:19.357 10770 10778 E ANDR-PERF-RESOURCEQS: Failed to apply optimization [2, 0]
+10-17 17:10:19.404  3489  4040 I system_server: HeapTask is not gc_task
+10-17 17:10:19.404  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 17:10:19.404  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 17:10:19.404  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 17:10:19.404  3489  4040 I system_server: gc_priority_optimize fd is empty
+10-17 17:10:19.404  3489  4040 I system_server: open sharedFd failed with No such file or directory
+10-17 17:10:19.404  3489  4040 I system_server: gc_priority_optimize set UX fail-2
+10-17 17:10:19.439 24434 27453 W adbd    : timed out while waiting for FUNCTIONFS_BIND, trying again
+10-17 17:10:19.439 24434 27453 I adbd    : UsbFfs: connection terminated: monitor thread finished
+10-17 17:10:19.448  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.448  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.273529
+10-17 17:10:19.448  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:942.531982,R:492.516724,G:355.012054,B:145.004929, lux: 41.273529
+10-17 17:10:19.448  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.448  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.150879
+10-17 17:10:19.449  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:940.031921,R:490.016632,G:350.011871,B:142.504837, lux: 41.150879
+10-17 17:10:19.449  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.449  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.279507
+10-17 17:10:19.449  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:942.531982,R:495.016815,G:357.512146,B:145.004929, lux: 41.279507
+10-17 17:10:19.450  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.450  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.645176
+10-17 17:10:19.450  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:945.032104,R:492.516724,G:355.012054,B:142.504837, lux: 41.645176
+10-17 17:10:19.450  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.450  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.944721
+10-17 17:10:19.450  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:950.032227,R:492.516724,G:357.512146,B:145.004929, lux: 41.944721
+10-17 17:10:19.454 24434 24462 I adbd    : opening control endpoint /dev/usb-ffs/adb/ep0
+10-17 17:10:19.518 10770 10778 E ANDR-PERF-RESOURCEQS: Failed to apply optimization [2, 0]
+10-17 17:10:19.547 24434 24434 I adbd    : adbd service requested 'shell,v2,raw:su -c logcat -d -t 100 > /sdcard/acc_log.txt && grep -E 'xiaomi.account|LoginActivity' /sdcard/acc_log.txt | tail -n 20'
+10-17 17:10:19.547  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.547  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.689747
+10-17 17:10:19.547  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:950.032227,R:492.516724,G:360.012238,B:150.005096, lux: 41.689747
+10-17 17:10:19.548  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.548  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.273434
+10-17 17:10:19.548  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:940.031921,R:490.016632,G:352.511963,B:142.504837, lux: 41.273434
+10-17 17:10:19.548  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.548  3119  4804 I libsensor-displayalgo: the value of  REAL LUX41.456409
+10-17 17:10:19.548  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:945.032104,R:492.516724,G:355.012054,B:145.004929, lux: 41.456409
+10-17 17:10:19.549  3119  4804 I libsensor-displayalgo: the value of channelCali C:216.644645,R:112.295788,G:75.550917,B:41.756466,scales C:1.011547,R:0.997575,G:0.985892,B:0.899704
+10-17 17:10:19.549  3119  4804 I libsensor-displayalgo: the value of  REAL LUX40.962112
+10-17 17:10:19.549  3119  4804 D libsensor-displayalgo: brightness:482.000000,R:6428940.728538,G:12400310.720515,B:5990759.502970,EVENT C:940.031921,R:490.016632,G:350.011871,B:145.004929, lux: 40.962112
+10-17 17:10:19.560  8437 11799 I MediaProvider: Insert path: /st***ge/em****ed/*/ac***og.t*t, caller: com.android.shell
+10-17 17:10:19.563  8437 11799 D MediaProvider: insertInternal start, caller = com.android.shell
+10-17 17:10:19.565  8437 11799 W MediaProvider: isAppCloneUserPair for user 0: false
+10-17 17:10:19.566  8437 11799 D MediaProvider: insertAllowingUpsert finish, rowId = 3694
+10-17 17:10:19.566  8437 11799 I MediaProvider: Insert path: /st***ge/em****ed/*/ac***og.t*t, caller: com.android.shell
+10-17 17:10:19.566  8437 11799 D MediaProvider: insertInternal end
+10-17 17:10:19.567  7762 11346 D OplusFileObserveService: onEvent() file = /storage/emulated/0/acc_log.txt, event = 256
+10-17 17:10:19.570 10433 10697 I ContextAware_DaemonObserver: onChangeImpl, wait together.
+10-17 17:10:19.570 10433 11576 D HLog-UpMgr: [metis]CheckWhetherUploadBody Mgr:com.oplus.sdp.of.c@9b49ee7
+10-17 17:10:19.571 10433 11576 D HLog-MultiConfigManage: [metis]checkAllPushTask
+10-17 17:10:19.571 10433 11576 D HLog-MultiConfigManage: [metis]checkAllPushTask existPushInfo : 
+10-17 17:10:19.571 10433 11576 D HLog-UpMgr: [metis]CheckWhetherUploadBody mCheckUploadTime：4 Mgr:com.oplus.sdp.of.c@9b49ee7
+10-17 17:10:19.571 10433 11576 D HLog-HLog: [metis]updateMemoryCache existPushInfo : 
+10-17 17:10:19.571 10433 11576 D HLog-HLog: [metis]findCurrentTraceDto existPushInfo : 

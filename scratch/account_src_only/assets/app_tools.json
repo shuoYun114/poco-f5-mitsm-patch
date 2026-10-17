@@ -1,0 +1,170 @@
+[
+  {
+    "name": "get_account_status",
+    "descriptions": {"zh": "查询小米账号是否已登录、登录状态。用户问「小米账号登录了吗」「账号状态」「有没有登录小米账号」时使用"},
+    "method": "getAccountStatus",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "get_xiaomi_id",
+    "descriptions": {"zh": "查看小米ID/账号ID/账号号码。用户问「我的小米ID是多少」「小米账号号码」「账号ID」时使用"},
+    "method": "getXiaomiId",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "get_account_nickname",
+    "descriptions": {"zh": "查看小米账号昵称/名字（仅查询不修改）。用户问「我的小米昵称是什么」「小米账号叫什么名字」「查一下我的昵称」时使用"},
+    "method": "getAccountNickname",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "get_account_gender",
+    "descriptions": {"zh": "查看小米账号设置的性别（仅查询不修改）。用户问「我的性别设的什么」「小米账号性别」时使用"},
+    "method": "getAccountGender",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "get_account_region",
+    "descriptions": {"zh": "查看小米账号所在的国家或地区。用户问「我的账号在哪个地区」「小米账号国家」时使用"},
+    "method": "getAccountRegion",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "get_logged_in_devices",
+    "descriptions": {"zh": "查看小米账号登录了哪些设备/设备列表。用户问「我的账号在哪些设备上登录了」「登录设备有哪些」「谁登了我的小米账号」时使用"},
+    "method": "getLoggedInDevices",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "get_family_members",
+    "descriptions": {"zh": "查看小米账号的家人/家庭成员信息。用户问「我的家人有谁」「家庭成员」「小米家人服务」时使用"},
+    "method": "getFamilyMembers",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_account_homepage",
+    "descriptions": {"zh": "打开小米账号首页/账号设置主页面（已登录时进入设置页）。用户说「打开小米账号」「进入账号设置」「账号主页」时使用"},
+    "method": "openAccountHomepage",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_avatar_settings",
+    "descriptions": {"zh": "修改/更换小米账号头像，打开头像选择弹窗。用户说「换个头像」「改头像」「设置小米账号头像」时使用"},
+    "method": "openAvatarSettings",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_nickname_settings",
+    "descriptions": {"zh": "修改/更改小米账号昵称或名字，打开个人信息页面。用户说「改名字」「换个昵称」「修改小米账号昵称」时使用"},
+    "method": "openNicknameSettings",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_gender_settings",
+    "descriptions": {"zh": "修改/设置小米账号性别，打开性别选择。用户说「改性别」「设置性别」「把性别改成男/女」时使用"},
+    "method": "openGenderSettings",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_security_settings",
+    "descriptions": {"zh": "打开小米账号的安全设置页面，查看和管理账号安全选项。用户说「账号安全设置」「安全中心」「登录安全」时使用"},
+    "method": "openSecuritySettings",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_change_phone",
+    "descriptions": {"zh": "更换/换绑小米账号的手机号。用户说「改手机号」「换绑手机号」「更换安全手机」时使用"},
+    "method": "openChangePhone",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_change_password",
+    "descriptions": {"zh": "已登录状态下修改小米账号密码，适用于知道旧密码要换新密码。用户说「改密码」「修改小米账号密码」「换个密码」时使用"},
+    "method": "openChangePassword",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_change_email",
+    "descriptions": {"zh": "更换/换绑小米账号的安全邮箱。用户说「换绑邮箱」「改邮箱」「更换安全邮箱」时使用"},
+    "method": "openChangeEmail",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_invite_family",
+    "descriptions": {"zh": "邀请/添加家人加入小米账号家人服务。用户说「邀请家人」「添加家庭成员」「把家人加到我的小米账号」时使用"},
+    "method": "openInviteFamily",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_about_account",
+    "descriptions": {"zh": "查看小米账号的版本号、用户协议、隐私政策。用户说「小米账号版本」「用户协议」「隐私政策」「关于小米账号」时使用"},
+    "method": "openAboutAccount",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_help_center",
+    "descriptions": {"zh": "打开小米账号的帮助中心/客服页面。用户说「小米账号有问题」「账号帮助」「找小米账号客服」时使用"},
+    "method": "openHelpCenter",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_reset_password_page",
+    "descriptions": {"zh": "忘记密码时找回/重置小米账号密码，适用于不记得密码或无法登录。用户说「忘了密码」「密码不记得了」「找回密码」时使用"},
+    "method": "openResetPasswordPage",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_delete_account_page",
+    "descriptions": {"zh": "注销/删除小米账号。用户说「注销小米账号」「不要这个账号了」「删除小米账号」「销号」时使用"},
+    "method": "openDeleteAccountPage",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  },
+  {
+    "name": "open_login_page",
+    "descriptions": {"zh": "登录小米账号，打开小米账号登录页面。用户说「登录小米账号」「我要登录」「切换小米账号」时使用"},
+    "method": "openLoginPage",
+    "class": "com.xiaomi.account.provider.AccountToolService",
+    "paramCount": 0,
+    "params": []
+  }
+]

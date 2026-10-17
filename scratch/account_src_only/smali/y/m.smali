@@ -1,0 +1,37 @@
+.class public final Ly/m;
+.super Ly/g;
+.source "SourceFile"
+
+
+# direct methods
+.method public constructor <init>(Ly/f;)V
+    .locals 4
+
+    const-string v0, "builder"
+
+    invoke-static {p1, v0}, Lt9/m;->e(Ljava/lang/Object;Ljava/lang/String;)V
+
+    const/16 v0, 0x8
+
+    new-array v1, v0, [Ly/u;
+
+    const/4 v2, 0x0
+
+    :goto_0
+    if-ge v2, v0, :cond_0
+
+    new-instance v3, Ly/z;
+
+    invoke-direct {v3}, Ly/z;-><init>()V
+
+    aput-object v3, v1, v2
+
+    add-int/lit8 v2, v2, 0x1
+
+    goto :goto_0
+
+    :cond_0
+    invoke-direct {p0, p1, v1}, Ly/g;-><init>(Ly/f;[Ly/u;)V
+
+    return-void
+.end method
