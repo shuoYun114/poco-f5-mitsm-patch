@@ -6,7 +6,7 @@
 # instance fields
 .field private e:Lyc/f;
 
-.field private f:Lcom/miui/tsmclient/model/g1;
+.field public f:Lcom/miui/tsmclient/model/g1;
 
 .field private g:Lcom/miui/tsmclient/model/j;
 
