@@ -21,3 +21,7 @@ work/tsmclient_unpacked/
 work/uptsm_manifest/
 work/xiaomi_account_unpacked/
 work/xmsf_manifest/
+scratch/classes3_smali/
+scratch/*.txt
+scratch/*.db
+scratch/*.dex

@@ -112,82 +112,11 @@
     monitor-enter v0
 
     :try_start_0
-    sget-object v1, Lcom/xiaomi/security/devicecredential/d;->a:Landroid/os/IBinder;
-
-    if-eqz v1, :cond_0
-
-    const-string v1, "SecurityDeviceCredentialManager"
-
-    const-string v2, "getService: sService != null. "
-
-    invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    sget-object v1, Lcom/xiaomi/security/devicecredential/d;->a:Landroid/os/IBinder;
-
-    invoke-interface {v1}, Landroid/os/IBinder;->pingBinder()Z
-
-    move-result v1
-
-    goto :goto_0
-
-    :catchall_0
-    move-exception v1
-
-    goto :goto_3
-
-    :cond_0
-    const-string v1, "SecurityDeviceCredentialManager"
-
-    const-string v2, "getService: sService == null. "
-
-    invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    const/4 v1, 0x0
-
-    :goto_0
-    if-nez v1, :cond_2
-
-    const-string v1, "SecurityDeviceCredentialManager"
-
-    const-string v2, "getService: binder not alive. "
-
-    invoke-static {v1, v2}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-
-    :goto_1
     const-string v1, "miui.sedc"
 
     invoke-static {v1}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
 
     move-result-object v1
-
-    sput-object v1, Lcom/xiaomi/security/devicecredential/d;->a:Landroid/os/IBinder;
-
-    if-eqz v1, :cond_1
-
-    goto :goto_2
-
-    :cond_1
-    const-string v1, "SecurityDeviceCredentialManager"
-
-    const-string v2, "getService: NULL binder, retry..."
-
-    invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    const-wide/16 v1, 0x1f4
-
-    invoke-static {v1, v2}, Ljava/lang/Thread;->sleep(J)V
-
-    goto :goto_1
-
-    :cond_2
-    const-string v1, "SecurityDeviceCredentialManager"
-
-    const-string v2, "getService: binder alive. "
-
-    invoke-static {v1, v2}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    :goto_2
-    sget-object v1, Lcom/xiaomi/security/devicecredential/d;->a:Landroid/os/IBinder;
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
@@ -195,68 +124,20 @@
 
     return-object v1
 
-    :goto_3
-    :try_start_1
+    :catchall_0
+    move-exception v1
+
     monitor-exit v0
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     throw v1
 .end method
 
 .method public static c()Z
-    .locals 5
+    .locals 1
 
-    invoke-static {}, Lcom/xiaomi/security/devicecredential/d;->b()Landroid/os/IBinder;
+    const/4 v0, 0x0
 
-    move-result-object v0
-
-    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
-
-    move-result-object v1
-
-    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
-
-    move-result-object v2
-
-    :try_start_0
-    const-string v3, "com.xiaomi.security.devicecredential.ISecurityDeviceCredentialManager.v1"
-
-    invoke-virtual {v1, v3}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
-
-    const/4 v3, 0x0
-
-    const/4 v4, 0x1
-
-    invoke-interface {v0, v4, v1, v2, v3}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-
-    invoke-virtual {v2}, Landroid/os/Parcel;->readException()V
-
-    invoke-virtual {v2}, Landroid/os/Parcel;->readInt()I
-
-    move-result v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-
-    if-eqz v0, :cond_0
-
-    move v3, v4
-
-    :cond_0
-    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
-
-    invoke-virtual {v2}, Landroid/os/Parcel;->recycle()V
-
-    return v3
-
-    :catchall_0
-    move-exception v0
-
-    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
-
-    invoke-virtual {v2}, Landroid/os/Parcel;->recycle()V
-
-    throw v0
+    return v0
 .end method
 
 .method public static d(I[BZ)[B
