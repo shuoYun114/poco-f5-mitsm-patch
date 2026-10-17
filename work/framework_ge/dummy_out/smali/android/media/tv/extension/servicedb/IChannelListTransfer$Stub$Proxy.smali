@@ -1,0 +1,211 @@
+.class final Landroid/media/tv/extension/servicedb/IChannelListTransfer$Stub$Proxy;
+.super Ljava/lang/Object;
+.source "IChannelListTransfer.java"
+
+# interfaces
+.implements Landroid/media/tv/extension/servicedb/IChannelListTransfer;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Landroid/media/tv/extension/servicedb/IChannelListTransfer$Stub;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x1a
+    name = "Proxy"
+.end annotation
+
+
+# instance fields
+.field private blacklist mRemote:Landroid/os/IBinder;
+
+
+# direct methods
+.method constructor blacklist <init>(Landroid/os/IBinder;)V
+    .locals 0
+    .param p1, "remote"    # Landroid/os/IBinder;
+
+    .line 142
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 143
+    iput-object p1, p0, Landroid/media/tv/extension/servicedb/IChannelListTransfer$Stub$Proxy;->mRemote:Landroid/os/IBinder;
+
+    .line 144
+    return-void
+.end method
+
+
+# virtual methods
+.method public whitelist asBinder()Landroid/os/IBinder;
+    .locals 1
+
+    .line 147
+    iget-object v0, p0, Landroid/media/tv/extension/servicedb/IChannelListTransfer$Stub$Proxy;->mRemote:Landroid/os/IBinder;
+
+    return-object v0
+.end method
+
+.method public blacklist exportChannelList(Landroid/os/ParcelFileDescriptor;)V
+    .locals 5
+    .param p1, "pfd"    # Landroid/os/ParcelFileDescriptor;
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .line 191
+    invoke-virtual {p0}, Landroid/media/tv/extension/servicedb/IChannelListTransfer$Stub$Proxy;->asBinder()Landroid/os/IBinder;
+
+    move-result-object v0
+
+    invoke-static {v0}, Landroid/os/Parcel;->obtain(Landroid/os/IBinder;)Landroid/os/Parcel;
+
+    move-result-object v0
+
+    .line 192
+    .local v0, "_data":Landroid/os/Parcel;
+    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
+
+    move-result-object v1
+
+    .line 194
+    .local v1, "_reply":Landroid/os/Parcel;
+    :try_start_0
+    const-string v2, "android.media.tv.extension.servicedb.IChannelListTransfer"
+
+    invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
+
+    .line 195
+    const/4 v2, 0x0
+
+    invoke-virtual {v0, p1, v2}, Landroid/os/Parcel;->writeTypedObject(Landroid/os/Parcelable;I)V
+
+    .line 196
+    iget-object v3, p0, Landroid/media/tv/extension/servicedb/IChannelListTransfer$Stub$Proxy;->mRemote:Landroid/os/IBinder;
+
+    const/4 v4, 0x2
+
+    invoke-interface {v3, v4, v0, v1, v2}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
+
+    move-result v2
+
+    .line 197
+    .local v2, "_status":Z
+    invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 200
+    .end local v2    # "_status":Z
+    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
+
+    .line 201
+    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
+
+    .line 202
+    nop
+
+    .line 203
+    return-void
+
+    .line 200
+    :catchall_0
+    move-exception v2
+
+    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
+
+    .line 201
+    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
+
+    .line 202
+    throw v2
+.end method
+
+.method public final blacklist getInterfaceDescriptor()Ljava/lang/String;
+    .locals 1
+
+    .line 151
+    const-string v0, "android.media.tv.extension.servicedb.IChannelListTransfer"
+
+    return-object v0
+.end method
+
+.method public blacklist importChannelList(Landroid/os/ParcelFileDescriptor;)V
+    .locals 5
+    .param p1, "pfd"    # Landroid/os/ParcelFileDescriptor;
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .line 165
+    invoke-virtual {p0}, Landroid/media/tv/extension/servicedb/IChannelListTransfer$Stub$Proxy;->asBinder()Landroid/os/IBinder;
+
+    move-result-object v0
+
+    invoke-static {v0}, Landroid/os/Parcel;->obtain(Landroid/os/IBinder;)Landroid/os/Parcel;
+
+    move-result-object v0
+
+    .line 166
+    .local v0, "_data":Landroid/os/Parcel;
+    invoke-static {}, Landroid/os/Parcel;->obtain()Landroid/os/Parcel;
+
+    move-result-object v1
+
+    .line 168
+    .local v1, "_reply":Landroid/os/Parcel;
+    :try_start_0
+    const-string v2, "android.media.tv.extension.servicedb.IChannelListTransfer"
+
+    invoke-virtual {v0, v2}, Landroid/os/Parcel;->writeInterfaceToken(Ljava/lang/String;)V
+
+    .line 169
+    const/4 v2, 0x0
+
+    invoke-virtual {v0, p1, v2}, Landroid/os/Parcel;->writeTypedObject(Landroid/os/Parcelable;I)V
+
+    .line 170
+    iget-object v3, p0, Landroid/media/tv/extension/servicedb/IChannelListTransfer$Stub$Proxy;->mRemote:Landroid/os/IBinder;
+
+    const/4 v4, 0x1
+
+    invoke-interface {v3, v4, v0, v1, v2}, Landroid/os/IBinder;->transact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
+
+    move-result v2
+
+    .line 171
+    .local v2, "_status":Z
+    invoke-virtual {v1}, Landroid/os/Parcel;->readException()V
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 174
+    .end local v2    # "_status":Z
+    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
+
+    .line 175
+    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
+
+    .line 176
+    nop
+
+    .line 177
+    return-void
+
+    .line 174
+    :catchall_0
+    move-exception v2
+
+    invoke-virtual {v1}, Landroid/os/Parcel;->recycle()V
+
+    .line 175
+    invoke-virtual {v0}, Landroid/os/Parcel;->recycle()V
+
+    .line 176
+    throw v2
+.end method

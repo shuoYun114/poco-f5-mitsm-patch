@@ -1,0 +1,219 @@
+.class public final Landroid/media/quality/SoundProfile$Builder;
+.super Ljava/lang/Object;
+.source "SoundProfile.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Landroid/media/quality/SoundProfile;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = "Builder"
+.end annotation
+
+
+# instance fields
+.field private blacklist mHandle:Landroid/media/quality/SoundProfileHandle;
+
+.field private blacklist mId:Ljava/lang/String;
+
+.field private blacklist mInputId:Ljava/lang/String;
+
+.field private blacklist mName:Ljava/lang/String;
+
+.field private blacklist mPackageName:Ljava/lang/String;
+
+.field private blacklist mParams:Landroid/os/PersistableBundle;
+
+.field private blacklist mType:I
+
+
+# direct methods
+.method public constructor whitelist <init>(Landroid/media/quality/SoundProfile;)V
+    .locals 1
+    .param p1, "p"    # Landroid/media/quality/SoundProfile;
+
+    .line 383
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 362
+    const/4 v0, 0x2
+
+    iput v0, p0, Landroid/media/quality/SoundProfile$Builder;->mType:I
+
+    .line 384
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Landroid/media/quality/SoundProfile$Builder;->mId:Ljava/lang/String;
+
+    .line 385
+    invoke-virtual {p1}, Landroid/media/quality/SoundProfile;->getProfileType()I
+
+    move-result v0
+
+    iput v0, p0, Landroid/media/quality/SoundProfile$Builder;->mType:I
+
+    .line 386
+    invoke-virtual {p1}, Landroid/media/quality/SoundProfile;->getName()Ljava/lang/String;
+
+    move-result-object v0
+
+    iput-object v0, p0, Landroid/media/quality/SoundProfile$Builder;->mName:Ljava/lang/String;
+
+    .line 387
+    invoke-virtual {p1}, Landroid/media/quality/SoundProfile;->getPackageName()Ljava/lang/String;
+
+    move-result-object v0
+
+    iput-object v0, p0, Landroid/media/quality/SoundProfile$Builder;->mPackageName:Ljava/lang/String;
+
+    .line 388
+    invoke-virtual {p1}, Landroid/media/quality/SoundProfile;->getInputId()Ljava/lang/String;
+
+    move-result-object v0
+
+    iput-object v0, p0, Landroid/media/quality/SoundProfile$Builder;->mInputId:Ljava/lang/String;
+
+    .line 389
+    invoke-virtual {p1}, Landroid/media/quality/SoundProfile;->getParameters()Landroid/os/PersistableBundle;
+
+    move-result-object v0
+
+    iput-object v0, p0, Landroid/media/quality/SoundProfile$Builder;->mParams:Landroid/os/PersistableBundle;
+
+    .line 390
+    invoke-virtual {p1}, Landroid/media/quality/SoundProfile;->getHandle()Landroid/media/quality/SoundProfileHandle;
+
+    move-result-object v0
+
+    iput-object v0, p0, Landroid/media/quality/SoundProfile$Builder;->mHandle:Landroid/media/quality/SoundProfileHandle;
+
+    .line 391
+    return-void
+.end method
+
+.method public constructor whitelist <init>(Ljava/lang/String;)V
+    .locals 1
+    .param p1, "name"    # Ljava/lang/String;
+
+    .line 376
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 362
+    const/4 v0, 0x2
+
+    iput v0, p0, Landroid/media/quality/SoundProfile$Builder;->mType:I
+
+    .line 377
+    iput-object p1, p0, Landroid/media/quality/SoundProfile$Builder;->mName:Ljava/lang/String;
+
+    .line 378
+    return-void
+.end method
+
+
+# virtual methods
+.method public whitelist build()Landroid/media/quality/SoundProfile;
+    .locals 8
+
+    .line 473
+    new-instance v0, Landroid/media/quality/SoundProfile;
+
+    iget-object v1, p0, Landroid/media/quality/SoundProfile$Builder;->mId:Ljava/lang/String;
+
+    iget v2, p0, Landroid/media/quality/SoundProfile$Builder;->mType:I
+
+    iget-object v3, p0, Landroid/media/quality/SoundProfile$Builder;->mName:Ljava/lang/String;
+
+    iget-object v4, p0, Landroid/media/quality/SoundProfile$Builder;->mInputId:Ljava/lang/String;
+
+    iget-object v5, p0, Landroid/media/quality/SoundProfile$Builder;->mPackageName:Ljava/lang/String;
+
+    iget-object v6, p0, Landroid/media/quality/SoundProfile$Builder;->mParams:Landroid/os/PersistableBundle;
+
+    iget-object v7, p0, Landroid/media/quality/SoundProfile$Builder;->mHandle:Landroid/media/quality/SoundProfileHandle;
+
+    invoke-direct/range {v0 .. v7}, Landroid/media/quality/SoundProfile;-><init>(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/os/PersistableBundle;Landroid/media/quality/SoundProfileHandle;)V
+
+    .line 481
+    .local v0, "o":Landroid/media/quality/SoundProfile;
+    return-object v0
+.end method
+
+.method public blacklist setHandle(Landroid/media/quality/SoundProfileHandle;)Landroid/media/quality/SoundProfile$Builder;
+    .locals 0
+    .param p1, "handle"    # Landroid/media/quality/SoundProfileHandle;
+
+    .line 463
+    iput-object p1, p0, Landroid/media/quality/SoundProfile$Builder;->mHandle:Landroid/media/quality/SoundProfileHandle;
+
+    .line 464
+    return-object p0
+.end method
+
+.method public whitelist setInputId(Ljava/lang/String;)Landroid/media/quality/SoundProfile$Builder;
+    .locals 0
+    .param p1, "value"    # Ljava/lang/String;
+    .annotation runtime Landroid/annotation/SystemApi;
+    .end annotation
+
+    .line 427
+    iput-object p1, p0, Landroid/media/quality/SoundProfile$Builder;->mInputId:Ljava/lang/String;
+
+    .line 428
+    return-object p0
+.end method
+
+.method public whitelist setPackageName(Ljava/lang/String;)Landroid/media/quality/SoundProfile$Builder;
+    .locals 0
+    .param p1, "value"    # Ljava/lang/String;
+    .annotation runtime Landroid/annotation/SystemApi;
+    .end annotation
+
+    .line 442
+    iput-object p1, p0, Landroid/media/quality/SoundProfile$Builder;->mPackageName:Ljava/lang/String;
+
+    .line 443
+    return-object p0
+.end method
+
+.method public whitelist setParameters(Landroid/os/PersistableBundle;)Landroid/media/quality/SoundProfile$Builder;
+    .locals 1
+    .param p1, "params"    # Landroid/os/PersistableBundle;
+
+    .line 453
+    new-instance v0, Landroid/os/PersistableBundle;
+
+    invoke-direct {v0, p1}, Landroid/os/PersistableBundle;-><init>(Landroid/os/PersistableBundle;)V
+
+    iput-object v0, p0, Landroid/media/quality/SoundProfile$Builder;->mParams:Landroid/os/PersistableBundle;
+
+    .line 454
+    return-object p0
+.end method
+
+.method public blacklist setProfileId(Ljava/lang/String;)Landroid/media/quality/SoundProfile$Builder;
+    .locals 0
+    .param p1, "id"    # Ljava/lang/String;
+
+    .line 399
+    iput-object p1, p0, Landroid/media/quality/SoundProfile$Builder;->mId:Ljava/lang/String;
+
+    .line 400
+    return-object p0
+.end method
+
+.method public whitelist setProfileType(I)Landroid/media/quality/SoundProfile$Builder;
+    .locals 0
+    .param p1, "value"    # I
+    .annotation runtime Landroid/annotation/SystemApi;
+    .end annotation
+
+    .line 412
+    iput p1, p0, Landroid/media/quality/SoundProfile$Builder;->mType:I
+
+    .line 413
+    return-object p0
+.end method

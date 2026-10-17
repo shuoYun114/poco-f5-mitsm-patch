@@ -1,0 +1,94 @@
+.class public Landroid/media/AudioDevicePortConfig;
+.super Landroid/media/AudioPortConfig;
+.source "AudioDevicePortConfig.java"
+
+
+# direct methods
+.method constructor greylist-max-r <init>(Landroid/media/AudioDevicePort;IIILandroid/media/AudioGainConfig;)V
+    .locals 0
+    .param p1, "devicePort"    # Landroid/media/AudioDevicePort;
+    .param p2, "samplingRate"    # I
+    .param p3, "channelMask"    # I
+    .param p4, "format"    # I
+    .param p5, "gain"    # Landroid/media/AudioGainConfig;
+
+    .line 38
+    invoke-direct/range {p0 .. p5}, Landroid/media/AudioPortConfig;-><init>(Landroid/media/AudioPort;IIILandroid/media/AudioGainConfig;)V
+
+    .line 39
+    return-void
+.end method
+
+.method constructor blacklist <init>(Landroid/media/AudioDevicePort;ILandroid/media/AudioFormat$ChannelMasks;ILandroid/media/AudioGainConfig;)V
+    .locals 0
+    .param p1, "devicePort"    # Landroid/media/AudioDevicePort;
+    .param p2, "samplingRate"    # I
+    .param p3, "channelMasks"    # Landroid/media/AudioFormat$ChannelMasks;
+    .param p4, "format"    # I
+    .param p5, "gain"    # Landroid/media/AudioGainConfig;
+
+    .line 48
+    invoke-direct/range {p0 .. p5}, Landroid/media/AudioPortConfig;-><init>(Landroid/media/AudioPort;ILandroid/media/AudioFormat$ChannelMasks;ILandroid/media/AudioGainConfig;)V
+
+    .line 49
+    return-void
+.end method
+
+.method constructor greylist-max-o <init>(Landroid/media/AudioDevicePortConfig;)V
+    .locals 6
+    .param p1, "config"    # Landroid/media/AudioDevicePortConfig;
+
+    .line 42
+    invoke-virtual {p1}, Landroid/media/AudioDevicePortConfig;->port()Landroid/media/AudioDevicePort;
+
+    move-result-object v1
+
+    invoke-virtual {p1}, Landroid/media/AudioDevicePortConfig;->samplingRate()I
+
+    move-result v2
+
+    invoke-virtual {p1}, Landroid/media/AudioDevicePortConfig;->channelMasks()Landroid/media/AudioFormat$ChannelMasks;
+
+    move-result-object v3
+
+    invoke-virtual {p1}, Landroid/media/AudioDevicePortConfig;->format()I
+
+    move-result v4
+
+    .line 43
+    invoke-virtual {p1}, Landroid/media/AudioDevicePortConfig;->gain()Landroid/media/AudioGainConfig;
+
+    move-result-object v5
+
+    .line 42
+    move-object v0, p0
+
+    invoke-direct/range {v0 .. v5}, Landroid/media/AudioDevicePortConfig;-><init>(Landroid/media/AudioDevicePort;ILandroid/media/AudioFormat$ChannelMasks;ILandroid/media/AudioGainConfig;)V
+
+    .line 44
+    return-void
+.end method
+
+
+# virtual methods
+.method public greylist-max-o port()Landroid/media/AudioDevicePort;
+    .locals 1
+
+    .line 55
+    iget-object v0, p0, Landroid/media/AudioDevicePortConfig;->mPort:Landroid/media/AudioPort;
+
+    check-cast v0, Landroid/media/AudioDevicePort;
+
+    return-object v0
+.end method
+
+.method public bridge synthetic blacklist port()Landroid/media/AudioPort;
+    .locals 1
+
+    .line 33
+    invoke-virtual {p0}, Landroid/media/AudioDevicePortConfig;->port()Landroid/media/AudioDevicePort;
+
+    move-result-object v0
+
+    return-object v0
+.end method
