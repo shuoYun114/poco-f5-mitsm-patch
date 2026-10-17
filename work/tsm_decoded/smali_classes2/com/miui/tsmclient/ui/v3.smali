@@ -326,25 +326,60 @@
 
     move-result v0
 
-    if-eqz v0, :cond_exit
+    if-nez v0, :cond_check_fallback
 
     invoke-virtual {p1}, Lcom/miui/tsmclient/model/h;->a()Z
 
     move-result v0
 
+    if-nez v0, :cond_check_fallback
+
+    iget-object v0, p1, Lcom/miui/tsmclient/model/h;->c:[Ljava/lang/Object;
+
+    if-eqz v0, :cond_check_fallback
+
+    const/4 v1, 0x0
+
+    aget-object v0, v0, v1
+
+    if-eqz v0, :cond_check_fallback
+
+    instance-of v1, v0, Ljava/util/List;
+
+    if-eqz v1, :cond_check_fallback
+
+    iget-object p0, p0, Lcom/miui/tsmclient/ui/v3;->q0:Lcom/miui/tsmclient/viewmodel/h3;
+
+    if-eqz p0, :cond_exit
+
+    check-cast v0, Ljava/util/List;
+
+    invoke-virtual {p0, v0}, Lcom/miui/tsmclient/viewmodel/h3;->A(Ljava/util/List;)V
+
+    return-void
+
+    :cond_check_fallback
+    iget-object v0, p0, Lcom/miui/tsmclient/ui/z0;->j0:Lcom/miui/tsmclient/viewmodel/f1;
+
+    if-eqz v0, :cond_exit
+
+    iget-object v0, v0, Lcom/miui/tsmclient/viewmodel/f1;->f:Lcom/miui/tsmclient/model/g1;
+
+    if-eqz v0, :cond_exit
+
+    const/4 v1, 0x1
+
+    invoke-virtual {v0, v1}, Lcom/miui/tsmclient/model/g1;->I(Z)Ljava/util/List;
+
+    move-result-object v0
+
     if-eqz v0, :cond_exit
 
     iget-object p0, p0, Lcom/miui/tsmclient/ui/v3;->q0:Lcom/miui/tsmclient/viewmodel/h3;
 
-    iget-object p1, p1, Lcom/miui/tsmclient/model/h;->c:[Ljava/lang/Object;
+    if-eqz p0, :cond_exit
 
-    const/4 v0, 0x0
-
-    aget-object p1, p1, v0
-
-    check-cast p1, Ljava/util/List;
-
-    invoke-virtual {p0, p1}, Lcom/miui/tsmclient/viewmodel/h3;->A(Ljava/util/List;)V
+    invoke-virtual {p0, v0}, Lcom/miui/tsmclient/viewmodel/h3;->A(Ljava/util/List;)V
 
     :cond_exit
     return-void

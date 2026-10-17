@@ -261,51 +261,73 @@
         }
     .end annotation
 
-    .line 1
+    :try_start_net
     iget-object v0, p0, Lcom/miui/tsmclient/viewmodel/f1;->f:Lcom/miui/tsmclient/model/g1;
 
-    .line 3
     const/4 v1, 0x0
 
-    .line 4
     invoke-virtual {v0, v1}, Lcom/miui/tsmclient/model/g1;->A(Lcom/miui/tsmclient/entity/CardInfo;)Ljava/util/List;
 
-    .line 7
+    move-result-object v0
+    :try_end_net
+    .catchall {:try_start_net .. :try_end_net} :catch_net
+
+    if-eqz v0, :cond_use_local
+
+    invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_has_cards
+
+    goto :cond_use_local
+
+:catch_net
+    move-exception v0
+
+:cond_use_local
+    iget-object v0, p0, Lcom/miui/tsmclient/viewmodel/f1;->f:Lcom/miui/tsmclient/model/g1;
+
+    if-eqz v0, :cond_empty
+
+    const/4 v1, 0x1
+
+    invoke-virtual {v0, v1}, Lcom/miui/tsmclient/model/g1;->I(Z)Ljava/util/List;
+
     move-result-object v0
 
-    .line 8
-    if-nez v0, :cond_0
+    if-eqz v0, :cond_empty
 
-    .line 10
+    invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
+
+    move-result v1
+
+    if-nez v1, :cond_empty
+
+    goto :cond_has_cards
+
+:cond_empty
     sget-object v0, Ljava/util/Collections;->EMPTY_LIST:Ljava/util/List;
 
-    .line 12
-    goto :goto_0
-
-    .line 13
-    :cond_0
+:cond_has_cards
     invoke-static {}, Lcom/miui/tsmclient/entity/CardConfigManager;->getInstance()Lcom/miui/tsmclient/entity/CardConfigManager;
 
-    .line 16
     move-result-object v1
 
-    .line 17
     const/4 v2, 0x1
 
-    .line 18
     invoke-virtual {v1, v2}, Lcom/miui/tsmclient/entity/CardConfigManager;->getSupportedTransCardMap(Z)Ljava/util/Map;
 
-    .line 21
-    :goto_0
     invoke-direct {p0, v0}, Lcom/miui/tsmclient/viewmodel/f1;->z(Ljava/util/List;)V
 
-    .line 24
     invoke-virtual {p0, v0}, Lcom/miui/tsmclient/viewmodel/f1;->A(Ljava/util/List;)V
 
-    .line 27
+    :try_start_se
     invoke-direct {p0, v0}, Lcom/miui/tsmclient/viewmodel/f1;->d0(Ljava/util/List;)V
+    :try_end_se
+    .catchall {:try_start_se .. :try_end_se} :catch_se
 
-    .line 30
+:catch_se
     return-object v0
 .end method
 

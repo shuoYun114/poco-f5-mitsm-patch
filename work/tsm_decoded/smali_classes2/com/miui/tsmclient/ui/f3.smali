@@ -834,22 +834,10 @@
     .line 14
     iget-object v0, p0, Lcom/miui/tsmclient/ui/f3;->Z:Landroid/widget/Button;
 
-    .line 16
-    const/4 v1, 0x0
+    const/4 v1, 0x1
 
-    .line 17
     invoke-virtual {v0, v1}, Landroid/view/View;->setEnabled(Z)V
 
-    .line 20
-    iget-object p0, p0, Lcom/miui/tsmclient/ui/f3;->Z:Landroid/widget/Button;
-
-    .line 22
-    sget v0, Lcom/miui/tsmclient/R$string;->card_intro_intro_no_stock:I
-
-    .line 24
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setText(I)V
-
-    .line 27
     return-void
 .end method
 
@@ -5157,22 +5145,10 @@
     .line 14
     iget-object v0, p0, Lcom/miui/tsmclient/ui/f3;->Z:Landroid/widget/Button;
 
-    .line 16
-    const/4 v1, 0x0
+    const/4 v1, 0x1
 
-    .line 17
     invoke-virtual {v0, v1}, Landroid/view/View;->setEnabled(Z)V
 
-    .line 20
-    iget-object p0, p0, Lcom/miui/tsmclient/ui/f3;->Z:Landroid/widget/Button;
-
-    .line 22
-    sget v0, Lcom/miui/tsmclient/R$string;->service_unavailable:I
-
-    .line 24
-    invoke-virtual {p0, v0}, Landroid/widget/TextView;->setText(I)V
-
-    .line 27
     return-void
 .end method
 

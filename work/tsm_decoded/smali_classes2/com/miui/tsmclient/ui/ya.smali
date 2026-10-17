@@ -813,6 +813,8 @@
     .line 4
     invoke-direct {p0}, Lcom/miui/tsmclient/ui/ya;->W6()V
 
+    invoke-direct {p0}, Lcom/miui/tsmclient/ui/ya;->c7()V
+
     .line 7
     return-void
 .end method
