@@ -202,7 +202,7 @@
     if-eqz p1, :cond_0
 
     .line 27
-    invoke-direct {p0}, Lcom/miui/tsmclient/ui/f3;->V5()V
+    invoke-direct {p0}, Lcom/miui/tsmclient/ui/f3;->P5()V
 
     .line 30
     :cond_0
