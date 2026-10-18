@@ -1,10 +1,20 @@
 package com.miui.compat.fix;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
+import android.os.PowerManager;
+import android.os.SystemClock;
+import android.os.UserHandle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -19,6 +29,16 @@ public class XposedInit implements IXposedHookLoadPackage {
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
+        if ("android".equals(lpparam.packageName)) {
+            Log.i(TAG, "已加载到系统框架 (android / system_server): " + lpparam.processName);
+            fixSystemServer(lpparam);
+        }
+
+        if ("com.android.nfc".equals(lpparam.packageName)) {
+            Log.i(TAG, "已加载到 NFC 系统服务进程 (com.android.nfc): " + lpparam.processName);
+            fixNfcService(lpparam);
+        }
+
         if ("com.xiaomi.account".equals(lpparam.packageName)) {
             Log.i(TAG, "已加载到小米账号进程: " + lpparam.processName);
             fixXiaomiAccount(lpparam);
@@ -703,6 +723,434 @@ public class XposedInit implements IXposedHookLoadPackage {
 
         Log.i(TAG, ">>> 小米智能卡补丁注入完成 <<<");
     }
+
+    private static long mLastLaunchTime = 0;
+
+    /**
+     * 双击电源键唤起小米公交卡刷卡页面
+     */
+    private static synchronized void launchTrafficCard(Context context) {
+        if (context == null) return;
+        try {
+            long now = SystemClock.uptimeMillis();
+            if (now - mLastLaunchTime < 600) {
+                Log.i(TAG, "【双击电源键】防抖过滤 (时间间隔过短)");
+                return;
+            }
+            mLastLaunchTime = now;
+
+            // 1. 如果当前屏幕为息屏状态，点亮屏幕
+            try {
+                PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+                if (pm != null && !pm.isInteractive()) {
+                    XposedHelpers.callMethod(pm, "wakeUp", now, 2, "tsmclient:double_click");
+                }
+            } catch (Throwable t) {
+                Log.w(TAG, "唤醒屏幕异常", t);
+            }
+
+            // 2. 构造拉起 DoubleClickActivity 的 Intent
+            Intent intent = new Intent("com.miui.intent.action.DOUBLE_CLICK");
+            intent.setComponent(new ComponentName("com.miui.tsmclient", "com.miui.tsmclient.ui.quick.DoubleClickActivity"));
+            intent.putExtra("event_source", "shortcut_of_trans_card");
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK 
+                          | Intent.FLAG_ACTIVITY_CLEAR_TOP 
+                          | Intent.FLAG_ACTIVITY_SINGLE_TOP 
+                          | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+            // 3. 以当前活动用户身份拉起 Activity
+            try {
+                Object userCurrent = XposedHelpers.getStaticObjectField(UserHandle.class, "CURRENT");
+                XposedHelpers.callMethod(context, "startActivityAsUser", intent, userCurrent);
+            } catch (Throwable t) {
+                context.startActivity(intent);
+            }
+            Log.i(TAG, "【双击电源键】成功触发并启动小米智能卡 DoubleClickActivity");
+        } catch (Throwable t) {
+            Log.e(TAG, "拉起公交卡刷卡页面异常", t);
+        }
+    }
+
+    /**
+     * 修复系统框架 (system_server / android) 的双击电源键事件路由
+     * 接入系统原生 SingleKeyGestureDetector 状态机，开启 300ms 等待窗口，实现亮屏零黑屏闪烁无缝唤出
+     */
+    private void fixSystemServer(XC_LoadPackage.LoadPackageParam lpparam) {
+        Log.i(TAG, ">>> 开始应用系统框架 (PhoneWindowManager) 双击电源键补丁 <<<");
+
+        Class<?> pwmClass = XposedHelpers.findClassIfExists("com.android.server.policy.PhoneWindowManager", lpparam.classLoader);
+        Class<?> ruleClass = XposedHelpers.findClassIfExists("com.android.server.policy.PhoneWindowManager$PowerKeyRule", lpparam.classLoader);
+        Class<?> baseRuleClass = XposedHelpers.findClassIfExists("com.android.server.policy.SingleKeyGestureDetector$SingleKeyRule", lpparam.classLoader);
+
+        // 1. 核心修复：Hook 基类 SingleKeyRule 与子类 PowerKeyRule 的 getMaxMultiPressCount() 确保返回 >= 2
+        // 在 Android 14/15 中，PowerKeyRule 继承自 SingleKeyRule，且未重写 getMaxMultiPressCount()，因此必须 Hook 基类！
+        XC_MethodHook forceMaxCount2Hook = new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                int count = (int) param.getResult();
+                if (count < 2) {
+                    param.setResult(2);
+                }
+            }
+        };
+
+        if (baseRuleClass != null) {
+            try {
+                XposedBridge.hookAllMethods(baseRuleClass, "getMaxMultiPressCount", forceMaxCount2Hook);
+                Log.i(TAG, "✓ 已 Hook SingleKeyGestureDetector$SingleKeyRule.getMaxMultiPressCount -> 强制返回 2");
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook SingleKeyRule.getMaxMultiPressCount 异常", t);
+            }
+        }
+
+        if (ruleClass != null) {
+            try {
+                XposedBridge.hookAllMethods(ruleClass, "getMaxMultiPressCount", forceMaxCount2Hook);
+                Log.i(TAG, "✓ 已 Hook PowerKeyRule.getMaxMultiPressCount 确保返回 >= 2");
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook PowerKeyRule.getMaxMultiPressCount 异常", t);
+            }
+
+            // 拦截多击手势回调 1: onMultiPress(long downTime, int count, int displayId)
+            try {
+                XposedBridge.hookAllMethods(ruleClass, "onMultiPress", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        int count = (int) param.args[1];
+                        Log.i(TAG, "【PowerKeyRule.onMultiPress】触发, count=" + count);
+                        if (count == 2) {
+                            Object pwm = XposedHelpers.getObjectField(param.thisObject, "this$0");
+                            Context context = (Context) XposedHelpers.getObjectField(pwm, "mContext");
+                            launchTrafficCard(context);
+                            param.setResult(null);
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook PowerKeyRule.onMultiPress 双击拦截器");
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook PowerKeyRule.onMultiPress 异常", t);
+            }
+
+            // 拦截多击手势回调 2: onKeyGesture(SingleKeyGestureEvent event) (Android 14/15 新架构)
+            try {
+                XposedBridge.hookAllMethods(ruleClass, "onKeyGesture", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        Object event = param.args[0];
+                        if (event != null) {
+                            int pressCount = (int) XposedHelpers.callMethod(event, "getPressCount");
+                            Log.i(TAG, "【PowerKeyRule.onKeyGesture】pressCount=" + pressCount + ", event=" + event);
+                            if (pressCount == 2) {
+                                Object pwm = XposedHelpers.getObjectField(param.thisObject, "this$0");
+                                Context context = (Context) XposedHelpers.getObjectField(pwm, "mContext");
+                                launchTrafficCard(context);
+                                param.setResult(null);
+                            }
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook PowerKeyRule.onKeyGesture 统一事件拦截器");
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook PowerKeyRule.onKeyGesture 异常", t);
+            }
+        }
+
+        if (pwmClass != null) {
+            // 2. 强制注入双击支持属性与目标组件 (MULTI_PRESS_POWER_LAUNCH_TARGET_ACTIVITY = 3)
+            XC_MethodHook applyDoublePressPropsHook = new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    try {
+                        XposedHelpers.setIntField(param.thisObject, "mDoublePressOnPowerBehavior", 3);
+                        XposedHelpers.setBooleanField(param.thisObject, "mShouldEarlyShortPressOnPower", false);
+                        XposedHelpers.setObjectField(param.thisObject, "mPowerDoublePressTargetActivity",
+                                new ComponentName("com.miui.tsmclient", "com.miui.tsmclient.ui.quick.DoubleClickActivity"));
+                    } catch (Throwable t) {
+                        Log.e(TAG, "注入双击属性失败", t);
+                    }
+                }
+            };
+
+            try {
+                XposedBridge.hookAllConstructors(pwmClass, applyDoublePressPropsHook);
+                XposedBridge.hookAllMethods(pwmClass, "readConfigurationDependentBehaviors", applyDoublePressPropsHook);
+                XposedBridge.hookAllMethods(pwmClass, "updateSettings", applyDoublePressPropsHook);
+                Log.i(TAG, "✓ 已 Hook PhoneWindowManager 生命周期方法注入双击目标");
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook PhoneWindowManager 属性注入异常", t);
+            }
+
+            // 3. 确保 getMaxMultiPressPowerCount 始终返回 >= 2，触发 SingleKeyGestureDetector 300ms 挂起延迟
+            try {
+                XposedBridge.hookAllMethods(pwmClass, "getMaxMultiPressPowerCount", new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        int count = (int) param.getResult();
+                        if (count < 2) {
+                            param.setResult(2);
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook PhoneWindowManager.getMaxMultiPressPowerCount (确保返回 >= 2)");
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook PhoneWindowManager.getMaxMultiPressPowerCount 异常", t);
+            }
+
+            // 4. 拦截 powerPress 分发终点 (处理 count == 2)
+            try {
+                XposedBridge.hookAllMethods(pwmClass, "powerPress", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        int count = (int) param.args[1];
+                        long eventTime = (long) param.args[0];
+                        Log.i(TAG, "【PhoneWindowManager.powerPress】触发: count=" + count + ", eventTime=" + eventTime);
+                        if (count == 2) {
+                            Object pwm = param.thisObject;
+                            Context context = (Context) XposedHelpers.getObjectField(pwm, "mContext");
+                            Log.i(TAG, "【核心拦截】PhoneWindowManager.powerPress 检测到 count=2 双击电源键 -> 立即拉起小米智能卡！");
+
+                            // 若处于息屏状态，先点亮屏幕
+                            try {
+                                PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+                                if (pm != null && !pm.isInteractive()) {
+                                    XposedHelpers.callMethod(pwm, "wakeUpFromPowerKey", eventTime);
+                                }
+                            } catch (Throwable ignored) {}
+
+                            launchTrafficCard(context);
+                            // 彻底阻断原方法，防止触发系统相机或关机操作
+                            param.setResult(null);
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook PhoneWindowManager.powerPress 双击拦截器");
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook PhoneWindowManager.powerPress 异常", t);
+            }
+
+            // 5. 拦截 powerMultiPressAction 与 launchTargetActivityOnMultiPressPower 兜底
+            try {
+                XposedBridge.hookAllMethods(pwmClass, "powerMultiPressAction", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        Log.i(TAG, "【核心拦截】powerMultiPressAction 被触发 -> 立即拉起小米智能卡公交卡页面！");
+                        Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                        launchTrafficCard(context);
+                        param.setResult(null);
+                    }
+                });
+
+                XposedBridge.hookAllMethods(pwmClass, "launchTargetActivityOnMultiPressPower", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        Log.i(TAG, "【核心拦截】launchTargetActivityOnMultiPressPower 触发 -> 立即拉起小米智能卡公交卡页面！");
+                        Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                        launchTrafficCard(context);
+                        param.setResult(null);
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook powerMultiPressAction & launchTargetActivityOnMultiPressPower 兜底入口");
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook powerMultiPressAction 异常", t);
+            }
+
+            // 6. 物理按键输入只做轻量只读日志监控
+            try {
+                XposedHelpers.findAndHookMethod(pwmClass, "interceptKeyBeforeQueueing", KeyEvent.class, int.class, new XC_MethodHook() {
+                    private long mLastPowerDownTime = 0;
+
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        KeyEvent event = (KeyEvent) param.args[0];
+                        if (event != null && event.getKeyCode() == KeyEvent.KEYCODE_POWER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                            long now = SystemClock.uptimeMillis();
+                            long diff = now - mLastPowerDownTime;
+                            mLastPowerDownTime = now;
+                            Log.i(TAG, "【物理电源键按下】距上次间隔: " + diff + "ms (事件完全放行给 SingleKeyGestureDetector)");
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已配置 PhoneWindowManager.interceptKeyBeforeQueueing 只读日志监控");
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook PhoneWindowManager.interceptKeyBeforeQueueing 异常", t);
+            }
+        }
+
+        Log.i(TAG, ">>> 系统框架电源键双击补丁注入完成 <<<");
+    }
+
+    /**
+     * 修复 NFC 系统服务 (com.android.nfc) 路由与 eSE 贴卡识别
+     */
+    private void fixNfcService(XC_LoadPackage.LoadPackageParam lpparam) {
+        Log.i(TAG, ">>> 开始应用 NFC 系统服务 (com.android.nfc) 穿透补丁 <<<");
+
+        // 1. Hook AidRoutingManager.configureRouting 锁定默认路由至 eSE1 (0x01) 并注入交通卡 AID 路由条目
+        try {
+            Class<?> armClass = XposedHelpers.findClassIfExists("com.android.nfc.cardemulation.AidRoutingManager", lpparam.classLoader);
+            Class<?> aidEntryClass = XposedHelpers.findClassIfExists("com.android.nfc.cardemulation.AidRoutingManager$AidEntry", lpparam.classLoader);
+
+            if (armClass != null) {
+                XposedBridge.hookAllMethods(armClass, "configureRouting", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        Object manager = param.thisObject;
+                        XposedHelpers.setIntField(manager, "mDefaultRoute", 0x01);
+                        XposedHelpers.setIntField(manager, "mDefaultIsoDepRoute", 0x01);
+                        XposedHelpers.setIntField(manager, "mDefaultOffHostRoute", 0x01);
+                        Log.i(TAG, "✓ 已锁定 AidRoutingManager: mDefaultRoute=1, mDefaultIsoDepRoute=1, mDefaultOffHostRoute=1 (eSE)");
+
+                        // 注入交通卡与 PPSE AID 到路由表中
+                        if (param.args.length > 0 && param.args[0] instanceof Map && aidEntryClass != null) {
+                            Map map = (Map) param.args[0];
+                            String[] targetAids = new String[]{
+                                    "A0000006320101*",
+                                    "325041592E5359532E4444463031",
+                                    "9156000014010001*",
+                                    "A00000000386980701*"
+                            };
+                            for (String targetAid : targetAids) {
+                                if (!map.containsKey(targetAid)) {
+                                    Object entry = XposedHelpers.newInstance(aidEntryClass, manager);
+                                    XposedHelpers.setBooleanField(entry, "isOnHost", false);
+                                    XposedHelpers.setIntField(entry, "route", 0x01);
+                                    XposedHelpers.setObjectField(entry, "offHostSE", "eSE1");
+                                    XposedHelpers.setIntField(entry, "power", 0x3B);
+                                    try {
+                                        XposedHelpers.setObjectField(entry, "processName", "com.miui.tsmclient");
+                                    } catch (Throwable ignored) {}
+                                    map.put(targetAid, entry);
+                                    Log.i(TAG, "【AID 注入】已向 AidRoutingManager 成功注入: " + targetAid + " -> eSE1 (0x01)");
+                                }
+                            }
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook AidRoutingManager.configureRouting 全重载");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook AidRoutingManager 异常", t);
+        }
+
+        // 2. Hook RoutingOptionManager，所有默认路由查询均返回 eSE1 (0x01)
+        try {
+            Class<?> romClass = XposedHelpers.findClassIfExists("com.android.nfc.cardemulation.RoutingOptionManager", lpparam.classLoader);
+            if (romClass != null) {
+                XC_MethodReplacement returnEse1 = XC_MethodReplacement.returnConstant(1);
+                XposedBridge.hookAllMethods(romClass, "getDefaultRoute", returnEse1);
+                XposedBridge.hookAllMethods(romClass, "getDefaultIsoDepRoute", returnEse1);
+                XposedBridge.hookAllMethods(romClass, "getDefaultOffHostRoute", returnEse1);
+                XposedBridge.hookAllMethods(romClass, "doGetDefaultRouteDestination", returnEse1);
+                XposedBridge.hookAllMethods(romClass, "doGetDefaultIsoDepRouteDestination", returnEse1);
+                XposedBridge.hookAllMethods(romClass, "doGetDefaultOffHostRouteDestination", returnEse1);
+                Log.i(TAG, "✓ 已 Hook RoutingOptionManager 所有默认路由方法 -> 返回 0x01 (eSE)");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook RoutingOptionManager 异常", t);
+        }
+
+        // 3. Hook NfcService.routeAids(String aid, int route, int aidInfo, int power)
+        try {
+            Class<?> nfcServiceClass = XposedHelpers.findClassIfExists("com.android.nfc.NfcService", lpparam.classLoader);
+            if (nfcServiceClass != null) {
+                XposedBridge.hookAllMethods(nfcServiceClass, "routeAids", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        if (param.args.length >= 4 && param.args[0] instanceof String) {
+                            String aid = (String) param.args[0];
+                            if (aid != null && (aid.startsWith("A0000006320101") ||
+                                                aid.startsWith("9156000014") ||
+                                                aid.startsWith("32504159") ||
+                                                aid.startsWith("A00000000386980701"))) {
+                                Log.i(TAG, "【AID 路由修正】拦截 routeAids: aid=" + aid + " -> 强制导向 eSE1(0x01), PREFIX(0x10), 全状态(0x3B)");
+                                param.args[1] = 0x01; // route = eSE1
+                                param.args[2] = 0x10; // aidInfo = AID_MATCHING_PREFIX
+                                param.args[3] = 0x3B; // power = 全状态穿透 (亮屏/锁屏/息屏)
+                            }
+                        }
+                    }
+                });
+
+                // 4. Hook unrouteAids(String aid) 阻止注销交通卡 AID
+                XposedBridge.hookAllMethods(nfcServiceClass, "unrouteAids", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        if (param.args.length >= 1 && param.args[0] instanceof String) {
+                            String aid = (String) param.args[0];
+                            if (aid != null && (aid.startsWith("A0000006320101") || aid.startsWith("9156000014") || aid.startsWith("32504159"))) {
+                                Log.i(TAG, "【AID 反注册保护】阻止注销交通卡 AID: " + aid);
+                                param.setResult(null);
+                            }
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook NfcService routeAids 与 unrouteAids 路由保护");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook NfcService 异常", t);
+        }
+
+        // 5. 解除 ColorOS com.oplus.nfc.feature.NfcFeatureManager 白名单与 AID 注销限制
+        try {
+            Class<?> nfmClass = XposedHelpers.findClassIfExists("com.oplus.nfc.feature.NfcFeatureManager", lpparam.classLoader);
+            if (nfmClass == null) {
+                nfmClass = XposedHelpers.findClassIfExists("com.android.nfc.NfcFeatureManager", lpparam.classLoader);
+            }
+            if (nfmClass != null) {
+                XposedBridge.hookAllMethods(nfmClass, "getFeature", new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        String name = (String) param.args[0];
+                        Object feature = param.getResult();
+                        if (feature != null && name != null) {
+                            if ("DE_REGISTER_AID_FEATURE".equals(name)) {
+                                // 彻底禁用 DE_REGISTER_AID_FEATURE
+                                XposedHelpers.setBooleanField(feature, "mIsEnable", false);
+                                try {
+                                    Map listMap = (Map) XposedHelpers.getObjectField(feature, "mListMap");
+                                    if (listMap != null) {
+                                        listMap.clear();
+                                    }
+                                } catch (Throwable ignored) {}
+                                Log.i(TAG, "【ColorOS 特性防护】成功屏蔽 DE_REGISTER_AID_FEATURE 自动注销特性");
+                            } else if ("SECURE_ELEMENT_LIST".equals(name)) {
+                                // 将 com.miui.tsmclient 追加至 eSE1 白名单
+                                try {
+                                    Map listMap = (Map) XposedHelpers.getObjectField(feature, "mListMap");
+                                    if (listMap != null) {
+                                        List ese1List = (List) listMap.get("eSE1");
+                                        if (ese1List != null && !ese1List.contains("com.miui.tsmclient")) {
+                                            ese1List.add("com.miui.tsmclient");
+                                            Log.i(TAG, "【ColorOS 特性防护】成功将 com.miui.tsmclient 追加至 eSE1 白名单: " + ese1List);
+                                        }
+                                    }
+                                } catch (Throwable t) {
+                                    Log.e(TAG, "追加 eSE1 白名单异常", t);
+                                }
+                            }
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook com.oplus.nfc.feature.NfcFeatureManager.getFeature 动态特性管控");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook NfcFeatureManager 异常", t);
+        }
+
+        // 6. Hook com.oplus.nfc.smartswitchcard.AidSwitchManager 确保 eSE1 钱包切卡放行
+        try {
+            Class<?> asmClass = XposedHelpers.findClassIfExists("com.oplus.nfc.smartswitchcard.AidSwitchManager", lpparam.classLoader);
+            if (asmClass != null) {
+                XposedBridge.hookAllMethods(asmClass, "isEse1PresentForWalletSwitch", XC_MethodReplacement.returnConstant(true));
+                Log.i(TAG, "✓ 已 Hook AidSwitchManager.isEse1PresentForWalletSwitch -> 始终返回 true");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook AidSwitchManager 异常", t);
+        }
+
+        Log.i(TAG, ">>> NFC 系统服务穿透补丁注入完成 <<<");
+    }
 }
+
 
 
