@@ -342,6 +342,41 @@ public class XposedInit implements IXposedHookLoadPackage {
                     }
                 });
 
+                // 终极防御 1: 拦截 LoadedApk.getClassLoader，杜绝 DexPathList[[]] 空类加载器崩溃
+                XposedBridge.hookAllMethods(loadedApkClass, "getClassLoader", new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        try {
+                            ClassLoader cl = (ClassLoader) param.getResult();
+                            String pkg = (String) XposedHelpers.getObjectField(param.thisObject, "mPackageName");
+                            if ("com.miui.tsmclient".equals(pkg) && cl != null) {
+                                boolean isEmpty = false;
+                                try {
+                                    Object pathList = XposedHelpers.getObjectField(cl, "pathList");
+                                    if (pathList != null) {
+                                        Object[] dexElements = (Object[]) XposedHelpers.getObjectField(pathList, "dexElements");
+                                        if (dexElements == null || dexElements.length == 0) {
+                                            isEmpty = true;
+                                        }
+                                    }
+                                } catch (Throwable ignored) {}
+
+                                if (isEmpty) {
+                                    java.io.File apkFile = new java.io.File("/system/app/MITSMClient/MITSMClient.apk");
+                                    if (apkFile.exists()) {
+                                        ClassLoader newCl = new dalvik.system.PathClassLoader(apkFile.getAbsolutePath(), cl.getParent());
+                                        XposedHelpers.setObjectField(param.thisObject, "mClassLoader", newCl);
+                                        param.setResult(newCl);
+                                        Log.i(TAG, "✓ 【终极救赎】已将 com.miui.tsmclient 的空 ClassLoader 替换为原汁原味的 PathClassLoader！");
+                                    }
+                                }
+                            }
+                        } catch (Throwable t) {
+                            Log.e(TAG, "LoadedApk.getClassLoader 替换异常", t);
+                        }
+                    }
+                });
+
                 Class<?> contextImplClass = XposedHelpers.findClassIfExists("android.app.ContextImpl", lpparam.classLoader);
                 if (contextImplClass != null) {
                     XposedHelpers.findAndHookMethod(contextImplClass, "getAssets", new XC_MethodHook() {
@@ -364,7 +399,34 @@ public class XposedInit implements IXposedHookLoadPackage {
                     });
                 }
 
-                Log.i(TAG, "✓ 已武装 LoadedApk 与 ContextImpl 资源空指针零死角防御");
+                // 终极防御 2: Hook ActivityThread.handleBindApplication 源头确保 FLAG_HAS_CODE 与 sourceDir
+                Class<?> atClass = XposedHelpers.findClassIfExists("android.app.ActivityThread", lpparam.classLoader);
+                if (atClass != null) {
+                    XposedBridge.hookAllMethods(atClass, "handleBindApplication", new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            try {
+                                Object data = param.args[0];
+                                if (data != null) {
+                                    android.content.pm.ApplicationInfo appInfo = (android.content.pm.ApplicationInfo) XposedHelpers.getObjectField(data, "appInfo");
+                                    if (appInfo != null && "com.miui.tsmclient".equals(appInfo.packageName)) {
+                                        appInfo.flags |= android.content.pm.ApplicationInfo.FLAG_HAS_CODE;
+                                        java.io.File tsmApk = new java.io.File("/system/app/MITSMClient/MITSMClient.apk");
+                                        if (tsmApk.exists()) {
+                                            appInfo.sourceDir = tsmApk.getAbsolutePath();
+                                            appInfo.publicSourceDir = tsmApk.getAbsolutePath();
+                                            Log.i(TAG, "✓ 【源头武装】handleBindApplication: 强制修正 com.miui.tsmclient sourceDir 与 FLAG_HAS_CODE！");
+                                        }
+                                    }
+                                }
+                            } catch (Throwable t) {
+                                Log.e(TAG, "handleBindApplication 拦截异常", t);
+                            }
+                        }
+                    });
+                }
+
+                Log.i(TAG, "✓ 已武装 LoadedApk 与 ContextImpl 资源与 ClassLoader 零死角全要素防护");
             }
         } catch (Throwable t) {
             Log.e(TAG, "武装 LoadedApk 资源防御异常", t);
