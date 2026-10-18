@@ -75,38 +75,50 @@ public class XposedInit implements IXposedHookLoadPackage {
         }
 
         try {
-            // A. 将自身模块 (包含 miui.os.Build) 的 dexElements 注入目标应用 ClassLoader 顶层
+            // 获取当前模块的 APK 路径
+            String modulePath = null;
             try {
-                Object targetPathList = XposedHelpers.getObjectField(lpparam.classLoader, "pathList");
-                Object[] targetDexElements = (Object[]) XposedHelpers.getObjectField(targetPathList, "dexElements");
-
-                Object myPathList = XposedHelpers.getObjectField(miui.os.Build.class.getClassLoader(), "pathList");
-                Object[] myDexElements = (Object[]) XposedHelpers.getObjectField(myPathList, "dexElements");
-
-                if (targetDexElements != null && myDexElements != null) {
-                    Object[] combined = (Object[]) java.lang.reflect.Array.newInstance(
-                            targetDexElements.getClass().getComponentType(),
-                            targetDexElements.length + myDexElements.length);
-                    System.arraycopy(myDexElements, 0, combined, 0, myDexElements.length);
-                    System.arraycopy(targetDexElements, 0, combined, myDexElements.length, targetDexElements.length);
-                    XposedHelpers.setObjectField(targetPathList, "dexElements", combined);
-                    Log.i(TAG, "✓ 成功将 miui.os.Build 所在 dexElements 注入 " + pkg + " ClassLoader 顶层！");
+                java.security.ProtectionDomain pd = XposedInit.class.getProtectionDomain();
+                if (pd != null && pd.getCodeSource() != null && pd.getCodeSource().getLocation() != null) {
+                    modulePath = pd.getCodeSource().getLocation().getPath();
                 }
-            } catch (Throwable t) {
-                Log.w(TAG, "注入 dexElements 失败，启用 loadClass Hook 兜底: " + t.getMessage());
+            } catch (Throwable ignored) {}
+
+            if (modulePath == null || modulePath.isEmpty()) {
+                try {
+                    Class<?> atClass = Class.forName("android.app.ActivityThread");
+                    Object at = XposedHelpers.callStaticMethod(atClass, "currentActivityThread");
+                    Context sysCtx = (Context) XposedHelpers.callMethod(at, "getSystemContext");
+                    if (sysCtx != null) {
+                        modulePath = sysCtx.getPackageManager().getApplicationInfo("com.miui.compat.fix", 0).sourceDir;
+                    }
+                } catch (Throwable ignored) {}
             }
 
-            // B. 针对 ClassLoader.loadClass 进行符号拦截双保险
-            XposedHelpers.findAndHookMethod(ClassLoader.class, "loadClass", String.class, boolean.class, new XC_MethodHook() {
+            Log.i(TAG, "【双亲委派兼容】目标包: " + pkg + ", 模块 APK 路径: " + modulePath);
+
+            if (modulePath != null && new java.io.File(modulePath).exists()) {
+                ClassLoader originalParent = lpparam.classLoader.getParent();
+                dalvik.system.PathClassLoader stubLoader = new dalvik.system.PathClassLoader(modulePath, originalParent);
+                XposedHelpers.setObjectField(lpparam.classLoader, "parent", stubLoader);
+                Log.i(TAG, "✓ 成功将 PathClassLoader(" + modulePath + ") 注入为 " + pkg + " 的 parent 类加载器！");
+            }
+
+            // 针对 ClassLoader.loadClass 进行符号拦截，直接返回已就绪的 miui.os.Build.class 作为双保险
+            XC_MethodHook loadClassHook = new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    if (param.args == null || param.args.length == 0) return;
                     String name = (String) param.args[0];
-                    if ("miui.os.Build".equals(name) || name.startsWith("miui.os.Build$")) {
+                    if ("miui.os.Build".equals(name) || (name != null && name.startsWith("miui.os.Build$"))) {
+                        Log.i(TAG, "【类加载拦截成功】放行 " + pkg + " 加载 " + name + " -> miui.os.Build.class");
                         param.setResult(miui.os.Build.class);
                     }
                 }
-            });
-            Log.i(TAG, "✓ 已为 " + pkg + " 武装 miui.os.Build 双亲委派类加载拦截兜底");
+            };
+
+            XposedBridge.hookAllMethods(ClassLoader.class, "loadClass", loadClassHook);
+            Log.i(TAG, "✓ 已为 " + pkg + " 武装 miui.os.Build 全局 loadClass 拦截守卫");
         } catch (Throwable t) {
             Log.e(TAG, "为 " + pkg + " 注入兼容类异常", t);
         }

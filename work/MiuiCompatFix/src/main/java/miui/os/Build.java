@@ -24,6 +24,7 @@ public class Build {
     public static final boolean IS_CU_CUSTOMIZATION = false;
     public static final boolean IS_FOLDABLE_PHONE = false;
     public static final boolean IS_FOLD_DEVICE = false;
+    public static final boolean IS_CN_REGION = true;
 
     public static final String DEVICE = "marble";
     public static final String MODEL = "23049PCD8G";
