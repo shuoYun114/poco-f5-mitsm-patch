@@ -338,7 +338,141 @@ public class XposedInit implements IXposedHookLoadPackage {
             Log.e(TAG, "Hook w6.g 异常", t);
         }
 
+        // 14. Hook com.miui.tsmclient.model.q.r() 解决切换城市报“系统出现错误”
+        try {
+            Class<?> qClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.model.q", lpparam.classLoader);
+            Class<?> cityEntityClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.entity.ProvinceEntity$CityEntity", lpparam.classLoader);
+            if (qClass != null && cityEntityClass != null && hClass != null) {
+                XposedHelpers.findAndHookMethod(qClass, "r", cityEntityClass, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        Object cityEntity = param.args[0];
+                        if (cityEntity != null) {
+                            String code = (String) XposedHelpers.callMethod(cityEntity, "getCode");
+                            String city = (String) XposedHelpers.callMethod(cityEntity, "getCity");
+                            Context context = (Context) XposedHelpers.callMethod(param.thisObject, "g");
+                            if (context != null) {
+                                Class<?> q2Class = XposedHelpers.findClassIfExists("com.miui.tsmclient.util.q2", lpparam.classLoader);
+                                if (q2Class != null) {
+                                    XposedHelpers.callStaticMethod(q2Class, "r", context, "key_switch_current_city_id", code);
+                                    XposedHelpers.callStaticMethod(q2Class, "r", context, "key_switch_current_city_name", city);
+                                    XposedHelpers.callStaticMethod(q2Class, "r", context, "key_current_rf_config_version", "");
+                                    Log.i(TAG, "【城市切换】成功切换城市: " + city + " (ID: " + code + ")，已写入持久化并返回成功！");
+                                }
+                            }
+                        }
+                        param.setResult(XposedHelpers.newInstance(hClass, 0, new Object[0]));
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook com.miui.tsmclient.model.q.r 放行城市切换");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook model.q.r 异常", t);
+        }
+
+        // 15. Hook MIUI 系统版本与环境参数伪装，解决非法参数/无效参数错误
+        try {
+            Class<?> r0Class = XposedHelpers.findClassIfExists("com.miui.tsmclient.util.r0", lpparam.classLoader);
+            Class<?> h4Class = XposedHelpers.findClassIfExists("com.miui.tsmclient.util.h4", lpparam.classLoader);
+            Class<?> t5dClass = XposedHelpers.findClassIfExists("t5.d", lpparam.classLoader);
+
+            if (r0Class != null) {
+                // 伪装 miuiSystemVersion 为官方稳定版版本号
+                XposedHelpers.findAndHookMethod(r0Class, "o", XC_MethodReplacement.returnConstant("OS1.0.12.0.UMRCNXM"));
+                Log.i(TAG, "✓ 已伪装 r0.o() [miuiSystemVersion] -> OS1.0.12.0.UMRCNXM");
+            }
+            if (h4Class != null) {
+                // 伪装 ROM 类型为稳定版 STABLE
+                XposedHelpers.findAndHookMethod(h4Class, "d", XC_MethodReplacement.returnConstant("STABLE"));
+                XposedHelpers.findAndHookMethod(h4Class, "e", XC_MethodReplacement.returnConstant("OS1.0.12.0.UMRCNXM"));
+                XposedHelpers.findAndHookMethod(h4Class, "f", XC_MethodReplacement.returnConstant("STABLE"));
+                Log.i(TAG, "✓ 已伪装 h4.d/e/f [ROM Type] -> STABLE");
+            }
+            if (t5dClass != null) {
+                XposedHelpers.findAndHookMethod(t5dClass, "a", XC_MethodReplacement.returnConstant("OS1.0.12.0.UMRCNXM"));
+                XposedHelpers.findAndHookMethod(t5dClass, "d", XC_MethodReplacement.returnConstant(true));
+                Log.i(TAG, "✓ 已伪装 t5.d [SystemProperties] -> STABLE");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook 系统版本伪装异常", t);
+        }
+
+        // 16. Hook 全景网络请求雷达与订单创建监控
+        try {
+            // A. Toast 拦截雷达
+            Class<?> a4Class = XposedHelpers.findClassIfExists("com.miui.tsmclient.util.a4", lpparam.classLoader);
+            if (a4Class != null) {
+                XposedHelpers.findAndHookMethod(a4Class, "Z", Context.class, String.class, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        Log.w(TAG, "【Toast 雷达拦截】弹窗文本: " + param.args[1], new Throwable());
+                    }
+                });
+                Log.i(TAG, "✓ 已安装 a4.Z Toast 全景雷达");
+            }
+
+            // B. 订单创建 API 调用拦截 (x6.k.r)
+            Class<?> x6kClass = XposedHelpers.findClassIfExists("x6.k", lpparam.classLoader);
+            Class<?> cardInfoClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.entity.CardInfo", lpparam.classLoader);
+            if (x6kClass != null && cardInfoClass != null) {
+                XposedHelpers.findAndHookMethod(x6kClass, "r", Context.class, int.class, cardInfoClass, Bundle.class, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        int feeId = (int) param.args[1];
+                        Object card = param.args[2];
+                        Bundle bundle = (Bundle) param.args[3];
+                        String cardNo = card != null ? (String) XposedHelpers.getObjectField(card, "mCardNo") : "null";
+                        int balance = card != null ? XposedHelpers.getIntField(card, "mCardBalance") : -1;
+                        String cardType = card != null ? (String) XposedHelpers.getObjectField(card, "mCardType") : "null";
+                        Log.i(TAG, "【订单创建请求发起】feeId=" + feeId + ", cardType=" + cardType + ", cardNo=" + cardNo + ", balance=" + balance + ", bundle=" + bundle);
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        if (param.hasThrowable()) {
+                            Log.e(TAG, "【订单创建抛出异常】", param.getThrowable());
+                        } else {
+                            Log.i(TAG, "【订单创建返回成功】response: " + param.getResult());
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已安装 x6.k.r 订单创建全景雷达");
+            }
+
+            // C. 失败回调拦截 (j$b.a)
+            Class<?> jbClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.viewmodel.j$b", lpparam.classLoader);
+            if (jbClass != null) {
+                XposedHelpers.findAndHookMethod(jbClass, "a", int.class, String.class, Object[].class, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        int errCode = (int) param.args[0];
+                        String errDesc = (String) param.args[1];
+                        Object[] extras = (Object[]) param.args[2];
+                        Log.w(TAG, "【创建订单失败回调】errorCode=" + errCode + ", desc=" + errDesc + ", extras=" + (extras != null && extras.length > 0 ? extras[0] : "none"), new Throwable());
+                    }
+                });
+                Log.i(TAG, "✓ 已安装 j$b.a 失败回调全景雷达");
+            }
+
+            // D. 原始 TSM API 响应解析拦截 (x6.d.c)
+            Class<?> x6dClass = XposedHelpers.findClassIfExists("x6.d", lpparam.classLoader);
+            Class<?> c3Enum = XposedHelpers.findClassIfExists("x6.c$c", lpparam.classLoader);
+            if (x6dClass != null && c3Enum != null) {
+                XposedHelpers.findAndHookMethod(x6dClass, "c", String.class, c3Enum, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        String rawJson = (String) param.args[0];
+                        Log.i(TAG, "【TSM-API 原始响应】rawJson: " + rawJson);
+                    }
+                });
+                Log.i(TAG, "✓ 已安装 x6.d.c 原始 API 响应监控");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook 全景雷达异常", t);
+        }
+
         Log.i(TAG, ">>> 小米智能卡补丁注入完成 <<<");
     }
 }
+
 
