@@ -99,26 +99,54 @@ public class XposedInit implements IXposedHookLoadPackage {
 
             if (modulePath != null && new java.io.File(modulePath).exists()) {
                 ClassLoader originalParent = lpparam.classLoader.getParent();
-                dalvik.system.PathClassLoader stubLoader = new dalvik.system.PathClassLoader(modulePath, originalParent);
+                String dexPath = modulePath;
+                java.io.File rtSdk = new java.io.File("/system_ext/priv-app/RtMiCloudSDK/RtMiCloudSDK.apk");
+                if (rtSdk.exists()) {
+                    dexPath = modulePath + ":" + rtSdk.getAbsolutePath();
+                }
+                dalvik.system.PathClassLoader stubLoader = new dalvik.system.PathClassLoader(dexPath, originalParent);
                 XposedHelpers.setObjectField(lpparam.classLoader, "parent", stubLoader);
-                Log.i(TAG, "✓ 成功将 PathClassLoader(" + modulePath + ") 注入为 " + pkg + " 的 parent 类加载器！");
+                Log.i(TAG, "✓ 成功将 PathClassLoader(" + dexPath + ") 注入为 " + pkg + " 的 parent 类加载器！");
             }
 
-            // 针对 ClassLoader.loadClass 进行符号拦截，直接返回已就绪的 miui.os.Build.class 作为双保险
+            // 针对 ClassLoader.loadClass 进行符号拦截，直接返回已就绪的兼容桩类作为双保险
             XC_MethodHook loadClassHook = new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     if (param.args == null || param.args.length == 0) return;
                     String name = (String) param.args[0];
-                    if ("miui.os.Build".equals(name) || (name != null && name.startsWith("miui.os.Build$"))) {
-                        Log.i(TAG, "【类加载拦截成功】放行 " + pkg + " 加载 " + name + " -> miui.os.Build.class");
+                    if (name == null) return;
+
+                    if ("miui.os.Build".equals(name) || name.startsWith("miui.os.Build$")) {
                         param.setResult(miui.os.Build.class);
+                    } else if ("miui.cloud.os.SystemProperties".equals(name)) {
+                        param.setResult(miui.cloud.os.SystemProperties.class);
+                    } else if ("miui.cloud.os.MultiuserUtils".equals(name)) {
+                        param.setResult(miui.cloud.os.MultiuserUtils.class);
+                    } else if ("miui.cloud.os.RuntimePermission".equals(name)) {
+                        param.setResult(miui.cloud.os.RuntimePermission.class);
+                    } else if ("miui.cloud.os.ServiceManager".equals(name)) {
+                        param.setResult(miui.cloud.os.ServiceManager.class);
+                    } else if ("miui.accounts.ExtraAccountManager".equals(name)) {
+                        param.setResult(miui.accounts.ExtraAccountManager.class);
+                    } else if ("miui.os.UserHandle".equals(name)) {
+                        param.setResult(miui.os.UserHandle.class);
+                    } else if ("miui.provider.ExtraNetwork".equals(name)) {
+                        param.setResult(miui.provider.ExtraNetwork.class);
+                    } else if ("miui.securityspace.CrossUserUtils".equals(name)) {
+                        param.setResult(miui.securityspace.CrossUserUtils.class);
+                    } else if ("miui.telephony.TelephonyManager".equals(name)) {
+                        param.setResult(miui.telephony.TelephonyManager.class);
+                    } else if ("miui.telephony.exception.IllegalDeviceException".equals(name)) {
+                        param.setResult(miui.telephony.exception.IllegalDeviceException.class);
+                    } else if ("miui.util.HapticFeedbackUtil".equals(name)) {
+                        param.setResult(miui.util.HapticFeedbackUtil.class);
                     }
                 }
             };
 
             XposedBridge.hookAllMethods(ClassLoader.class, "loadClass", loadClassHook);
-            Log.i(TAG, "✓ 已为 " + pkg + " 武装 miui.os.Build 全局 loadClass 拦截守卫");
+            Log.i(TAG, "✓ 已为 " + pkg + " 武装 miui.* 全局 loadClass 拦截守卫");
         } catch (Throwable t) {
             Log.e(TAG, "为 " + pkg + " 注入兼容类异常", t);
         }
