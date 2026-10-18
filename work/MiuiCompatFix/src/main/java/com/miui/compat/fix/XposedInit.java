@@ -1031,6 +1031,22 @@ public class XposedInit implements IXposedHookLoadPackage {
             } catch (Throwable t) {
                 Log.e(TAG, "Hook PowerKeyRule.onKeyGesture 异常", t);
             }
+            // 拦截单按灭屏回调: onPress(long downTime) 增加防误灭屏守卫
+            try {
+                XposedBridge.hookAllMethods(ruleClass, "onPress", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        long now = SystemClock.uptimeMillis();
+                        if (now - mLastLaunchTime < 1000) {
+                            Log.i(TAG, "【双击防灭屏守卫】近期已触发双击切卡 (距今 " + (now - mLastLaunchTime) + "ms)，拦截 PowerKeyRule.onPress() 误灭屏！");
+                            param.setResult(null);
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook PowerKeyRule.onPress 注入双击防误灭屏守卫");
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook PowerKeyRule.onPress 异常", t);
+            }
         }
 
         if (pwmClass != null) {
@@ -1074,7 +1090,7 @@ public class XposedInit implements IXposedHookLoadPackage {
                 Log.e(TAG, "Hook PhoneWindowManager.getMaxMultiPressPowerCount 异常", t);
             }
 
-            // 4. 拦截 powerPress 分发终点 (处理 count == 2)
+            // 4. 拦截 powerPress 分发终点 (处理 count == 2 及单按防误灭屏)
             try {
                 XposedBridge.hookAllMethods(pwmClass, "powerPress", new XC_MethodHook() {
                     @Override
@@ -1096,14 +1112,36 @@ public class XposedInit implements IXposedHookLoadPackage {
                             } catch (Throwable ignored) {}
 
                             launchTrafficCard(context);
-                            // 彻底阻断原方法，防止触发系统相机或关机操作
+                            param.setResult(null);
+                        } else if (count == 1) {
+                            long now = SystemClock.uptimeMillis();
+                            if (now - mLastLaunchTime < 1000) {
+                                Log.i(TAG, "【双击防灭屏守卫】近期已触发双击切卡，拦截 PhoneWindowManager.powerPress(count=1) 误灭屏！");
+                                param.setResult(null);
+                            }
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook PhoneWindowManager.powerPress 双击拦截与防误灭屏");
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook PhoneWindowManager.powerPress 异常", t);
+            }
+
+            // 4.1 拦截 sleepDefaultDisplayFromPowerButton 彻底阻断双击残留触发的底层灭屏
+            try {
+                XposedBridge.hookAllMethods(pwmClass, "sleepDefaultDisplayFromPowerButton", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        long now = SystemClock.uptimeMillis();
+                        if (now - mLastLaunchTime < 1000) {
+                            Log.i(TAG, "【双击防灭屏守卫】近期已触发双击切卡，拦截 sleepDefaultDisplayFromPowerButton 底层灭屏！");
                             param.setResult(null);
                         }
                     }
                 });
-                Log.i(TAG, "✓ 已 Hook PhoneWindowManager.powerPress 双击拦截器");
+                Log.i(TAG, "✓ 已 Hook PhoneWindowManager.sleepDefaultDisplayFromPowerButton 注入双击防灭屏守卫");
             } catch (Throwable t) {
-                Log.e(TAG, "Hook PhoneWindowManager.powerPress 异常", t);
+                Log.e(TAG, "Hook sleepDefaultDisplayFromPowerButton 异常", t);
             }
 
             // 5. 拦截 powerMultiPressAction 与 launchTargetActivityOnMultiPressPower 兜底
@@ -1132,19 +1170,26 @@ public class XposedInit implements IXposedHookLoadPackage {
                 Log.e(TAG, "Hook powerMultiPressAction 异常", t);
             }
 
-            // 6. 物理按键拦截：在 interceptKeyBeforeQueueing 拦截快速双击，实现亮屏/息屏零延迟切卡
+            // 6. 物理按键拦截：在 interceptKeyBeforeQueueing 拦截快速双击并成对消费，实现亮屏/息屏零延迟零黑屏切卡
             try {
                 XposedHelpers.findAndHookMethod(pwmClass, "interceptKeyBeforeQueueing", KeyEvent.class, int.class, new XC_MethodHook() {
                     private long mLastPowerDownTime = 0;
+                    private boolean mConsumedSecondDown = false;
 
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         KeyEvent event = (KeyEvent) param.args[0];
-                        if (event != null && event.getKeyCode() == KeyEvent.KEYCODE_POWER && event.getAction() == KeyEvent.ACTION_DOWN) {
-                            long now = SystemClock.uptimeMillis();
+                        if (event == null || event.getKeyCode() != KeyEvent.KEYCODE_POWER) {
+                            return;
+                        }
+                        int action = event.getAction();
+                        long now = SystemClock.uptimeMillis();
+
+                        if (action == KeyEvent.ACTION_DOWN) {
                             long diff = now - mLastPowerDownTime;
                             if (diff < 450 && diff > 50) {
                                 mLastPowerDownTime = 0;
+                                mConsumedSecondDown = true;
                                 Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
                                 Log.i(TAG, "【物理双击电源键拦截】diff=" + diff + "ms -> 立即拉起小米智能卡并阻断后续分发！");
                                 launchTrafficCard(context);
@@ -1152,11 +1197,18 @@ public class XposedInit implements IXposedHookLoadPackage {
                                 return;
                             }
                             mLastPowerDownTime = now;
-                            Log.i(TAG, "【物理电源键按下】记录首次按下时间: " + now + "，放行待判定");
+                            mConsumedSecondDown = false;
+                            Log.i(TAG, "【物理电源键按下】首次按下时间: " + now + "，放行待判定");
+                        } else if (action == KeyEvent.ACTION_UP) {
+                            if (mConsumedSecondDown) {
+                                mConsumedSecondDown = false;
+                                Log.i(TAG, "【物理双击电源键拦截】吸收第二次抬起 UP 事件，杜绝孤立按键事件传递");
+                                param.setResult(0);
+                            }
                         }
                     }
                 });
-                Log.i(TAG, "✓ 已配置 PhoneWindowManager.interceptKeyBeforeQueueing 物理双击直通拦截");
+                Log.i(TAG, "✓ 已配置 PhoneWindowManager.interceptKeyBeforeQueueing 物理双击成对拦截");
             } catch (Throwable t) {
                 Log.e(TAG, "Hook PhoneWindowManager.interceptKeyBeforeQueueing 异常", t);
             }
@@ -1313,6 +1365,25 @@ public class XposedInit implements IXposedHookLoadPackage {
                                 } catch (Throwable t) {
                                     Log.e(TAG, "追加 eSE1 白名单异常", t);
                                 }
+                            } else if ("FOREGROUND_DIRECT_DISPATCH".equals(name)) {
+                                try {
+                                    Map listMap = (Map) XposedHelpers.getObjectField(feature, "mListMap");
+                                    if (listMap != null) {
+                                        List blackList = (List) listMap.get("black_list");
+                                        if (blackList != null) {
+                                            blackList.clear(); // 清空黑名单，放行微信等应用贴卡
+                                        }
+                                        List whiteList = (List) listMap.get("white_list");
+                                        if (whiteList != null) {
+                                            if (!whiteList.contains("com.tencent.mm")) whiteList.add("com.tencent.mm");
+                                            if (!whiteList.contains("cn.com.bmac.nfc")) whiteList.add("cn.com.bmac.nfc");
+                                            if (!whiteList.contains("com.miui.tsmclient")) whiteList.add("com.miui.tsmclient");
+                                        }
+                                    }
+                                    Log.i(TAG, "【ColorOS 特性防护】已解开 FOREGROUND_DIRECT_DISPATCH 黑名单并加入微信/一卡通白名单");
+                                } catch (Throwable t) {
+                                    Log.e(TAG, "解除 FOREGROUND_DIRECT_DISPATCH 限制异常", t);
+                                }
                             }
                         }
                     }
@@ -1332,6 +1403,27 @@ public class XposedInit implements IXposedHookLoadPackage {
             }
         } catch (Throwable t) {
             Log.e(TAG, "Hook AidSwitchManager 异常", t);
+        }
+
+        // 7. 强制开启 Reader 模式与全频轮询，保证外部实体卡贴卡充值秒识别
+        try {
+            Class<?> nfcServiceClass = XposedHelpers.findClassIfExists("com.android.nfc.NfcService", lpparam.classLoader);
+            if (nfcServiceClass != null) {
+                XC_MethodHook enableReaderHook = new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        try {
+                            XposedHelpers.setBooleanField(param.thisObject, "mEnableReader", true);
+                            XposedHelpers.setBooleanField(param.thisObject, "mIsReaderOptionEnabled", true);
+                        } catch (Throwable ignored) {}
+                    }
+                };
+                XposedBridge.hookAllConstructors(nfcServiceClass, enableReaderHook);
+                XposedBridge.hookAllMethods(nfcServiceClass, "applyRouting", enableReaderHook);
+                Log.i(TAG, "✓ 已 Hook NfcService 强制激活 Reader 读卡器模式 (mEnableReader=true)");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook NfcService 强制激活 Reader 模式异常", t);
         }
 
         Log.i(TAG, ">>> NFC 系统服务穿透补丁注入完成 <<<");
