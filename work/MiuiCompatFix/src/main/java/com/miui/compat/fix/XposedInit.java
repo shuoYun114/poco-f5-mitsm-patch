@@ -240,30 +240,61 @@ public class XposedInit implements IXposedHookLoadPackage {
                 XposedHelpers.findAndHookMethod(loadedApkClass, "getResources", new XC_MethodHook() {
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                        if (param.getResult() == null) {
-                            param.setResult(Resources.getSystem());
-                            Log.w(TAG, "【LoadedApk 防御】getResources() 为 null，已自动使用系统 Resources 兜底");
+                        if (param.hasThrowable() || param.getResult() == null) {
+                            param.setThrowable(null);
+                            Resources sysRes = Resources.getSystem();
+                            param.setResult(sysRes);
+                            try {
+                                XposedHelpers.setObjectField(param.thisObject, "mResources", sysRes);
+                            } catch (Throwable ignored) {}
+                            Log.w(TAG, "【LoadedApk 防御】getResources() 异常或为 null，已安全赋予系统 Resources 兜底");
                         }
                     }
                 });
 
-                XposedHelpers.findAndHookMethod(loadedApkClass, "getAssets", new XC_MethodHook() {
+                XposedHelpers.findAndHookMethod(loadedApkClass, "getAssets", new XC_MethodReplacement() {
                     @Override
-                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
                         try {
                             Object res = XposedHelpers.callMethod(param.thisObject, "getResources");
-                            if (res == null) {
-                                param.setResult(Resources.getSystem().getAssets());
-                                Log.w(TAG, "【LoadedApk 防御】getAssets() 时 Resources 为 null，已自动使用系统 AssetManager 兜底");
+                            if (res != null) {
+                                AssetManager am = (AssetManager) XposedHelpers.callMethod(res, "getAssets");
+                                if (am != null) {
+                                    return am;
+                                }
                             }
-                        } catch (Throwable t) {
-                            param.setResult(Resources.getSystem().getAssets());
-                        }
+                        } catch (Throwable ignored) {}
+                        Log.w(TAG, "【LoadedApk 防御】getAssets() 原生获取失败，已安全替换为系统 AssetManager 兜底");
+                        return Resources.getSystem().getAssets();
                     }
                 });
-                Log.i(TAG, "✓ 已武装 LoadedApk 资源空指针全局防御");
+
+                Class<?> contextImplClass = XposedHelpers.findClassIfExists("android.app.ContextImpl", lpparam.classLoader);
+                if (contextImplClass != null) {
+                    XposedHelpers.findAndHookMethod(contextImplClass, "getAssets", new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                            if (param.hasThrowable() || param.getResult() == null) {
+                                param.setThrowable(null);
+                                param.setResult(Resources.getSystem().getAssets());
+                            }
+                        }
+                    });
+                    XposedHelpers.findAndHookMethod(contextImplClass, "getResources", new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                            if (param.hasThrowable() || param.getResult() == null) {
+                                param.setThrowable(null);
+                                param.setResult(Resources.getSystem());
+                            }
+                        }
+                    });
+                }
+
+                Log.i(TAG, "✓ 已武装 LoadedApk 与 ContextImpl 资源空指针零死角防御");
             }
-        } catch (Throwable ignored) {
+        } catch (Throwable t) {
+            Log.e(TAG, "武装 LoadedApk 资源防御异常", t);
         }
     }
 
