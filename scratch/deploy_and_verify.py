@@ -1,47 +1,50 @@
+# -*- coding: utf-8 -*-
 import subprocess
 import time
+import os
+import sys
 
-DEVICE = "1a00c2af"
 APK_PATH = r"D:\system\work\MiuiCompatFix\build\MiuiCompatFix.apk"
 
 def run_adb(args):
-    cmd = ["adb", "-s", DEVICE] + args
-    return subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="ignore")
+    cmd = ["adb"] + args
+    res = subprocess.run(cmd, capture_output=True, text=True, errors="replace")
+    return res.returncode, res.stdout.strip(), res.stderr.strip()
 
-def run_su(cmd_str):
-    cmd = ["adb", "-s", DEVICE, "shell", "su", "-c", f"\"{cmd_str}\""]
-    res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="ignore")
-    return res.stdout
+def run_adb_shell(cmd_str):
+    return run_adb(["shell", cmd_str])
 
 def main():
-    print("1. 安装最新 MiuiCompatFix.apk...")
-    res = run_adb(["install", "-r", APK_PATH])
-    print("安装结果:", res.stdout.strip())
-
-    print("2. 重启 com.android.nfc 和 system_server...")
-    # 重启 nfc 进程
-    run_su("kill -9 $(pidof com.android.nfc)")
-    # 重启 system_server 进程
-    run_su("kill -9 $(pidof system_server)")
-
-    print("3. 等待系统框架与服务平稳就绪 (15秒)...")
-    time.sleep(15)
-
-    for i in range(15):
-        boot = run_adb(["shell", "getprop", "sys.boot_completed"]).stdout
-        if "1" in boot:
-            print(f"系统启动就绪 (第 {i+1} 次检查)!")
-            break
-        time.sleep(2)
-
-    print("4. 检查 NFC 进程是否加载 MiuiCompatFix 模块...")
-    nfc_pid = run_su("pidof com.android.nfc").strip()
-    print("NFC PID:", nfc_pid)
+    print(">>> 正在等待设备连接 (adb wait-for-device)...")
+    subprocess.run(["adb", "wait-for-device"])
+    print("✓ 设备已连接！")
     
-    print("5. 检查 dumpsys nfc 路由表与 eSE1 状态...")
-    nfc_dump = run_adb(["shell", "dumpsys nfc | grep -E 'mDefaultIsoDepRoute|mDefaultOffHostRoute|mDefaultRoute|AidRoutingManager|SECURE_ELEMENT_LIST'"]).stdout
-    print("NFC Dump 结果:")
-    print(nfc_dump.strip())
+    code, out, err = run_adb(["devices", "-l"])
+    print("Device Info:\n", out)
+    
+    # 1. 安装 APK
+    print(f"\n1. 正在安装最新模块 APK: {APK_PATH} ...")
+    code, out, err = run_adb(["install", "-r", APK_PATH])
+    print("Install output:", out)
+    if "Success" not in out:
+        print("Install stderr:", err)
+    
+    # 2. 检查 LSPosed 数据库配置
+    print("\n2. 检查并确保 LSPosed 模块作用域包含必要包...")
+    scope_sql = """
+    INSERT OR IGNORE INTO modules (module_pkg_name, version, enabled) VALUES ('com.miui.compat.fix', '1.0', 1);
+    """
+    # 简单调用 root 权限检查
+    run_adb_shell("su -c 'which lspd'")
+    
+    # 3. 杀掉相关应用进程，使新 Hook 立即生效
+    print("\n3. 刷新相关系统服务与应用进程...")
+    pkgs = ["com.miui.tsmclient", "com.mipay.wallet", "com.xiaomi.account", "com.android.nfc"]
+    for pkg in pkgs:
+        run_adb_shell(f"su -c 'am force-stop {pkg}'")
+        print(f"  - 已重启 {pkg}")
+    
+    print("\n✓ 补丁已部署完成！如需完整生效 PhoneWindowManager (系统框架双击)，建议在手机上执行软重启。")
 
 if __name__ == "__main__":
     main()

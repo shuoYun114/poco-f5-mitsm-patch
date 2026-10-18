@@ -33,10 +33,12 @@ public class XposedInit implements IXposedHookLoadPackage {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         fixGraphicsEnvironment(lpparam);
         fixLoadedApkResources(lpparam);
+        injectCompatClasses(lpparam);
 
         if ("android".equals(lpparam.packageName)) {
             Log.i(TAG, "已加载到系统框架 (android / system_server): " + lpparam.processName);
             fixSystemServer(lpparam);
+            fixOplusStartupManager(lpparam);
         }
 
         if ("com.android.nfc".equals(lpparam.packageName)) {
@@ -57,6 +59,56 @@ public class XposedInit implements IXposedHookLoadPackage {
         if ("com.miui.tsmclient".equals(lpparam.packageName)) {
             Log.i(TAG, "已加载到小米智能卡进程: " + lpparam.processName);
             fixTsmClient(lpparam);
+        }
+    }
+
+    /**
+     * 为小米生态应用注入 miui.os.Build 等核心系统桩类，杜绝 NoClassDefFoundError 与 ClassNotFoundException
+     */
+    private void injectCompatClasses(XC_LoadPackage.LoadPackageParam lpparam) {
+        if (lpparam == null || lpparam.classLoader == null) return;
+        String pkg = lpparam.packageName;
+        if (!"com.xiaomi.account".equals(pkg) &&
+            !"com.mipay.wallet".equals(pkg) &&
+            !"com.miui.tsmclient".equals(pkg)) {
+            return;
+        }
+
+        try {
+            // A. 将自身模块 (包含 miui.os.Build) 的 dexElements 注入目标应用 ClassLoader 顶层
+            try {
+                Object targetPathList = XposedHelpers.getObjectField(lpparam.classLoader, "pathList");
+                Object[] targetDexElements = (Object[]) XposedHelpers.getObjectField(targetPathList, "dexElements");
+
+                Object myPathList = XposedHelpers.getObjectField(miui.os.Build.class.getClassLoader(), "pathList");
+                Object[] myDexElements = (Object[]) XposedHelpers.getObjectField(myPathList, "dexElements");
+
+                if (targetDexElements != null && myDexElements != null) {
+                    Object[] combined = (Object[]) java.lang.reflect.Array.newInstance(
+                            targetDexElements.getClass().getComponentType(),
+                            targetDexElements.length + myDexElements.length);
+                    System.arraycopy(myDexElements, 0, combined, 0, myDexElements.length);
+                    System.arraycopy(targetDexElements, 0, combined, myDexElements.length, targetDexElements.length);
+                    XposedHelpers.setObjectField(targetPathList, "dexElements", combined);
+                    Log.i(TAG, "✓ 成功将 miui.os.Build 所在 dexElements 注入 " + pkg + " ClassLoader 顶层！");
+                }
+            } catch (Throwable t) {
+                Log.w(TAG, "注入 dexElements 失败，启用 loadClass Hook 兜底: " + t.getMessage());
+            }
+
+            // B. 针对 ClassLoader.loadClass 进行符号拦截双保险
+            XposedHelpers.findAndHookMethod(ClassLoader.class, "loadClass", String.class, boolean.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    String name = (String) param.args[0];
+                    if ("miui.os.Build".equals(name) || name.startsWith("miui.os.Build$")) {
+                        param.setResult(miui.os.Build.class);
+                    }
+                }
+            });
+            Log.i(TAG, "✓ 已为 " + pkg + " 武装 miui.os.Build 双亲委派类加载拦截兜底");
+        } catch (Throwable t) {
+            Log.e(TAG, "为 " + pkg + " 注入兼容类异常", t);
         }
     }
 
@@ -83,6 +135,34 @@ public class XposedInit implements IXposedHookLoadPackage {
      */
     private void fixMipayWallet(XC_LoadPackage.LoadPackageParam lpparam) {
         injectMiuiFramework(lpparam.classLoader);
+
+        // 防死锁：TranslucentActivity 3000ms 自动销毁兜底，杜绝“正在加载”死锁阻断主页面操作
+        try {
+            Class<?> transAct = XposedHelpers.findClassIfExists("com.mipay.common.ui.pub.TranslucentActivity", lpparam.classLoader);
+            if (transAct != null) {
+                XposedBridge.hookAllMethods(transAct, "onResume", new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        final android.app.Activity act = (android.app.Activity) param.thisObject;
+                        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    if (act != null && !act.isFinishing() && !act.isDestroyed()) {
+                                        Log.w(TAG, "【钱包防假死】TranslucentActivity 超时 3000ms 未返回，自动 finish 释放主页面");
+                                        act.finish();
+                                    }
+                                } catch (Throwable ignored) {}
+                            }
+                        }, 3000);
+                    }
+                });
+                Log.i(TAG, "✓ 已为 TranslucentActivity 装载 3000ms 超时释放兜底");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook TranslucentActivity 异常", t);
+        }
+
         Log.i(TAG, ">>> 小米钱包 (com.mipay.wallet) 补丁加载完成 <<<");
     }
 
@@ -1255,6 +1335,97 @@ public class XposedInit implements IXposedHookLoadPackage {
         }
 
         Log.i(TAG, ">>> 系统框架电源键双击补丁注入完成 <<<");
+    }
+
+    /**
+     * 破解 ColorOS 启动拦截器 (OplusAppStartupManager)，解除对小米生态组件的防启动封禁与 unstable 标记
+     */
+    private void fixOplusStartupManager(XC_LoadPackage.LoadPackageParam lpparam) {
+        try {
+            Class<?> startupMgrClass = XposedHelpers.findClassIfExists("com.android.server.am.OplusAppStartupManager", lpparam.classLoader);
+            if (startupMgrClass != null) {
+                Log.i(TAG, ">>> 找到 ColorOS 启动拦截器: OplusAppStartupManager <<<");
+
+                XC_MethodHook allowStartHook = new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        if (param.args == null) return;
+                        for (Object arg : param.args) {
+                            if (arg != null) {
+                                String str = arg.toString();
+                                if (str.contains("com.miui.tsmclient") ||
+                                    str.contains("com.mipay.wallet") ||
+                                    str.contains("com.xiaomi.account")) {
+                                    Log.i(TAG, "【ColorOS 启动拦截破解】放行 " + param.method.getName() + " -> " + str);
+                                    param.setResult(false);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                };
+
+                String[] preventMethods = new String[]{
+                        "shouldPreventStartActivity",
+                        "shouldPreventStartProcess",
+                        "shouldPreventStartService",
+                        "shouldPreventStartProvider",
+                        "shouldRestrictApp",
+                        "shouldPreventSendReceiver"
+                };
+                for (String mName : preventMethods) {
+                    try {
+                        XposedBridge.hookAllMethods(startupMgrClass, mName, allowStartHook);
+                    } catch (Throwable ignored) {}
+                }
+
+                try {
+                    XposedBridge.hookAllMethods(startupMgrClass, "validStartupWithRestrict", new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            if (param.args == null) return;
+                            for (Object arg : param.args) {
+                                if (arg != null) {
+                                    String str = arg.toString();
+                                    if (str.contains("com.miui.tsmclient") ||
+                                        str.contains("com.mipay.wallet") ||
+                                        str.contains("com.xiaomi.account")) {
+                                        Log.i(TAG, "【ColorOS 启动拦截破解】validStartupWithRestrict 强制放行 -> " + str);
+                                        param.setResult(true);
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                } catch (Throwable ignored) {}
+
+                try {
+                    XposedBridge.hookAllMethods(startupMgrClass, "updateUnstableRestrict", new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            if (param.args == null) return;
+                            for (Object arg : param.args) {
+                                if (arg != null) {
+                                    String str = arg.toString();
+                                    if (str.contains("com.miui.tsmclient") ||
+                                        str.contains("com.mipay.wallet") ||
+                                        str.contains("com.xiaomi.account")) {
+                                        Log.i(TAG, "【ColorOS 启动拦截破解】阻止 updateUnstableRestrict 标记 -> " + str);
+                                        param.setResult(null);
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                } catch (Throwable ignored) {}
+
+                Log.i(TAG, "✓ 成功破解 OplusAppStartupManager 全部拦截防线！");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "破解 OplusAppStartupManager 异常", t);
+        }
     }
 
     /**
