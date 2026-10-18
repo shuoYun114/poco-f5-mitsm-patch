@@ -249,10 +249,22 @@ public class XposedInit implements IXposedHookLoadPackage {
     private void fixMipayWallet(XC_LoadPackage.LoadPackageParam lpparam) {
         injectMiuiFramework(lpparam.classLoader);
 
-        // 防死锁：TranslucentActivity 3000ms 自动销毁兜底，杜绝“正在加载”死锁阻断主页面操作
+        // 核心防死锁：TranslucentActivity 窗口属性优化 + 1500ms 快速销毁兜底，杜绝透明遮罩阻断主页面
         try {
             Class<?> transAct = XposedHelpers.findClassIfExists("com.mipay.common.ui.pub.TranslucentActivity", lpparam.classLoader);
             if (transAct != null) {
+                XposedBridge.hookAllMethods(transAct, "onCreate", new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        final android.app.Activity act = (android.app.Activity) param.thisObject;
+                        try {
+                            if (act.getWindow() != null) {
+                                act.getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
+                            }
+                        } catch (Throwable ignored) {}
+                    }
+                });
+
                 XposedBridge.hookAllMethods(transAct, "onResume", new XC_MethodHook() {
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
@@ -262,19 +274,28 @@ public class XposedInit implements IXposedHookLoadPackage {
                             public void run() {
                                 try {
                                     if (act != null && !act.isFinishing() && !act.isDestroyed()) {
-                                        Log.w(TAG, "【钱包防假死】TranslucentActivity 超时 3000ms 未返回，自动 finish 释放主页面");
+                                        Log.w(TAG, "【钱包防假死】TranslucentActivity 超时 1500ms 未返回，自动 finish 释放主页面");
                                         act.finish();
                                     }
                                 } catch (Throwable ignored) {}
                             }
-                        }, 3000);
+                        }, 1500);
                     }
                 });
-                Log.i(TAG, "✓ 已为 TranslucentActivity 装载 3000ms 超时释放兜底");
+                Log.i(TAG, "✓ 已为 TranslucentActivity 装载非模态窗口与 1500ms 超时释放双层兜底");
             }
         } catch (Throwable t) {
             Log.e(TAG, "Hook TranslucentActivity 异常", t);
         }
+
+        // 小米钱包网络与环境伪装：伪装机型 marble 与官方稳定版版本号
+        try {
+            Class<?> bClass = XposedHelpers.findClassIfExists("miui.os.Build", lpparam.classLoader);
+            if (bClass != null) {
+                XposedHelpers.setStaticObjectField(bClass, "IS_STABLE_VERSION", Boolean.TRUE);
+                XposedHelpers.setStaticObjectField(bClass, "IS_INTERNATIONAL_BUILD", Boolean.FALSE);
+            }
+        } catch (Throwable ignored) {}
 
         Log.i(TAG, ">>> 小米钱包 (com.mipay.wallet) 补丁加载完成 <<<");
     }
@@ -342,7 +363,83 @@ public class XposedInit implements IXposedHookLoadPackage {
                     }
                 });
 
-                // 终极防御 1: 拦截 LoadedApk.getClassLoader，杜绝 DexPathList[[]] 空类加载器崩溃
+                // 终极防御 0: 拦截 LoadedApk.createAppFactory，杜绝组件工厂抛出 ClassNotFoundException
+                try {
+                    XposedBridge.hookAllMethods(loadedApkClass, "createAppFactory", new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            try {
+                                if (param.args != null && param.args.length >= 2) {
+                                    android.content.pm.ApplicationInfo appInfo = (android.content.pm.ApplicationInfo) param.args[0];
+                                    ClassLoader cl = (ClassLoader) param.args[1];
+                                    if (appInfo != null && appInfo.appComponentFactory != null && cl != null) {
+                                        try {
+                                            cl.loadClass(appInfo.appComponentFactory);
+                                        } catch (ClassNotFoundException e) {
+                                            Log.w(TAG, "【LoadedApk 防御】组件工厂类 " + appInfo.appComponentFactory + " 在目标 ClassLoader 中不存在，安全替换为原生默认工厂兜底");
+                                            param.setResult(new android.app.AppComponentFactory());
+                                        }
+                                    }
+                                }
+                            } catch (Throwable ignored) {}
+                        }
+                    });
+                } catch (Throwable t) {
+                    Log.e(TAG, "Hook createAppFactory 异常", t);
+                }
+
+                // 终极防御 1: 拦截 LoadedApk.createOrUpdateClassLoaderLocked 创建后第一时间修正 mClassLoader
+                try {
+                    XposedBridge.hookAllMethods(loadedApkClass, "createOrUpdateClassLoaderLocked", new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                            try {
+                                String pkg = (String) XposedHelpers.getObjectField(param.thisObject, "mPackageName");
+                                if ("com.miui.tsmclient".equals(pkg) || "com.mipay.wallet".equals(pkg)) {
+                                    ClassLoader cl = (ClassLoader) XposedHelpers.getObjectField(param.thisObject, "mClassLoader");
+                                    boolean isEmpty = false;
+                                    if (cl != null) {
+                                        try {
+                                            Object pathList = XposedHelpers.getObjectField(cl, "pathList");
+                                            if (pathList != null) {
+                                                Object[] dexElements = (Object[]) XposedHelpers.getObjectField(pathList, "dexElements");
+                                                if (dexElements == null || dexElements.length == 0) {
+                                                    isEmpty = true;
+                                                }
+                                            }
+                                        } catch (Throwable ignored) {}
+                                    } else {
+                                        isEmpty = true;
+                                    }
+
+                                    if (isEmpty) {
+                                        String apkPath = "com.miui.tsmclient".equals(pkg) ?
+                                                "/system/app/MITSMClient/MITSMClient.apk" :
+                                                (String) XposedHelpers.getObjectField(param.thisObject, "mAppDir");
+                                        java.io.File apkFile = new java.io.File(apkPath);
+                                        if (apkFile.exists()) {
+                                            ClassLoader parent = cl != null ? cl.getParent() : ClassLoader.getSystemClassLoader();
+                                            ClassLoader newCl = new dalvik.system.PathClassLoader(apkFile.getAbsolutePath(), parent);
+                                            XposedHelpers.setObjectField(param.thisObject, "mClassLoader", newCl);
+                                            try {
+                                                android.content.pm.ApplicationInfo appInfo = (android.content.pm.ApplicationInfo) XposedHelpers.getObjectField(param.thisObject, "mApplicationInfo");
+                                                Object factory = XposedHelpers.callMethod(param.thisObject, "createAppFactory", appInfo, newCl);
+                                                XposedHelpers.setObjectField(param.thisObject, "mAppComponentFactory", factory);
+                                            } catch (Throwable ignored) {}
+                                            Log.i(TAG, "✓ 【创建后修正】成功将 " + pkg + " 的 mClassLoader 纠正为有效 PathClassLoader(" + apkPath + ")");
+                                        }
+                                    }
+                                }
+                            } catch (Throwable t) {
+                                Log.e(TAG, "createOrUpdateClassLoaderLocked 拦截修正异常", t);
+                            }
+                        }
+                    });
+                } catch (Throwable t) {
+                    Log.e(TAG, "Hook createOrUpdateClassLoaderLocked 异常", t);
+                }
+
+                // 终极防御 2: 拦截 LoadedApk.getClassLoader，杜绝 DexPathList[[]] 空类加载器崩溃
                 XposedBridge.hookAllMethods(loadedApkClass, "getClassLoader", new XC_MethodHook() {
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
