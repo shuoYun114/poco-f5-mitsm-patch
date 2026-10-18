@@ -75,45 +75,87 @@ public class XposedInit implements IXposedHookLoadPackage {
         }
 
         try {
-            // 获取当前模块的 APK 路径
+            // 获取当前模块的 APK 路径 (多级兜底防御)
             String modulePath = null;
             try {
-                java.security.ProtectionDomain pd = XposedInit.class.getProtectionDomain();
-                if (pd != null && pd.getCodeSource() != null && pd.getCodeSource().getLocation() != null) {
-                    modulePath = pd.getCodeSource().getLocation().getPath();
+                ClassLoader mcl = XposedInit.class.getClassLoader();
+                if (mcl instanceof dalvik.system.BaseDexClassLoader) {
+                    Object pathList = XposedHelpers.getObjectField(mcl, "pathList");
+                    if (pathList != null) {
+                        Object[] dexElements = (Object[]) XposedHelpers.getObjectField(pathList, "dexElements");
+                        if (dexElements != null && dexElements.length > 0) {
+                            java.io.File file = (java.io.File) XposedHelpers.getObjectField(dexElements[0], "path");
+                            if (file != null && file.exists()) {
+                                modulePath = file.getAbsolutePath();
+                            }
+                        }
+                    }
                 }
             } catch (Throwable ignored) {}
 
             if (modulePath == null || modulePath.isEmpty()) {
                 try {
-                    Class<?> atClass = Class.forName("android.app.ActivityThread");
-                    Object at = XposedHelpers.callStaticMethod(atClass, "currentActivityThread");
-                    Context sysCtx = (Context) XposedHelpers.callMethod(at, "getSystemContext");
-                    if (sysCtx != null) {
-                        modulePath = sysCtx.getPackageManager().getApplicationInfo("com.miui.compat.fix", 0).sourceDir;
+                    java.security.ProtectionDomain pd = XposedInit.class.getProtectionDomain();
+                    if (pd != null && pd.getCodeSource() != null && pd.getCodeSource().getLocation() != null) {
+                        modulePath = pd.getCodeSource().getLocation().getPath();
                     }
                 } catch (Throwable ignored) {}
             }
 
-            Log.i(TAG, "【双亲委派兼容】目标包: " + pkg + ", 模块 APK 路径: " + modulePath);
+            if (modulePath == null || modulePath.isEmpty()) {
+                try {
+                    java.io.File dataApp = new java.io.File("/data/app");
+                    if (dataApp.exists() && dataApp.isDirectory()) {
+                        java.io.File[] dirs = dataApp.listFiles();
+                        if (dirs != null) {
+                            for (java.io.File d : dirs) {
+                                if (d.isDirectory()) {
+                                    java.io.File[] sub = d.listFiles();
+                                    if (sub != null) {
+                                        for (java.io.File s : sub) {
+                                            if (s.getName().contains("com.miui.compat.fix")) {
+                                                java.io.File base = new java.io.File(s, "base.apk");
+                                                if (base.exists()) {
+                                                    modulePath = base.getAbsolutePath();
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if (modulePath != null) break;
+                            }
+                        }
+                    }
+                } catch (Throwable ignored) {}
+            }
+
+            Log.i(TAG, "【双亲委派兼容】目标包: " + pkg + ", 解析到模块 APK: " + modulePath);
+
+            StringBuilder dexPathBuilder = new StringBuilder();
+            if (modulePath != null && new java.io.File(modulePath).exists()) {
+                dexPathBuilder.append(modulePath);
+            }
+            java.io.File rtSdk = new java.io.File("/system_ext/priv-app/RtMiCloudSDK/RtMiCloudSDK.apk");
+            if (rtSdk.exists()) {
+                if (dexPathBuilder.length() > 0) dexPathBuilder.append(":");
+                dexPathBuilder.append(rtSdk.getAbsolutePath());
+            }
+            if ("com.miui.tsmclient".equals(pkg)) {
+                java.io.File tsmApk = new java.io.File("/system/app/MITSMClient/MITSMClient.apk");
+                if (tsmApk.exists()) {
+                    if (dexPathBuilder.length() > 0) dexPathBuilder.append(":");
+                    dexPathBuilder.append(tsmApk.getAbsolutePath());
+                }
+            }
 
             dalvik.system.PathClassLoader stubLoader = null;
-            if (modulePath != null && new java.io.File(modulePath).exists()) {
+            if (dexPathBuilder.length() > 0) {
+                String fullDexPath = dexPathBuilder.toString();
                 ClassLoader originalParent = lpparam.classLoader.getParent();
-                String dexPath = modulePath;
-                java.io.File rtSdk = new java.io.File("/system_ext/priv-app/RtMiCloudSDK/RtMiCloudSDK.apk");
-                if (rtSdk.exists()) {
-                    dexPath = modulePath + ":" + rtSdk.getAbsolutePath();
-                }
-                if ("com.miui.tsmclient".equals(pkg)) {
-                    java.io.File tsmApk = new java.io.File("/system/app/MITSMClient/MITSMClient.apk");
-                    if (tsmApk.exists()) {
-                        dexPath = dexPath + ":" + tsmApk.getAbsolutePath();
-                    }
-                }
-                stubLoader = new dalvik.system.PathClassLoader(dexPath, originalParent);
+                stubLoader = new dalvik.system.PathClassLoader(fullDexPath, originalParent);
                 XposedHelpers.setObjectField(lpparam.classLoader, "parent", stubLoader);
-                Log.i(TAG, "✓ 成功将 PathClassLoader(" + dexPath + ") 注入为 " + pkg + " 的 parent 类加载器！");
+                Log.i(TAG, "✓ 成功将 PathClassLoader(" + fullDexPath + ") 注入为 " + pkg + " 的 parent 类加载器！");
             }
 
             final dalvik.system.PathClassLoader finalStubLoader = stubLoader;
