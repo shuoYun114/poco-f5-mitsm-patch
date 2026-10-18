@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -86,6 +87,7 @@ public class XposedInit implements IXposedHookLoadPackage {
         Log.i(TAG, ">>> 开始应用小米智能卡 (com.miui.tsmclient) 补丁 <<<");
 
         Class<?> hClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.model.h", lpparam.classLoader);
+        Class<?> cardInfoCls = XposedHelpers.findClassIfExists("com.miui.tsmclient.entity.CardInfo", lpparam.classLoader);
 
         // 1. Hook com.miui.tsmclient.model.c1.s() -> 直接返回 BaseResponse(0) 成功状态
         try {
@@ -380,6 +382,113 @@ public class XposedInit implements IXposedHookLoadPackage {
                 // 伪装 miuiSystemVersion 为官方稳定版版本号
                 XposedHelpers.findAndHookMethod(r0Class, "o", XC_MethodReplacement.returnConstant("OS1.0.12.0.UMRCNXM"));
                 Log.i(TAG, "✓ 已伪装 r0.o() [miuiSystemVersion] -> OS1.0.12.0.UMRCNXM");
+
+                if (cardInfoCls != null) {
+                    // 15.1 拦截 CardInfo.getDeviceInfo()，杜绝 Dummy 空桩 (CardInfo$2) 导致的 deviceId 为空
+                    Class<?> zClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.util.z", lpparam.classLoader);
+                    try {
+                        XposedHelpers.findAndHookMethod(cardInfoCls, "getDeviceInfo", new XC_MethodHook() {
+                            @Override
+                            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                Object res = param.getResult();
+                                if (res == null || res.getClass().getName().contains("CardInfo$2")) {
+                                    if (zClass != null) {
+                                        Object defaultDevInfo = XposedHelpers.callStaticMethod(zClass, "c");
+                                        if (defaultDevInfo != null) {
+                                            param.setResult(defaultDevInfo);
+                                            Log.i(TAG, "【核心修复】CardInfo.getDeviceInfo() 空桩拦截 -> 成功替换为真实单例 DeviceInfoImpl");
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                        Log.i(TAG, "✓ 已安装 CardInfo.getDeviceInfo 防空桩守卫");
+                    } catch (Throwable t) {
+                        Log.e(TAG, "Hook CardInfo.getDeviceInfo 异常", t);
+                    }
+
+                    try {
+                        XposedHelpers.findAndHookMethod(r0Class, "i", cardInfoCls, new XC_MethodHook() {
+                            @Override
+                            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                Object res = param.getResult();
+                                if (res == null || "".equals(res.toString().trim())) {
+                                    param.setResult("marble");
+                                }
+                                Log.i(TAG, "【r0.i(cardInfo) deviceModel】-> " + param.getResult());
+                            }
+                        });
+                    } catch (Throwable ignored) {}
+
+                    // 15.2 核心修复：r0.g(Context, CardInfo) 注入真实有效 deviceId，杜绝空字符串触发服务端 203
+                    try {
+                        XposedHelpers.findAndHookMethod(r0Class, "g", Context.class, cardInfoCls, new XC_MethodHook() {
+                            @Override
+                            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                Object res = param.getResult();
+                                if (res == null || "".equals(res.toString().trim())) {
+                                    Context ctx = (Context) param.args[0];
+                                    String aid = "a0b0332fab56e933";
+                                    if (ctx != null) {
+                                        try {
+                                            String realAid = android.provider.Settings.Secure.getString(ctx.getContentResolver(), "android_id");
+                                            if (realAid != null && !realAid.trim().isEmpty()) {
+                                                aid = realAid.trim();
+                                            }
+                                        } catch (Throwable ignored) {}
+                                    }
+                                    String fixedDevId = "vaid_" + aid;
+                                    param.setResult(fixedDevId);
+                                    Log.i(TAG, "【核心修复】r0.g() 检测到 deviceId 为空 -> 成功注入有效 deviceId: " + fixedDevId);
+                                } else {
+                                    Log.i(TAG, "【r0.g(context, cardInfo) deviceId】-> " + param.getResult());
+                                }
+                            }
+                        });
+                        Log.i(TAG, "✓ 已安装 r0.g deviceId 自动补全守卫");
+                    } catch (Throwable ignored) {}
+                }
+
+                Class<?> devInfoClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.mitsmsdk.DeviceInfoImpl", lpparam.classLoader);
+                if (devInfoClass != null) {
+                    try {
+                        XposedHelpers.findAndHookMethod(devInfoClass, "getDeviceModel", new XC_MethodHook() {
+                            @Override
+                            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                Object res = param.getResult();
+                                if (res == null || "".equals(res.toString().trim())) {
+                                    param.setResult("marble");
+                                }
+                                Log.i(TAG, "【DeviceInfoImpl.getDeviceModel】-> " + param.getResult());
+                            }
+                        });
+                    } catch (Throwable ignored) {}
+
+                    try {
+                        XposedHelpers.findAndHookMethod(devInfoClass, "getDeviceId", Context.class, new XC_MethodHook() {
+                            @Override
+                            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                Object res = param.getResult();
+                                if (res == null || "".equals(res.toString().trim())) {
+                                    Context ctx = (Context) param.args[0];
+                                    String aid = "a0b0332fab56e933";
+                                    if (ctx != null) {
+                                        try {
+                                            String realAid = android.provider.Settings.Secure.getString(ctx.getContentResolver(), "android_id");
+                                            if (realAid != null && !realAid.trim().isEmpty()) {
+                                                aid = realAid.trim();
+                                            }
+                                        } catch (Throwable ignored) {}
+                                    }
+                                    String fixedDevId = "vaid_" + aid;
+                                    param.setResult(fixedDevId);
+                                    Log.i(TAG, "【核心修复】DeviceInfoImpl.getDeviceId() 为空 -> 注入有效 deviceId: " + fixedDevId);
+                                }
+                            }
+                        });
+                    } catch (Throwable ignored) {}
+                }
             }
             if (h4Class != null) {
                 // 伪装 ROM 类型为稳定版 STABLE
@@ -437,6 +546,63 @@ public class XposedInit implements IXposedHookLoadPackage {
                     }
                 });
                 Log.i(TAG, "✓ 已安装 x6.k.r 订单创建全景雷达");
+
+                // 监控底层所有经由 x6.k.e 发送的 TSM 请求详情与参数 Map
+                Class<?> g5aClass = XposedHelpers.findClassIfExists("g5.a", lpparam.classLoader);
+                Class<?> x6cClass = XposedHelpers.findClassIfExists("x6.c", lpparam.classLoader);
+                if (cardInfoCls != null) {
+                    try {
+                        XposedHelpers.findAndHookMethod(x6kClass, "t", cardInfoCls, new XC_MethodHook() {
+                            @Override
+                            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                Log.i(TAG, "【硬件 CPLC 获取结果】x6.k.t() -> " + param.getResult());
+                            }
+                        });
+                    } catch (Throwable ignored) {}
+
+                    try {
+                        XposedHelpers.findAndHookMethod(x6kClass, "v", cardInfoCls, new XC_MethodHook() {
+                            @Override
+                            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                Log.i(TAG, "【硬件 SEID 获取结果】x6.k.v() -> " + param.getResult());
+                            }
+                        });
+                    } catch (Throwable ignored) {}
+                }
+
+                if (g5aClass != null && x6cClass != null) {
+                    XposedHelpers.findAndHookMethod(x6kClass, "e", Context.class, g5aClass, x6cClass, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            Object cObj = param.args[2];
+                            if (cObj != null) {
+                                String url = (String) XposedHelpers.getObjectField(cObj, "e");
+                                Object bizParams = XposedHelpers.callMethod(cObj, "k");
+                                Object authParams = XposedHelpers.callMethod(cObj, "i");
+                                Object queryParams = XposedHelpers.callMethod(cObj, "j");
+                                Log.i(TAG, "【TSM-API 发起请求】URL: " + url);
+                                if (bizParams instanceof java.util.Map) {
+                                    java.util.Map bMap = (java.util.Map) bizParams;
+                                    Object devIdObj = bMap.get("deviceId");
+                                    String devId = devIdObj != null ? devIdObj.toString() : null;
+                                    if (devId == null || devId.trim().isEmpty()) {
+                                        bMap.put("deviceId", "vaid_a0b0332fab56e933");
+                                        Log.i(TAG, "【底层参数守卫】已自动补全业务参数 [deviceId] = vaid_a0b0332fab56e933");
+                                    }
+                                    for (Object entryObj : bMap.entrySet()) {
+                                        java.util.Map.Entry<?, ?> entry = (java.util.Map.Entry<?, ?>) entryObj;
+                                        Log.i(TAG, "  -> 业务参数 [" + entry.getKey() + "] = " + entry.getValue());
+                                    }
+                                } else {
+                                    Log.i(TAG, "【TSM-API 业务参数 (k)】" + bizParams);
+                                }
+                                Log.i(TAG, "【TSM-API 鉴权参数 (i)】" + authParams);
+                                Log.i(TAG, "【TSM-API 查询参数 (j)】" + queryParams);
+                            }
+                        }
+                    });
+                    Log.i(TAG, "✓ 已安装 x6.k.e 底层请求雷达");
+                }
             }
 
             // C. 失败回调拦截 (j$b.a)
@@ -467,8 +633,72 @@ public class XposedInit implements IXposedHookLoadPackage {
                 });
                 Log.i(TAG, "✓ 已安装 x6.d.c 原始 API 响应监控");
             }
+
+            // E. 原生 Toast 拦截雷达（捕获任何代码弹出的 Toast）
+            try {
+                XposedHelpers.findAndHookMethod(Toast.class, "makeText", Context.class, CharSequence.class, int.class, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        CharSequence text = (CharSequence) param.args[1];
+                        Log.e(TAG, "【原生 Toast 拦截】文本: " + text, new Throwable());
+                    }
+                });
+                Log.i(TAG, "✓ 已安装 Toast.makeText 全局雷达");
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook Toast.makeText 异常", t);
+            }
+
+            // F. 错误提示解析拦截 (com.miui.tsmclient.model.x.b)
+            try {
+                Class<?> xClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.model.x", lpparam.classLoader);
+                if (xClass != null) {
+                    XposedHelpers.findAndHookMethod(xClass, "b", Context.class, int.class, String.class, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            int code = (int) param.args[1];
+                            String desc = (String) param.args[2];
+                            Log.e(TAG, "【错误码解析拦截】code=" + code + ", desc=" + desc, new Throwable());
+                        }
+                    });
+                    Log.i(TAG, "✓ 已安装 model.x.b 错误码雷达");
+                }
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook model.x.b 异常", t);
+            }
+
+            // G. 支付方式选择回调拦截 (s0.M3)
+            try {
+                Class<?> s0Class = XposedHelpers.findClassIfExists("com.miui.tsmclient.ui.s0", lpparam.classLoader);
+                if (s0Class != null) {
+                    XposedHelpers.findAndHookMethod(s0Class, "M3", int.class, int.class, Intent.class, new XC_MethodHook() {
+                        @Override
+                        protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                            int req = (int) param.args[0];
+                            int res = (int) param.args[1];
+                            Intent data = (Intent) param.args[2];
+                            String payType = data != null ? data.getStringExtra("key_pay_type") : "null";
+                            String payEntry = data != null ? data.getStringExtra("key_pay_entry_string") : "null";
+                            Log.i(TAG, "【支付方式回调 s0.M3】req=" + req + ", res=" + res + ", payType=" + payType + ", payEntry=" + payEntry);
+                        }
+                    });
+                    Log.i(TAG, "✓ 已安装 s0.M3 支付回调雷达");
+                }
+            } catch (Throwable t) {
+                Log.e(TAG, "Hook s0.M3 异常", t);
+            }
         } catch (Throwable t) {
             Log.e(TAG, "Hook 全景雷达异常", t);
+        }
+
+        // 17. Hook com.miui.tsmclient.util.j2.a(Context) 屏蔽 Android Beam 关闭失败提示
+        try {
+            Class<?> j2Class = XposedHelpers.findClassIfExists("com.miui.tsmclient.util.j2", lpparam.classLoader);
+            if (j2Class != null) {
+                XposedHelpers.findAndHookMethod(j2Class, "a", Context.class, XC_MethodReplacement.DO_NOTHING);
+                Log.i(TAG, "✓ 已 Hook j2.a 屏蔽 Android Beam 关闭失败提示");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook j2.a 异常", t);
         }
 
         Log.i(TAG, ">>> 小米智能卡补丁注入完成 <<<");
