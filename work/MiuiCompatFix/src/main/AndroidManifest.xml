@@ -19,16 +19,6 @@
             android:name="xposedscope"
             android:resource="@array/xposed_scope" />
 
-        <activity
-            android:name=".LaunchCardActivity"
-            android:label="小米智能卡"
-            android:exported="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

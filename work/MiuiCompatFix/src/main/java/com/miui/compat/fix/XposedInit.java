@@ -46,10 +46,41 @@ public class XposedInit implements IXposedHookLoadPackage {
             fixXiaomiAccount(lpparam);
         }
 
+        if ("com.mipay.wallet".equals(lpparam.packageName)) {
+            Log.i(TAG, "已加载到小米钱包进程: " + lpparam.processName);
+            fixMipayWallet(lpparam);
+        }
+
         if ("com.miui.tsmclient".equals(lpparam.packageName)) {
             Log.i(TAG, "已加载到小米智能卡进程: " + lpparam.processName);
             fixTsmClient(lpparam);
         }
+    }
+
+    /**
+     * 动态将 /system/framework/miui-framework.jar 注入应用的 ClassLoader
+     */
+    private void injectMiuiFramework(ClassLoader cl) {
+        if (cl == null) return;
+        try {
+            java.lang.reflect.Method m = Class.forName("dalvik.system.BaseDexClassLoader")
+                    .getDeclaredMethod("addDexPath", String.class);
+            m.setAccessible(true);
+            m.invoke(cl, "/system/framework/miui-framework.jar");
+            m.invoke(cl, "/system/framework/micloud-sdk.jar");
+            m.invoke(cl, "/system/framework/com.xiaomi.nfc.jar");
+            Log.i(TAG, "✓ 成功向 ClassLoader 注入 miui-framework 等系统库");
+        } catch (Throwable t) {
+            Log.e(TAG, "向 ClassLoader 注入 miui-framework 异常", t);
+        }
+    }
+
+    /**
+     * 修复小米钱包的兼容性问题
+     */
+    private void fixMipayWallet(XC_LoadPackage.LoadPackageParam lpparam) {
+        injectMiuiFramework(lpparam.classLoader);
+        Log.i(TAG, ">>> 小米钱包 (com.mipay.wallet) 补丁加载完成 <<<");
     }
 
     /**
@@ -80,6 +111,8 @@ public class XposedInit implements IXposedHookLoadPackage {
      * 修复小米账号的兼容性问题
      */
     private void fixXiaomiAccount(XC_LoadPackage.LoadPackageParam lpparam) {
+        injectMiuiFramework(lpparam.classLoader);
+
         // 修复 1: Intent.getMiuiFlags() 崩溃
         try {
             Class<?> m6o0 = XposedHelpers.findClassIfExists("m6.o0", lpparam.classLoader);
@@ -131,88 +164,10 @@ public class XposedInit implements IXposedHookLoadPackage {
      */
     private void fixTsmClient(XC_LoadPackage.LoadPackageParam lpparam) {
         Log.i(TAG, ">>> 开始应用小米智能卡 (com.miui.tsmclient) 补丁 <<<");
+        injectMiuiFramework(lpparam.classLoader);
 
         Class<?> hClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.model.h", lpparam.classLoader);
         Class<?> cardInfoCls = XposedHelpers.findClassIfExists("com.miui.tsmclient.entity.CardInfo", lpparam.classLoader);
-
-        // 0. 核心修复：隐私政策全局标记为已同意，彻底阻断 PrivacyDialog 弹窗与 IllegalStateException
-        try {
-            Class<?> q2Class = XposedHelpers.findClassIfExists("com.miui.tsmclient.util.q2", lpparam.classLoader);
-            if (q2Class != null) {
-                // Hook com.miui.tsmclient.util.q2.l(Context) -> 始终返回 true (已同意隐私政策)
-                XposedBridge.hookAllMethods(q2Class, "l", XC_MethodReplacement.returnConstant(true));
-                Log.i(TAG, "✓ 已 Hook q2.l(Context) -> 始终返回 true (隐私政策已同意)");
-            }
-
-            Class<?> privActClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.ui.privacy.PrivacyDialogActivity", lpparam.classLoader);
-            if (privActClass != null) {
-                XposedBridge.hookAllMethods(privActClass, "onCreate", new XC_MethodHook() {
-                    @Override
-                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                        android.app.Activity act = (android.app.Activity) param.thisObject;
-                        act.setResult(android.app.Activity.RESULT_OK);
-                        act.finish();
-                        Log.i(TAG, "【隐私弹窗阻断】PrivacyDialogActivity 自动确认并安全关闭");
-                    }
-                });
-                Log.i(TAG, "✓ 已安全拦截 PrivacyDialogActivity.onCreate");
-            }
-
-            Class<?> f8gClass = XposedHelpers.findClassIfExists("f8.g", lpparam.classLoader);
-            if (f8gClass != null) {
-                // 1. 拦截 p4，阻止创建 Launcher 崩溃
-                XposedBridge.hookAllMethods(f8gClass, "p4", XC_MethodReplacement.returnConstant(null));
-                // 2. 拦截 c3，自动调用 h4() 持久化写入隐私政策已同意
-                XposedBridge.hookAllMethods(f8gClass, "c3", new XC_MethodHook() {
-                    @Override
-                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                        try {
-                            XposedHelpers.callMethod(param.thisObject, "h4");
-                            Log.i(TAG, "【隐私自动同意】成功触发 f8.g.h4() 持久化同意状态");
-                        } catch (Throwable t) {
-                            Log.e(TAG, "调用 f8.g.h4 异常", t);
-                        }
-                        param.setResult(null);
-                    }
-                });
-                Log.i(TAG, "✓ 已 Hook f8.g (PrivacyDialogFragment) 自动同意并杜绝崩溃");
-            }
-        } catch (Throwable t) {
-            Log.e(TAG, "Hook 隐私政策检查异常", t);
-        }
-
-        // 0.1 核心防御：StartActivityForResultLauncher 限制破解与异常静默
-        try {
-            Class<?> i3Class = XposedHelpers.findClassIfExists("com.miui.tsmclient.util.i3", lpparam.classLoader);
-            if (i3Class != null) {
-                XposedBridge.hookAllConstructors(i3Class, new XC_MethodHook() {
-                    @Override
-                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                        try {
-                            XposedHelpers.setIntField(param.thisObject, "d", 50);
-                        } catch (Throwable ignored) {}
-                    }
-                });
-                XposedBridge.hookAllMethods(i3Class, "b", new XC_MethodHook() {
-                    @Override
-                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                        if (param.hasThrowable()) {
-                            Log.w(TAG, "【防御拦截】i3.b 异常已拦截", param.getThrowable());
-                            param.setThrowable(null);
-                        }
-                    }
-                });
-                Log.i(TAG, "✓ 已武装 com.miui.tsmclient.util.i3 防御");
-            }
-
-            Class<?> o0Class = XposedHelpers.findClassIfExists("com.miui.tsmclient.ui.o0", lpparam.classLoader);
-            if (o0Class != null) {
-                XposedBridge.hookAllMethods(o0Class, "getStartActivityForResultLauncherCount", XC_MethodReplacement.returnConstant(50));
-                Log.i(TAG, "✓ 已 Hook o0.getStartActivityForResultLauncherCount -> 返回 50");
-            }
-        } catch (Throwable t) {
-            Log.e(TAG, "武装 StartActivityForResultLauncher 防御异常", t);
-        }
 
         // 1. Hook com.miui.tsmclient.model.c1.s() -> 直接返回 BaseResponse(0) 成功状态
         try {
@@ -1084,7 +1039,7 @@ public class XposedInit implements IXposedHookLoadPackage {
                 Log.e(TAG, "Hook powerMultiPressAction 异常", t);
             }
 
-            // 6. 物理硬件级直通拦截：在 interceptKeyBeforeQueueing 处直接检测物理双击
+            // 6. 物理按键输入只做轻量只读日志监控
             try {
                 XposedHelpers.findAndHookMethod(pwmClass, "interceptKeyBeforeQueueing", KeyEvent.class, int.class, new XC_MethodHook() {
                     private long mLastPowerDownTime = 0;
@@ -1095,20 +1050,12 @@ public class XposedInit implements IXposedHookLoadPackage {
                         if (event != null && event.getKeyCode() == KeyEvent.KEYCODE_POWER && event.getAction() == KeyEvent.ACTION_DOWN) {
                             long now = SystemClock.uptimeMillis();
                             long diff = now - mLastPowerDownTime;
-                            if (diff < 450 && diff > 50) {
-                                Log.i(TAG, "【物理双击命中】两次电源键物理按下间隔 " + diff + "ms -> 直接拉起小米智能卡！");
-                                mLastPowerDownTime = 0;
-                                Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
-                                launchTrafficCard(context);
-                                param.setResult(0); // 直接消费，防止息屏或触发系统相机手势
-                                return;
-                            }
                             mLastPowerDownTime = now;
-                            Log.i(TAG, "【物理电源键按下】记录时间戳, 距上次间隔: " + diff + "ms");
+                            Log.i(TAG, "【物理电源键按下】距上次间隔: " + diff + "ms (事件完全放行给 SingleKeyGestureDetector)");
                         }
                     }
                 });
-                Log.i(TAG, "✓ 已在 interceptKeyBeforeQueueing 安装物理双击直通拦截器");
+                Log.i(TAG, "✓ 已配置 PhoneWindowManager.interceptKeyBeforeQueueing 只读日志监控");
             } catch (Throwable t) {
                 Log.e(TAG, "Hook PhoneWindowManager.interceptKeyBeforeQueueing 异常", t);
             }
