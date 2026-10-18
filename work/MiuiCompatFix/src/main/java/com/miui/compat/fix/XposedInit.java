@@ -97,6 +97,7 @@ public class XposedInit implements IXposedHookLoadPackage {
 
             Log.i(TAG, "【双亲委派兼容】目标包: " + pkg + ", 模块 APK 路径: " + modulePath);
 
+            dalvik.system.PathClassLoader stubLoader = null;
             if (modulePath != null && new java.io.File(modulePath).exists()) {
                 ClassLoader originalParent = lpparam.classLoader.getParent();
                 String dexPath = modulePath;
@@ -110,11 +111,12 @@ public class XposedInit implements IXposedHookLoadPackage {
                         dexPath = dexPath + ":" + tsmApk.getAbsolutePath();
                     }
                 }
-                dalvik.system.PathClassLoader stubLoader = new dalvik.system.PathClassLoader(dexPath, originalParent);
+                stubLoader = new dalvik.system.PathClassLoader(dexPath, originalParent);
                 XposedHelpers.setObjectField(lpparam.classLoader, "parent", stubLoader);
                 Log.i(TAG, "✓ 成功将 PathClassLoader(" + dexPath + ") 注入为 " + pkg + " 的 parent 类加载器！");
             }
 
+            final dalvik.system.PathClassLoader finalStubLoader = stubLoader;
             // 针对 ClassLoader.loadClass 进行符号拦截，直接返回已就绪的兼容桩类作为双保险
             XC_MethodHook loadClassHook = new XC_MethodHook() {
                 @Override
@@ -125,34 +127,57 @@ public class XposedInit implements IXposedHookLoadPackage {
 
                     if ("miui.os.Build".equals(name) || name.startsWith("miui.os.Build$")) {
                         param.setResult(miui.os.Build.class);
+                        return;
                     } else if ("miui.cloud.os.SystemProperties".equals(name)) {
                         param.setResult(miui.cloud.os.SystemProperties.class);
+                        return;
                     } else if ("miui.cloud.os.MultiuserUtils".equals(name)) {
                         param.setResult(miui.cloud.os.MultiuserUtils.class);
+                        return;
                     } else if ("miui.cloud.os.RuntimePermission".equals(name)) {
                         param.setResult(miui.cloud.os.RuntimePermission.class);
+                        return;
                     } else if ("miui.cloud.os.ServiceManager".equals(name)) {
                         param.setResult(miui.cloud.os.ServiceManager.class);
+                        return;
                     } else if ("miui.accounts.ExtraAccountManager".equals(name)) {
                         param.setResult(miui.accounts.ExtraAccountManager.class);
+                        return;
                     } else if ("miui.os.UserHandle".equals(name)) {
                         param.setResult(miui.os.UserHandle.class);
+                        return;
                     } else if ("miui.provider.ExtraNetwork".equals(name)) {
                         param.setResult(miui.provider.ExtraNetwork.class);
+                        return;
                     } else if ("miui.securityspace.CrossUserUtils".equals(name)) {
                         param.setResult(miui.securityspace.CrossUserUtils.class);
+                        return;
                     } else if ("miui.telephony.TelephonyManager".equals(name)) {
                         param.setResult(miui.telephony.TelephonyManager.class);
+                        return;
                     } else if ("miui.telephony.exception.IllegalDeviceException".equals(name)) {
                         param.setResult(miui.telephony.exception.IllegalDeviceException.class);
+                        return;
                     } else if ("miui.util.HapticFeedbackUtil".equals(name)) {
                         param.setResult(miui.util.HapticFeedbackUtil.class);
+                        return;
+                    }
+
+                    // 关键委派：若为目标应用的 ClassLoader 调用 loadClass，优先由 finalStubLoader 兜底装载
+                    if (finalStubLoader != null && param.thisObject == lpparam.classLoader) {
+                        try {
+                            Class<?> clazz = finalStubLoader.loadClass(name);
+                            if (clazz != null) {
+                                param.setResult(clazz);
+                            }
+                        } catch (ClassNotFoundException ignored) {
+                        }
                     }
                 }
             };
 
             XposedBridge.hookAllMethods(ClassLoader.class, "loadClass", loadClassHook);
-            Log.i(TAG, "✓ 已为 " + pkg + " 武装 miui.* 全局 loadClass 拦截守卫");
+            Log.i(TAG, "✓ 已为 " + pkg + " 武装 miui.* 全局 loadClass 拦截守卫与双亲委派兜底");
         } catch (Throwable t) {
             Log.e(TAG, "为 " + pkg + " 注入兼容类异常", t);
         }
