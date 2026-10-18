@@ -255,6 +255,90 @@ public class XposedInit implements IXposedHookLoadPackage {
             Log.e(TAG, "Hook n$a.z() 异常", t);
         }
 
+        // 10. Hook BMACCardHandler.getCardNumAndValidDate 避免卡片过期或日期检查错误阻断
+        try {
+            Class<?> bmacHandler = XposedHelpers.findClassIfExists("com.tsmclient.smartcard.handler.BMACCardHandler", lpparam.classLoader);
+            if (bmacHandler != null) {
+                XposedHelpers.findAndHookMethod(bmacHandler, "getCardNumAndValidDate", new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        Object result = param.getResult();
+                        if (result instanceof java.util.Map) {
+                            java.util.Map map = (java.util.Map) result;
+                            Log.i(TAG, "【底层卡片数据】BMACCardHandler.getCardNumAndValidDate() 读卡成功 -> " + map);
+                            map.put("is_valid_start_date", "true");
+                            map.put("is_valid_end_date", "true");
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook BMACCardHandler 放行卡片有效日期检查");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook BMACCardHandler 异常", t);
+        }
+
+        // 11. Hook CardInfo.isCardActive 始终返回 true 确保卡片正常展示并允许刷新
+        try {
+            Class<?> cardInfoClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.entity.CardInfo", lpparam.classLoader);
+            if (cardInfoClass != null) {
+                XposedHelpers.findAndHookMethod(cardInfoClass, "isCardActive", XC_MethodReplacement.returnConstant(true));
+                Log.i(TAG, "✓ 已 Hook CardInfo.isCardActive() 始终返回 true");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook CardInfo.isCardActive 异常", t);
+        }
+
+        // 12. Hook CardInfo.getCardStatus 纠正异常状态为 ACTIVE
+        try {
+            Class<?> cardInfoClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.entity.CardInfo", lpparam.classLoader);
+            Class<?> statusEnum = XposedHelpers.findClassIfExists("com.miui.tsmclient.entity.CardInfo$Status", lpparam.classLoader);
+            if (cardInfoClass != null && statusEnum != null) {
+                final Object activeStatus = Enum.valueOf((Class<Enum>) statusEnum, "ACTIVE");
+                XposedHelpers.findAndHookMethod(cardInfoClass, "getCardStatus", new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        Object status = param.getResult();
+                        if (status != null) {
+                            String name = ((Enum<?>) status).name();
+                            if ("END_DATE_INVALID".equals(name) || "START_DATE_INVALID".equals(name) || "DATA_ILLEGAL".equals(name)) {
+                                Log.i(TAG, "【状态纠偏】将卡片状态 " + name + " 纠正为 ACTIVE");
+                                param.setResult(activeStatus);
+                            }
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook CardInfo.getCardStatus 状态纠偏");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook CardInfo.getCardStatus 异常", t);
+        }
+
+        // 13. Hook w6.g.c (PayableCardOperation.queryCardInfo) 监控读卡与余额更新
+        try {
+            Class<?> w6gClass = XposedHelpers.findClassIfExists("w6.g", lpparam.classLoader);
+            Class<?> cardInfoClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.entity.CardInfo", lpparam.classLoader);
+            Class<?> statusEnum = XposedHelpers.findClassIfExists("com.miui.tsmclient.entity.CardInfo$Status", lpparam.classLoader);
+            if (w6gClass != null && cardInfoClass != null && statusEnum != null) {
+                final Object activeStatus = Enum.valueOf((Class<Enum>) statusEnum, "ACTIVE");
+                XposedHelpers.findAndHookMethod(w6gClass, "c", Context.class, cardInfoClass, Bundle.class, new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        if (param.args.length >= 2 && param.args[1] != null) {
+                            Object cardInfo = param.args[1];
+                            XposedHelpers.setObjectField(cardInfo, "mStatus", activeStatus);
+                            int balance = XposedHelpers.getIntField(cardInfo, "mCardBalance");
+                            String cardNo = (String) XposedHelpers.getObjectField(cardInfo, "mCardNo");
+                            Log.i(TAG, "【读卡完成】w6.g.c() 结果 -> 卡号: " + cardNo + ", 余额: " + balance + " 分");
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook w6.g.c 监控读卡结果并强制 ACTIVE 状态");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook w6.g 异常", t);
+        }
+
         Log.i(TAG, ">>> 小米智能卡补丁注入完成 <<<");
     }
 }
+
