@@ -3,6 +3,8 @@ package com.miui.compat.fix;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.PowerManager;
@@ -30,6 +32,7 @@ public class XposedInit implements IXposedHookLoadPackage {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         fixGraphicsEnvironment(lpparam);
+        fixLoadedApkResources(lpparam);
 
         if ("android".equals(lpparam.packageName)) {
             Log.i(TAG, "已加载到系统框架 (android / system_server): " + lpparam.processName);
@@ -102,6 +105,43 @@ public class XposedInit implements IXposedHookLoadPackage {
                         param.setResult("default");
                     }
                 });
+            }
+        } catch (Throwable ignored) {
+        }
+    }
+
+    /**
+     * 全局防御：拦截 Android 15 LoadedApk.getAssets() 引发的 Resources 空指针崩溃
+     */
+    private void fixLoadedApkResources(XC_LoadPackage.LoadPackageParam lpparam) {
+        try {
+            Class<?> loadedApkClass = XposedHelpers.findClassIfExists("android.app.LoadedApk", lpparam.classLoader);
+            if (loadedApkClass != null) {
+                XposedHelpers.findAndHookMethod(loadedApkClass, "getResources", new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        if (param.getResult() == null) {
+                            param.setResult(Resources.getSystem());
+                            Log.w(TAG, "【LoadedApk 防御】getResources() 为 null，已自动使用系统 Resources 兜底");
+                        }
+                    }
+                });
+
+                XposedHelpers.findAndHookMethod(loadedApkClass, "getAssets", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        try {
+                            Object res = XposedHelpers.callMethod(param.thisObject, "getResources");
+                            if (res == null) {
+                                param.setResult(Resources.getSystem().getAssets());
+                                Log.w(TAG, "【LoadedApk 防御】getAssets() 时 Resources 为 null，已自动使用系统 AssetManager 兜底");
+                            }
+                        } catch (Throwable t) {
+                            param.setResult(Resources.getSystem().getAssets());
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已武装 LoadedApk 资源空指针全局防御");
             }
         } catch (Throwable ignored) {
         }
