@@ -10,7 +10,7 @@
 
     <application
         android:label="MIUI Compat Fix"
-        android:icon="@android:drawable/ic_menu_preferences">
+        android:hasCode="true">
 
         <meta-data
             android:name="xposedmodule"
@@ -20,10 +20,21 @@
             android:value="修复小米账号和智能卡在 ColorOS 上的兼容性问题" />
         <meta-data
             android:name="xposedminversion"
-            android:value="93" />
+            android:value="54" />
         <meta-data
             android:name="xposedscope"
             android:resource="@array/xposed_scope" />
+
+        <activity
+            android:name="com.miui.compat.fix.LaunchCardActivity"
+            android:label="MIUI Compat Fix"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="de.robv.android.xposed.category.MODULE_SETTINGS" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
     </application>
 
