@@ -1,22 +1,33 @@
 import subprocess
 import time
+import os
+import re
 
-DEVICE = "192.168.48.168:37291"
-OUT_PATH = r"C:\Users\Admin\.gemini\antigravity\brain\7a604d83-a548-4837-a4d7-bb22505977bc\screen_new_card_detail.png"
+def adb_su(cmd):
+    p = subprocess.run(["adb", "shell", f"su -c '{cmd}'"], capture_output=True, text=True, encoding="utf-8", errors="replace")
+    return p.stdout.strip(), p.stderr.strip()
 
-def run_adb(args):
-    cmd = ["adb", "-s", DEVICE] + args
-    return subprocess.run(cmd, capture_output=True, text=True)
+print("1. 点击【京津冀互联互通卡】(x=540, y=500)...")
+adb_su("input tap 540 500")
+time.sleep(3)
 
-def main():
-    print("点击卡片 (540, 480)...")
-    run_adb(["shell", "input", "tap", "540", "480"])
-    time.sleep(2)
-    res_img = subprocess.run(["adb", "-s", DEVICE, "exec-out", "screencap", "-p"], capture_output=True)
-    if res_img.returncode == 0:
-        with open(OUT_PATH, "wb") as f:
-            f.write(res_img.stdout)
-        print("截图已保存:", OUT_PATH)
+print("2. 检查当前窗口焦点...")
+focus, _ = adb_su("dumpsys window | grep -E 'mCurrentFocus|mFocusedApp'")
+print(focus)
 
-if __name__ == "__main__":
-    main()
+print("3. Dump 当前 UI XML...")
+adb_su("uiautomator dump /sdcard/ui_detail.xml")
+subprocess.run(["adb", "pull", "/sdcard/ui_detail.xml", "d:/system/scratch/ui_detail.xml"], capture_output=True)
+
+if os.path.exists("d:/system/scratch/ui_detail.xml"):
+    with open("d:/system/scratch/ui_detail.xml", "r", encoding="utf-8", errors="ignore") as f:
+        text = f.read()
+    matches = re.findall(r'text="([^"]+)"', text)
+    print("UI 中的所有文字:", [m for m in matches if m.strip()])
+    descs = re.findall(r'content-desc="([^"]+)"', text)
+    print("UI 中的所有描述:", [d for d in descs if d.strip()])
+
+print("4. 获取屏幕截图...")
+subprocess.run(["adb", "shell", "screencap", "-p", "/sdcard/screen_detail.png"])
+subprocess.run(["adb", "pull", "/sdcard/screen_detail.png", "d:/system/scratch/screen_detail.png"])
+print("截图已保存至 d:/system/scratch/screen_detail.png")

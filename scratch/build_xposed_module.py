@@ -52,7 +52,8 @@ def main():
     res_dir = os.path.join(MODULE_DIR, "src", "main", "res")
     manifest = os.path.join(MODULE_DIR, "src", "main", "AndroidManifest.xml")
     assets_dir = os.path.join(MODULE_DIR, "src", "main", "assets")
-    src_file = os.path.join(MODULE_DIR, "src", "main", "java", "com", "miui", "compat", "fix", "XposedInit.java")
+    java_dir = os.path.join(MODULE_DIR, "src", "main", "java")
+    java_files = [os.path.join(r, f) for r, _, fs in os.walk(java_dir) for f in fs if f.endswith(".java")]
 
     # 1. 编译资源
     run([AAPT2, "compile", "--dir", res_dir, "-o", res_zip], "AAPT2 Compile Resources")
@@ -62,7 +63,7 @@ def main():
 
     # 3. 编译 Java 文件
     cp = f"{ANDROID_JAR};{XPOSED_STUB}"
-    run([JAVAC, "-encoding", "UTF-8", "-cp", cp, "-d", classes_dir, "-source", "1.8", "-target", "1.8", src_file], "JAVAC Compile Java")
+    run([JAVAC, "-encoding", "UTF-8", "-cp", cp, "-d", classes_dir, "-source", "1.8", "-target", "1.8"] + java_files, "JAVAC Compile Java")
 
     # 4. 转换 class 为 dex
     class_files = [os.path.join(r, f) for r, _, fs in os.walk(classes_dir) for f in fs if f.endswith(".class")]

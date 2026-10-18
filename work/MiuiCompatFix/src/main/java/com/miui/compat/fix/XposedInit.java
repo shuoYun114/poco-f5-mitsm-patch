@@ -135,6 +135,85 @@ public class XposedInit implements IXposedHookLoadPackage {
         Class<?> hClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.model.h", lpparam.classLoader);
         Class<?> cardInfoCls = XposedHelpers.findClassIfExists("com.miui.tsmclient.entity.CardInfo", lpparam.classLoader);
 
+        // 0. 核心修复：隐私政策全局标记为已同意，彻底阻断 PrivacyDialog 弹窗与 IllegalStateException
+        try {
+            Class<?> q2Class = XposedHelpers.findClassIfExists("com.miui.tsmclient.util.q2", lpparam.classLoader);
+            if (q2Class != null) {
+                // Hook com.miui.tsmclient.util.q2.l(Context) -> 始终返回 true (已同意隐私政策)
+                XposedBridge.hookAllMethods(q2Class, "l", XC_MethodReplacement.returnConstant(true));
+                Log.i(TAG, "✓ 已 Hook q2.l(Context) -> 始终返回 true (隐私政策已同意)");
+            }
+
+            Class<?> privActClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.ui.privacy.PrivacyDialogActivity", lpparam.classLoader);
+            if (privActClass != null) {
+                XposedBridge.hookAllMethods(privActClass, "onCreate", new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        android.app.Activity act = (android.app.Activity) param.thisObject;
+                        act.setResult(android.app.Activity.RESULT_OK);
+                        act.finish();
+                        Log.i(TAG, "【隐私弹窗阻断】PrivacyDialogActivity 自动确认并安全关闭");
+                    }
+                });
+                Log.i(TAG, "✓ 已安全拦截 PrivacyDialogActivity.onCreate");
+            }
+
+            Class<?> f8gClass = XposedHelpers.findClassIfExists("f8.g", lpparam.classLoader);
+            if (f8gClass != null) {
+                // 1. 拦截 p4，阻止创建 Launcher 崩溃
+                XposedBridge.hookAllMethods(f8gClass, "p4", XC_MethodReplacement.returnConstant(null));
+                // 2. 拦截 c3，自动调用 h4() 持久化写入隐私政策已同意
+                XposedBridge.hookAllMethods(f8gClass, "c3", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        try {
+                            XposedHelpers.callMethod(param.thisObject, "h4");
+                            Log.i(TAG, "【隐私自动同意】成功触发 f8.g.h4() 持久化同意状态");
+                        } catch (Throwable t) {
+                            Log.e(TAG, "调用 f8.g.h4 异常", t);
+                        }
+                        param.setResult(null);
+                    }
+                });
+                Log.i(TAG, "✓ 已 Hook f8.g (PrivacyDialogFragment) 自动同意并杜绝崩溃");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook 隐私政策检查异常", t);
+        }
+
+        // 0.1 核心防御：StartActivityForResultLauncher 限制破解与异常静默
+        try {
+            Class<?> i3Class = XposedHelpers.findClassIfExists("com.miui.tsmclient.util.i3", lpparam.classLoader);
+            if (i3Class != null) {
+                XposedBridge.hookAllConstructors(i3Class, new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        try {
+                            XposedHelpers.setIntField(param.thisObject, "d", 50);
+                        } catch (Throwable ignored) {}
+                    }
+                });
+                XposedBridge.hookAllMethods(i3Class, "b", new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        if (param.hasThrowable()) {
+                            Log.w(TAG, "【防御拦截】i3.b 异常已拦截", param.getThrowable());
+                            param.setThrowable(null);
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已武装 com.miui.tsmclient.util.i3 防御");
+            }
+
+            Class<?> o0Class = XposedHelpers.findClassIfExists("com.miui.tsmclient.ui.o0", lpparam.classLoader);
+            if (o0Class != null) {
+                XposedBridge.hookAllMethods(o0Class, "getStartActivityForResultLauncherCount", XC_MethodReplacement.returnConstant(50));
+                Log.i(TAG, "✓ 已 Hook o0.getStartActivityForResultLauncherCount -> 返回 50");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "武装 StartActivityForResultLauncher 防御异常", t);
+        }
+
         // 1. Hook com.miui.tsmclient.model.c1.s() -> 直接返回 BaseResponse(0) 成功状态
         try {
             Class<?> c1Class = XposedHelpers.findClassIfExists("com.miui.tsmclient.model.c1", lpparam.classLoader);
