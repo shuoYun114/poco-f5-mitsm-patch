@@ -25,3 +25,4 @@ scratch/classes3_smali/
 scratch/*.txt
 scratch/*.db
 scratch/*.dex
+scratch/*.log

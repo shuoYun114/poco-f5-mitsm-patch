@@ -1,10 +1,11 @@
-import re
+# -*- coding: utf-8 -*-
+import os
 
-with open('d:/system/work/tsm_decoded/res/values-zh-rCN/strings.xml', 'r', encoding='utf-8') as f:
-    content = f.read()
-
-m = re.search(r'<string name="([^"]+)">[^<]*您的账号状态异常', content)
-if m:
-    print("String ID name:", m.group(1))
-else:
-    print("Not found")
+for root, _, files in os.walk(r"d:\system\work\tsm_decoded"):
+    for f in files:
+        if "R$string" in f:
+            full_p = os.path.join(root, f)
+            with open(full_p, "r", encoding="utf-8", errors="ignore") as fp:
+                for line in fp:
+                    if "error_invalid_param" in line:
+                        print(full_p, line.strip())
