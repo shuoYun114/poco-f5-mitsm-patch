@@ -29,6 +29,8 @@ public class XposedInit implements IXposedHookLoadPackage {
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
+        fixGraphicsEnvironment(lpparam);
+
         if ("android".equals(lpparam.packageName)) {
             Log.i(TAG, "已加载到系统框架 (android / system_server): " + lpparam.processName);
             fixSystemServer(lpparam);
@@ -47,6 +49,30 @@ public class XposedInit implements IXposedHookLoadPackage {
         if ("com.miui.tsmclient".equals(lpparam.packageName)) {
             Log.i(TAG, "已加载到小米智能卡进程: " + lpparam.processName);
             fixTsmClient(lpparam);
+        }
+    }
+
+    /**
+     * 全局防御：拦截 Android 15 GraphicsEnvironment setupAngle 引发的 Resources.getStringArray 空指针异常
+     */
+    private void fixGraphicsEnvironment(XC_LoadPackage.LoadPackageParam lpparam) {
+        try {
+            Class<?> geClass = XposedHelpers.findClassIfExists("android.os.GraphicsEnvironment", lpparam.classLoader);
+            if (geClass != null) {
+                XposedBridge.hookAllMethods(geClass, "setupAngle", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        param.setResult(false);
+                    }
+                });
+                XposedBridge.hookAllMethods(geClass, "queryAngleChoice", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        param.setResult("default");
+                    }
+                });
+            }
+        } catch (Throwable ignored) {
         }
     }
 
@@ -721,6 +747,30 @@ public class XposedInit implements IXposedHookLoadPackage {
             Log.e(TAG, "Hook j2.a 异常", t);
         }
 
+        // 18. Hook DoubleClickActivity 开启锁屏浮现与亮屏展示 (FLAG_SHOW_WHEN_LOCKED)
+        try {
+            Class<?> dcClass = XposedHelpers.findClassIfExists("com.miui.tsmclient.ui.quick.DoubleClickActivity", lpparam.classLoader);
+            if (dcClass != null) {
+                XposedHelpers.findAndHookMethod(dcClass, "onCreate", Bundle.class, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        android.app.Activity activity = (android.app.Activity) param.thisObject;
+                        activity.setShowWhenLocked(true);
+                        activity.setTurnScreenOn(true);
+                        activity.getWindow().addFlags(
+                            android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                            android.view.WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                            android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON |
+                            android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                        );
+                        Log.i(TAG, "✓ 已为 DoubleClickActivity 开启锁屏显示与唤醒");
+                    }
+                });
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook DoubleClickActivity 锁屏显示异常", t);
+        }
+
         Log.i(TAG, ">>> 小米智能卡补丁注入完成 <<<");
     }
 
@@ -756,7 +806,8 @@ public class XposedInit implements IXposedHookLoadPackage {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK 
                           | Intent.FLAG_ACTIVITY_CLEAR_TOP 
                           | Intent.FLAG_ACTIVITY_SINGLE_TOP 
-                          | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                          | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+                          | 0x00080000); // FLAG_ACTIVITY_SHOW_WHEN_LOCKED
 
             // 3. 以当前活动用户身份拉起 Activity
             try {
