@@ -1005,7 +1005,7 @@ public class XposedInit implements IXposedHookLoadPackage {
                 Log.e(TAG, "Hook powerMultiPressAction 异常", t);
             }
 
-            // 6. 物理按键输入只做轻量只读日志监控
+            // 6. 物理硬件级直通拦截：在 interceptKeyBeforeQueueing 处直接检测物理双击
             try {
                 XposedHelpers.findAndHookMethod(pwmClass, "interceptKeyBeforeQueueing", KeyEvent.class, int.class, new XC_MethodHook() {
                     private long mLastPowerDownTime = 0;
@@ -1016,12 +1016,20 @@ public class XposedInit implements IXposedHookLoadPackage {
                         if (event != null && event.getKeyCode() == KeyEvent.KEYCODE_POWER && event.getAction() == KeyEvent.ACTION_DOWN) {
                             long now = SystemClock.uptimeMillis();
                             long diff = now - mLastPowerDownTime;
+                            if (diff < 450 && diff > 50) {
+                                Log.i(TAG, "【物理双击命中】两次电源键物理按下间隔 " + diff + "ms -> 直接拉起小米智能卡！");
+                                mLastPowerDownTime = 0;
+                                Context context = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                                launchTrafficCard(context);
+                                param.setResult(0); // 直接消费，防止息屏或触发系统相机手势
+                                return;
+                            }
                             mLastPowerDownTime = now;
-                            Log.i(TAG, "【物理电源键按下】距上次间隔: " + diff + "ms (事件完全放行给 SingleKeyGestureDetector)");
+                            Log.i(TAG, "【物理电源键按下】记录时间戳, 距上次间隔: " + diff + "ms");
                         }
                     }
                 });
-                Log.i(TAG, "✓ 已配置 PhoneWindowManager.interceptKeyBeforeQueueing 只读日志监控");
+                Log.i(TAG, "✓ 已在 interceptKeyBeforeQueueing 安装物理双击直通拦截器");
             } catch (Throwable t) {
                 Log.e(TAG, "Hook PhoneWindowManager.interceptKeyBeforeQueueing 异常", t);
             }
