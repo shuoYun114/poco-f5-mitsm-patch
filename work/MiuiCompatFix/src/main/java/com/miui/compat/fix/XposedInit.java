@@ -104,6 +104,12 @@ public class XposedInit implements IXposedHookLoadPackage {
                 if (rtSdk.exists()) {
                     dexPath = modulePath + ":" + rtSdk.getAbsolutePath();
                 }
+                if ("com.miui.tsmclient".equals(pkg)) {
+                    java.io.File tsmApk = new java.io.File("/system/app/MITSMClient/MITSMClient.apk");
+                    if (tsmApk.exists()) {
+                        dexPath = dexPath + ":" + tsmApk.getAbsolutePath();
+                    }
+                }
                 dalvik.system.PathClassLoader stubLoader = new dalvik.system.PathClassLoader(dexPath, originalParent);
                 XposedHelpers.setObjectField(lpparam.classLoader, "parent", stubLoader);
                 Log.i(TAG, "✓ 成功将 PathClassLoader(" + dexPath + ") 注入为 " + pkg + " 的 parent 类加载器！");
@@ -356,6 +362,58 @@ public class XposedInit implements IXposedHookLoadPackage {
     private void fixTsmClient(XC_LoadPackage.LoadPackageParam lpparam) {
         Log.i(TAG, ">>> 开始应用小米智能卡 (com.miui.tsmclient) 补丁 <<<");
         injectMiuiFramework(lpparam.classLoader);
+
+        // 核心修复 A: 拦截 NetworkSecurityConfigProvider，防止因为私有资源 ID 0x7f140004 缺失导致 Resources$NotFoundException 崩溃
+        try {
+            Class<?> nscpClass = XposedHelpers.findClassIfExists("android.security.net.config.NetworkSecurityConfigProvider", lpparam.classLoader);
+            if (nscpClass != null) {
+                XposedBridge.hookAllMethods(nscpClass, "handleNewApplication", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        param.setResult(null);
+                        Log.i(TAG, "✓ 已安全拦截 NetworkSecurityConfigProvider.handleNewApplication，杜绝 NotFoundException 崩溃");
+                    }
+                });
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "拦截 NetworkSecurityConfigProvider 异常", t);
+        }
+
+        // 核心修复 B: 补充注入 MITSMClient.apk 路径到 ClassLoader
+        try {
+            java.io.File tsmApk = new java.io.File("/system/app/MITSMClient/MITSMClient.apk");
+            if (tsmApk.exists()) {
+                java.lang.reflect.Method m = Class.forName("dalvik.system.BaseDexClassLoader")
+                        .getDeclaredMethod("addDexPath", String.class);
+                m.setAccessible(true);
+                m.invoke(lpparam.classLoader, tsmApk.getAbsolutePath());
+                Log.i(TAG, "✓ 成功向 com.miui.tsmclient ClassLoader 补充注入 MITSMClient.apk");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "补充注入 MITSMClient.apk 异常", t);
+        }
+
+        // 核心修复 C: 修正 LoadedApk 的 mAppDir 和 mResDir 为真正 APK 文件路径
+        try {
+            Class<?> atClass = Class.forName("android.app.ActivityThread");
+            Object at = XposedHelpers.callStaticMethod(atClass, "currentActivityThread");
+            if (at != null) {
+                Object mBoundApplication = XposedHelpers.getObjectField(at, "mBoundApplication");
+                if (mBoundApplication != null) {
+                    Object packageInfo = XposedHelpers.getObjectField(mBoundApplication, "packageInfo");
+                    if (packageInfo != null) {
+                        java.io.File tsmApk = new java.io.File("/system/app/MITSMClient/MITSMClient.apk");
+                        if (tsmApk.exists()) {
+                            XposedHelpers.setObjectField(packageInfo, "mAppDir", tsmApk.getAbsolutePath());
+                            XposedHelpers.setObjectField(packageInfo, "mResDir", tsmApk.getAbsolutePath());
+                            Log.i(TAG, "✓ 成功将 LoadedApk.mAppDir/mResDir 修正为 MITSMClient.apk 文件路径！");
+                        }
+                    }
+                }
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "修正 LoadedApk 路径异常", t);
+        }
 
         // 0. 核心修复：隐私政策全局标记为已同意，彻底阻断 PrivacyDialog 弹窗与 IllegalStateException
         try {
