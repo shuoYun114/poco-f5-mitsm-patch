@@ -130,11 +130,33 @@ public class XposedInit implements IXposedHookLoadPackage {
                 } catch (Throwable ignored) {}
             }
 
+            // 多级候选物理路径兜底（杜绝普通应用读取 /data/app 权限受限问题）
+            if (modulePath == null || modulePath.isEmpty() || !new java.io.File(modulePath).exists()) {
+                String[] candidates = new String[] {
+                    "/system/framework/miui-compat-fix.jar",
+                    "/data/local/tmp/miui-compat-fix.apk",
+                    "/data/local/tmp/MiuiCompatFix.apk"
+                };
+                for (String cand : candidates) {
+                    java.io.File cf = new java.io.File(cand);
+                    if (cf.exists() && cf.canRead() && cf.length() > 1000) {
+                        modulePath = cand;
+                        Log.i(TAG, "从候选物理路径锁定兼容 APK: " + modulePath);
+                        break;
+                    }
+                }
+            }
+
             Log.i(TAG, "【双亲委派兼容】目标包: " + pkg + ", 解析到模块 APK: " + modulePath);
 
             StringBuilder dexPathBuilder = new StringBuilder();
             if (modulePath != null && new java.io.File(modulePath).exists()) {
                 dexPathBuilder.append(modulePath);
+            }
+            java.io.File miuiFw = new java.io.File("/system/framework/miui-framework.jar");
+            if (miuiFw.exists()) {
+                if (dexPathBuilder.length() > 0) dexPathBuilder.append(":");
+                dexPathBuilder.append(miuiFw.getAbsolutePath());
             }
             java.io.File rtSdk = new java.io.File("/system_ext/priv-app/RtMiCloudSDK/RtMiCloudSDK.apk");
             if (rtSdk.exists()) {
@@ -218,15 +240,15 @@ public class XposedInit implements IXposedHookLoadPackage {
                 }
             };
 
-            XposedBridge.hookAllMethods(ClassLoader.class, "loadClass", loadClassHook);
-            Log.i(TAG, "✓ 已为 " + pkg + " 武装 miui.* 全局 loadClass 拦截守卫与双亲委派兜底");
+            // 安全机制：采用 BaseDexClassLoader 原生机制注库，不 Hook 核心 ClassLoader.class 避免递归安全异常
+            Log.i(TAG, "✓ 已为 " + pkg + " 建立双亲委派兼容基础");
         } catch (Throwable t) {
             Log.e(TAG, "为 " + pkg + " 注入兼容类异常", t);
         }
     }
 
     /**
-     * 动态将 /system/framework/miui-framework.jar 注入应用的 ClassLoader
+     * 动态将 miui-compat-fix 与 /system/framework/miui-framework.jar 注入应用的 ClassLoader
      */
     private void injectMiuiFramework(ClassLoader cl) {
         if (cl == null) return;
@@ -234,10 +256,34 @@ public class XposedInit implements IXposedHookLoadPackage {
             java.lang.reflect.Method m = Class.forName("dalvik.system.BaseDexClassLoader")
                     .getDeclaredMethod("addDexPath", String.class);
             m.setAccessible(true);
-            m.invoke(cl, "/system/framework/miui-framework.jar");
-            m.invoke(cl, "/system/framework/micloud-sdk.jar");
-            m.invoke(cl, "/system/framework/com.xiaomi.nfc.jar");
-            Log.i(TAG, "✓ 成功向 ClassLoader 注入 miui-framework 等系统库");
+
+            String[] compatJars = new String[] {
+                "/data/local/tmp/miui-compat-fix.apk",
+                "/system/framework/miui-compat-fix.jar",
+                "/system/framework/miui-framework.jar",
+                "/system/framework/micloud-sdk.jar",
+                "/system/framework/com.xiaomi.nfc.jar"
+            };
+            for (String jarPath : compatJars) {
+                java.io.File jf = new java.io.File(jarPath);
+                if (jf.exists() && jf.canRead() && jf.length() > 1000) {
+                    try {
+                        m.invoke(cl, jarPath);
+                        Log.i(TAG, "✓ 成功向 ClassLoader 原生注入兼容库: " + jarPath);
+                    } catch (Throwable it) {
+                        Log.e(TAG, "注入兼容库单项异常: " + jarPath, it);
+                    }
+                }
+            }
+
+            // 实证核验：测试是否能够成功加载 miui.os.Build
+            try {
+                Class<?> buildCls = cl.loadClass("miui.os.Build");
+                Log.i(TAG, "★【实证核验通过】已成功在当前 ClassLoader 加载: " + buildCls.getName());
+            } catch (Throwable t) {
+                Log.e(TAG, "【警告】当前 ClassLoader 尚未解析到 miui.os.Build", t);
+            }
+
         } catch (Throwable t) {
             Log.e(TAG, "向 ClassLoader 注入 miui-framework 异常", t);
         }
@@ -553,32 +599,56 @@ public class XposedInit implements IXposedHookLoadPackage {
             Log.e(TAG, "修复 Intent.getMiuiFlags() 失败", t);
         }
 
-        // 修复 2: miui.os.Build 类缺失
+        // 修复 2: q6.o0 系统版本与 MIUI 属性拦截（杜绝 NumberFormatException 与 Build 缺失）
         try {
             Class<?> q6o0 = XposedHelpers.findClassIfExists("q6.o0", lpparam.classLoader);
             if (q6o0 != null) {
+                // a: ro.mi.os.version.name
+                XposedHelpers.findAndHookMethod(q6o0, "a", new XC_MethodReplacement() {
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        return "OS1.0.0.0";
+                    }
+                });
+                // b: ro.miui.ui.version.name
+                XposedHelpers.findAndHookMethod(q6o0, "b", new XC_MethodReplacement() {
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        return "V14";
+                    }
+                });
+                // c: ro.miui.ui.version.code -> 14 (防 Integer.parseInt("") 崩溃)
+                XposedHelpers.findAndHookMethod(q6o0, "c", new XC_MethodReplacement() {
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        return 14;
+                    }
+                });
+                // d: region -> CN
                 XposedHelpers.findAndHookMethod(q6o0, "d", new XC_MethodReplacement() {
                     @Override
                     protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
                         return "CN";
                     }
                 });
+                // f: IS_PRIVATE_WATER_MARKER -> false
                 XposedHelpers.findAndHookMethod(q6o0, "f", new XC_MethodReplacement() {
                     @Override
                     protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
                         return false;
                     }
                 });
+                // g: checkRegion -> true
                 XposedHelpers.findAndHookMethod(q6o0, "g", String.class, new XC_MethodReplacement() {
                     @Override
                     protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
                         return true;
                     }
                 });
-                Log.i(TAG, "✓ 已修复 miui.os.Build 引用");
+                Log.i(TAG, "✓ 已全要素伪装 q6.o0 (a,b,c,d,f,g) 方法，稳固保障小米账号运行！");
             }
         } catch (Throwable t) {
-            Log.e(TAG, "修复 miui.os.Build 失败", t);
+            Log.e(TAG, "修复 q6.o0 失败", t);
         }
     }
 
