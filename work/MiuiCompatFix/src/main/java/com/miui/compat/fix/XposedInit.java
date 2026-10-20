@@ -33,32 +33,10 @@ public class XposedInit implements IXposedHookLoadPackage {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         fixGraphicsEnvironment(lpparam);
         fixLoadedApkResources(lpparam);
-        injectCompatClasses(lpparam);
 
-        if ("android".equals(lpparam.packageName)) {
-            Log.i(TAG, "已加载到系统框架 (android / system_server): " + lpparam.processName);
-            fixSystemServer(lpparam);
-            fixOplusStartupManager(lpparam);
-        }
-
-        if ("com.android.nfc".equals(lpparam.packageName)) {
-            Log.i(TAG, "已加载到 NFC 系统服务进程 (com.android.nfc): " + lpparam.processName);
-            fixNfcService(lpparam);
-        }
-
-        if ("com.xiaomi.account".equals(lpparam.packageName)) {
-            Log.i(TAG, "已加载到小米账号进程: " + lpparam.processName);
-            fixXiaomiAccount(lpparam);
-        }
-
-        if ("com.mipay.wallet".equals(lpparam.packageName)) {
-            Log.i(TAG, "已加载到小米钱包进程: " + lpparam.processName);
-            fixMipayWallet(lpparam);
-        }
-
-        if ("com.miui.tsmclient".equals(lpparam.packageName)) {
-            Log.i(TAG, "已加载到小米智能卡进程: " + lpparam.processName);
-            fixTsmClient(lpparam);
+        if ("com.google.android.gms".equals(lpparam.packageName)) {
+            Log.i(TAG, "已加载到 Google Play 服务进程 (com.google.android.gms): " + lpparam.processName);
+            fixGoogleAccount(lpparam);
         }
     }
 
@@ -2064,7 +2042,129 @@ public class XposedInit implements IXposedHookLoadPackage {
 
         Log.i(TAG, ">>> NFC 系统服务穿透补丁注入完成 <<<");
     }
+
+    /**
+     * 针对 Google Play 服务 (com.google.android.gms) 的登录闪退实施终极防御
+     */
+    private void fixGoogleAccount(XC_LoadPackage.LoadPackageParam lpparam) {
+        if (!"com.google.android.gms".equals(lpparam.packageName)) return;
+        Log.i(TAG, ">>> 加载 Google Play 服务登录修复补丁 (PID: " + android.os.Process.myPid() + ") <<<");
+
+        // 1. Hook Activity.onCreate 全局拦截并补全 accountType
+        try {
+            XposedHelpers.findAndHookMethod(android.app.Activity.class, "onCreate", android.os.Bundle.class, new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    android.app.Activity act = (android.app.Activity) param.thisObject;
+                    Intent intent = act.getIntent();
+                    if (intent != null) {
+                        ensureAccountType(intent);
+                    }
+                }
+            });
+            Log.i(TAG, "✓ 已挂载 Activity.onCreate 参数注入拦截器");
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook Activity.onCreate 失败", t);
+        }
+
+        // 2. Hook Activity.startActivityForResult 与 startActivity
+        try {
+            XC_MethodHook startActHook = new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    if (param.args != null && param.args.length > 0 && param.args[0] instanceof Intent) {
+                        Intent intent = (Intent) param.args[0];
+                        ensureAccountType(intent);
+                    }
+                }
+            };
+            XposedHelpers.findAndHookMethod(android.app.Activity.class, "startActivityForResult", Intent.class, int.class, android.os.Bundle.class, startActHook);
+            XposedHelpers.findAndHookMethod(android.content.ContextWrapper.class, "startActivity", Intent.class, android.os.Bundle.class, startActHook);
+            Log.i(TAG, "✓ 已挂载 startActivity 目标参数守卫");
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook startActivity 失败", t);
+        }
+
+        // 3. 动态寻找 Chimera Activity 并防闪退
+        try {
+            Class<?> chimeraActClass = XposedHelpers.findClassIfExists("com.google.android.chimera.Activity", lpparam.classLoader);
+            if (chimeraActClass != null) {
+                XposedBridge.hookAllMethods(chimeraActClass, "onCreate", new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        try {
+                            Intent intent = (Intent) XposedHelpers.callMethod(param.thisObject, "getIntent");
+                            if (intent != null) {
+                                ensureAccountType(intent);
+                            }
+                        } catch (Throwable ignored) {}
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        if (param.hasThrowable()) {
+                            Throwable t = param.getThrowable();
+                            if (t instanceof IllegalArgumentException && t.getMessage() != null && t.getMessage().contains("accountType")) {
+                                Log.w(TAG, "【GMS 崩溃防御】成功拦截 Chimera Activity accountType 崩溃: " + t.getMessage());
+                                param.setThrowable(null);
+                            }
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已挂载 Chimera.Activity 异常防御与参数补全");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook Chimera.Activity 失败", t);
+        }
+
+        // 4. Hook GoogleAccountAuthenticator.addAccount
+        try {
+            Class<?> authClass = XposedHelpers.findClassIfExists("com.google.android.gms.auth.account.authenticator.GoogleAccountAuthenticator", lpparam.classLoader);
+            if (authClass == null) {
+                authClass = XposedHelpers.findClassIfExists("com.google.android.gms.auth.account.authenticator.GoogleAccountAuthenticatorService", lpparam.classLoader);
+            }
+            if (authClass != null) {
+                XposedBridge.hookAllMethods(authClass, "addAccount", new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        Object result = param.getResult();
+                        if (result instanceof android.os.Bundle) {
+                            android.os.Bundle bundle = (android.os.Bundle) result;
+                            Intent intent = (Intent) bundle.getParcelable("intent");
+                            if (intent != null) {
+                                ensureAccountType(intent);
+                            }
+                            bundle.putString("accountType", "com.google");
+                        }
+                    }
+                });
+                Log.i(TAG, "✓ 已挂载 GoogleAccountAuthenticator.addAccount 返回守卫");
+            }
+        } catch (Throwable t) {
+            Log.e(TAG, "Hook GoogleAccountAuthenticator 失败", t);
+        }
+    }
+
+    private static void ensureAccountType(Intent intent) {
+        if (intent == null) return;
+        try {
+            String act = intent.getAction();
+            ComponentName cmp = intent.getComponent();
+            String cmpStr = cmp != null ? cmp.flattenToString() : "";
+            
+            boolean isAuthIntent = (act != null && (act.contains("ADD_ACCOUNT") || act.contains("UNPACKING_REDIRECT") || act.contains("auth")))
+                    || cmpStr.contains("AccountIntro") || cmpStr.contains("uiflows") || cmpStr.contains("UnpackingRedirect");
+            
+            if (isAuthIntent || intent.getStringExtra("accountType") == null) {
+                intent.putExtra("accountType", "com.google");
+                intent.putExtra("authAccount", "com.google");
+                android.os.Bundle extras = intent.getExtras();
+                if (extras != null) {
+                    extras.putString("accountType", "com.google");
+                    extras.putString("authAccount", "com.google");
+                }
+            }
+        } catch (Throwable ignored) {}
+    }
+
 }
-
-
-
